@@ -1,35 +1,85 @@
 <?php
+
 namespace Project\App\Config;
 
 use PDO;
-class Connection {
-	public static function connection (){
+
+class Connection
+{
+    public static function connection()
+    {
         session_start();
-        header('Content-Type: application-json');
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            header('Content-Type: application-json');
-            $db = 'traditionswellnessspa';
-            $password = 'root';
-            $username = 'admin';
-            $host = 'localhost:3307';
-            try {
-                header('Content-Type: application-json');
-                $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+        header('Content-Type: application/json');
+
+        $db = 'traditionswellnessspa';
+        $password = 'root';
+        $username = 'admin';
+        $host = 'localhost:3307';
+
+        switch ($_SERVER['REQUEST_METHOD']) {
+            case 'GET':
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+                    echo json_encode([
+                        'message' => 'Connected successfully'
+                    ]);
+                    return $pdo;
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        'error' => $th->getMessage()
+                    ]);
+                }
+                break;
+
+            case 'POST':
+
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+                    echo json_encode([
+                        'message' => 'Connected successfully'
+                    ]);
+                    return $pdo;
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        'error' => $th->getMessage()
+                    ]);
+                }
+                break;
+
+            case 'PUT':
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+                    echo json_encode([
+                        'message' => 'Connected successfully'
+                    ]);
+                    return $pdo;
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        'error' => $th->getMessage()
+                    ]);
+                }
+                break;
+
+            case 'DELETE':
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+                    echo json_encode([
+                        'message' => 'Connected successfully'
+                    ]);
+                    return $pdo;
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        'error' => $th->getMessage()
+                    ]);
+                }
+                break;
+
+            default:
+                http_response_code(405);
                 echo json_encode([
-                    'messge' => 'connected'
+                    'error' => 'Method Not Allowed'
                 ]);
-                return $pdo;
-            } catch (\Throwable $th) {
-                echo json_encode([
-                    'error' => "$th"
-                ]);
-            }
-        } else {
-            echo json_encode([
-                'message' => 'This method should be a GET method'
-            ]);
+                break;
         }
-	}
+    }
 }
-
-

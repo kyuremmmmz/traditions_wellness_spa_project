@@ -9,7 +9,7 @@ $router = new App\Core\Router();
 
 
 $router->get('/authCheck', 'CrudController@index');
-$router->post('/products', 'ProductController@store');
+$router->post('/products', 'CrudController@store');
 $router->put('/products/{id}', 'ProductController@update');
 $router->delete('/products/{id}', 'ProductController@destroy');
 $router->get('/test', function () {
@@ -18,7 +18,7 @@ $router->get('/test', function () {
 
 
 try {
-    $router->matchRoute();
+    $router->resolve();
 } catch (Exception $e) {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);

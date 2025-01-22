@@ -28,38 +28,29 @@ class Router
         $this->routes['DELETE'][$path] = $controller;
     }
 
-    public function matchRoute()
+    public function resolve()
     {
         $method = $_SERVER['REQUEST_METHOD'];
-        $url = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        if (isset($this->routes[$method])) {
-            foreach ($this->routes[$method] as $routeUrl => $target) {
-                // Convert {parameter} syntax to regex pattern
-                $pattern = preg_replace('/\{([^\/]+)\}/', '(?P<$1>[^/]+)', $routeUrl);
-                if (preg_match('#^' . $pattern . '$#', $url, $matches)) {
-                    $params = array_filter($matches, 'is_string', ARRAY_FILTER_USE_KEY); // Only keep named subpattern matches
-                    if (is_callable($target)) {
-                        call_user_func_array($target, $params);
-                    } elseif (is_string($target) && strpos($target, '@') !== false) {
-                        list($controllerName, $methodName) = explode('@', $target);
-                        $controllerClass = 'Project\\App\\Controllers\\' . $controllerName;
-                        if (class_exists($controllerClass)) {
-                            $controllerInstance = new $controllerClass();
-                            if (method_exists($controllerInstance, $methodName)) {
-                                call_user_func_array([$controllerInstance, $methodName], $params);
-                            } else {
-                                throw new Exception("Method $methodName not found in $controllerClass");
-                            }
-                        } else {
-                            throw new Exception("Controller $controllerClass not found");
-                        }
-                    }
-                    return;
-                }
+        foreach ($this->routes[$method] ?? [] as $route => $controller) {
+            if (preg_match($this->convertToRegex($route), $path, $params)) {
+                list($controllerName, $action) = explode('@', $controller);
+                $controllerClass = "Project\\App\\Controllers\\$controllerName";
+                require_once "../app/Controllers/$controllerName.php";
+                $controllerInstance = new $controllerClass();
+                return $controllerInstance->$action(array_slice($params, 1));
             }
         }
 
-        throw new Exception('Route not found');
+        http_response_code(404);
+        echo json_encode(['error' => 'Route not found']);
     }
+
+    private function convertToRegex($route)
+    {
+        $escapedRoute = preg_replace('/\//', '\/', $route);
+        return '/^' . str_replace(['{id}'], ['(\d+)'], $escapedRoute) . '$/';
+    }
+
 }

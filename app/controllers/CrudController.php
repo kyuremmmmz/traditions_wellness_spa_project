@@ -11,7 +11,7 @@ class CrudController
     public function index()
     {
         $products = $this->users->getAll();
-        echo  json_encode([
+        echo json_encode([
             'message' => $products
         ]);
     }
