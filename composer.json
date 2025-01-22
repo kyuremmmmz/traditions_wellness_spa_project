@@ -4,5 +4,10 @@
         "spomky-labs/otphp": "^11.3",
         "hybridauth/hybridauth": "~3.0",
         "phpauth/phpauth": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Project\\App\\": "app/"
+        }
     }
 }

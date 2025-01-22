@@ -1,11 +1,19 @@
 <?php
+namespace Project\App\Controllers;
+use Project\App\Models\AuthModelModel;
 
 class CrudController
 {
+    private $users;
+    public function __construct(){
+        $this->users = new AuthModelModel();
+    }
     public function index()
     {
-        // Code for listing resources
-        echo "This is the index method of CrudController.";
+        $products = $this->users->getAll();
+        echo  json_encode([
+            'message' => $products
+        ]);
     }
 
     public function create()

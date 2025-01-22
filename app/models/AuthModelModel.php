@@ -8,14 +8,14 @@ class AuthModelModel
 {
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct()
     {
         $this->pdo = Connection::connection();
     }
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT * FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

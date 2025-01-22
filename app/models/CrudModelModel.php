@@ -1,5 +1,6 @@
 <?php
-
+namespace Project\App\Models;
+use PDO;
 use Project\App\Config\Connection;
 
 class CrudModelModel
@@ -13,7 +14,7 @@ class CrudModelModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT * FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
