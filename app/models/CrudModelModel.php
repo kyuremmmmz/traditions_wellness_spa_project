@@ -24,9 +24,9 @@ class CrudModelModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($data)
+    public function create($data =[])
     {
-        $stmt = $this->pdo->prepare("INSERT INTO your_table_name (column1, column2) VALUES (:value1, :value2)");
+        $stmt = $this->pdo->prepare("INSERT INTO users (column1, column2) VALUES (:value1, :value2)");
         return $stmt->execute($data);
     }
 

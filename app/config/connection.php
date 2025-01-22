@@ -35,7 +35,7 @@ class Connection {
 
 // Function testing
 header('Content-Type: application-json');
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     header('Content-Type: application-json');
     $db = 'traditionswellnessspa';
     $password = 'root';
@@ -55,6 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     echo json_encode([
-        'message' => 'This method should be a POST method'
+        'message' => 'This method should be a GET method'
     ]);
 }
