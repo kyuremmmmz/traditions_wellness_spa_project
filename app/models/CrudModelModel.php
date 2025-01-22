@@ -1,12 +1,14 @@
 <?php
 
+use Project\App\Config\Connection;
+
 class CrudModelModel
 {
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Connection::connection();
     }
 
     public function getAll()
