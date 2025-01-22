@@ -1,0 +1,101 @@
+<?php
+// File: generateMigration.php
+
+$migrationsDir = __DIR__ . '/app/migrations';
+
+// Ensure the migrations directory exists
+if (!is_dir($migrationsDir)) {
+    mkdir($migrationsDir, 0755, true);
+}
+
+// Prompt user for action
+echo "Choose an action: [1] Create Migration, [2] Run Migrations, [3] Rollback Migrations: ";
+$action = trim(fgets(STDIN));
+
+$pdo = new PDO('mysql:host=localhost:3307;dbname=traditionswellnessspa', 'root', 'admin');
+
+switch ($action) {
+    case '1': // Create Migration
+        echo "Enter migration name: ";
+        $migrationName = trim(fgets(STDIN));
+        $timestamp = date('YmdHis');
+        $className = "Migrate{$timestamp}_{$migrationName}";
+        $fileName = "{$className}.php";
+
+        $filePath = "$migrationsDir/$fileName";
+        $template = <<<PHP
+<?php
+
+class {$className}
+{
+    public function up(\$pdo)
+    {
+        // Example: Create a table
+        // \$pdo->exec("CREATE TABLE example (id INT AUTO_INCREMENT PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+    }
+
+    public function down(\$pdo)
+    {
+        // Example: Drop the table
+        // \$pdo->exec("DROP TABLE example");
+    }
+}
+PHP;
+
+        file_put_contents($filePath, $template);
+        echo "Migration created: $filePath\n";
+        break;
+
+    case '2': // Run Migrations
+        $migrations = glob("$migrationsDir/*.php");
+        sort($migrations); // Run in chronological order
+
+        foreach ($migrations as $migrationFile) {
+            require_once $migrationFile;
+            $className = pathinfo($migrationFile, PATHINFO_FILENAME);
+
+            if (!class_exists($className)) {
+                echo "Migration class '$className' not found in file '$migrationFile'.\n";
+                continue;
+            }
+
+            $migration = new $className();
+            echo "Applying migration: $className\n";
+
+            try {
+                $migration->up($pdo);
+                echo "Migration '$className' applied successfully.\n";
+            } catch (Exception $e) {
+                echo "Error applying migration '$className': " . $e->getMessage() . "\n";
+            }
+        }
+        break;
+
+    case '3': // Rollback Migrations
+        $migrations = glob("$migrationsDir/*.php");
+        rsort($migrations); // Rollback in reverse order
+
+        foreach ($migrations as $migrationFile) {
+            require_once $migrationFile;
+            $className = pathinfo($migrationFile, PATHINFO_FILENAME);
+
+            if (!class_exists($className)) {
+                echo "Migration class '$className' not found in file '$migrationFile'.\n";
+                continue;
+            }
+
+            $migration = new $className();
+            echo "Rolling back migration: $className\n";
+
+            try {
+                $migration->down($pdo);
+                echo "Migration '$className' rolled back successfully.\n";
+            } catch (Exception $e) {
+                echo "Error rolling back migration '$className': " . $e->getMessage() . "\n";
+            }
+        }
+        break;
+
+    default:
+        echo "Invalid option. Exiting.\n";
+}
