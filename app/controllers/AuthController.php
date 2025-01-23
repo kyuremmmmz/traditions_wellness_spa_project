@@ -32,7 +32,9 @@ class AuthController
         $response = $this->controller->find($data['username']);
         if (is_array($response)) {
             if (password_verify($data['password'], $response['password'])) {
-                echo json_encode(['data' => base64_encode(json_encode($response))]);
+                session_start();
+                $_SESSION['user'] = $response;
+                echo json_encode(['data' => (base64_encode(json_encode($_SESSION['user'])))]);
             }else{
                 echo json_encode(['data' => 'Login Failed']);
             }

@@ -8,7 +8,6 @@ class Connection
 {
     public static function connection()
     {
-        session_start();
         header('Content-Type: application/json');
 
         $db = 'traditionswellnessspa';
