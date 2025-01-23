@@ -13,8 +13,8 @@ class Connection
 
         $db = 'traditionswellnessspa';
         $password = 'root';
-        $username = 'admin';
-        $host = 'localhost:3307';
+        $username = '';
+        $host = 'localhost:3306';
 
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
