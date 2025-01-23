@@ -6,16 +6,35 @@ use PDO;
 
 class Connection
 {
+    public static function globalConnection() 
+    {
+        session_start();
+        header('Content-Type: application/json');
+        $db = 'traditionswellnessspa';
+        $password = '';
+        $username = 'root';
+        $host = 'localhost:3306';
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            echo json_encode([
+                'message' => 'Connected successfully'
+            ]);
+            return $pdo;
+        } catch (\Throwable $th) {
+            echo json_encode([
+                'error' => $th->getMessage()
+            ]);
+        }
+    }
     public static function connection()
     {
         session_start();
         header('Content-Type: application/json');
 
         $db = 'traditionswellnessspa';
-        $password = 'root';
-        $username = '';
+        $password = '';
+        $username = 'root';
         $host = 'localhost:3306';
-
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 try {

@@ -6,8 +6,8 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'VanillaBackend\\App\\' => array($baseDir . '/app'),
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
-    'Project\\App\\' => array($baseDir . '/app'),
     'ParagonIE\\ConstantTime\\' => array($vendorDir . '/paragonie/constant_time_encoding/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'PHPAuth\\' => array($vendorDir . '/phpauth/phpauth/sources'),

@@ -1,4 +1,6 @@
 <?php
+require 'C:\xampp\htdocs\Project\VanillaBackend\app\config\connection.php';
+use Project\App\Config\Connection;
 // File: generateMigration.php
 
 $migrationsDir = __DIR__ . '/app/migrations';
@@ -12,7 +14,7 @@ if (!is_dir($migrationsDir)) {
 echo "Choose an action: [1] Create Migration, [2] Run Migrations, [3] Rollback Migrations: ";
 $action = trim(fgets(STDIN));
 
-$pdo = new PDO('mysql:host=localhost:3307;dbname=traditionswellnessspa', 'root', 'admin');
+$pdo =  Connection::connection();
 
 switch ($action) {
     case '1': // Create Migration

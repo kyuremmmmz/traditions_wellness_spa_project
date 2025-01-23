@@ -7,7 +7,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Project\\App\\": "app/"
+            "VanillaBackend\\App\\": "app/"
         }
     }
 }

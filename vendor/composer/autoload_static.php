@@ -11,10 +11,13 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'VanillaBackend\\App\\' => 19,
+        ),
         'P' => 
         array (
             'Psr\\Clock\\' => 10,
-            'Project\\App\\' => 12,
             'ParagonIE\\ConstantTime\\' => 23,
             'PHPMailer\\PHPMailer\\' => 20,
             'PHPAuth\\' => 8,
@@ -30,13 +33,13 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixDirsPsr4 = array (
+        'VanillaBackend\\App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
+        ),
         'Psr\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
-        ),
-        'Project\\App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
         ),
         'ParagonIE\\ConstantTime\\' => 
         array (
