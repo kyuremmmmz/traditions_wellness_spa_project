@@ -1,21 +1,22 @@
 <?php
 
 use Project\App\Controllers\CrudController;
-use Project\App\Models\CrudModelModel;
+use Project\App\Controllers\AuthController;
+use Project\App\Models\CrudModel;
+use App\Core\Router;
 
-require_once '../app/core/Router.php'; 
-require_once '../vendor/autoload.php'; 
-$router = new App\Core\Router();
+require_once '../app/core/Router.php';
+require_once '../vendor/autoload.php';
 
+$router = new Router();
 
 $router->get('/authCheck', 'CrudController@index');
-$router->post('/products', 'CrudController@store');
+$router->post('/login', 'AuthController@store');
 $router->put('/products/{id}', 'ProductController@update');
 $router->delete('/products/{id}', 'ProductController@destroy');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
-
 
 try {
     $router->resolve();
