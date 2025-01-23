@@ -1,10 +1,9 @@
 <?php
 namespace Project\App\Models;
-
 use PDO;
 use Project\App\Config\Connection;
 
-class AuthModelModel
+class AuthModel
 {
     private $pdo;
 
@@ -15,14 +14,14 @@ class AuthModelModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM users");
+        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function find($username)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->execute(['username' => $username]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

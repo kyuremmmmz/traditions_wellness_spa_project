@@ -52,5 +52,4 @@ class Router
         $escapedRoute = preg_replace('/\//', '\/', $route);
         return '/^' . str_replace(['{id}'], ['(\d+)'], $escapedRoute) . '$/';
     }
-
 }
