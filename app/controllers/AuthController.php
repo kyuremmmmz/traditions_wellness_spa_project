@@ -39,6 +39,7 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email']
                 ];
+                echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
                 $payload =  [
                     'role' => $response['role'],
                     'username' => $response['username'],
@@ -51,10 +52,12 @@ class AuthController
                     'token' => base64_encode(json_encode($payload)),
                 ]);
             }else{
-                echo json_encode(['data' => 'Login Failed']);
+                http_response_code(401);
+                echo json_encode(['Error' => 'Invalid credentials']);
             }
         } else {
-            echo json_encode(['data' => 'no data']);
+            http_response_code(404);
+            echo json_encode(['Error' => 'User not found']);
         }
     }
 
