@@ -2,7 +2,6 @@
 
 namespace Project\App\Controllers;
 
-use Illuminate\Http\Client\Request;
 use Project\App\Models\AuthModel;
 
 class AuthController
@@ -33,9 +32,24 @@ class AuthController
         $response = $this->controller->find($data['username']);
         if (is_array($response)) {
             if (password_verify($data['password'], $response['password'])) {
-                session_start();
-                $_SESSION['user'] = $response;
-                echo json_encode(['data' => (base64_encode(json_encode($_SESSION['user'])))]);
+                $_SESSION['user'] = [
+                    'role' => $response['role'],
+                    'username' => $response['username'],
+                    'last_name' => $response['last_name'],
+                    'first_name' => $response['first_name'],
+                    'email' => $response['email']
+                ];
+                $payload =  [
+                    'role' => $response['role'],
+                    'username' => $response['username'],
+                    'last_name' => $response['last_name'],
+                    'first_name' => $response['first_name'],
+                    'email' => $response['email']
+                ];
+                echo json_encode([
+                    'data' => $payload,
+                    'token' => base64_encode(json_encode($payload)),
+                ]);
             }else{
                 echo json_encode(['data' => 'Login Failed']);
             }

@@ -1,21 +1,18 @@
 <?php 
-namespace Project\App\Middleware;
-
-use Composer\DependencyResolver\Request;
-
+namespace Project\App\Core\Middleware;
 class AuthMiddleware
 {
-    // TODO: IMPLEMENT THE PROTECTED ROUTE
-    public function __invoke($request, $next)
+    public static function handle($request, $next, $requiredRoles = ['users', 'therapist', 'super admin', 'assistant admin'])
     {
         session_start();
         if (!isset($_SESSION['user'])) {
             http_response_code(403);
             echo json_encode(
                 [
-                    'message' => 'Unauthorized user'
+                    'Error' => 'Unauthorized user'
                 ]
             );
         }
+        return $next($request);
     }
 }
