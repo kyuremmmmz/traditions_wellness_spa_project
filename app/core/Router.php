@@ -40,18 +40,25 @@ class Router
                 list($controllerName, $action) = explode('@', $controller);
                 $controllerClass = "Project\\App\\Controllers\\$controllerName";
                 require_once "../app/Controllers/$controllerName.php";
-                if ($middleware) {
-                    $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
-                    require_once "C:/xampp/htdocs/TraditionsWellnessSpa/Project/app/core/middleware/$middleware.php";
-                    $middlewareInstance = new $middlewareClass();
-                    $middlewareResult = $middlewareInstance::handle($_REQUEST, function () use ($controllerClass, $action, $params) {
-                        $controllerInstance = new $controllerClass();
-                        return $controllerInstance->$action(array_slice($params, 1));
-                    });
-                    return $middlewareResult;
+                try {
+                    if ($middleware) {
+                        $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
+                        require_once "C:/xampp/htdocs/TraditionsWellnessSpa/Project/app/core/middleware/$middleware.php";
+                        $middlewareInstance = new $middlewareClass();
+                        $middlewareResult = $middlewareInstance::handle($_REQUEST, function () use ($controllerClass, $action, $params) {
+                            $controllerInstance = new $controllerClass();
+                            return $controllerInstance->$action(array_slice($params, 1));
+                        });
+                        return $middlewareResult;
+                    }
+                    $controllerInstance = new $controllerClass();
+                    return $controllerInstance->$action(array_slice($params, 1));
+                } catch (Exception $th) {
+                    http_response_code($th->getCode() ?: 500);
+                    echo json_encode([
+                        'error' => $th
+                    ]);
                 }
-                $controllerInstance = new $controllerClass();
-                return $controllerInstance->$action(array_slice($params, 1));
             }
         }
 
