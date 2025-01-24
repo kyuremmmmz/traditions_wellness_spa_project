@@ -1,9 +1,13 @@
 <?php 
 namespace Project\App\Middleware;
 
-class AuthMiddleware{
+use Composer\DependencyResolver\Request;
+
+class AuthMiddleware
+{
     // TODO: IMPLEMENT THE PROTECTED ROUTE
-    public function handle($request) {
+    public function __invoke($request, $next)
+    {
         session_start();
         if (!isset($_SESSION['user'])) {
             http_response_code(403);

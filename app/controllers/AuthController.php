@@ -25,7 +25,7 @@ class AuthController
         echo "This is the create method of AuthController.";
     }
 
-    public function store($request)
+    public function store()
     {
         $data = json_decode(file_get_contents('php://input'), true);
         
