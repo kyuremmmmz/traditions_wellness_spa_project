@@ -1,8 +1,5 @@
 <?php
 
-use Project\App\Controllers\CrudController;
-use Project\App\Controllers\AuthController;
-use Project\App\Models\CrudModel;
 use App\Core\Router;
 
 require_once '../app/core/Router.php';

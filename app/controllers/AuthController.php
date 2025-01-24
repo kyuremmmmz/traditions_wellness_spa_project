@@ -2,6 +2,7 @@
 
 namespace Project\App\Controllers;
 
+use Illuminate\Http\Client\Request;
 use Project\App\Models\AuthModel;
 
 class AuthController
@@ -27,7 +28,7 @@ class AuthController
 
     public function store()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = json_decode(filter_var(file_get_contents('php://input')), true);
         
         $response = $this->controller->find($data['username']);
         if (is_array($response)) {
