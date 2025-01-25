@@ -2,17 +2,20 @@
 
 namespace Project\App\Controllers;
 
+use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
-use Str;
+
+
 
 
 class AuthController
 {
     private $controller;
-
+    private $mailer;
     public function __construct()
     {
         $this->controller = new AuthModel();
+        $this->mailer = new Mailer();
     }
 
     public function forgotPassword()
@@ -35,6 +38,12 @@ class AuthController
             date('Y-m-d H:i:s'),
             $data['role'],
             $temporaryData['username'],
+        );
+        $this->mailer->sendVerification(
+            $data['email'],
+            'Good day!'.$data['first_name'].'This is your temporary username and password below',
+            'User name:'.$temporaryData['username'].'',
+            'Password:'.$temporaryData['password'] . '',
         );
         echo json_encode(
             [
