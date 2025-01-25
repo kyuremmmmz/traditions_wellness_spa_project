@@ -41,7 +41,7 @@ class AuthController
         );
         $this->mailer->sendVerification(
             $data['email'],
-            'Good day!'.$data['first_name'].'This is your temporary username and password below',
+            'Good day!'. $data['first_name'].', This is your temporary username and password below',
             'User name:'.$temporaryData['username'].'',
             'Password:'.$temporaryData['password'] . '',
         );
