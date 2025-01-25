@@ -54,7 +54,7 @@ class Router
                     $controllerInstance = new $controllerClass();
                     return $controllerInstance->$action(array_slice($params, 1));
                 } catch (Exception $th) {
-                    http_response_code($th->getCode() ?: 500);
+                    http_response_code( 500);
                     echo json_encode([
                         'error' => $th
                     ]);

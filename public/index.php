@@ -9,7 +9,7 @@ $router = new Router();
 
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store', 'AuthMiddleware');
-$router->put('/products/{id}', 'ProductController@update');
+$router->post('/register', 'AuthController@register');
 $router->delete('/products/{id}', 'ProductController@destroy');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);

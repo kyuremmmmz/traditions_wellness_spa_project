@@ -3,6 +3,8 @@
 namespace Project\App\Controllers;
 
 use Project\App\Models\AuthModel;
+use Str;
+
 
 class AuthController
 {
@@ -13,16 +15,32 @@ class AuthController
         $this->controller = new AuthModel();
     }
 
-    public function index()
+    public function forgotPassword()
     {
         // Code for listing resources
         echo "This is the index method of AuthController.";
     }
 
-    public function create()
+    public function register()
     {
-        // Code for showing a create form
-        echo "This is the create method of AuthController.";
+        $data = json_decode(file_get_contents('php://input'), true);
+        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
+        $response = $this->controller->create(
+            $data['last_name'],
+            $data['first_name'],
+            $data['email'],
+            $temporaryData['password'],
+            $data['phone'],
+            $data['branch'] ,
+            date('Y-m-d H:i:s'),
+            $data['role'],
+            $temporaryData['username'],
+        );
+        echo json_encode(
+            [
+                'data' => $response
+            ]
+        );
     }
 
     public function store()
@@ -61,6 +79,16 @@ class AuthController
         }
     }
 
+    private function generateTemporaryUserNameAndPassword($firstName, $lastName)
+    {
+        $baseUserName  = strtolower(Str($firstName . '.' . $lastName));
+        $randomNum = rand(1000, 9999);
+        $temporaryPassword = 'Temp' . $randomNum;
+        return [
+            'username' => $baseUserName . $randomNum,
+            'password' => $temporaryPassword,
+        ];
+    }
 
 
 
