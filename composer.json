@@ -5,7 +5,8 @@
         "hybridauth/hybridauth": "~3.0",
         "phpauth/phpauth": "dev-master",
         "illuminate/http": "*",
-        "respect/validation": "*"
+        "respect/validation": "*",
+        "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
         "psr-4": {
