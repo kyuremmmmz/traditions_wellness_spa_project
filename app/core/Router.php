@@ -58,9 +58,6 @@ class Router
                 $middleware = $config['middleware'] ?? null;
                 list($controllerName, $action) = explode('@', $controller);
                 $controllerClass = "Project\\App\\Controllers\\$controllerName";
-
-                require_once "../Controllers/$controllerName.php";
-
                 try {
                     if ($middleware) {
                         $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";

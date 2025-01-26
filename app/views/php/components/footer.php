@@ -1,4 +1,5 @@
 <?php
+namespace Project\App\Views\Php\Components;
 class Footer
 {
     public static function handle()

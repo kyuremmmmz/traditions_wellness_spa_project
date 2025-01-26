@@ -4,6 +4,7 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
+use function Symfony\Component\Clock\now;
 
 
 
@@ -68,6 +69,12 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email']
                 ];
+                if (is_null($response['email_verified_at'])) {
+                    $this->controller->update(
+                        $response['email'],
+                        $response['email_verified_at'] = date('Y-m-d H:i:s')
+                    );
+                }
                 echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
                 $payload =  [
                     'role' => $response['role'],

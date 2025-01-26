@@ -18,6 +18,7 @@ $router->get('/test', function () {
 
 // VIEWS ROUTES
 $router->view('/login', 'page','login');
+$router->view('/register', 'page', 'register');
 
 try {
     $router->resolve();

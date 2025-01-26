@@ -99,11 +99,13 @@ class AuthModel
     }
 
 
-    public function update($id, $data)
+    public function update($email,$data)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE users SET email_verified_at = :email_verified_at WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
+            'email_verified_at' => $data
+        ]);
     }
 
     public function delete($id)
