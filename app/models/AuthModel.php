@@ -108,6 +108,25 @@ class AuthModel
         ]);
     }
 
+    public function forgotPassword($password, $data)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET password = :password, remember_token = :remember_token WHERE remember_token = :remember_token AND password = :password");
+        return $stmt->execute([
+            'password' => $password,
+            'remember_token' => $data
+        ]);
+    }
+
+    public function insertToken($token,$email)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO password_reset_tokens (email, token, created_at) VALUES(:email, :token, :created_at)");
+        return $stmt->execute([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+    }
+
     public function delete($id)
     {
         $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");

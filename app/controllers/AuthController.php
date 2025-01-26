@@ -19,10 +19,39 @@ class AuthController
         $this->mailer = new Mailer();
     }
 
+    public function forgotPasswordSend()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['username'])) {
+            $response = $this->controller->find($data['username']);
+            if (isset($response['username'])) {
+                $this->mailer->sendToken(
+                    $response['email'],
+                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                    'Token: ' . $this->generateToken(),
+                    $response['first_name'],);
+                $this->controller->insertToken($this->generateToken(), $response['email']);
+            }
+        }
+    }
+
     public function forgotPassword()
     {
-        // Code for listing resources
-        echo "This is the index method of AuthController.";
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['username'])) {
+            $response = $this->controller->find($data['username']);
+            if (isset($response['username'])) {
+                $this->controller->forgotPassword($this->generateToken(), $response['email']);
+            }
+        }
+    }
+
+
+
+    private function generateToken()
+    {
+        $randomToken = bin2hex(random_bytes(32));
+        return $randomToken;
     }
 
     public function register()
