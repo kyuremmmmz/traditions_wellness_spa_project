@@ -28,6 +28,11 @@ class Router
         $this->routes['DELETE'][$path] = compact('controller', 'middleware');
     }
 
+    public function view($path, $viewFile)
+    {
+        $this->routes['GET'][$path] = ['view' => $viewFile];
+    }
+
     public function resolve()
     {
         $method = $_SERVER['REQUEST_METHOD'];
@@ -35,11 +40,24 @@ class Router
 
         foreach ($this->routes[$method] ?? [] as $route => $config) {
             if (preg_match($this->convertToRegex($route), $path, $params)) {
+                if (isset($config['view'])) {
+                    // Render the view
+                    $viewFile = "../app/views/{$config['view']}.php";
+                    if (file_exists($viewFile)) {
+                        include $viewFile;
+                        return;
+                    } else {
+                        throw new Exception("View file not found: $viewFile");
+                    }
+                }
+
+                // Existing API route logic
                 $controller = $config['controller'];
                 $middleware = $config['middleware'];
                 list($controllerName, $action) = explode('@', $controller);
                 $controllerClass = "Project\\App\\Controllers\\$controllerName";
                 require_once "../app/Controllers/$controllerName.php";
+
                 try {
                     if ($middleware) {
                         $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
@@ -54,10 +72,8 @@ class Router
                     $controllerInstance = new $controllerClass();
                     return $controllerInstance->$action(array_slice($params, 1));
                 } catch (Exception $th) {
-                    http_response_code( 500);
-                    echo json_encode([
-                        'error' => $th
-                    ]);
+                    http_response_code(500);
+                    echo json_encode(['error' => $th]);
                 }
             }
         }
@@ -65,6 +81,7 @@ class Router
         http_response_code(404);
         echo json_encode(['error' => 'Route not found']);
     }
+
 
     private function convertToRegex($route)
     {
