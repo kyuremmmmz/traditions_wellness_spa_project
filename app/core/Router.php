@@ -28,9 +28,9 @@ class Router
         $this->routes['DELETE'][$path] = compact('controller', 'middleware');
     }
 
-    public function view($path, $viewFile)
+    public function view($path, $viewFile, $foldername,$middleware = null)
     {
-        $this->routes['GET'][$path] = ['view' => $viewFile];
+        $this->routes['GET'][$path] = compact('viewFile', 'middleware', 'foldername');
     }
 
     public function resolve()
@@ -40,23 +40,26 @@ class Router
 
         foreach ($this->routes[$method] ?? [] as $route => $config) {
             if (preg_match($this->convertToRegex($route), $path, $params)) {
-                if (isset($config['view'])) {
-                    // Render the view
-                    $viewFile = "../app/views/{$config['view']}.php";
+                $folder = isset($config['foldername']);
+                if (isset($config['viewFile']) && $folder) {
+                    $viewFile = dirname(__DIR__) . "/views/php/pages/".$config['foldername']. "/". $config['viewFile'] . ".php";
                     if (file_exists($viewFile)) {
+                        ob_start();
                         include $viewFile;
+                        $content = ob_get_clean();
+                        include dirname(__DIR__) . "/views/index.php";
                         return;
                     } else {
                         throw new Exception("View file not found: $viewFile");
                     }
                 }
 
-                // Existing API route logic
-                $controller = $config['controller'];
-                $middleware = $config['middleware'];
+                $controller = $config['controller'] ?? null;
+                $middleware = $config['middleware'] ?? null;
                 list($controllerName, $action) = explode('@', $controller);
                 $controllerClass = "Project\\App\\Controllers\\$controllerName";
-                require_once "../app/Controllers/$controllerName.php";
+
+                require_once "../Controllers/$controllerName.php";
 
                 try {
                     if ($middleware) {
@@ -69,11 +72,12 @@ class Router
                         });
                         return $middlewareResult;
                     }
+
                     $controllerInstance = new $controllerClass();
                     return $controllerInstance->$action(array_slice($params, 1));
                 } catch (Exception $th) {
                     http_response_code(500);
-                    echo json_encode(['error' => $th]);
+                    echo json_encode(['error' => $th->getMessage()]);
                 }
             }
         }
@@ -81,7 +85,6 @@ class Router
         http_response_code(404);
         echo json_encode(['error' => 'Route not found']);
     }
-
 
     private function convertToRegex($route)
     {

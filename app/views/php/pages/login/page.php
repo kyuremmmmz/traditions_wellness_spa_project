@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traditions Wellness Spa</title>
-    <link rel="stylesheet" href="/path/to/styles.css">
+    <title>Document</title>
 </head>
-
 <body>
-    <?= $content; ?>
+    <h1>Login</h1>
 </body>
-
 </html>
