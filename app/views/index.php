@@ -1,4 +1,5 @@
 <?php
+
 use Project\App\Views\Php\Components\Footer;
 use Project\App\Views\Php\Components\Header;
 
@@ -11,6 +12,7 @@ use Project\App\Views\Php\Components\Header;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet" type="text/css" />
     <title>Traditions Wellness Spa</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,7 +31,7 @@ use Project\App\Views\Php\Components\Header;
 </head>
 
 <body>
-    <div class=" w-full h-screen">
+    <div class="w-full h-screen ">
         <?php
         Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
         ?>
@@ -41,4 +43,5 @@ use Project\App\Views\Php\Components\Header;
         ?>
     </div>
 </body>
+
 </html>
