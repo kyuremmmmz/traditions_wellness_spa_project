@@ -1,3 +1,4 @@
+<?php
 namespace Project\App\Views\Php\Pages\Login;
 
 class Page
