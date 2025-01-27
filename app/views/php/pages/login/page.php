@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/Component.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/assets/Logo.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/RememberMe.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/assets/mini-logo.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/RememberMe.p
     <link rel="stylesheet" href="/app/views/css/password-input.css">
     <link rel="stylesheet" href="/app/views/css/logo.css">
     <link rel="stylesheet" href="/app/views/css/remember-me.css">
+    <link rel="stylesheet" href="/app/views/css/mini-logo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> <!-- FontAwesome -->
 </head>
 <body>
@@ -23,7 +25,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/app/views/php/components/RememberMe.p
         <?php 
             Logo::render(); 
         ?>
-
+    <?php MiniLogo::render(); ?>
     <h2 style="text-align: center;">Login to your account</h2>
 
       <!-- Input Feilds -->
