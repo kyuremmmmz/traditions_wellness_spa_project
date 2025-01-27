@@ -99,11 +99,35 @@ class AuthModel
     }
 
 
-    public function update($id, $data)
+    public function update($email,$data)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE users SET email_verified_at = :email_verified_at WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
+            'email_verified_at' => $data
+        ]);
+    }
+
+    public function forgotPassword($data, $newPassword, $uName)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users 
+        SET password = :newPassword, remember_token = :remember_token 
+        WHERE username = :username");
+        return $stmt->execute([
+            'newPassword' => $newPassword,
+            'remember_token' => $data,
+            'username' => $uName
+        ]);
+    }
+
+    public function insertToken($token,$email)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO password_reset_tokens (email, token, created_at) VALUES(:email, :token, :created_at)");
+        return $stmt->execute([
+            'email' => $email,
+            'token' => $token,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
     }
 
     public function delete($id)

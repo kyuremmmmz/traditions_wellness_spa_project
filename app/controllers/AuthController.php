@@ -4,6 +4,7 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
+use function Symfony\Component\Clock\now;
 
 
 
@@ -18,15 +19,69 @@ class AuthController
         $this->mailer = new Mailer();
     }
 
+    public function forgotPasswordSend()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['username'])) {
+            $response = $this->controller->find($data['username']);
+            if (isset($response['username'])) {
+                $this->mailer->sendToken(
+                    $response['email'],
+                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                    'Token: ' . $this->generateToken(),
+                    $response['first_name'],);
+                $this->controller->insertToken($this->generateToken(), $response['email']);
+            }
+        }
+    }
+
     public function forgotPassword()
     {
-        // Code for listing resources
-        echo "This is the index method of AuthController.";
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (isset($data['remember_token'], $data['newPassword'])) {
+            $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
+
+            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
+
+            if ($result) {
+                echo json_encode(['message' => 'Password has been updated successfully.']);
+            } else {
+                echo json_encode(['error' => 'Invalid token or password update failed.']);
+            }
+        } else {
+            echo json_encode(['error' => 'Required fields are missing.']);
+        }
+    }
+
+
+    private function generateToken()
+    {
+        $randomToken = bin2hex(random_bytes(32));
+        return $randomToken;
     }
 
     public function register()
     {
         $data = json_decode(file_get_contents('php://input'), true);
+
+        $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
+        if (!preg_match($emailPattern, $data['email'])) {
+            echo json_encode([
+                'error' => 'Invalid email format'
+            ]);
+            http_response_code(400);
+            return;
+        }
+        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+        if (!preg_match($passwordPattern, $data['password'])) {
+            echo json_encode([
+                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+            ]);
+            http_response_code(400);
+            return;
+        }
+
         $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
         $response = $this->controller->create(
             $data['last_name'],
@@ -34,24 +89,23 @@ class AuthController
             $data['email'],
             $temporaryData['password'],
             $data['phone'],
-            $data['branch'] ,
+            $data['branch'],
             date('Y-m-d H:i:s'),
             $data['role'],
             $temporaryData['username'],
         );
+
         $this->mailer->sendVerification(
-            
             $data['email'],
-            'Good day!'. $data['first_name'].', This is your temporary username and password below',
-            'User name:'.$temporaryData['username'].'',
-            'Password:'.$temporaryData['password'] . '',
+            'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
+            'Username: ' . $temporaryData['username'],
+            'Password: ' . $temporaryData['password'],
             $data['first_name'],
         );
-        echo json_encode(
-            [
-                'data' => $response
-            ]
-        );
+
+        echo json_encode([
+            'data' => $response
+        ]);
     }
 
     public function store()
@@ -68,6 +122,12 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email']
                 ];
+                if (is_null($response['email_verified_at'])) {
+                    $this->controller->update(
+                        $response['email'],
+                        $response['email_verified_at'] = date('Y-m-d H:i:s')
+                    );
+                }
                 echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
                 $payload =  [
                     'role' => $response['role'],
@@ -105,19 +165,16 @@ class AuthController
 
     public function edit($id)
     {
-        // Code for showing an edit form
-        echo "This is the edit method of AuthController for ID: $id.";
+
     }
 
     public function update($id)
     {
-        // Code for updating resources
-        echo "This is the update method of AuthController for ID: $id.";
+
     }
 
-    public function delete($id)
+    public function logout()
     {
-        // Code for deleting resources
-        echo "This is the delete method of AuthController for ID: $id.";
+        session_destroy();
     }
 }

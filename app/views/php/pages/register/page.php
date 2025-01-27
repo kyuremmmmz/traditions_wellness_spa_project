@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Register Page</h1>
-</body>
-</html>
+<?php
+namespace Project\App\Views\Php\Pages\Register;
+class Page
+{
+    public static function register()
+    {
+        echo <<<HTML
+        <div class="flex flex-col min-w-full w-full bg-black">
+            test
+        </div>
+        HTML;
+    }
+}
+Page::register();
+

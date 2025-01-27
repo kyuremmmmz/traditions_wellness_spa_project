@@ -40,50 +40,55 @@ class Router
 
         foreach ($this->routes[$method] ?? [] as $route => $config) {
             if (preg_match($this->convertToRegex($route), $path, $params)) {
-                $folder = isset($config['foldername']);
-                if (isset($config['viewFile']) && $folder) {
-                    $viewFile = dirname(__DIR__) . "/views/php/pages/".$config['foldername']. "/". $config['viewFile'] . ".php";
-                    if (file_exists($viewFile)) {
-                        ob_start();
-                        include $viewFile;
-                        $content = ob_get_clean();
-                        include dirname(__DIR__) . "/views/index.php";
+                if (isset($config['viewFile'])) {
+                    if (isset($config['middleware'])) {
+                        $middlewareClass = "Project\\App\\Core\\Middleware\\{$config['middleware']}";
+                        $middleware = new $middlewareClass();
+                        $middleware::handle($_REQUEST, function () use ($config) {
+                            $this->renderView($config['foldername'], $config['viewFile']);
+                        });
                         return;
-                    } else {
-                        throw new Exception("View file not found: $viewFile");
                     }
+                    $this->renderView($config['foldername'], $config['viewFile']);
+                    return;
                 }
 
                 $controller = $config['controller'] ?? null;
-                $middleware = $config['middleware'] ?? null;
-                list($controllerName, $action) = explode('@', $controller);
-                $controllerClass = "Project\\App\\Controllers\\$controllerName";
+                if ($controller) {
+                    $middleware = $config['middleware'] ?? null;
+                    list($controllerName, $action) = explode('@', $controller);
+                    $controllerClass = "Project\\App\\Controllers\\$controllerName";
+                    $controllerInstance = new $controllerClass();
 
-                require_once "../Controllers/$controllerName.php";
-
-                try {
                     if ($middleware) {
                         $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
-                        require_once "C:/xampp/htdocs/TraditionsWellnessSpa/Project/app/core/middleware/$middleware.php";
                         $middlewareInstance = new $middlewareClass();
-                        $middlewareResult = $middlewareInstance::handle($_REQUEST, function () use ($controllerClass, $action, $params) {
-                            $controllerInstance = new $controllerClass();
-                            return $controllerInstance->$action(array_slice($params, 1));
+                        $middlewareInstance::handle($_REQUEST, function () use ($controllerInstance, $action, $params) {
+                            $controllerInstance->$action(array_slice($params, 1));
                         });
-                        return $middlewareResult;
+                    } else {
+                        $controllerInstance->$action(array_slice($params, 1));
                     }
-
-                    $controllerInstance = new $controllerClass();
-                    return $controllerInstance->$action(array_slice($params, 1));
-                } catch (Exception $th) {
-                    http_response_code(500);
-                    echo json_encode(['error' => $th->getMessage()]);
+                    return;
                 }
             }
         }
 
         http_response_code(404);
         echo json_encode(['error' => 'Route not found']);
+    }
+
+    private function renderView($foldername, $viewFile)
+    {
+        $viewPath = dirname(__DIR__) . "/views/php/pages/$foldername/$viewFile.php";
+        if (file_exists($viewPath)) {
+            ob_start();
+            include $viewPath;
+            $content = ob_get_clean();
+            include dirname(__DIR__) . "/views/index.php";
+        } else {
+            throw new Exception("View file not found: $viewPath");
+        }
     }
 
     private function convertToRegex($route)

@@ -10,7 +10,8 @@ $router = new Router();
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store', 'AuthMiddleware');
 $router->post('/register', 'AuthController@register');
-$router->delete('/products/{id}', 'ProductController@destroy');
+$router->put('/forgot', 'AuthController@forgotPasswordSend');
+$router->put('/forgotPass', 'AuthController@forgotPassword');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
@@ -18,6 +19,9 @@ $router->get('/test', function () {
 
 // VIEWS ROUTES
 $router->view('/login', 'page','login');
+$router->view('/register', 'page', 'register');
+$router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
+$router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
 
 try {
     $router->resolve();
