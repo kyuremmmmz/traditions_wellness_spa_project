@@ -5,7 +5,7 @@ class Footer
     public static function handle(?string $classname = null)
     {
     ?>
-        <footer class="footer">
+        <footer class="h-screen">
             <div class="footer__container">
                 <div class="footer__logo">
                     <img src="" alt="Logo" class="footer__logo-img">

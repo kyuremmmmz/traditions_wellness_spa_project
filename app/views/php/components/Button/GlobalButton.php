@@ -4,14 +4,13 @@ namespace Project\App\Views\Php\Components\Button;
 
 class GlobalButton
 {
-    public static function render(?string $className = null): void
+    public static function render(string $label, string $className = ''): void
     {
-        // Render the component starting with a <div>
-        $classAttribute = $className ? " class=\"$className\"" : '';
+        $classes = "px-4 py-2 bg-blue text-white font-semibold rounded hover:bg-blue-600 $className";
         echo <<<HTML
-        <div{$classAttribute}>
-            kupal
-        </div>
+        <button class="$classes">
+            $label
+        </button>
         HTML;
     }
 }

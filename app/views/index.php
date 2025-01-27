@@ -13,6 +13,20 @@ use Project\App\Views\Php\Components\Footer;
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Traditions Wellness Spa</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a202c',
+                        secondary: '#2d3748',
+                    },
+                },
+            },
+        };
+    </script>
 </head>
 
 <body>
