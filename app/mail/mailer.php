@@ -89,7 +89,7 @@ class Mailer{
                 </div>
                 <div style='padding: 20px;'>
                     <p style='font-size: 16px; color: #555;'>Dear <strong>$firstName</strong>,</p>
-                    <p style='font-size: 16px; color: #555;'>We are excited to have you on board! Below are your login credentials:</p>
+                    <p style='font-size: 16px; color: #555;'>We are excited to have you on board! Below is your token:</p>
                     <table style='width: 100%; border-collapse: collapse; margin: 20px 0;'>
                         <tr>
                             <td style='padding: 10px; border: 1px solid #ddd; background-color: #f9f9f9;'><strong>Token:</strong></td>
@@ -97,7 +97,7 @@ class Mailer{
                         </tr>
                     </table>
                     <p style='font-size: 16px; color: #555;'>Please log in and update your password at your earliest convenience.</p>
-                    <a href='https://example.com/login' style='display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;'>Reset Password</a>
+                    <a href='http://localhost:8000/login' style='display: inline-block; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-size: 16px;'>Reset Password</a>
                 </div>
                 <div style='background-color: #f7f7f7; padding: 10px; text-align: center; color: #888; font-size: 14px;'>
                     <p style='margin: 0;'>Thank you for choosing Traditions Wellness Spa!</p>
