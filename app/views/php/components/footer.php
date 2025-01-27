@@ -2,7 +2,7 @@
 namespace Project\App\Views\Php\Components;
 class Footer
 {
-    public static function handle()
+    public static function handle(?string $classname = null)
     {
     ?>
         <footer class="footer">

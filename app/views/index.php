@@ -1,6 +1,8 @@
 <?php
 
+use Project\App\Views\Php\Components\Button\GlobalButton;
 use Project\App\Views\Php\Components\Footer;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,10 +16,12 @@ use Project\App\Views\Php\Components\Footer;
 </head>
 
 <body>
-    <?= $content; ?>
-    <?php
-    Footer::handle();
-    ?>
+    <div class="container">
+        <?= $content; ?>
+        <?php
+        Footer::handle();
+        ?>
+    </div>
 </body>
 
 </html>

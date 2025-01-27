@@ -1,15 +1,16 @@
 <?php
 
-namespace Project\App\Views\Php\Components;
+namespace Project\App\Views\Php\Components\Button;
 
-class Header
+class GlobalButton
 {
     public static function render(?string $className = null): void
     {
+        // Render the component starting with a <div>
         $classAttribute = $className ? " class=\"$className\"" : '';
         echo <<<HTML
         <div{$classAttribute}>
-            <!-- Add your content here -->
+            kupal
         </div>
         HTML;
     }
