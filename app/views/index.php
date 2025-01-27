@@ -1,6 +1,4 @@
 <?php
-
-use Project\App\Views\Php\Components\Button\GlobalButton;
 use Project\App\Views\Php\Components\Footer;
 use Project\App\Views\Php\Components\Header;
 

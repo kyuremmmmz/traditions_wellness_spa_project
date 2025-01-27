@@ -11,3 +11,4 @@ class Page
         HTML;
     }
 }
+Page::register();
