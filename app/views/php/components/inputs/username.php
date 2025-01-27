@@ -79,5 +79,6 @@
 
 <div class="input-group">
     <input type="text" required placeholder=" ">
-    <label>Username</label>
+    <label><?php echo isset($label) ? $label : "Username"; ?></label>
 </div>
+
