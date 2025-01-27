@@ -38,14 +38,21 @@ class AuthController
     public function forgotPassword()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['username'])) {
-            $response = $this->controller->find($data['username']);
-            if (isset($response['username'])) {
-                $this->controller->forgotPassword($this->generateToken(), $response['email']);
+
+        if (isset($data['remember_token'], $data['newPassword'])) {
+            $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
+
+            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
+
+            if ($result) {
+                echo json_encode(['message' => 'Password has been updated successfully.']);
+            } else {
+                echo json_encode(['error' => 'Invalid token or password update failed.']);
             }
+        } else {
+            echo json_encode(['error' => 'Required fields are missing.']);
         }
     }
-
 
 
     private function generateToken()
@@ -158,19 +165,16 @@ class AuthController
 
     public function edit($id)
     {
-        // Code for showing an edit form
-        echo "This is the edit method of AuthController for ID: $id.";
+
     }
 
     public function update($id)
     {
-        // Code for updating resources
-        echo "This is the update method of AuthController for ID: $id.";
+
     }
 
-    public function delete($id)
+    public function logout()
     {
-        // Code for deleting resources
-        echo "This is the delete method of AuthController for ID: $id.";
+        session_destroy();
     }
 }

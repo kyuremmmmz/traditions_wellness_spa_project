@@ -108,12 +108,15 @@ class AuthModel
         ]);
     }
 
-    public function forgotPassword($password, $data)
+    public function forgotPassword($data, $newPassword, $uName)
     {
-        $stmt = $this->pdo->prepare("UPDATE users SET password = :password, remember_token = :remember_token WHERE remember_token = :remember_token AND password = :password");
+        $stmt = $this->pdo->prepare("UPDATE users 
+        SET password = :newPassword, remember_token = :remember_token 
+        WHERE username = :username");
         return $stmt->execute([
-            'password' => $password,
-            'remember_token' => $data
+            'newPassword' => $newPassword,
+            'remember_token' => $data,
+            'username' => $uName
         ]);
     }
 
