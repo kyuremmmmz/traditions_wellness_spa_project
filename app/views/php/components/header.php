@@ -9,7 +9,7 @@ class Header
         $classAttribute = $className ? " class=\"$className\"" : '';
         echo <<<HTML
         <div{$classAttribute}>
-            test
+            <p class="text-white text-center"><</p><p class="text-white text-center">Return to User Management</p>
         </div>
         HTML;
     }

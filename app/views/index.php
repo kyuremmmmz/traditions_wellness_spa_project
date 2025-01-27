@@ -21,7 +21,7 @@ use Project\App\Views\Php\Components\Header;
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1a202c',
+                        primary: '#0F172A',
                         secondary: '#2d3748',
                     },
                 },
@@ -33,7 +33,7 @@ use Project\App\Views\Php\Components\Header;
 <body>
     <div class=" w-full h-screen">
         <?php
-        Header::render();
+        Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
         ?>
         <div class="h-screen">
             <?= $content; ?>
@@ -43,5 +43,4 @@ use Project\App\Views\Php\Components\Header;
         ?>
     </div>
 </body>
-
 </html>
