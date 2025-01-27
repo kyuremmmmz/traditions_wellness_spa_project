@@ -2,6 +2,7 @@
 
 use Project\App\Views\Php\Components\Button\GlobalButton;
 use Project\App\Views\Php\Components\Footer;
+use Project\App\Views\Php\Components\Header;
 
 ?>
 <!DOCTYPE html>
@@ -30,8 +31,13 @@ use Project\App\Views\Php\Components\Footer;
 </head>
 
 <body>
-    <div class="container">
-        <?= $content; ?>
+    <div class=" w-full h-screen">
+        <?php
+        Header::render();
+        ?>
+        <div class="h-screen">
+            <?= $content; ?>
+        </div>
         <?php
         Footer::handle();
         ?>
