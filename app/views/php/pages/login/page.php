@@ -17,26 +17,24 @@ class Page
        
        echo <<<HTML
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="flex items-center justify-center min-h-screen bg-gray-900">
+      <html lang="en">
+          <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Login</title>
+                <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+                <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+          </head>
+    <body class="flex items-center justify-center min-h-screen bg-gray-900">
 
-    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
-        <!-- Centered Logo -->
-        <div class="flex justify-center mb-6">
+        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+            <!-- Centered Logo -->
+            <div class="flex justify-center mb-6">
 HTML;
-        Logo::render();
-        echo <<<HTML
-        </div>
-
-        
-
+             Logo::render();
+             echo <<<HTML
+             </div>
+             
         <!-- Login Form -->
         <form method="POST" action="/login" class="space-y-6">
 HTML;
@@ -57,7 +55,6 @@ HTML;
             </button>
         </form>
     </div>
-
 </body>
 </html>
 HTML;
