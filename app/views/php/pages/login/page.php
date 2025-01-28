@@ -11,7 +11,8 @@ class Page
 {
    public static function login()
    {
-       $emailError = ""; 
+    
+       $emailError = $_SESSION['login_errors']['email'] ?? ''; 
        
        echo <<<HTML
         <div class="w-full max-w-md mx-auto">
@@ -22,10 +23,11 @@ class Page
             echo <<<HTML
         </div>
         
-        <!-- Centered Login Form -->
-        <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6">
-            <div class="w-full max-w-xs space-y-6"> <!-- Added max-w-xs constraint -->
-        HTML;
+        <!-- Login Form -->
+        <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6" novalidate>
+            <div class="w-full max-w-xs space-y-6">
+HTML;
+             
                 $emailField = new InputField("email", "Email", "email", $emailError);
                 echo '<div class="w-full">' . $emailField->render() . '</div>';
 

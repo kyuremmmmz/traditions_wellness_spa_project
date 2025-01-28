@@ -5,7 +5,7 @@ class ForgotPasswordLink {
     private $url;
 
     // Constructor to initialize the URL to which the forgot password link should point
-    public function __construct($url = "/forgot-password") {
+    public function __construct($url = "/forgotpassword") {
         $this->url = $url;
     }
 
