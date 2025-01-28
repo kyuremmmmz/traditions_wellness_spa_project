@@ -8,7 +8,7 @@ require_once '../vendor/autoload.php';
 $router = new Router();
 // API ROUTES
 $router->get('/authCheck', 'CrudController@index');
-$router->post('/login', 'AuthController@store', 'AuthMiddleware');
+$router->post('/login', 'AuthController@store');
 $router->post('/register', 'AuthController@register');
 $router->put('/forgot', 'AuthController@forgotPasswordSend');
 $router->put('/forgotPass', 'AuthController@forgotPassword');

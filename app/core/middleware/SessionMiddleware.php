@@ -7,10 +7,16 @@ class SessionMiddleware
     public static function handle($request, $next)
     {
         session_start();
-        if (isset($_SESSION['user'])) {
-            return $next($request);
+
+        if (isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] !== '/dashboard') {
+            header('Location: /dashboard');
+            exit;
         }
-        header('Location: /login');
-        exit;
+
+        if (!isset($_SESSION['user'])) {
+            header('Location: /login');
+            exit;
+        }
+        return $next($request);
     }
 }

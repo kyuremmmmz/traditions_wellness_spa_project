@@ -28,7 +28,7 @@ class Page
             <div class="w-full max-w-xs space-y-6">
 HTML;
              
-                $emailField = new InputField("email", "Email", "email", $emailError);
+                $emailField = new InputField("username", "Username", "username", $emailError);
                 echo '<div class="w-full">' . $emailField->render() . '</div>';
 
                 $passwordField = new PasswordField("password", "Password");
