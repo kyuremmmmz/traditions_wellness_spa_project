@@ -1,14 +1,12 @@
 function togglePassword(inputId) {
-    let passwordInput = document.getElementById(inputId);
-    let eyeIcon = document.getElementById("eye-icon-" + inputId);
+    let passwordInput = document.querySelector(`#${inputId}`);
+    let eyeIcon = document.querySelector(`#${inputId}-icon`);
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeIcon.classList.remove("fa-eye");
-        eyeIcon.classList.add("fa-eye-slash");
+        eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
     } else {
         passwordInput.type = "password";
-        eyeIcon.classList.remove("fa-eye-slash");
-        eyeIcon.classList.add("fa-eye");
+        eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
     }
 }

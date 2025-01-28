@@ -25,7 +25,7 @@
 .input-group input:not(:placeholder-shown) {
     border-color: var(--Primary);
     box-shadow: 0 0 3px rgba(15, 23, 42, 0.2);
-}
+}  
 
 .input-group label {
     position: absolute;
