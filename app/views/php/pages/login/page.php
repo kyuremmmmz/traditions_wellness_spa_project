@@ -24,10 +24,10 @@ class Page
         </div>
         
         <!-- Login Form -->
-        <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6" novalidate>
+        <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6">
             <div class="w-full max-w-xs space-y-6">
         HTML;
-             
+            
                 $emailField = new InputField("username", "Username", "username", $emailError);
                 echo '<div class="w-full">' . $emailField->render() . '</div>';
 
