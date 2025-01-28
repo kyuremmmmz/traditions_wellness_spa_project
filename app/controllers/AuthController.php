@@ -116,7 +116,6 @@ class AuthController
 
     public function store()
     {
-
         if (!isset($_POST['username'], $_POST['password'])) {
             http_response_code(400);
             echo json_encode(['Error' => 'Username and password are required.']);
@@ -126,7 +125,7 @@ class AuthController
         $response = $this->controller->find($_POST['username']);
         if (is_array($response)) {
             if (password_verify($_POST['password'], $response['password'])) {
-                session_start(); 
+                session_start();
                 $_SESSION['user'] = [
                     'role' => $response['role'],
                     'username' => $response['username'],
@@ -144,13 +143,13 @@ class AuthController
                 }
 
                 header('Location: /dashboard');
-                exit; 
+                exit;
             } else {
-                http_response_code(401); 
+                http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
             }
         } else {
-            http_response_code(404); // Not Found
+            http_response_code(404);
             echo json_encode(['Error' => 'User not found']);
         }
     }
@@ -181,6 +180,19 @@ class AuthController
 
     public function logout()
     {
+        session_start();
         session_destroy();
+
+        if (isset($_COOKIE[session_name()])) {
+            setcookie(session_name(), '', time() - 3600, '/'); 
+        }
+
+        if (isset($_COOKIE['user'])) {
+            setcookie('user', '', time() - 3600, '/');
+        }
+
+        header('Location: /login');
+        exit;
     }
+
 }

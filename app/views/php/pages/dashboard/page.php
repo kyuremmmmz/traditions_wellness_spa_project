@@ -9,6 +9,9 @@
 
 <body>
     Hello <?php echo $_SESSION['user']['first_name']; ?> <?php echo $_SESSION['user']['last_name']; ?>
+    <form action="/logout" method="post">
+        <button type="submit">Logout puta</button>
+    </form>
 </body>
 
 </html>

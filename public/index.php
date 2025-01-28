@@ -9,6 +9,7 @@ $router = new Router();
 // API ROUTES
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store');
+$router->post('/logout', 'AuthController@logout');
 $router->post('/register', 'AuthController@register');
 $router->put('/forgot', 'AuthController@forgotPasswordSend');
 $router->put('/forgotPass', 'AuthController@forgotPassword');
