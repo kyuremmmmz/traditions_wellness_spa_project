@@ -27,6 +27,13 @@ class AuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function create(
         string $lastName,
         string $firstName,

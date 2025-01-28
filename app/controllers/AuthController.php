@@ -22,16 +22,16 @@ class AuthController
     public function forgotPasswordSend()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['username'])) {
+        if (isset($data['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->find($data['username']);
+            $response = $this->controller->findByEmail($data['email']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $token,
+                    'Token: ' . $decodedToken,
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
@@ -59,7 +59,7 @@ class AuthController
 
     private function generateToken()
     {
-        $randomToken = rand(1000, 9999);
+        $randomToken = rand(100000, 999999);
         return $randomToken;
     }
 
@@ -116,8 +116,8 @@ class AuthController
 
     public function store()
     {
-        $data = json_decode(filter_var(file_get_contents('php://input')), true);
-        
+        $data = json_decode(file_get_contents('php://input'), true);
+        echo json_encode($data);
         $response = $this->controller->find($data['username']);
         if (is_array($response)) {
             if (password_verify($data['password'], $response['password'])) {
@@ -128,25 +128,20 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email']
                 ];
+
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
-                        $response['email_verified_at'] = date('Y-m-d H:i:s')
+                        date('Y-m-d H:i:s')
                     );
                 }
-                echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
-                $payload =  [
-                    'role' => $response['role'],
-                    'username' => $response['username'],
-                    'last_name' => $response['last_name'],
-                    'first_name' => $response['first_name'],
-                    'email' => $response['email']
-                ];
+
+                header('Content-Type: application/json');
                 echo json_encode([
-                    'data' => $payload,
-                    'token' => base64_encode(json_encode($payload)),
+                    'data' => $_SESSION['user'],
+                    'token' => base64_encode(json_encode($_SESSION['user'])),
                 ]);
-            }else{
+            } else {
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
             }
