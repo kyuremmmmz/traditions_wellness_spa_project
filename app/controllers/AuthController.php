@@ -45,7 +45,7 @@ class AuthController
 
         if (isset($data['remember_token'], $data['newPassword'])) {
             $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
+            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
@@ -116,9 +116,9 @@ class AuthController
 
     public function store()
     {
-        // Ensure POST data is available
+
         if (!isset($_POST['username'], $_POST['password'])) {
-            http_response_code(400); // Bad Request
+            http_response_code(400);
             echo json_encode(['Error' => 'Username and password are required.']);
             return;
         }
@@ -135,8 +135,7 @@ class AuthController
                     'email' => $response['email']
                 ];
 
-                setcookie('user', json_encode($_SESSION['user']), time() + 3600, '/');
-
+                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
