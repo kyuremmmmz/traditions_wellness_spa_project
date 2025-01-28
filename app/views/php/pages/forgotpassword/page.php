@@ -13,7 +13,7 @@ class Page
         unset($_SESSION['forgot_password_errors']);
 
         echo <<<HTML
-        <div class="flex items-center justify-center min-h-screen bg-white">
+        <div class="flex items-center justify-center min-h-screen">
             <div class="flex flex-col items-center w-full max-w-md px-4">
                 <!-- Return Button -->
                 <div class="self-start mb-8">

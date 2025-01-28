@@ -9,12 +9,12 @@ use Project\App\Views\Php\Components\ForgotPasswordLink;
 
 class Page
 {
-   public static function login()
-   {
+public static function login()
+{
     
-       $emailError = $_SESSION['login_errors']['email'] ?? ''; 
-       
-       echo <<<HTML
+    $emailError = $_SESSION['login_errors']['email'] ?? ''; 
+    
+    echo <<<HTML
         <div class="w-full max-w-md mx-auto">
             <!-- Centered Logo -->
             <div class="flex justify-center mb-8">
@@ -30,10 +30,8 @@ class Page
             
                 $emailField = new InputField("username", "Username", "username", $emailError);
                 echo '<div class="w-full">' . $emailField->render() . '</div>';
-
                 $passwordField = new PasswordField("password", "Password");
                 echo '<div class="w-full">' . $passwordField->render() . '</div>';
-
                 echo '<div class="flex items-center justify-between w-full px-2">';
                 RememberMe::render();
                 $forgotPasswordLink = new ForgotPasswordLink(); 
@@ -48,7 +46,7 @@ class Page
         </form>
     </div>
 HTML;
-   }
+    }
 }
 
 Page::login();

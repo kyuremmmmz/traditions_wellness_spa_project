@@ -13,13 +13,12 @@ class Page
         unset($_SESSION['forgot_password_errors']);
 
         echo <<<HTML
-        <div class="min-h-screen flex items-center justify-center bg-white">
+        <div class="flex items-center justify-center min-h-screen bg-white">
             <div class="flex flex-col items-center w-full max-w-md px-4">
                 <!-- Return Button -->
                 <div class="self-start mb-8">
-HTML;
+        HTML;
         
-        // Add onclick handler to redirect to /login
         $returnButton = new ReturnButton(
             "", 
             "button", 
@@ -35,14 +34,14 @@ HTML;
 
                 <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
                     <h2 class="text-[#09090B] font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
-                       Verification Code
+                        Verification Code
                     </h2>
                 </div>
 
                 <div class="flex flex-col items-center justify-center w-[312px] h-[30.588px] flex-shrink-0 text-[#71717A] mb-8">
                     <p class="font-inter text-base font-normal leading-[21px] tracking-tight text-center">
-                    Please enter the verification code we sent to your email.
-                   </p>
+                        Please enter the verification code we sent to your email.
+                    </p>
                 </div>
 
                 <form method="POST" action="/forgot-password" class="w-full max-w-xs space-y-6">
@@ -52,7 +51,7 @@ HTML;
         echo '<div class="w-full">' . $emailField->render() . '</div>';
 
         echo <<<HTML
-                    <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    <button type="submit" class="w-full py-3 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">
                         Continue
                     </button>
                 </form>
