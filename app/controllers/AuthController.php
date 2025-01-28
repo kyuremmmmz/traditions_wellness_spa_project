@@ -23,14 +23,16 @@ class AuthController
     {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['username'])) {
+            $token = $this->generateToken();
             $response = $this->controller->find($data['username']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $this->generateToken(),
+                    'Token: ' . $token,
                     $response['first_name'],);
-                $this->controller->insertToken($this->generateToken(), $response['email']);
+                $this->controller->delete($response['email']);
+                $this->controller->insertToken($token, $response['email']);
             }
         }
     }
@@ -41,9 +43,7 @@ class AuthController
 
         if (isset($data['remember_token'], $data['newPassword'])) {
             $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-
             $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
-
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {

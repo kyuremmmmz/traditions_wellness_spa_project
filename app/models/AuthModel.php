@@ -123,16 +123,22 @@ class AuthModel
     public function insertToken($token,$email)
     {
         $stmt = $this->pdo->prepare("INSERT INTO password_reset_tokens (email, token, created_at) VALUES(:email, :token, :created_at)");
-        return $stmt->execute([
+        $update = $this->pdo->prepare("UPDATE users SET remember_token = :remember_token WHERE email = :email");
+        $stmt->execute([
             'email' => $email,
             'token' => $token,
             'created_at' => date('Y-m-d H:i:s'),
         ]);
+        $update->execute([
+            'email' => $email,
+            'remember_token' => $token
+        ]);
+        return true;
     }
 
-    public function delete($id)
+    public function delete($email)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
-        return $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("DELETE FROM password_reset_tokens WHERE email = :email");
+        return $stmt->execute(['email' => $email]);
     }
 }

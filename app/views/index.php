@@ -30,8 +30,8 @@ use Project\App\Views\Php\Components\Header;
     </script>
 </head>
 
-<body>
-    <div class="w-full h-screen ">
+<body class="flex flex-col items-center justify-center w-full min-h-screen text-white bg-secondary">
+    <div class="w-full">
         <?php
         Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
         ?>
