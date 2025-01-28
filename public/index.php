@@ -20,7 +20,8 @@ $router->get('/test', function () {
 // VIEWS ROUTES
 $router->view('/login', 'page', 'login');
 $router->view('/register', 'page', 'register');
-$router->view('/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
+$router->view('/forgotpassword', 'page', 'forgotpassword');
+$router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
 
 try {

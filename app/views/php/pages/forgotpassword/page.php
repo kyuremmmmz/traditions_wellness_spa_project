@@ -1,8 +1,8 @@
 <?php
-namespace Project\App\Views\Php\Pages\Register;
+namespace Project\App\Views\Php\Pages\ForgotPassword;
 class Page
 {
-    public static function register()
+    public static function forgotpassword()
     {
         echo <<<HTML
         <div class="flex flex-col min-w-full w-full bg-black">
@@ -11,5 +11,5 @@ class Page
         HTML;
     }
 }
-Page::register();
+Page::forgotpassword();
 
