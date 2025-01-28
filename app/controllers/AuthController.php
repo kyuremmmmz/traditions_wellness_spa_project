@@ -22,14 +22,16 @@ class AuthController
     public function forgotPasswordSend()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['username'])) {
-            $token = $this->generateToken();
-            $response = $this->controller->find($data['username']);
+        if (isset($data['email'])) {
+            $tokenForGenerate = $this->generateToken();
+            $token = base64_encode($tokenForGenerate);
+            $decodedToken = base64_decode($token);
+            $response = $this->controller->findByEmail($data['email']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $token,
+                    'Token: ' . $decodedToken,
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
@@ -40,10 +42,10 @@ class AuthController
     public function forgotPassword()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-
         if (isset($data['remember_token'], $data['newPassword'])) {
+            $response = $this->controller->findByToken(base64_encode($data['remember_token']));
             $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
+            $result = $this->controller->forgotPassword($response['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
@@ -57,14 +59,26 @@ class AuthController
 
     private function generateToken()
     {
-        $randomToken = bin2hex(random_bytes(32));
+        $randomToken = rand(100000, 999999);
         return $randomToken;
+    }
+
+    public function resetPasswordAndUserName(){
+        $file = json_decode(file_get_contents('php://input'), true);
+        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+        if (!preg_match($passwordPattern, $file['password'])) {
+            echo json_encode([
+                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+            ]);
+            http_response_code(400);
+            return;
+        }
     }
 
     public function register()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-
+        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
         $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
         if (!preg_match($emailPattern, $data['email'])) {
             echo json_encode([
@@ -73,16 +87,8 @@ class AuthController
             http_response_code(400);
             return;
         }
-        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
-        if (!preg_match($passwordPattern, $data['password'])) {
-            echo json_encode([
-                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
-            ]);
-            http_response_code(400);
-            return;
-        }
+        
 
-        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
         $response = $this->controller->create(
             $data['last_name'],
             $data['first_name'],

@@ -4,7 +4,7 @@ namespace Project\App\Core\Middleware;
 
 class AuthMiddleware
 {
-    public static function handle($request, $next, $requiredRoles = ['Staff', 'therapist', 'super admin', 'Branch Admin'])
+    public static function handle($request, $next, $requiredRoles = ['Staff', 'Therapist', 'super admin', 'Branch Admin'])
     {
         session_start();
         if (isset($_SESSION['user'])) {

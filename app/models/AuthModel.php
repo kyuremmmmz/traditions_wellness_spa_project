@@ -27,6 +27,20 @@ class AuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findByToken($token)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE remember_token = :remember_token");
+        $stmt->execute(['remember_token' => $token]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function create(
         string $lastName,
         string $firstName,
@@ -108,15 +122,14 @@ class AuthModel
         ]);
     }
 
-    public function forgotPassword($data, $newPassword, $uName)
+    public function forgotPassword($data, $newPassword)
     {
         $stmt = $this->pdo->prepare("UPDATE users 
         SET password = :newPassword, remember_token = :remember_token 
-        WHERE username = :username");
+        WHERE remember_token = :remember_token");
         return $stmt->execute([
             'newPassword' => $newPassword,
             'remember_token' => $data,
-            'username' => $uName
         ]);
     }
 
