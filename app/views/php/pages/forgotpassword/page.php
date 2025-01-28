@@ -5,7 +5,7 @@ class Page
     public static function forgotpassword()
     {
         echo <<<HTML
-        <div class="flex flex-col min-w-full w-full bg-black">
+        <div class="flex flex-col w-full min-w-full bg-black">
             test
         </div>
         HTML;

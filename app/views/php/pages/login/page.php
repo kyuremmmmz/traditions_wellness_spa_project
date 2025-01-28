@@ -14,21 +14,10 @@ class Page
        $emailError = ""; 
        
        echo <<<HTML
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="flex items-center justify-center min-h-screen p-4 bg-gray-50">
-
-    <div class="w-full max-w-md mx-auto">
-        <!-- Centered Logo -->
-        <div class="flex justify-center mb-8">
-HTML;
+        <div class="w-full max-w-md mx-auto">
+            <!-- Centered Logo -->
+            <div class="flex justify-center mb-8">
+        HTML;
             Logo::render();
             echo <<<HTML
         </div>
@@ -36,7 +25,7 @@ HTML;
         <!-- Centered Login Form -->
         <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6">
             <div class="w-full max-w-xs space-y-6"> <!-- Added max-w-xs constraint -->
-HTML;
+        HTML;
                 $emailField = new InputField("email", "Email", "email", $emailError);
                 echo '<div class="w-full">' . $emailField->render() . '</div>';
 
@@ -56,8 +45,6 @@ HTML;
             </div>
         </form>
     </div>
-</body>
-</html>
 HTML;
    }
 }

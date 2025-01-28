@@ -23,6 +23,7 @@ $router->view('/register', 'page', 'register');
 $router->view('/forgotpassword', 'page', 'forgotpassword');
 $router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
+$router->view('/', 'index', '', 'SessionMiddleware');
 
 try {
     $router->resolve();
