@@ -42,10 +42,10 @@ class AuthController
     public function forgotPassword()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-
         if (isset($data['remember_token'], $data['newPassword'])) {
+            $response = $this->controller->findByToken(base64_encode($data['remember_token']));
             $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword, $data['username']);
+            $result = $this->controller->forgotPassword($response['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
@@ -116,8 +116,8 @@ class AuthController
 
     public function store()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        echo json_encode($data);
+        $data = json_decode(filter_var(file_get_contents('php://input')), true);
+        
         $response = $this->controller->find($data['username']);
         if (is_array($response)) {
             if (password_verify($data['password'], $response['password'])) {
@@ -128,20 +128,25 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email']
                 ];
-
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
-                        date('Y-m-d H:i:s')
+                        $response['email_verified_at'] = date('Y-m-d H:i:s')
                     );
                 }
-
-                header('Content-Type: application/json');
+                echo json_encode($_SERVER['HTTP_AUTHORIZATION']);
+                $payload =  [
+                    'role' => $response['role'],
+                    'username' => $response['username'],
+                    'last_name' => $response['last_name'],
+                    'first_name' => $response['first_name'],
+                    'email' => $response['email']
+                ];
                 echo json_encode([
-                    'data' => $_SESSION['user'],
-                    'token' => base64_encode(json_encode($_SESSION['user'])),
+                    'data' => $payload,
+                    'token' => base64_encode(json_encode($payload)),
                 ]);
-            } else {
+            }else{
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
             }
