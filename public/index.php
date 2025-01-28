@@ -22,6 +22,7 @@ $router->get('/test', function () {
 $router->view('/login', 'page', 'login');
 $router->view('/register', 'page', 'register');
 $router->view('/forgotpassword', 'page', 'forgotpassword');
+$router->view('/verification', 'page', 'verification');
 $router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
