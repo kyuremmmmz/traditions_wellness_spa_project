@@ -4,7 +4,6 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
-use function Symfony\Component\Clock\now;
 
 
 
@@ -21,17 +20,17 @@ class AuthController
 
     public function forgotPasswordSend()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['username'])) {
+       // FOR POSTMAN TESTING HUWAG GALAWIN PLS: $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($_POST['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->find($data['username']);
+            $response = $this->controller->findByEmail($_POST['email']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $token,
+                    'Token: ' . $decodedToken,
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
@@ -41,11 +40,11 @@ class AuthController
 
     public function forgotPassword()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-
-        if (isset($data['remember_token'], $data['newPassword'])) {
-            $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword);
+        // FOR POSTMAN TESTING HUWAG GALAWIN PLS: $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($_POST['remember_token'], $_POST['newPassword'])) {
+            $response = $this->controller->findByToken(base64_encode($_POST['remember_token']));
+            $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
+            $result = $this->controller->forgotPassword($response['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
@@ -56,10 +55,12 @@ class AuthController
         }
     }
 
+    
+
 
     private function generateToken()
     {
-        $randomToken = rand(1000, 9999);
+        $randomToken = rand(100000, 999999);
         return $randomToken;
     }
 
@@ -116,6 +117,24 @@ class AuthController
 
     public function store()
     {
+        session_start();
+
+        if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['last_attempt_time'] = time();
+        }
+
+        if (time() - $_SESSION['last_attempt_time'] > 300) {
+            $_SESSION['login_attempts'] = 0;
+        }
+
+        if ($_SESSION['login_attempts'] >= 5) {
+            http_response_code(429);
+            header('Location: /');
+            echo json_encode(['error' => 'Too many attempts. Please try again after 5 minutes.']);
+            return;
+        }
+
         if (!isset($_POST['username'], $_POST['password'])) {
             http_response_code(400);
             echo json_encode(['Error' => 'Username and password are required.']);
@@ -125,7 +144,7 @@ class AuthController
         $response = $this->controller->find($_POST['username']);
         if (is_array($response)) {
             if (password_verify($_POST['password'], $response['password'])) {
-                session_start();
+                $_SESSION['login_attempts'] = 0;
                 $_SESSION['user'] = [
                     'role' => $response['role'],
                     'username' => $response['username'],
@@ -135,25 +154,29 @@ class AuthController
                 ];
 
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
-                        $response['email_verified_at'] = date('Y-m-d H:i:s')
+                        date('Y-m-d H:i:s')
                     );
                 }
 
                 header('Location: /dashboard');
                 exit;
             } else {
+                $_SESSION['login_attempts']++;
+                $_SESSION['last_attempt_time'] = time();
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
             }
         } else {
+            $_SESSION['login_attempts']++;
+            $_SESSION['last_attempt_time'] = time();
             http_response_code(404);
             echo json_encode(['Error' => 'User not found']);
         }
     }
-
 
     private function generateTemporaryUserNameAndPassword($firstName, $lastName)
     {

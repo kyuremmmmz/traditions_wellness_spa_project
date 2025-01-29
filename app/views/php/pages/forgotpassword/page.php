@@ -45,7 +45,7 @@ HTML;
                    </p>
                 </div>
 
-                <form method="POST" action="/forgot-password" class="w-full max-w-xs space-y-6">
+                <form method="PUT" action="/forgot" class="w-full max-w-xs space-y-6">
 HTML;
         
         $emailField = new InputField("email", "Email", "email", $emailError);
