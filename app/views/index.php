@@ -35,7 +35,7 @@ use Project\App\Views\Php\Components\Header;
         <?php
         Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
         ?>
-        <div class="h-screen">
+        <div class="h-screen ">
             <?= $content; ?>
         </div>
         <?php
