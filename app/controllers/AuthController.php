@@ -78,41 +78,50 @@ class AuthController
 
     public function register()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
-        $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
-        if (!preg_match($emailPattern, $data['email'])) {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
+            $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
+            if (!preg_match($emailPattern, $data['email'])) {
+                echo json_encode([
+                    'error' => 'Invalid email format'
+                ]);
+                http_response_code(400);
+                return;
+            }
+            $findByEmail = $this->controller->findByEmail($data['email']);
+            if ($findByEmail['email'] === $data['email']) {
+                echo json_encode([
+                    'Message' => 'Email Already Exists'
+                ]);
+            }
+            $response = $this->controller->create(
+                $data['last_name'],
+                $data['first_name'],
+                $data['email'],
+                $temporaryData['password'],
+                $data['phone'],
+                $data['branch'],
+                date('Y-m-d H:i:s'),
+                $data['role'],
+                $temporaryData['username'],
+            );
+            $this->mailer->sendVerification(
+                $data['email'],
+                'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
+                'Username: ' . $temporaryData['username'],
+                'Password: ' . $temporaryData['password'],
+                $data['first_name'],
+            );
             echo json_encode([
-                'error' => 'Invalid email format'
+                'data' => $response
             ]);
-            http_response_code(400);
-            return;
+        } catch (\Throwable $th) {
+            http_response_code(500);
+            echo json_encode([
+                'message' => 'Something went wrong on our end. Please try again later.'
+            ]);
         }
-        
-
-        $response = $this->controller->create(
-            $data['last_name'],
-            $data['first_name'],
-            $data['email'],
-            $temporaryData['password'],
-            $data['phone'],
-            $data['branch'],
-            date('Y-m-d H:i:s'),
-            $data['role'],
-            $temporaryData['username'],
-        );
-
-        $this->mailer->sendVerification(
-            $data['email'],
-            'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
-            'Username: ' . $temporaryData['username'],
-            'Password: ' . $temporaryData['password'],
-            $data['first_name'],
-        );
-
-        echo json_encode([
-            'data' => $response
-        ]);
     }
 
     public function store()
@@ -126,7 +135,6 @@ class AuthController
         if (time() - $_SESSION['last_attempt_time'] > 300) {
             $_SESSION['login_attempts'] = 0;
         }
-
         if ($_SESSION['login_attempts'] >= 5) {
             http_response_code(429);
             header('Location: /');
@@ -139,7 +147,6 @@ class AuthController
             echo json_encode(['Error' => 'Username and password are required.']);
             return;
         }
-
         $response = $this->controller->find($_POST['username']);
         if (is_array($response)) {
             if (password_verify($_POST['password'], $response['password'])) {

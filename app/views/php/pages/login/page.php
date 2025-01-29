@@ -19,10 +19,9 @@ class Page
         $emailError = $_SESSION['login_errors']['email'] ?? '';
         if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
             http_response_code(429);
-
             echo "<div id='error-message' class='py-20 pb-5 text-center text-red-500'>
             Too many attempts. Please try again after 5 minutes.
-          </div>";
+        </div>";
 
             echo "<script>
             setTimeout(function() {
