@@ -20,7 +20,15 @@ class Page
         if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
             http_response_code(429);
 
-            echo "<div class='py-20 pb-5 text-center text-red-500'>Too many attempts. Please try again after 5 minutes.</div>";
+            echo "<div id='error-message' class='py-20 pb-5 text-center text-red-500'>
+            Too many attempts. Please try again after 5 minutes.
+          </div>";
+
+            echo "<script>
+            setTimeout(function() {
+                document.getElementById('error-message').style.display = 'none';
+            }, 5000);
+        </script>";
             echo
 <<<HTML
         <div class="flex flex-col justify-center w-full max-w-md mx-auto itemscol-center">
@@ -51,6 +59,7 @@ HTML;
         </form>
     </div>
 HTML;
+
         }else{
             echo
             <<<HTML
