@@ -1,0 +1,7 @@
+.mini-logo {
+    width: 78.933px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 28px;
+    background: var(--Primary, #0F172A);
+}

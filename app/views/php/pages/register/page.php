@@ -12,3 +12,4 @@ class Page
     }
 }
 Page::register();
+
