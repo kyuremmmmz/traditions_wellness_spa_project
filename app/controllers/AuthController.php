@@ -118,7 +118,6 @@ class AuthController
     public function store()
     {
         session_start();
-
         if (!isset($_SESSION['login_attempts'])) {
             $_SESSION['login_attempts'] = 0;
             $_SESSION['last_attempt_time'] = time();
@@ -161,7 +160,6 @@ class AuthController
                         date('Y-m-d H:i:s')
                     );
                 }
-
                 header('Location: /dashboard');
                 exit;
             } else {

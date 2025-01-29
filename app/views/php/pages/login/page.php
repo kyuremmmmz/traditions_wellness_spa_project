@@ -1,4 +1,5 @@
 <?php
+
 namespace Project\App\Views\Php\Pages\Login;
 
 use Project\App\Views\Php\Components\Assets\Logo;
@@ -9,36 +10,40 @@ use Project\App\Views\Php\Components\ForgotPasswordLink;
 
 class Page
 {
-public static function login()
-{
-    
-    $emailError = $_SESSION['login_errors']['email'] ?? ''; 
-    
-    echo <<<HTML
+    public static function login()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $emailError = $_SESSION['login_errors']['email'] ?? '';
+        if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
+            http_response_code(429);
+
+            echo "<div class='text-center text-red-500'>Too many attempts. Please try again after 5 minutes.</div>";
+            echo
+<<<HTML
         <div class="w-full max-w-md mx-auto">
-            <!-- Centered Logo -->
             <div class="flex justify-center mb-8">
-        HTML;
+HTML;
             Logo::render();
-            echo <<<HTML
+            echo
+<<<HTML
         </div>
-        
-        <!-- Login Form -->
         <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6">
             <div class="w-full max-w-xs space-y-6">
-        HTML;
-            
-                $emailField = new InputField("username", "Username", "username", $emailError);
-                echo '<div class="w-full">' . $emailField->render() . '</div>';
-                $passwordField = new PasswordField("password", "Password");
-                echo '<div class="w-full">' . $passwordField->render() . '</div>';
-                echo '<div class="flex items-center justify-between w-full px-2">';
-                RememberMe::render();
-                $forgotPasswordLink = new ForgotPasswordLink(); 
-                $forgotPasswordLink->render();
-                echo '</div>';
-                
-                echo <<<HTML
+HTML;
+            $emailField = new InputField("username", "Username", "username", $emailError);
+            echo '<div class="w-full">' . $emailField->render() . '</div>';
+            $passwordField = new PasswordField("password", "Password");
+            echo '<div class="w-full">' . $passwordField->render() . '</div>';
+            echo '<div class="flex items-center justify-between w-full px-2">';
+            RememberMe::render();
+            $forgotPasswordLink = new ForgotPasswordLink();
+            $forgotPasswordLink->render();
+            echo '</div>';
+            echo
+<<<HTML
                 <button type="submit" class="w-full px-6 py-3 text-white transition-colors duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Log In
                 </button>
@@ -46,6 +51,7 @@ public static function login()
         </form>
     </div>
 HTML;
+        }
     }
 }
 
