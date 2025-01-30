@@ -42,7 +42,7 @@ class AuthController
     public function forgotPassword()
     {
         //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
-
+        session_start();
         if (isset($_POST['remember_token'], $_POST['newPassword'])) {
             $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
             $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
@@ -52,9 +52,10 @@ class AuthController
                 echo json_encode(['error' => 'Invalid token or password update failed.']);
             }
         } else {
-            header('Location: /verification');
-            $_SESSION['forgot_password_errors'] = ['email' => 'Required fields are missing.'];
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
+            header('Location: /verification');
+
         }
     }
 

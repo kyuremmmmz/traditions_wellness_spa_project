@@ -8,17 +8,11 @@ class Page
 {
     public static function verification()
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
-        $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
+        session_start();
+        $emailError = $_SESSION['forgot_password_errors']['verification'] ?? '';
         unset($_SESSION['forgot_password_errors']);
-        if (isset($_SESSION['forgot_password_errors'])) {
-            echo "test";
-        }
-
         echo <<<HTML
-        <div class="flex items-center justify-center min-h-screen bg-white">
+        <div class="flex items-center justify-center min-h-screen">
             <div class="flex flex-col items-center w-full max-w-md px-4">
                 <!-- Return Button -->
                 <div class="self-start mb-8">
@@ -38,7 +32,7 @@ class Page
                 </div>
 
                 <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
-                    <h2 class="text-[#09090B] font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
+                    <h2 class="font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
                         Verification Code
                     </h2>
                 </div>
