@@ -21,11 +21,11 @@ class AuthController
     public function forgotPasswordSend()
     {
         // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($_POST['username'])) {
+        if (isset($_POST['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->find($_POST['username']);
+            $response = $this->controller->findByEmail($_POST['email']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],

@@ -43,11 +43,7 @@ HTML;
                    </p>
                 </div>
 
-<<<<<<< HEAD
-                <form method="PUT" action="/forgot" class="w-full max-w-xs space-y-6">
-=======
                 <form method="POST" action="/forgot" class="w-full max-w-xs space-y-6">
->>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
 HTML;
         
         $emailField = new InputField("email", "Email", "email", $emailError);
