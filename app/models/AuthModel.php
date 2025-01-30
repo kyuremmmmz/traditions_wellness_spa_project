@@ -3,7 +3,6 @@ namespace Project\App\Models;
 use PDO;
 use Project\App\Config\Connection;
 
-use function Symfony\Component\Clock\now;
 
 class AuthModel
 {

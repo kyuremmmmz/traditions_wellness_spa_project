@@ -20,12 +20,12 @@ class AuthController
 
     public function forgotPasswordSend()
     {
-       // FOR POSTMAN TESTING HUWAG GALAWIN PLS: $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($_POST['email'])) {
+        // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($_POST['username'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->findByEmail($_POST['email']);
+            $response = $this->controller->find($_POST['username']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
@@ -34,17 +34,18 @@ class AuthController
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
+                header('Location: /verification');
             }
         }
     }
 
     public function forgotPassword()
     {
-        // FOR POSTMAN TESTING HUWAG GALAWIN PLS: $data = json_decode(file_get_contents('php://input'), true);
+        //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
+
         if (isset($_POST['remember_token'], $_POST['newPassword'])) {
-            $response = $this->controller->findByToken(base64_encode($_POST['remember_token']));
             $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($response['remember_token'], $hashedNewPassword);
+            $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {

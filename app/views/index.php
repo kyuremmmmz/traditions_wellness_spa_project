@@ -30,7 +30,8 @@ use Project\App\Views\Php\Components\Header;
     </script>
 </head>
 
-<body class="flex flex-col items-center justify-center w-full min-h-screen text-white bg-secondary">
+<body id="theme" class="flex flex-col items-center justify-center w-full min-h-screen text-white bg-secondary">
+    <button class="py-20" onclick="themeHandler()" type="button">press</button>
     <div class="w-full">
         <?php
         Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
@@ -43,5 +44,13 @@ use Project\App\Views\Php\Components\Header;
         ?>
     </div>
 </body>
+<script>
+function themeHandler() {  
+        const themeElement = document.getElementById("theme");
+        themeElement.classList.toggle("bg-secondary");
+        themeElement.classList.toggle("bg-white");
+        themeElement.classList.toggle("text-black");
+    }
 
+</script>
 </html>

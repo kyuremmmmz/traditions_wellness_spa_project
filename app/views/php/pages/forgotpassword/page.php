@@ -19,11 +19,9 @@ class Page
                 <div class="self-start mb-8">
 HTML;
         
-        // Add onclick handler to redirect to /login
         $returnButton = new ReturnButton(
             "Return to Login", 
-            "button", 
-            "#09090B", 
+            "button",  
             16, 
             true,
             "window.location.href = '/login'"
@@ -34,7 +32,7 @@ HTML;
                 </div>
 
                 <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
-                    <h2 class="text-[#09090B] font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
+                    <h2 class="font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
                         Forgot Password?
                     </h2>
                 </div>
@@ -45,7 +43,11 @@ HTML;
                    </p>
                 </div>
 
+<<<<<<< HEAD
                 <form method="PUT" action="/forgot" class="w-full max-w-xs space-y-6">
+=======
+                <form method="POST" action="/forgot" class="w-full max-w-xs space-y-6">
+>>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
 HTML;
         
         $emailField = new InputField("email", "Email", "email", $emailError);
