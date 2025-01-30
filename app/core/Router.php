@@ -8,24 +8,29 @@ class Router
 {
     private $routes = [];
 
-    public function get($path, $controller)
+    public function get($path, $controller, $middleware = null)
     {
-        $this->routes['GET'][$path] = $controller;
+        $this->routes['GET'][$path] = compact('controller', 'middleware');
     }
 
-    public function post($path, $controller)
+    public function post($path, $controller, $middleware = null)
     {
-        $this->routes['POST'][$path] = $controller;
+        $this->routes['POST'][$path] = compact('controller', 'middleware');
     }
 
-    public function put($path, $controller)
+    public function put($path, $controller, $middleware = null)
     {
-        $this->routes['PUT'][$path] = $controller;
+        $this->routes['PUT'][$path] = compact('controller', 'middleware');
     }
 
-    public function delete($path, $controller)
+    public function delete($path, $controller, $middleware = null)
     {
-        $this->routes['DELETE'][$path] = $controller;
+        $this->routes['DELETE'][$path] = compact('controller', 'middleware');
+    }
+
+    public function view($path, $viewFile, $foldername,$middleware = null)
+    {
+        $this->routes['GET'][$path] = compact('viewFile', 'middleware', 'foldername');
     }
 
     public function resolve()
@@ -33,13 +38,39 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        foreach ($this->routes[$method] ?? [] as $route => $controller) {
+        foreach ($this->routes[$method] ?? [] as $route => $config) {
             if (preg_match($this->convertToRegex($route), $path, $params)) {
-                list($controllerName, $action) = explode('@', $controller);
-                $controllerClass = "Project\\App\\Controllers\\$controllerName";
-                require_once "../app/Controllers/$controllerName.php";
-                $controllerInstance = new $controllerClass();
-                return $controllerInstance->$action(array_slice($params, 1));
+                if (isset($config['viewFile'])) {
+                    if (isset($config['middleware'])) {
+                        $middlewareClass = "Project\\App\\Core\\Middleware\\{$config['middleware']}";
+                        $middleware = new $middlewareClass();
+                        $middleware::handle($_REQUEST, function () use ($config) {
+                            $this->renderView($config['foldername'], $config['viewFile']);
+                        });
+                        return;
+                    }
+                    $this->renderView($config['foldername'], $config['viewFile']);
+                    return;
+                }
+
+                $controller = $config['controller'] ?? null;
+                if ($controller) {
+                    $middleware = $config['middleware'] ?? null;
+                    list($controllerName, $action) = explode('@', $controller);
+                    $controllerClass = "Project\\App\\Controllers\\$controllerName";
+                    $controllerInstance = new $controllerClass();
+
+                    if ($middleware) {
+                        $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
+                        $middlewareInstance = new $middlewareClass();
+                        $middlewareInstance::handle($_REQUEST, function () use ($controllerInstance, $action, $params) {
+                            $controllerInstance->$action(array_slice($params, 1));
+                        });
+                    } else {
+                        $controllerInstance->$action(array_slice($params, 1));
+                    }
+                    return;
+                }
             }
         }
 
@@ -47,10 +78,22 @@ class Router
         echo json_encode(['error' => 'Route not found']);
     }
 
+    private function renderView($foldername, $viewFile)
+    {
+        $viewPath = dirname(__DIR__) . "/views/php/pages/$foldername/$viewFile.php";
+        if (file_exists($viewPath)) {
+            ob_start();
+            include $viewPath;
+            $content = ob_get_clean();
+            include dirname(__DIR__) . "/views/index.php";
+        } else {
+            throw new Exception("View file not found: $viewPath");
+        }
+    }
+
     private function convertToRegex($route)
     {
         $escapedRoute = preg_replace('/\//', '\/', $route);
         return '/^' . str_replace(['{id}'], ['(\d+)'], $escapedRoute) . '$/';
     }
-
 }

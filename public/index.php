@@ -1,21 +1,31 @@
 <?php
 
-use Project\App\Controllers\CrudController;
-use Project\App\Models\CrudModelModel;
+use App\Core\Router;
 
-require_once '../app/core/Router.php'; 
-require_once '../vendor/autoload.php'; 
-$router = new App\Core\Router();
+require_once '../app/core/Router.php';
+require_once '../vendor/autoload.php';
 
-
+$router = new Router();
+// API ROUTES
 $router->get('/authCheck', 'CrudController@index');
-$router->post('/products', 'CrudController@store');
-$router->put('/products/{id}', 'ProductController@update');
-$router->delete('/products/{id}', 'ProductController@destroy');
+$router->post('/login', 'AuthController@store');
+$router->post('/logout', 'AuthController@logout');
+$router->post('/register', 'AuthController@register');
+$router->post('/forgot', 'AuthController@forgotPasswordSend');
+$router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
 
+
+// VIEWS ROUTES
+$router->view('/login', 'page', 'login');
+$router->view('/register', 'page', 'register');
+$router->view('/forgotpassword', 'page', 'forgotpassword');
+$router->view('/verification', 'page', 'verification');
+$router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
+$router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
+$router->view('/', 'index', '', 'SessionMiddleware');
 
 try {
     $router->resolve();

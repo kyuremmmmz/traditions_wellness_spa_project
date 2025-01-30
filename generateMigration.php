@@ -5,19 +5,19 @@ use Project\App\Config\Connection;
 
 $migrationsDir = __DIR__ . '/app/migrations';
 
-// Ensure the migrations directory exists
+
 if (!is_dir($migrationsDir)) {
     mkdir($migrationsDir, 0755, true);
 }
 
-// Prompt user for action
+
 echo "Choose an action: [1] Create Migration, [2] Run Migrations, [3] Rollback Migrations: ";
 $action = trim(fgets(STDIN));
 
 $pdo =  Connection::connection();
 
 switch ($action) {
-    case '1': // Create Migration
+    case '1':
         echo "Enter migration name: ";
         $migrationName = trim(fgets(STDIN));
         $timestamp = date('YmdHis');
@@ -48,9 +48,9 @@ PHP;
         echo "Migration created: $filePath\n";
         break;
 
-    case '2': // Run Migrations
+    case '2':
         $migrations = glob("$migrationsDir/*.php");
-        sort($migrations); // Run in chronological order
+        sort($migrations);
 
         foreach ($migrations as $migrationFile) {
             require_once $migrationFile;
@@ -73,9 +73,9 @@ PHP;
         }
         break;
 
-    case '3': // Rollback Migrations
+    case '3':
         $migrations = glob("$migrationsDir/*.php");
-        rsort($migrations); // Rollback in reverse order
+        rsort($migrations);
 
         foreach ($migrations as $migrationFile) {
             require_once $migrationFile;

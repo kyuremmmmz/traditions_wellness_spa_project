@@ -3,7 +3,10 @@
         "phpmailer/phpmailer": "^6.9",
         "spomky-labs/otphp": "^11.3",
         "hybridauth/hybridauth": "~3.0",
-        "phpauth/phpauth": "dev-master"
+        "phpauth/phpauth": "dev-master",
+        "illuminate/http": "*",
+        "respect/validation": "*",
+        "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
         "psr-4": {
