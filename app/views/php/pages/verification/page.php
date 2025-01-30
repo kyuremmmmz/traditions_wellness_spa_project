@@ -8,9 +8,14 @@ class Page
 {
     public static function verification()
     {
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
         unset($_SESSION['forgot_password_errors']);
+        if (isset($_SESSION['forgot_password_errors'])) {
+            echo "test";
+        }
 
         echo <<<HTML
         <div class="flex items-center justify-center min-h-screen bg-white">
@@ -44,7 +49,7 @@ class Page
                     </p>
                 </div>
 
-                <form method="POST" action="/forgot-password" class="w-full max-w-xs space-y-6">
+                <form method="POST" action="/forgotPass" class="w-full max-w-xs space-y-6">
 HTML;
         
         $emailField = new InputField("verification", "Verification", "verification", $emailError);

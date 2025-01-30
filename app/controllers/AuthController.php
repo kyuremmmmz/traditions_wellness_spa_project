@@ -52,6 +52,8 @@ class AuthController
                 echo json_encode(['error' => 'Invalid token or password update failed.']);
             }
         } else {
+            header('Location: /verification');
+            $_SESSION['forgot_password_errors'] = ['email' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
         }
     }
