@@ -13,17 +13,15 @@ class Page
         unset($_SESSION['forgot_password_errors']);
 
         echo <<<HTML
-        <div class="flex items-center justify-center min-h-screen bg-white">
+        <div class="flex items-center justify-center min-h-screen">
             <div class="flex flex-col items-center w-full max-w-md px-4">
                 <!-- Return Button -->
                 <div class="self-start mb-8">
 HTML;
         
-        // Add onclick handler to redirect to /login
         $returnButton = new ReturnButton(
             "Return to Login", 
-            "button", 
-            "#09090B", 
+            "button",  
             16, 
             true,
             "window.location.href = '/login'"
@@ -34,7 +32,7 @@ HTML;
                 </div>
 
                 <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
-                    <h2 class="text-[#09090B] font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
+                    <h2 class="font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
                         Forgot Password?
                     </h2>
                 </div>

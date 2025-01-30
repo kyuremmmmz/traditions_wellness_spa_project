@@ -21,31 +21,32 @@ class AuthController
 
     public function forgotPasswordSend()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['username'])) {
+        // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($_POST['username'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->find($data['username']);
+            $response = $this->controller->find($_POST['username']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $token,
+                    'Token: ' . $decodedToken,
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
+                header('Location: /');
             }
         }
     }
 
     public function forgotPassword()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
+        //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
 
-        if (isset($data['remember_token'], $data['newPassword'])) {
-            $hashedNewPassword = password_hash($data['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($data['remember_token'], $hashedNewPassword);
+        if (isset($_POST['remember_token'], $_POST['newPassword'])) {
+            $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
+            $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
             if ($result) {
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
@@ -59,7 +60,7 @@ class AuthController
 
     private function generateToken()
     {
-        $randomToken = rand(1000, 9999);
+        $randomToken = rand(100000, 999999);
         return $randomToken;
     }
 
