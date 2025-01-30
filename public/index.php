@@ -11,8 +11,8 @@ $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store');
 $router->post('/logout', 'AuthController@logout');
 $router->post('/register', 'AuthController@register');
-$router->put('/forgot', 'AuthController@forgotPasswordSend');
-$router->put('/forgotPass', 'AuthController@forgotPassword');
+$router->post('/forgot', 'AuthController@forgotPasswordSend');
+$router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });

@@ -35,7 +35,7 @@ class AuthController
                     $response['first_name'],);
                 $this->controller->delete($response['email']);
                 $this->controller->insertToken($token, $response['email']);
-                header('Location: /');
+                header('Location: /verification');
             }
         }
     }
