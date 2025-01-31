@@ -41,10 +41,8 @@ class {$className}
 {
     public static function render(?string \$className = null): void
     {
-        // Render the component starting with a <div>
-        \$classAttribute = \$className ? " class=\"\$className\"" : '';
         echo <<<HTML
-        <div{\$classAttribute}>
+        <div>
             <!-- Add your content here -->
         </div>
         HTML;

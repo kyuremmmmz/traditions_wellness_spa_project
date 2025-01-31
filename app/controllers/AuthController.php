@@ -43,6 +43,19 @@ class AuthController
     {
         //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
         session_start();
+        $verification = $_POST['remember_token'];
+        $response = $this->controller->findByToken($verification);
+        if (isset($verification) && $verification === $response['remember_token'] ) {
+            $_POST['remember_token'] = $verification;
+        } else {
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
+            echo json_encode(['error' => 'Required fields are missing.']);
+            header('Location: /verification');
+        }
+    }
+
+    public function resetPassword(){
+        session_start();
         if (isset($_POST['remember_token'], $_POST['newPassword'])) {
             $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
             $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
@@ -55,11 +68,8 @@ class AuthController
             $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
             header('Location: /verification');
-
         }
     }
-
-    
 
 
     private function generateToken()
