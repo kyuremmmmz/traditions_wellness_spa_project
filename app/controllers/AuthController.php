@@ -67,7 +67,7 @@ class AuthController
         } else {
             $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
-            header('Location: /verification');
+            header('Location: /resetpassword');
         }
     }
 

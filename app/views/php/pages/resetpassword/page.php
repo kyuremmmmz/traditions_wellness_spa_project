@@ -1,15 +1,15 @@
 <?php
 
-use Project\App\Views\Php\Components\Verification;
-
-
+use Project\App\Views\Php\Components\Forms\Reset;
 
 class Page{
     public static function page(){
         ?>
-        <div>
-            <?php Verification::render() ?>
+        <div class="flex flex-col justify-center items-center py-20">
+            <?php Reset::render()  ?>
         </div>
     <?php
     }
 }
+
+Page::page();
