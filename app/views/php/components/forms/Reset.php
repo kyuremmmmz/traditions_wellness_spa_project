@@ -12,8 +12,8 @@ class Reset
         ?>
         <div>
             <form action="/resetPassword" method="POST">
-                <?php GlobalFields::render('bg-white', 'text');
-                      GlobalButton::render('Submit')
+                <?php GlobalFields::render('bg-white', 'text', 'newPassword');
+                    GlobalButton::render('Submit')
                 ?>
             </form>
         </div>

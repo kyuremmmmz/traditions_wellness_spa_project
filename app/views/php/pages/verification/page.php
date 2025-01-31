@@ -46,7 +46,7 @@ class Page
                 <form method="POST" action="/forgotPass" class="w-full max-w-xs space-y-6">
 HTML;
         
-        $emailField = new InputField("verification", "Verification", "verification", $emailError);
+        $emailField = new InputField("remember_token", "Verification", "number", $emailError);
         echo '<div class="w-full">' . $emailField->render() . '</div>';
 
         echo <<<HTML

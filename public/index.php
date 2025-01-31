@@ -29,6 +29,7 @@ $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
 $router->view('/resetpassword', 'page', 'resetpassword');
 $router->view('/', 'index', '', 'SessionMiddleware');
 $router->view('/test', 'page', 'test');
+$router->view('/success', 'page', 'Success');
 try {
     $router->resolve();
 } catch (Exception $e) {
