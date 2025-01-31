@@ -2,13 +2,13 @@
 
 namespace Project\App\Views\Php\Components;
 
-class Verification
+class GlobalHideComponent
 {
     public static function render(?string $className = null): void
     {
         echo <<<HTML
         <div>
-            <form action="" method="post"></form>
+            <!-- Add your content here -->
         </div>
         HTML;
     }

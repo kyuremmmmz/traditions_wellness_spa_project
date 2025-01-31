@@ -46,11 +46,13 @@ use Project\App\Views\Php\Components\Header;
 <script>
     function themeHandler() {
         const themeElement = document.getElementById("theme");
+        const inputs = document.querySelector('input');
         const buttonText = document.getElementById("buttontheme");
         buttonText.innerHTML = themeElement.classList.contains("bg-secondary") ? "Light" : "Dark";
         themeElement.classList.toggle("bg-secondary");
         themeElement.classList.toggle("bg-white");
         themeElement.classList.toggle("text-black");
+        inputs.classList.toggle("bg-[#2d3748]");
     }
 </script>
 

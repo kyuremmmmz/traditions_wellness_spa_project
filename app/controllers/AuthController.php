@@ -43,23 +43,29 @@ class AuthController
     {
         //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
         session_start();
-        $verification = $_POST['remember_token'];
-        $response = $this->controller->findByToken($verification);
-        if (isset($verification) && $verification === $response['remember_token'] ) {
-            $_POST['remember_token'] = $verification;
-        } else {
-            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
-            echo json_encode(['error' => 'Required fields are missing.']);
-            header('Location: /verification');
-        }
+        if (isset($_POST['remember_token']))  {
+            $response = $this->controller->findByToken(base64_encode($_POST['remember_token']));
+            if ($response) {
+                $_SESSION['token'] = [
+                    'token' => $_POST['remember_token'],
+                ];
+                echo json_encode(['message' => 'Token is valid.']);
+                header('Location: /resetpassword');
+            }else{
+                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid token.']; 
+                echo json_encode(['error' => 'Invalid token.']);
+                header('Location: /verification');
+            }
+        } 
     }
 
     public function resetPassword(){
         session_start();
-        if (isset($_POST['remember_token'], $_POST['newPassword'])) {
+        if (isset($_SESSION['token']['token'], $_POST['newPassword'])) {
             $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
+            $result = $this->controller->forgotPassword(base64_encode($_SESSION['token']['token']), $hashedNewPassword);
             if ($result) {
+                header('Location: /success');
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
                 echo json_encode(['error' => 'Invalid token or password update failed.']);
@@ -67,7 +73,7 @@ class AuthController
         } else {
             $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
-            header('Location: /verification');
+            header('Location: /resetpassword');
         }
     }
 
