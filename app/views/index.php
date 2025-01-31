@@ -23,6 +23,10 @@ use Project\App\Views\Php\Components\Header;
                     colors: {
                         primary: '#0F172A',
                         secondary: '#2d3748',
+                        background: '#FFFFFF',
+                        darkBackground: '#050505',
+                        border: '#E4E4E7',
+                        darkBorder: '#E4E4E7'
                     },
                 },
             },
@@ -46,10 +50,16 @@ use Project\App\Views\Php\Components\Header;
 </body>
 <script>
 function themeHandler() {  
+        const label = document.querySelector("label");
+        label.classList.toggle("bg-darkBackground")
         const themeElement = document.getElementById("theme");
         themeElement.classList.toggle("bg-secondary");
         themeElement.classList.toggle("bg-white");
         themeElement.classList.toggle("text-black");
+        themeElement.classList.toggle("bg-darkBackground");
+        const errorBanner = document.getElementById("smallBanner");
+        errorBanner.classList.toggle("bg-darkBackground,  border-border");
+
     }
 
 </script>

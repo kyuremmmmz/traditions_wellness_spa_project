@@ -2,13 +2,27 @@
 namespace Project\App\Views\Php\Pages\Login;
 
 use Project\App\Views\Php\Components\Assets\Logo;
+use Project\App\Views\Php\Components\Banner\Small_Banner;
 use Project\App\Views\Php\Components\Inputs\InputField;
 use Project\App\Views\Php\Components\Inputs\PasswordField;
 use Project\App\Views\Php\Components\RememberMe;
 use Project\App\Views\Php\Components\ForgotPasswordLink;
-
+use Project\App\Views\Php\Components\Text\Body_1;
+use Project\App\Views\Php\Components\Text\Body_2;
+use Project\App\Views\Php\Components\Text\Body_Medium_1;
+use Project\App\Views\Php\Components\Text\Body_Medium_2;
+use Project\App\Views\Php\Components\Text\Caption_1;
+use Project\App\Views\Php\Components\Text\Caption_2;
+use Project\App\Views\Php\Components\Text\Caption_Medium_1;
+use Project\App\Views\Php\Components\Text\Header_1;
+use Project\App\Views\Php\Components\Text\Header_2;
+use Project\App\Views\Php\Components\Text\Mini_1;
+use Project\App\Views\Php\Components\Text\Mini_2;
+use Project\App\Views\Php\Components\Text\Subheader_1;
+use Project\App\Views\Php\Components\Text\Subheader_2;
 class Page
 {
+
    public static function login()
    {
     
@@ -16,10 +30,25 @@ class Page
        
        echo <<<HTML
         <div class="w-full max-w-md mx-auto">
-            <!-- Centered Logo -->
+            <!--   Centered Logo -->pbj,,
+            
             <div class="flex justify-center mb-8">
         HTML;
-            Logo::render();
+        Header_1::render("Header 1", "primary");
+        Subheader_1 ::render("Subheader 1", "on.background");
+        Body_Medium_1::render("BodyMedium 1", "on.background");
+        Body_1::render("Body 1", "on.background");
+        Caption_Medium_1::render("Caption Medium 1",  "on.background");
+        Mini_1::render("Mini 1",   "on.background");
+        Header_2::render("Header 2", "on.background");
+        Subheader_2::render("Subheader 2", "on.background");
+        Body_Medium_2::render("Body Medium 2", "on.background");
+        Body_2::render("Body 2", "on.background");
+        Mini_2::render("Mini 2", "on.background");
+        Caption_1::render("Caption 1", "on.background");
+        Caption_2::render("Caption 2", "on.background");
+        Small_Banner::render("Logged Out","Your account has been successfully logged out");
+        Logo::render();
             echo <<<HTML
         </div>
         
