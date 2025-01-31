@@ -71,6 +71,8 @@ class Mailer{
             );
             return ['status' => 'success', 'message' => 'Verification email sent successfully.'];
         } catch (Exception $e) {
+            http_response_code(500);
+            echo 'Internal Server Error';
             return ['status' => 'error', 'message' => 'Error sending email: ' . $this->mail->ErrorInfo];
         }
     }
@@ -118,6 +120,8 @@ class Mailer{
             );
             return ['status' => 'success', 'message' => 'Verification email sent successfully.'];
         } catch (Exception $e) {
+            http_response_code(500);
+            echo 'Internal Server Error';
             return ['status' => 'error', 'message' => 'Error sending email: ' . $this->mail->ErrorInfo];
         }
     }

@@ -1,11 +1,11 @@
 <?php
 
-class Migrate20250122044144_test
+class Migrate20250131113710_phone_reset_tokens
 {
     public function up($pdo)
     {
         // Example: Create a table
-        //$pdo->exec("CREATE TABLE test (id INT AUTO_INCREMENT PRIMARY KEY, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+        $pdo->exec("CREATE TABLE phone_reset_tokens (phone INT(250) PRIMARY KEY, token VARCHAR(250), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
     }
 
     public function down($pdo)

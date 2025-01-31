@@ -13,6 +13,7 @@ $router->post('/logout', 'AuthController@logout');
 $router->post('/register', 'AuthController@register');
 $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
+$router->post('/resetPassword', 'AuthController@resetPassword');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
@@ -25,8 +26,9 @@ $router->view('/forgotpassword', 'page', 'forgotpassword');
 $router->view('/verification', 'page', 'verification');
 $router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
+$router->view('/resetpassword', 'page', 'resetpassword');
 $router->view('/', 'index', '', 'SessionMiddleware');
-
+$router->view('/test', 'page', 'test');
 try {
     $router->resolve();
 } catch (Exception $e) {

@@ -4,7 +4,6 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
-use function Symfony\Component\Clock\now;
 
 
 
@@ -22,11 +21,11 @@ class AuthController
     public function forgotPasswordSend()
     {
         // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($_POST['username'])) {
+        if (isset($_POST['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->controller->find($_POST['username']);
+            $response = $this->controller->findByEmail($_POST['email']);
             if (isset($response['username'])) {
                 $this->mailer->sendToken(
                     $response['email'],
@@ -43,7 +42,20 @@ class AuthController
     public function forgotPassword()
     {
         //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
+        session_start();
+        $verification = $_POST['remember_token'];
+        $response = $this->controller->findByToken($verification);
+        if (isset($verification) && $verification === $response['remember_token'] ) {
+            $_POST['remember_token'] = $verification;
+        } else {
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
+            echo json_encode(['error' => 'Required fields are missing.']);
+            header('Location: /verification');
+        }
+    }
 
+    public function resetPassword(){
+        session_start();
         if (isset($_POST['remember_token'], $_POST['newPassword'])) {
             $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
             $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
@@ -53,7 +65,9 @@ class AuthController
                 echo json_encode(['error' => 'Invalid token or password update failed.']);
             }
         } else {
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
+            header('Location: /verification');
         }
     }
 
@@ -78,55 +92,84 @@ class AuthController
 
     public function register()
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
-        $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
-        if (!preg_match($emailPattern, $data['email'])) {
+        try {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
+            $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
+            if (!preg_match($emailPattern, $data['email'])) {
+                echo json_encode([
+                    'error' => 'Invalid email format'
+                ]);
+                http_response_code(400);
+                return;
+            }
+            $findByEmail = $this->controller->findByEmail($data['email']);
+            if ($findByEmail['phone'] === $data['phone']) {
+                echo json_encode([
+                    'Message' => 'An account with this phone number already exists.'
+                ]);
+            }
+            if ($findByEmail['email'] === $data['email']) {
+                echo json_encode([
+                    'Message' => 'An account with this email already exists.'
+                ]);
+            }
+            $response = $this->controller->create(
+                $data['last_name'],
+                $data['first_name'],
+                $data['email'],
+                $temporaryData['password'],
+                $data['phone'],
+                $data['branch'],
+                date('Y-m-d H:i:s'),
+                $data['role'],
+                $temporaryData['username'],
+            );
+            $this->mailer->sendVerification(
+                $data['email'],
+                'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
+                'Username: ' . $temporaryData['username'],
+                'Password: ' . $temporaryData['password'],
+                $data['first_name'],
+            );
             echo json_encode([
-                'error' => 'Invalid email format'
+                'data' => $response
             ]);
-            http_response_code(400);
-            return;
+        } catch (\Throwable $th) {
+            http_response_code(500);
+            echo json_encode([
+                'message' => 'Something went wrong on our end. Please try again later.'
+            ]);
         }
-        
-
-        $response = $this->controller->create(
-            $data['last_name'],
-            $data['first_name'],
-            $data['email'],
-            $temporaryData['password'],
-            $data['phone'],
-            $data['branch'],
-            date('Y-m-d H:i:s'),
-            $data['role'],
-            $temporaryData['username'],
-        );
-
-        $this->mailer->sendVerification(
-            $data['email'],
-            'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
-            'Username: ' . $temporaryData['username'],
-            'Password: ' . $temporaryData['password'],
-            $data['first_name'],
-        );
-
-        echo json_encode([
-            'data' => $response
-        ]);
     }
 
     public function store()
     {
+        session_start();
+        if (!isset($_SESSION['login_attempts'])) {
+            $_SESSION['login_attempts'] = 0;
+            $_SESSION['last_attempt_time'] = time();
+        }
+
+        if (time() - $_SESSION['last_attempt_time'] > 300) {
+            $_SESSION['login_attempts'] = 0;
+        }
+        if ($_SESSION['login_attempts'] >= 5) {
+            http_response_code(429);
+            header('Location: /');
+            echo json_encode(['error' => 'Too many attempts. Please try again after 5 minutes.']);
+            return;
+        }
+
         if (!isset($_POST['username'], $_POST['password'])) {
             http_response_code(400);
             echo json_encode(['Error' => 'Username and password are required.']);
             return;
         }
-
         $response = $this->controller->find($_POST['username']);
         if (is_array($response)) {
             if (password_verify($_POST['password'], $response['password'])) {
-                session_start();
+                $_SESSION['login_attempts'] = 0;
                 $_SESSION['user'] = [
                     'role' => $response['role'],
                     'username' => $response['username'],
@@ -136,25 +179,28 @@ class AuthController
                 ];
 
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
-                        $response['email_verified_at'] = date('Y-m-d H:i:s')
+                        date('Y-m-d H:i:s')
                     );
                 }
-
                 header('Location: /dashboard');
                 exit;
             } else {
+                $_SESSION['login_attempts']++;
+                $_SESSION['last_attempt_time'] = time();
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
             }
         } else {
+            $_SESSION['login_attempts']++;
+            $_SESSION['last_attempt_time'] = time();
             http_response_code(404);
             echo json_encode(['Error' => 'User not found']);
         }
     }
-
 
     private function generateTemporaryUserNameAndPassword($firstName, $lastName)
     {

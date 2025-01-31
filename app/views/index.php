@@ -31,12 +31,11 @@ use Project\App\Views\Php\Components\Header;
 </head>
 
 <body id="theme" class="flex flex-col items-center justify-center w-full min-h-screen text-white bg-secondary">
-    <button class="py-20" onclick="themeHandler()" type="button">press</button>
     <div class="w-full">
         <?php
-        Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
+        Header::render('flex justify-between items-center bg-primary py-4 px-8 w-full h-[60px]');
         ?>
-        <div class="h-screen">
+        <div class="h-screen ">
             <?= $content; ?>
         </div>
         <?php
@@ -45,12 +44,14 @@ use Project\App\Views\Php\Components\Header;
     </div>
 </body>
 <script>
-function themeHandler() {  
+    function themeHandler() {
         const themeElement = document.getElementById("theme");
+        const buttonText = document.getElementById("buttontheme");
+        buttonText.innerHTML = themeElement.classList.contains("bg-secondary") ? "Light" : "Dark";
         themeElement.classList.toggle("bg-secondary");
         themeElement.classList.toggle("bg-white");
         themeElement.classList.toggle("text-black");
     }
-
 </script>
+
 </html>
