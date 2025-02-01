@@ -11,11 +11,13 @@ use Project\App\Models\AuthModel;
 class AuthController
 {
     private $controller;
+    private $photos;
     private $mailer;
     public function __construct()
     {
         $this->controller = new AuthModel();
         $this->mailer = new Mailer();
+        $this->photos = new \Project\App\Models\PhotoUpdloadModel();
     }
 
     public function forgotPasswordSend()
@@ -99,7 +101,7 @@ class AuthController
     public function register()
     {
         try {
-            $data = json_decode(file_get_contents('php://input'), true);
+            $data = $_POST;
             $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
             $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
             if (!preg_match($emailPattern, $data['email'])) {
@@ -120,6 +122,7 @@ class AuthController
                     'Message' => 'An account with this email already exists.'
                 ]);
             }
+            $photo = file_get_contents($_FILES['photos']['tmp_name']);
             $response = $this->controller->create(
                 $data['last_name'],
                 $data['first_name'],
@@ -130,6 +133,7 @@ class AuthController
                 date('Y-m-d H:i:s'),
                 $data['role'],
                 $temporaryData['username'],
+                'data:image/jpeg;base64,' . base64_encode($photo),
             );
             $this->mailer->sendVerification(
                 $data['email'],
@@ -144,7 +148,8 @@ class AuthController
         } catch (\Throwable $th) {
             http_response_code(500);
             echo json_encode([
-                'message' => 'Something went wrong on our end. Please try again later.'
+                'message' => 'Something went wrong on our end. Please try again later.',
+                'error' => $th->getMessage()
             ]);
         }
     }
@@ -181,7 +186,8 @@ class AuthController
                     'username' => $response['username'],
                     'last_name' => $response['last_name'],
                     'first_name' => $response['first_name'],
-                    'email' => $response['email']
+                    'email' => $response['email'],
+                    'photos' => $response['photos'],
                 ];
 
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
@@ -221,15 +227,9 @@ class AuthController
 
 
 
-    public function edit($id)
-    {
+    
 
-    }
-
-    public function update($id)
-    {
-
-    }
+    
 
     public function logout()
     {
