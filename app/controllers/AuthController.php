@@ -112,15 +112,17 @@ class AuthController
                 return;
             }
             $findByEmail = $this->controller->findByEmail($data['email']);
-            if ($findByEmail['phone'] === $data['phone']) {
-                echo json_encode([
-                    'Message' => 'An account with this phone number already exists.'
-                ]);
-            }
-            if ($findByEmail['email'] === $data['email']) {
-                echo json_encode([
-                    'Message' => 'An account with this email already exists.'
-                ]);
+            if ($findByEmail && isset($findByEmail['email'])) {
+                if ($findByEmail['phone'] === $data['phone']) {
+                    echo json_encode([
+                        'Message' => 'An account with this phone number already exists.'
+                    ]);
+                }
+                if ($findByEmail['email'] === $data['email']) {
+                    echo json_encode([
+                        'Message' => 'An account with this email already exists.'
+                    ]);
+                }
             }
             $photo = file_get_contents($_FILES['photos']['tmp_name']);
             $response = $this->controller->create(
