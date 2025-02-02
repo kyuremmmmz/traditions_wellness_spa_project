@@ -2,6 +2,7 @@
 namespace Project\App\Views\Php\Pages\Login;
 
 use Project\App\Views\Php\Components\Assets\Logo;
+use Project\App\Views\Php\Components\Button\GlobalButton;
 use Project\App\Views\Php\Components\Inputs\InputField;
 use Project\App\Views\Php\Components\Inputs\PasswordField;
 use Project\App\Views\Php\Components\RememberMe;
@@ -35,15 +36,15 @@ class Page
                 echo '<div class="w-full">' . $passwordField->render() . '</div>';
 
                 echo '<div class="flex items-center justify-between w-full px-2">';
-                RememberMe::render();
+                
+                // RememberMe::render();
+
                 $forgotPasswordLink = new ForgotPasswordLink(); 
                 $forgotPasswordLink->render();
                 echo '</div>';
                 
+                GlobalButton::render("Login", "button");
                 echo <<<HTML
-                <button type="submit" class="w-full px-6 py-3 text-white transition-colors duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Log In
-                </button>
             </div>
         </form>
     </div>

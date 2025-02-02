@@ -8,9 +8,9 @@ class Header
     {
         $classAttribute = $className ? " class=\"$className\"" : '';
         echo <<<HTML
-        <div{$classAttribute}>
+        <header>
             <p class="text-white text-center"><</p><p class="text-white text-center">Return to User Management</p>
-        </div>
+        </header>
         HTML;
     }
 }

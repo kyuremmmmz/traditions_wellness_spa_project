@@ -2,15 +2,15 @@
 namespace Project\App\Views\Php\Components;
 
 class RememberMe {
-    public static function render($name = "remember_me", $checked = false) {
+    public static function render($checked = false) {
         echo '
         <div class="flex items-center space-x-2">
-            <input type="checkbox" 
-                   id="' . htmlspecialchars($name) . '" 
-                   name="' . htmlspecialchars($name) . '" ' . ($checked ? 'checked' : '') . ' 
-                   class="w-[23.683px] h-[24px] flex-shrink-0 border border-gray-300 rounded-lg bg-white checked:bg-primary checked:border-primary focus:ring-primary">
-            <label for="' . htmlspecialchars($name) . '" 
-                   class="text-gray-500 text-[12px] leading-[18px] font-medium">Remember me</label>
+            <input type="checkbox"
+                   id="rememberMe"
+                   name="rememberMe" ' . ($checked ? 'checked' : '') . '
+                   class="w-[18px] h-[18px] flex-shrink-0 border-border rounded-[6px] bg-background checked:border-primary focus:ring-primary">
+            <label for="rememberMe"
+                   class="text-on.background-2 text-[12px] leading-[18px] font-medium">Remember me</label>
         </div>';
     }
 }

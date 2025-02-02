@@ -15,7 +15,7 @@ class Component {
                    id="' . $id . '"
                    value="' . htmlspecialchars($value) . '" 
                    placeholder="' . htmlspecialchars($placeholder) . '" 
-                   class="w-full px-4 py-2 border rounded-lg text-gray-900 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200"
+                   class="w-[316px] h-[40px] px-4 py-2 border rounded-[6px] text-gray-900 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 placeholder-onbackground2"
                    required>
         </div>';
     }

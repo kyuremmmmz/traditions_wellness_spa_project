@@ -22,7 +22,10 @@ use Project\App\Views\Php\Components\Header;
                 extend: {
                     colors: {
                         primary: '#0F172A',
+                        darkPrimary: '#3B4A6E',
                         secondary: '#2d3748',
+                        background: '#FFFFFF',
+                        darkBackground: "#050505",
                     },
                 },
             },
@@ -30,7 +33,8 @@ use Project\App\Views\Php\Components\Header;
     </script>
 </head>
 
-<body class="flex flex-col items-center justify-center w-full min-h-screen text-white bg-secondary">
+<body id="theme" class="flex flex-col items-center justify-center w-full min-h-screen text-on.background bg-background">
+    <button class="py-20 bg-primary" id="button" onclick="themeHandler()" type="button">press</button>
     <div class="w-full">
         <?php
         Header::render('flex flex-row items-center gap-2 bg-primary py-4 px-8 w-full h-[60px]');
@@ -43,5 +47,23 @@ use Project\App\Views\Php\Components\Header;
         ?>
     </div>
 </body>
+<script>
+function themeHandler() {
+        const label = document.querySelector("label");
+        label.classList.toggle("bg-darkBackground");
 
+        const themeElement = document.getElementById("theme");
+        themeElement.classList.toggle("bg-darkBackground");
+
+        /*const checkbox = document.getElementById('rememberMe');
+        checkbox.classList.toggle("border-darkBorder");
+        checkbox.classList.toggle("bg-darkBackground");*/
+
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach(button => {
+        button.classList.toggle("bg-darkPrimary");
+    });
+    }
+
+</script>
 </html>
