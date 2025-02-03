@@ -9,7 +9,7 @@ class RegularBanner
 {
     public static function render(string $bannerTitle, string $bannerDescription, string $bannerIcon, string $lightstroke, string $darkstroke): void
     {
-        echo '          <div class="absolute w-[380px] h-[96px] top-[4px] mx-[14px] mt-[14px] right-[4px] flex justify-between items-center bg-background dark:bg-darkBackground border-border dark:border-darkBorder border-[2px] rounded-[6px] p-[24px]" id="banner">
+        echo '          <div class="absolute w-[380px] h-[96px] top-[4px] mx-[14px] mt-[14px] right-[4px] flex justify-between items-center bg-background dark:bg-darkBackground border-border dark:border-darkBorder border-[2px] rounded-[6px] p-[24px] transition-all duration-500 ease-out opacity-1 translate-y-0" id="banner">
                             <div class="w-[32px] h-[32px]">';
                                 IconChoice::render("{$bannerIcon}", "[32px]", "[32px]", "", "{$lightstroke}", "{$darkstroke}");
         
@@ -24,5 +24,30 @@ class RegularBanner
                                 SmallExitButton::render("banner");
         echo '              </div>
                         </div>';
+     // JavaScript to show the banner
+        echo <<<HTML
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                let banner = document.getElementById('banner');
+                                
+                                if (banner) {
+                                        banner.style.opacity = "1";
+                                        banner.style.transform = "translateY(0px)";
+
+                                    // Fade-out after the banner has been visible for 5 seconds
+                                    setTimeout(function() {
+                                        banner.style.opacity = "0";  // Fade out the banner
+                                        banner.style.transform = "translateY(-10px)"; // Slightly move up
+                                    }, 5000); // Wait 5 seconds before starting to fade out
+
+                                    // Hide the banner completely after fading out
+                                    setTimeout(function() {
+                                        banner.style.display = "none"; // Remove banner from DOM after animation
+                                    }, 6000); // 1 second after fading out
+                                }
+                            });
+                        </script>
+
+        HTML;
     }
 }

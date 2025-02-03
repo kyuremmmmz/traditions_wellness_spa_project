@@ -19,34 +19,34 @@ class Page
             session_start();
         }
 
+
         // Banner Logic: Needs the following logic
         // 1. Logged Out
         // 2. Server Error
         // 3. Unavailable Service
         // 4. Too Many Attempts
         $emailError = $_SESSION['login_errors']['email'] ?? '';
+        $passwordError = $_SESSION['login_errors']['password'] ?? '';
+
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
 
         if ($tooManyAttempts) {
             http_response_code(429);
-                        RegularBanner::render("Account Error", "Too many attempts. Please wait 5 minutes before trying again", "alertBig", "destructive", "darkDestructive");
-        echo            "<script>
-                                setTimeout(function() {
-                                        document.getElementById('banner').style.display = 'none';
-                                }, 5000);
-                        </script>";};
+                        RegularBanner::render("Account Error", "Too many attempts. Please wait 5 minutes before trying again", "alertBig", "destructive", "darkDestructive");};
 
         // 5. Deactivated account
         // 6. Account locked
+
+        unset($_SESSION['login_errors']);
         
         // Start of page
-        echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[128px] lg:mt-[160px] bg-background dark:bg-darkBackground">';
+        echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';
                         SubmarkLogo::render("[201.37px]", "[88px]", "full", "");
                         HeaderTwo::render("Login to your account", "onBackground", "darkOnBackground", "center", "[312px]", "[40px]","" ,"[56px]");
 
         echo            '<form method="POST" action="/login" class="FormContainer">';
-                                GlobalInputField::render("username", "Username", "text", "username_field");
-                                GlobalInputField::render("password", "Password", "password", "password_field_login");
+                                GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
+                                GlobalInputField::render("password", "Password", "password", "password_field_login", $passwordError);
 
         echo                    '<div class="flex justify-between w-[316px] h-[18px] items-center">';
                                         RememberMe::render();

@@ -134,21 +134,51 @@
 
 <!-- Content -->
 <body class="bg-background font-inter flex flex-col items-center justify-between w-full h-screen m-0 p-0 tracking-custom leading-custom">
-    <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
+    <!-- <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
         Toggle Theme
-    </button>
+    </button> --> <!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
 
 <!-- Dark Mode and Light Mode Function -->
 <script>
-        function toggleTheme() {
-            document.body.classList.toggle('dark');
-            const body = document.querySelector('body');
-            body.classList.toggle('bg-darkBackground');
+    // Toggle between dark and light mode
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+        document.body.classList.toggle('bg-darkBackground');
+    }
+
+    // Detect if the user prefers dark mode based on system preference
+    function detectDarkMode() {
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        if (darkModeMediaQuery.matches) {
+            // Apply dark theme
+            document.body.classList.add('dark');
+            document.body.classList.add('bg-darkBackground');
+        } else {
+            // Apply light theme (if necessary)
+            document.body.classList.remove('dark');
+            document.body.classList.remove('bg-darkBackground');
         }
 
-        // TODO: DETECT DARK MODE KINEMERUT ng DEVICE
+        // Listen for changes in the system theme preference
+        darkModeMediaQuery.addEventListener('change', (e) => {
+            if (e.matches) {
+                // Apply dark theme when the user switches to dark mode
+                document.body.classList.add('dark');
+                document.body.classList.add('bg-darkBackground');
+            } else {
+                // Apply light theme when the user switches to light mode
+                document.body.classList.remove('dark');
+                document.body.classList.remove('bg-darkBackground');
+            }
+        });
+    }
+
+    // Call the function on page load
+    detectDarkMode();
 </script>
+
 
 </html>

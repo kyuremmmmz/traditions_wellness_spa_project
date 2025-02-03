@@ -15,8 +15,8 @@ class IconChoice
         string $darkbgcolor = "", 
         string $bgcolorhighlight = "", 
         string $darkbgcolorhighlight = "", 
-        string $mx = "[0px]", 
-        string $my = "[0px]"
+        string $px = "[0px]", 
+        string $py = "[0px]"
     ): void {
         switch ($choice) {
             case "logoutBig":
@@ -44,11 +44,11 @@ class IconChoice
         };
 
         // Modify the SVG content with dynamic classes
-        echo preg_replace_callback('/class="([^"]+)"/', function($matches) use ($width, $height, $fill, $lightstroke, $darkstroke, $bgcolor, $darkbgcolor, $bgcolorhighlight, $darkbgcolorhighlight, $mx, $my) {
+        echo preg_replace_callback('/class="([^"]+)"/', function($matches) use ($width, $height, $fill, $lightstroke, $darkstroke, $bgcolor, $darkbgcolor, $bgcolorhighlight, $darkbgcolorhighlight, $px, $py) {
             $classes = $matches[1];
 
             // Add the dynamic classes here
-            $classes .= " w-{$width} h-{$height} fill-{$fill} text-{$lightstroke} dark:text-{$darkstroke} bg-{$bgcolor} dark:bg-{$darkbgcolor} hover:bg-{$bgcolorhighlight} dark:hover:bg-{$darkbgcolorhighlight} mx-{$mx} my-{$my} rounded-[6px]";
+            $classes .= " w-{$width} h-{$height} fill-{$fill} text-{$lightstroke} dark:text-{$darkstroke} bg-{$bgcolor} dark:bg-{$darkbgcolor} hover:bg-{$bgcolorhighlight} dark:hover:bg-{$darkbgcolorhighlight} px-{$px} py-{$py} rounded-[6px]";
             
             return 'class="' . $classes . '"';
         }, $icon);
