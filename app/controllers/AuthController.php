@@ -4,6 +4,8 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
+use Project\App\Models\UserRolesModel;
+
 
 
 
@@ -12,11 +14,13 @@ class AuthController
 {
     private $controller;
     private $photos;
+    private $userRolesModel;
     private $mailer;
     public function __construct()
     {
         $this->controller = new AuthModel();
         $this->mailer = new Mailer();
+        $this->userRolesModel = new UserRolesModel();
         $this->photos = new \Project\App\Models\PhotoUpdloadModel();
     }
 
@@ -137,6 +141,10 @@ class AuthController
                 $temporaryData['username'],
                 'data:image/jpeg;base64,' . base64_encode($photo),
             );
+            $findId = $this->controller->findByEmail($data['email']);
+            $createRoles = 
+
+            $createUserRoles = $this->userRolesModel->createUserRoles($findId['id'], $findId['roleID']);
             $this->mailer->sendVerification(
                 $data['email'],
                 'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
