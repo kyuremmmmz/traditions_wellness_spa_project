@@ -25,7 +25,7 @@ class Page
                         HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
                         BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[18px]');
                         GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
-                        echo '<div class="w-[316px] flex justify-center">';
+                        echo '<div class="w-[326px] flex justify-center">';
                             PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
                         echo '</div>';
                         

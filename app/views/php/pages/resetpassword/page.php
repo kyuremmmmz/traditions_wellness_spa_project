@@ -61,7 +61,7 @@ class Page{
                                     CaptionOne::render('One number (0-9).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
         echo                    '</div>';
         echo                '</div>';
-        echo                '<div class="w-[316px] flex justify-center">';
+        echo                '<div class="w-[326px] flex justify-center">';
                             PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'", 'novalidate');
         echo                '</div>
                         </form>

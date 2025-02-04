@@ -58,7 +58,7 @@ class Page
                                         GlobalLink::render("/forgotpassword", "Forgot Password?");
         echo                    '</div>';
 
-        echo                    '<div class="w-[316px] flex justify-center">';
+        echo                    '<div class="w-[326px] flex justify-center">';
                                         PrimaryButton::render("Login", "submit", "[56px]", "", "", "", "Login");
         echo                    '</div>';
 
