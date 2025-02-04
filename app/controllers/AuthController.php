@@ -4,6 +4,8 @@ namespace Project\App\Controllers;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
+use Project\App\Models\UserRolesModel;
+
 
 
 
@@ -12,11 +14,13 @@ class AuthController
 {
     private $controller;
     private $photos;
+    private $userRolesModel;
     private $mailer;
     public function __construct()
     {
         $this->controller = new AuthModel();
         $this->mailer = new Mailer();
+        $this->userRolesModel = new UserRolesModel();
         $this->photos = new \Project\App\Models\PhotoUpdloadModel();
     }
 
@@ -112,15 +116,17 @@ class AuthController
                 return;
             }
             $findByEmail = $this->controller->findByEmail($data['email']);
-            if ($findByEmail['phone'] === $data['phone']) {
-                echo json_encode([
-                    'Message' => 'An account with this phone number already exists.'
-                ]);
-            }
-            if ($findByEmail['email'] === $data['email']) {
-                echo json_encode([
-                    'Message' => 'An account with this email already exists.'
-                ]);
+            if ($findByEmail && isset($findByEmail['email'])) {
+                if ($findByEmail['phone'] === $data['phone']) {
+                    echo json_encode([
+                        'Message' => 'An account with this phone number already exists.'
+                    ]);
+                }
+                if ($findByEmail['email'] === $data['email']) {
+                    echo json_encode([
+                        'Message' => 'An account with this email already exists.'
+                    ]);
+                }
             }
             $photo = file_get_contents($_FILES['photos']['tmp_name']);
             $response = $this->controller->create(
@@ -135,6 +141,10 @@ class AuthController
                 $temporaryData['username'],
                 'data:image/jpeg;base64,' . base64_encode($photo),
             );
+            $findId = $this->controller->findByEmail($data['email']);
+            $createRoles = 
+
+            $createUserRoles = $this->userRolesModel->createUserRoles($findId['id'], $findId['roleID']);
             $this->mailer->sendVerification(
                 $data['email'],
                 'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
@@ -168,12 +178,16 @@ class AuthController
         if ($_SESSION['login_attempts'] >= 5) {
             http_response_code(429);
             header('Location: /');
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             echo json_encode(['error' => 'Too many attempts. Please try again after 5 minutes.']);
             return;
         }
 
         if (!isset($_POST['username'], $_POST['password'])) {
             http_response_code(400);
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             echo json_encode(['Error' => 'Username and password are required.']);
             return;
         }
@@ -189,9 +203,7 @@ class AuthController
                     'email' => $response['email'],
                     'photos' => $response['photos'],
                 ];
-
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
-
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
@@ -203,14 +215,22 @@ class AuthController
             } else {
                 $_SESSION['login_attempts']++;
                 $_SESSION['last_attempt_time'] = time();
+                $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+                $_SESSION['login_errors']['password'] = 'Invalid username and password';
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
+                header('Location: /login');
+                exit();
             }
         } else {
             $_SESSION['login_attempts']++;
             $_SESSION['last_attempt_time'] = time();
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             http_response_code(404);
             echo json_encode(['Error' => 'User not found']);
+            header('Location: /login');
+            exit();
         }
     }
 
@@ -224,12 +244,6 @@ class AuthController
             'password' => $temporaryPassword,
         ];
     }
-
-
-
-    
-
-    
 
     public function logout()
     {

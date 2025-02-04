@@ -1,11 +1,11 @@
 <?php
 
-use Project\App\Views\Php\Components\Forms\Reset;
+use Project\App\Views\Php\Components\Validations\Reset;
 
 class Page{
     public static function page(){
         ?>
-        <div class="flex flex-col justify-center items-center py-20">
+        <div class="flex flex-col items-center justify-center py-20">
             <?php Reset::render()  ?>
         </div>
     <?php
