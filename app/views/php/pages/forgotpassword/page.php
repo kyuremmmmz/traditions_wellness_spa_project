@@ -23,7 +23,7 @@ class Page
                         ReturnButton::render("[316px]", "/login");
         echo            '<form method="POST" action="/forgot">';
                             HeaderTwo::render('Forgot Password', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
-                            BodyTwo::render("Please enter your email address below. We'll send you a link to reset your password.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[10px]');
+                            BodyTwo::render("Please enter your email address below. We'll send you a link to reset your password.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[12px]');
                             GlobalInputField::render('email', 'Email','email', 'email_field_forgot_password', $emailError);
         echo                '<div class="w-[316px] flex justify-center">';
                             PrimaryButton::render('Continue', 'submit', '[200px]',  '', '', '', 'Continue', '', 'novalidate');

@@ -47,6 +47,13 @@ class IconChoice
                         <path d="M8 15L1 8L8 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 ';
+                break;
+            case 'miniCircle':
+                $icon =
+                    '<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-">
+                        <circle cx="4" cy="4" r="4" fill=""/>
+                    </svg>
+';  
         };
 
         // Modify the SVG content with dynamic classes

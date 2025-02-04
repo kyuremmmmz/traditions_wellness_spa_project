@@ -55,7 +55,9 @@ HTML;
 
             // Error Message
             if ($error) {
-                 echo "<div class='mt-[8px] mb-[8px] w-[316px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive'>{$error}</div>";
+                echo "<div class='mt-[8px] mb-[8px] w-[316px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive'>{$error}</div>";
+            } elseif ($id = "new_password_field") {
+                echo '';
             } else {
                 echo "<p class='MiniOne my-[8px] w-[316px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
             }
@@ -75,7 +77,6 @@ echo <<<HTML
                     // Clear error message when user starts typing again
                     if (errorMessage) {
                         errorMessage.innerHTML = "&nbsp;"; // Correctly inserts a non-breaking space
-
                     }
                 } else {
                     label.classList.remove('MiniOne', '-translate-y-1', 'text-onBackground', 'dark:text-darkOnBackground');
