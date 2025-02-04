@@ -55,7 +55,7 @@ HTML;
 
             // Error Message
             if ($error) {
-                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[8px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive'>{$error}</div>";
+                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[8px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive leading-none'>{$error}</div>";
             } elseif ($id === "new_password_field") {
                 echo '';
             } else {
@@ -70,22 +70,32 @@ echo <<<HTML
                 const label = document.getElementById(input.id + '-label');
                 const errorMessage = input.parentElement.querySelector('.text-destructive'); // Selects the error message div
 
+                // Handle when the user starts typing again, reset the border and error message
                 if (input.value.trim() !== '') {
                     label.classList.add('MiniOne', '-translate-y-1', 'text-onBackground', 'dark:text-darkOnBackground');
                     label.classList.remove('BodyOne', 'text-onBackgroundTwo', 'dark:text-darkOnBackgroundTwo', 'peer-placeholder-shown:translate-[8px]', 'peer-placeholder-shown:text-onBackgroundTwo', 'dark:peer-placeholder-shown:text-darkOnBackgroundTwo');
 
-                    // Clear error message when user starts typing again
+                    // Remove the error border when the user starts typing
+                    input.classList.remove('border-destructive', 'dark:border-darkDestructive', 'focus:border-destructive', 'dark:focus:border-darkDestructive');
+                    input.classList.add('border-borderTwo', 'dark:border-darkBorderTwo', 'focus:border-borderHighlight', 'dark:focus:border-darkBorderHighlight'); // Reset to normal border
+
+                    // Clear the error message when user starts typing again
                     if (errorMessage) {
                         errorMessage.innerHTML = "&nbsp;"; // Correctly inserts a non-breaking space
                     }
                     
                 } else {
+                    // Reset the label back to its placeholder state
                     label.classList.remove('MiniOne', '-translate-y-1', 'text-onBackground', 'dark:text-darkOnBackground');
                     label.classList.add('BodyOne', 'text-onBackgroundTwo', 'dark:text-darkOnBackgroundTwo', 'peer-placeholder-shown:translate-[8px]', 'peer-placeholder-shown:text-onBackgroundTwo', 'dark:peer-placeholder-shown:text-darkOnBackgroundTwo');
+
+                    // If the input is empty, keep the error class
+                    if (!input.value && '{$error}') {
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    }
                 }
             }
         </script>
         HTML;
     }
 }
-?>

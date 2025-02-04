@@ -20,7 +20,7 @@ class Page
 
         // start of page
                     Header::render('Small');
-        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';;
+        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';;
                         ReturnButton::render("[316px]", "/login");
         echo            '<form method="POST" action="/forgot">';
                             HeaderTwo::render('Forgot Password', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');

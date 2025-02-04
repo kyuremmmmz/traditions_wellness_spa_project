@@ -20,7 +20,7 @@ class Page
 
         // start of page
         Header::render('Small');
-        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
+        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
                         ReturnButton::render("[316px]", "/forgotpassword");
                         HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
                         BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[18px]');
