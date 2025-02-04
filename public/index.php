@@ -25,10 +25,22 @@ $router->view('/forgotpassword', 'page', 'forgotpassword');
 $router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
+<<<<<<< HEAD
 
+=======
+$router->view('/test', 'page', 'test');
+$router->view('/success', 'page', 'Success');
+$router->view('/Simulation', 'page', 'Simulation');
+$router->view('/uploadprofile', 'page', 'uploadprofile');
+$router->view('/dashboard', 'page', 'dashboard');
+>>>>>>> cd2c3f4 (uploadprofile)
 try {
     $router->resolve();
 } catch (Exception $e) {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> cd2c3f4 (uploadprofile)
