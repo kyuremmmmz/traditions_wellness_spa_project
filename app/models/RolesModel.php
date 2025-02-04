@@ -19,10 +19,10 @@ class RolesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByEmail($id)
+    public function findByID($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE roleID = :roleID");
+        $stmt->execute(['roleID' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

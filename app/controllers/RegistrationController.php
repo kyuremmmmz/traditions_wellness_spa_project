@@ -35,6 +35,7 @@ class RegistrationController
     }
     public function register()
     {
+        header('Content-Type: application-json');
         try {
             $data = $_POST;
             $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
@@ -100,18 +101,25 @@ class RegistrationController
                 6 => 'book_a_service',
             ];
             $searchPermissions = $rolePermissions[$search] ?? null;
-
             $createRole = $this->roleModel->createRoles($findId['id'], $findId['role'], $searchPermissions);
-            $this->mailer->sendVerification(
-                $data['email'],
-                'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
-                'Username: ' . $temporaryData['username'],
-                'Password: ' . $temporaryData['password'],
-                $data['first_name'],
-            );
-            echo json_encode([
-                'data' => $response
-            ]);
+            if (isset($createRole)) {
+                $this->mailer->sendVerification(
+                    $data['email'],
+                    'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
+                    'Username: ' . $temporaryData['username'],
+                    'Password: ' . $temporaryData['password'],
+                    $data['first_name'],
+                );
+                $findRole = $this->roleModel->findByID($findId['id']);
+                $createUserRoles = $this->userRolesModel->createUserRoles($findId['userID'], $findRole['roleID']);
+                echo json_encode([
+                    'data' => $createRole,
+                    'roles' => json_decode($findRole['permissions'], true)
+                ]);
+                echo json_encode([
+                    'status' => $createUserRoles
+                ]);
+            }
         } catch (\Throwable $th) {
             http_response_code(500);
             echo json_encode([
