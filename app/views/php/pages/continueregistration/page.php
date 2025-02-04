@@ -38,7 +38,7 @@ class Page{
 
         // start of page
         Header::render('Small');
-        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px]">';
+        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
         echo            '<form method="POST" action="/forgot">';
                             HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
                             BodyTwo::render('Hello, ' . $firstName .'! Please enter a new username and password below.', 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');

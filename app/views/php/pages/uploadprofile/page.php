@@ -20,7 +20,7 @@ class Page {
 
         $disabled = 'disabled';
 
-        echo    '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px]">';
+        echo    '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
         echo        '<form method="POST" action="/forgot" class="flex flex-col items-center">';
                         HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[326px]', '[64px]', '', '[8px]');
                         BodyTwo::render('Please upload a profile picture.', 'onBackgroundTwo','darkOnBackgroundTwo','','[326px]','','','');
