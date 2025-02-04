@@ -19,10 +19,10 @@ class Page
 
         // start of page
                     Header::render('Small');
-        echo        '<main class="OneColumnContainer min-h-screen mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';;
+        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';;
                         ReturnButton::render("[316px]", "/login");
         echo            '<form method="POST" action="/forgot">';
-                            HeaderTwo::render('Forgot Password', 'onBackground', 'darkOnBackground', '', '[316px]', '[56px]', '',  '[8px]');
+                            HeaderTwo::render('Forgot Password', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
                             BodyTwo::render("Please enter your email address below. We'll send you a link to reset your password.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[10px]');
                             GlobalInputField::render('email', 'Email','email', 'email_field_forgot_password', $emailError);
         echo                '<div class="w-[316px] flex justify-center">';
