@@ -5,17 +5,13 @@ namespace Project\App\Views\Php\Pages\Login;
 use Project\App\Views\Php\Components\Assets\SubmarkLogo;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Footer;
+use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\RememberMe;
 use Project\App\Views\Php\Components\Texts\GlobalLink;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
 
-// Add necessary scripts and styles in the head
-echo '<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="/js/password-toggle.js"></script>
-</head>';
 
 class Page
 {
@@ -25,7 +21,7 @@ class Page
             session_start();
         }
 
-
+        // TODO: BANNER LOGICs
         // Banner Logic: Needs the following logic
         // 1. Logged Out
         // 2. Server Error
@@ -54,13 +50,10 @@ class Page
                                 GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
                                 echo '<div class="relative">';
                                 echo '<div class="relative w-full">';
-                                GlobalInputField::render("password", "Password", "password", "password_field_login", $passwordError);
-                                echo '<button type="button" id="password_field_login-toggle" onclick="togglePasswordVisibility(\'password_field_login\')" class="absolute right-3 top-[22px] -translate-y-1/2 text-gray-500 focus:outline-none transition-colors duration-300">
-                                        <i class="fas fa-eye transition-all duration-300"></i>
-                                    </button>
-                                </div>';
+                                GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
+        echo                    '</div>';
 
-        echo                    '<div class="flex justify-between w-[316px] h-[18px] items-center">';
+        echo                    '<div class="flex justify-between w-[326px] h-[24px] items-center">';
                                         RememberMe::render();
                                         GlobalLink::render("/forgotpassword", "Forgot Password?");
         echo                    '</div>';
