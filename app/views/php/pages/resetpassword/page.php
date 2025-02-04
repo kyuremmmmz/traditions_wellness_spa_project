@@ -7,7 +7,7 @@ class Page{
         ?>
         <div class="flex flex-col justify-center items-center py-20">
             <?php Reset::render()  ?>
-        </div>
+        </>
     <?php
     }
 }
