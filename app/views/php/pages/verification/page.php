@@ -1,55 +1,35 @@
 <?php
 namespace Project\App\Views\Php\Pages\Verification;
 
-use Project\App\Views\Php\Components\Inputs\InputField;
-use Project\App\Views\Php\Components\Button\ReturnButton;
+use Project\App\Views\Php\Components\Buttons\ReturnButton;
+use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
+use Project\App\Views\Php\Components\Texts\HeaderTwo;
+use Project\App\Views\Php\Components\Containers\Header;
+use Project\App\Views\Php\Components\Texts\BodyTwo;
 
 class Page
 {
     public static function verification()
     {
         session_start();
-        $emailError = $_SESSION['forgot_password_errors']['verification'] ?? '';
-        unset($_SESSION['forgot_password_errors']);
-        echo <<<HTML
-        <div class="flex items-center justify-center min-h-screen">
-            <div class="flex flex-col items-center w-full max-w-md px-4">
-                <!-- Return Button -->
-                <div class="self-start mb-8">
-        HTML;
-        
-        
+        $verificationError = $_SESSION['forgot_password_errors']['verification'] ?? '';
+        //unset($_SESSION['forgot_password_errors']);
 
-        echo <<<HTML
-                </div>
 
-                <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
-                    <h2 class="font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
-                        Verification Code
-                    </h2>
-                </div>
+        // start of page
+        Header::render('Small');
+        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
+                        ReturnButton::render("[316px]", "/forgotpassword");
+                        HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
+                        BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[10px]');
+                        GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
+                        echo '<div class="w-[316px] flex justify-center">';
+                            PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+                        echo '</div>';
+                        
+        echo        '</main>';
 
-                <div class="flex flex-col items-center justify-center w-[312px] h-[30.588px] flex-shrink-0 text-[#71717A] mb-8">
-                    <p class="font-inter text-base font-normal leading-[21px] tracking-tight text-center">
-                        Please enter the verification code we sent to your email.
-                    </p>
-                </div>
-
-                <form method="POST" action="/forgotPass" class="w-full max-w-xs space-y-6">
-HTML;
-        
-        $emailField = GlobalInputField::render('remember_token', 'Token', 'text', 'remember_token');
-        echo '<div class="w-full">' . $emailField . '</div>';
-
-        echo <<<HTML
-                    <button type="submit" class="w-full py-3 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">
-                        Continue
-                    </button>
-                </form>
-            </div>
-        </div>
-        HTML;
     }
 }
 

@@ -139,6 +139,10 @@
     </button><!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
+<script>
+function themeHandler() {
+        const label = document.querySelector("label");
+        label.classList.toggle("bg-darkBackground");
 
 <!-- Dark Mode and Light Mode Function -->
 <script>

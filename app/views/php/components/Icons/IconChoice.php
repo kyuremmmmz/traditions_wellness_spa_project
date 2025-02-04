@@ -73,6 +73,14 @@ class IconChoice
                     </svg>
                 ';
                 break;
+            case "uploadBig":
+                $icon = '
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">>
+                        <path d="M26 18V23.3333C26 24.0406 25.719 24.7189 25.219 25.219C24.7189 25.719 24.0406 26 23.3333 26H4.66667C3.95942 26 3.28115 25.719 2.78105 25.219C2.28095 24.7189 2 24.0406 2 23.3333V18" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.6666 8.66667L14 2L7.33331 8.66667" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M14 2V18" stroke="" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                ';
         };
 
         // Modify the SVG content with dynamic classes
