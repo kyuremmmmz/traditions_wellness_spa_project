@@ -47,7 +47,7 @@ HTML;
             if ($type === "password") {
                 $eye = "eyeClose";
                 echo '<button type="button" id="password_toggle" onclick="togglePasswordVisibility()" class="absolute right-3 top-[22px] -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo focus:outline-none transition-colors duration-300"><div id="password_icon">';
-                IconChoice::render($eye, '[24px]', '[24px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo' );
+                IconChoice::render($eye, '[20px]', '[20px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo' );
                 echo '</div></button>';
             }
 
