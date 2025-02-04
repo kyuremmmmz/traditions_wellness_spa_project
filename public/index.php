@@ -31,6 +31,8 @@ $router->view('/', 'index', '', 'SessionMiddleware');
 $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
+$router->view('/continueregistration', 'page', 'continueregistration');
+
 try {
     $router->resolve();
 } catch (Exception $e) {

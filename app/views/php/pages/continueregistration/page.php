@@ -11,7 +11,7 @@ use Project\App\Views\Php\Components\Texts\HeaderTwo;
 class Page{
     public static function page(){
 
-
+        $usernameError = "";
         $passwordError = "";
 
         $eightCharactersCircle = "onBackgroundTwo";
@@ -35,8 +35,9 @@ class Page{
         Header::render('Small');
         echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
         echo            '<form method="POST" action="/forgot">';
-                            HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
-                            BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[12px]');
+                            HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
+                            BodyTwo::render('Hello, ' . $firstName .'! Please enter a new username and password below.', 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[12px]');
+                            GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                             GlobalInputField::render("password", "Password", "password", "new_password_field", $passwordError);
         echo                '<div class="w-[284px] px-[14px]">';
                                 CaptionOne::render('Your password must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
