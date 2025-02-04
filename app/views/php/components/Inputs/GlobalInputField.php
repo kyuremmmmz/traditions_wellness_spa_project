@@ -5,7 +5,6 @@ use Respect\Validation\Rules\Yes;
 
 class GlobalInputField {
 
-    private string $Attributes = "";
 
     public static function render(string $name, string $label, string $type, string $id, ?string $error = null):void {
         switch ($id) {
@@ -30,8 +29,8 @@ class GlobalInputField {
         }
 
 echo <<<HTML
-        <div class='FieldContainer relative'>
-            <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)' {$Attributes} 
+        <div class='relative FieldContainer'>
+            <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)'; 
                 class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-md autofill:bg-background dark:autofill:bg-background' />
             <label for='{$id}' id='{$id}-label' 
                 class='absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo

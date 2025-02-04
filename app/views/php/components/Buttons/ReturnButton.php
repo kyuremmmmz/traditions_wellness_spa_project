@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Views\Php\Components\Button;
+namespace Project\App\Views\Php\Components\Buttons;
 
 class ReturnButton {
     private $text;
@@ -38,7 +38,7 @@ class ReturnButton {
         ) : '';
 
         return sprintf(
-            '<button type="%s" class="flex items-center gap-2 hover:opacity-80 transition-opacity" onclick="%s">
+            '<button type="%s" class="flex items-center gap-2 transition-opacity hover:opacity-80" onclick="%s">
                 %s
                 <span class="font-inter text-[14px] font-normal leading-[150%%] tracking-[-0.308px]" style="color: %s">
                     %s

@@ -1,9 +1,9 @@
 <?php
 
-namespace Project\App\Views\Php\Components\Forms;
+namespace Project\App\Views\Php\Components\Validations;
 
-use Project\App\Views\Php\Components\Button\GlobalButton;
-use Project\App\Views\Php\Components\Fields\GlobalFields;
+use Project\App\Views\Php\Components\Buttons\PrimaryButton;
+use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 
 class Reset
 {
@@ -12,8 +12,8 @@ class Reset
         ?>
         <div>
             <form action="/resetPassword" method="POST">
-                <?php GlobalFields::render('bg-white', 'text', 'newPassword');
-                    GlobalButton::render('Submit')
+                <?php GlobalInputField::render('newPassword', 'New password', 'password', 'password' );
+                PrimaryButton::render('Submit', 'submit');
                 ?>
             </form>
         </div>

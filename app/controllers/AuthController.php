@@ -203,9 +203,7 @@ class AuthController
                     'email' => $response['email'],
                     'photos' => $response['photos'],
                 ];
-
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
-
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
@@ -246,12 +244,6 @@ class AuthController
             'password' => $temporaryPassword,
         ];
     }
-
-
-
-    
-
-    
 
     public function logout()
     {

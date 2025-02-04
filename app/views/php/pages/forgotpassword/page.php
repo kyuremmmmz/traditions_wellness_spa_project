@@ -1,8 +1,10 @@
 <?php
 namespace Project\App\Views\Php\Pages\ForgotPassword;
 
+use Project\App\Views\Php\Components\Buttons\ReturnButton;
+use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\InputField;
-use Project\App\Views\Php\Components\Button\ReturnButton;
+
 
 class Page
 {
@@ -46,8 +48,8 @@ HTML;
                 <form method="POST" action="/forgot" class="w-full max-w-xs space-y-6">
 HTML;
         
-        $emailField = new InputField("email", "Email", "email", $emailError);
-        echo '<div class="w-full">' . $emailField->render() . '</div>';
+        $emailField =  GlobalInputField::render('email', 'Please enter your email', 'email', 'email');
+        echo '<div class="w-full">' . $emailField . '</div>';
 
         echo <<<HTML
                     <button type="submit" class="w-full py-3 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">

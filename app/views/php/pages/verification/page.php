@@ -3,6 +3,7 @@ namespace Project\App\Views\Php\Pages\Verification;
 
 use Project\App\Views\Php\Components\Inputs\InputField;
 use Project\App\Views\Php\Components\Button\ReturnButton;
+use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 
 class Page
 {
@@ -18,15 +19,7 @@ class Page
                 <div class="self-start mb-8">
         HTML;
         
-        $returnButton = new ReturnButton(
-            "", 
-            "button", 
-            "#09090B", 
-            16, 
-            true,
-            "window.location.href = '/'"
-        );
-        echo $returnButton->render();
+        
 
         echo <<<HTML
                 </div>
@@ -46,8 +39,8 @@ class Page
                 <form method="POST" action="/forgotPass" class="w-full max-w-xs space-y-6">
 HTML;
         
-        $emailField = new InputField("remember_token", "Verification", "number", $emailError);
-        echo '<div class="w-full">' . $emailField->render() . '</div>';
+        $emailField = GlobalInputField::render('remember_token', 'Token', 'text', 'remember_token');
+        echo '<div class="w-full">' . $emailField . '</div>';
 
         echo <<<HTML
                     <button type="submit" class="w-full py-3 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">
