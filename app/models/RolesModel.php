@@ -19,22 +19,20 @@ class RolesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function findByEmail($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public function createRoles($roleID, $name, $permissions)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions)");
+        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions, NOW(), NOW())");
         return $stmt->execute([
             'roleID' => $roleID,
             'name' => ucfirst(str_replace('_', '', $name)),
             'permissions' => json_encode(explode(',', $permissions)),
-            'created_at' => date('m/d/Y h:i:s a', time()),
-            'updated_at' => date('m/d/Y h:i:s a', time()),
         ]);
     }
 

@@ -82,7 +82,7 @@ class RegistrationController
                 'customer' => 6,
             ];
             // this variable will remove the _ inside the array of strings
-            $roleName = strtolower(str_replace('_', ' ', $findId['role']));
+            $roleName = strtolower(str_replace(' ', '_', $findId['role']));
             $search = $roleIDs[$roleName] ?? null;
             if (!$search) {
                 http_response_code(400);
@@ -100,7 +100,7 @@ class RegistrationController
                 6 => 'book_a_service',
             ];
             $searchPermissions = $rolePermissions[$search] ?? null;
-            
+
             $createRole = $this->roleModel->createRoles($findId['id'], $findId['role'], $searchPermissions);
             $this->mailer->sendVerification(
                 $data['email'],
