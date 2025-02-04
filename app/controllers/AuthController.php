@@ -178,12 +178,16 @@ class AuthController
         if ($_SESSION['login_attempts'] >= 5) {
             http_response_code(429);
             header('Location: /');
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             echo json_encode(['error' => 'Too many attempts. Please try again after 5 minutes.']);
             return;
         }
 
         if (!isset($_POST['username'], $_POST['password'])) {
             http_response_code(400);
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             echo json_encode(['Error' => 'Username and password are required.']);
             return;
         }
@@ -213,14 +217,22 @@ class AuthController
             } else {
                 $_SESSION['login_attempts']++;
                 $_SESSION['last_attempt_time'] = time();
+                $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+                $_SESSION['login_errors']['password'] = 'Invalid username and password';
                 http_response_code(401);
                 echo json_encode(['Error' => 'Invalid credentials']);
+                header('Location: /login');
+                exit();
             }
         } else {
             $_SESSION['login_attempts']++;
             $_SESSION['last_attempt_time'] = time();
+            $_SESSION['login_errors']['email'] = 'Invalid username and password.';
+            $_SESSION['login_errors']['password'] = 'Invalid username and password';
             http_response_code(404);
             echo json_encode(['Error' => 'User not found']);
+            header('Location: /login');
+            exit();
         }
     }
 

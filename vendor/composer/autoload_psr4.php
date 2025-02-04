@@ -39,7 +39,7 @@ return array(
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'PHPAuth\\' => array($vendorDir . '/phpauth/phpauth/sources'),
     'OTPHP\\' => array($vendorDir . '/spomky-labs/otphp/src'),
-    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/support'),
+    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support', $vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable'),
     'Illuminate\\Session\\' => array($vendorDir . '/illuminate/session'),
     'Illuminate\\Http\\' => array($vendorDir . '/illuminate/http'),
     'Illuminate\\Filesystem\\' => array($vendorDir . '/illuminate/filesystem'),
