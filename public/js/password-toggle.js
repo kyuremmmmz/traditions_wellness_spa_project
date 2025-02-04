@@ -2,22 +2,23 @@ function togglePasswordVisibility() {
     var passwordInput = document.getElementById("password_field");
     var iconContainer = document.getElementById("password_icon");
 
+    // TODO: DITO BA TALAGA TO? DITO SA FOLDER NA ITO?
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
         iconContainer.innerHTML = ` 
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
-                                        <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                                        <path d="M1.66675 10C1.66675 10 4.16675 4.16669 10.0001 4.16669C15.8334 4.16669 18.3334 10 18.3334 10C18.3334 10 15.8334 15.8334 10.0001 15.8334C4.16675 15.8334 1.66675 10 1.66675 10Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 `;
     } else {
         passwordInput.type = "password";
         iconContainer.innerHTML = `
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
-                                        <path d="M9.87988 9.88C9.58514 10.1547 9.34873 10.4859 9.18476 10.8539C9.02079 11.2218 8.93262 11.6191 8.92552 12.0219C8.91841 12.4247 8.99251 12.8248 9.14339 13.1984C9.29428 13.5719 9.51885 13.9113 9.80373 14.1962C10.0886 14.481 10.4279 14.7056 10.8015 14.8565C11.175 15.0074 11.5752 15.0815 11.978 15.0744C12.3808 15.0673 12.778 14.9791 13.146 14.8151C13.514 14.6512 13.8452 14.4148 14.1199 14.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M10.73 5.08C11.1513 5.02751 11.5754 5.00079 12 5C19 5 22 12 22 12C21.5529 12.9571 20.9922 13.8569 20.33 14.68" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M6.61 6.60999C4.62125 7.96461 3.02987 9.82524 2 12C2 12 5 19 12 19C13.9159 19.0051 15.7908 18.4451 17.39 17.39" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M2 2L22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                                        <path d="M8.23344 8.23334C7.98782 8.46221 7.79081 8.73821 7.65417 9.04488C7.51753 9.35154 7.44406 9.68259 7.43813 10.0183C7.43221 10.3539 7.49396 10.6874 7.6197 10.9987C7.74543 11.31 7.93258 11.5927 8.16998 11.8301C8.40737 12.0675 8.69015 12.2547 9.00145 12.3804C9.31274 12.5061 9.64617 12.5679 9.98185 12.562C10.3175 12.5561 10.6486 12.4826 10.9552 12.3459C11.2619 12.2093 11.5379 12.0123 11.7668 11.7667" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M8.94165 4.23335C9.29274 4.18961 9.64618 4.16735 9.99998 4.16669C15.8333 4.16669 18.3333 10 18.3333 10C17.9607 10.7976 17.4935 11.5475 16.9417 12.2334" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M5.50841 5.50836C3.85112 6.63721 2.52497 8.18774 1.66675 10C1.66675 10 4.16675 15.8334 10.0001 15.8334C11.5967 15.8376 13.1591 15.371 14.4917 14.4917" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M1.66675 1.66669L18.3334 18.3334" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 `;
     }
