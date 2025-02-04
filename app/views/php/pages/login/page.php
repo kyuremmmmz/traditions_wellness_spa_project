@@ -11,6 +11,12 @@ use Project\App\Views\Php\Components\Texts\GlobalLink;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
 
+// Add necessary scripts and styles in the head
+echo '<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/js/password-toggle.js"></script>
+</head>';
+
 class Page
 {
     public static function login()
@@ -46,7 +52,13 @@ class Page
 
         echo            '<form method="POST" action="/login" class="FormContainer">';
                                 GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
+                                echo '<div class="relative">';
+                                echo '<div class="relative w-full">';
                                 GlobalInputField::render("password", "Password", "password", "password_field_login", $passwordError);
+                                echo '<button type="button" id="password_field_login-toggle" onclick="togglePasswordVisibility(\'password_field_login\')" class="absolute right-3 top-[22px] -translate-y-1/2 text-gray-500 focus:outline-none transition-colors duration-300">
+                                        <i class="fas fa-eye transition-all duration-300"></i>
+                                    </button>
+                                </div>';
 
         echo                    '<div class="flex justify-between w-[316px] h-[18px] items-center">';
                                         RememberMe::render();
