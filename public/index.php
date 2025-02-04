@@ -37,3 +37,4 @@ try {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);
 }
+$router->view('/dashboard', 'page', 'dashboard');
