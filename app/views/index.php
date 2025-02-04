@@ -51,7 +51,7 @@
                         darkPrimaryHover:       '#4E6292',
                         darkOnPrimary:          '#FFFFFF',
                         darkSecondary:          '#18181B',
-                        darkSecondaryVariant:   '#204586',
+                        darkSecondaryVariant:   '#07142C', // <--- NABAGO UNG COLOR HERE!!!!!!!!
                         darkOnSecondary:        '#F4F4F4',
                         darkSurface:            '#01050E',
                         darkHighlightSurface:   '#E0E0E0',
@@ -117,13 +117,13 @@
                             fontSize: '8px', fontWeight: '400', lineHeight: '150%'
                         },
                         'OneColumnContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+                            width: '326px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
                         },
                         'FormContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+                            width: '326px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
                         },
                         'FieldContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', height: '66px'
+                            width: '326px', display: 'flex', flexDirection: 'column', height: '66px'
                         }
                     })
                 }
@@ -133,16 +133,12 @@
 </head>
 
 <!-- Content -->
-<body class="bg-background font-inter flex flex-col items-center justify-between w-full h-screen m-0 p-0 tracking-custom leading-custom">
+<body class="bg-background font-inter flex flex-col items-center justify-between w-full min-h-screen m-0 p-0 tracking-custom leading-custom">
     <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
         Toggle Theme
     </button><!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
-<script>
-function themeHandler() {
-        const label = document.querySelector("label");
-        label.classList.toggle("bg-darkBackground");
 
 <!-- Dark Mode and Light Mode Function -->
 <script>

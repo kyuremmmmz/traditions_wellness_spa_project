@@ -12,6 +12,7 @@ class Page
 {
     public static function verification()
     {
+        // TODO: error kineme
         session_start();
         $verificationError = $_SESSION['forgot_password_errors']['verification'] ?? '';
         //unset($_SESSION['forgot_password_errors']);
@@ -22,7 +23,7 @@ class Page
         echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
                         ReturnButton::render("[316px]", "/forgotpassword");
                         HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
-                        BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[10px]');
+                        BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[18px]');
                         GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
                         echo '<div class="w-[316px] flex justify-center">';
                             PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");

@@ -11,34 +11,34 @@ use Project\App\Views\Php\Components\Texts\HeaderTwo;
 class Page{
     public static function page(){
 
+        // TODO: kung nameet ung ano, dapat magbago ung onBackgroundTwo sa success color("success" na tlga ung name ng color).. 
+        // KUNG NAGING SUCCESSFULL YUNG VERIFICATION CODE, DAPAT MABAGO DIN first name!!!!!!!!! <---------
+        // HINDI MAGAACTIVATE UNG BUTTON HANGGAT NAIPASA LAHAT NG REQUIREMENTS
 
         $passwordError = "";
 
         $eightCharactersCircle = "onBackgroundTwo";
-        $eightCharactersText = "onBackgroundTwo";
 
         $specialCharacterCircle = "onBackgroundTwo";
-        $specialCharacterText = "onBackgroundTwo";
 
         $uppercaseLetterCircle = "onBackgroundTwo";
-        $uppercaseLetterText = "onBackgroundTwo";
 
         $lowercaseLetterCircle = "onBackgroundTwo";
-        $lowercaseLetterText = "onBackgroundTwo";
 
         $numberCircle = "onBackgroundTwo";
-        $numberText = "onBackgroundTwo";
 
         $firstName = 'user';
+
+        $disabled = 'disabled'; // STRING LANG IBIBIGAY KAY BUTTON, kung wala itong laman, hindi na magiging disabled ung button
 
         // start of page
         Header::render('Small');
         echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
-        echo            '<form method="POST" action="/forgot">';
-                            HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
-                            BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[12px]');
-                            GlobalInputField::render("password", "Password", "password", "new_password_field", $passwordError);
-        echo                '<div class="w-[284px] px-[14px]">';
+        echo            '<form method="POST" action="/forgot" novalidate>';
+                            HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
+                            BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
+                            GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
+        echo                '<div class="w-[284px] px-[14px] relative -top-[10px]">';
                                 CaptionOne::render('Your password must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$eightCharactersCircle,);
@@ -62,7 +62,7 @@ class Page{
         echo                    '</div>';
         echo                '</div>';
         echo                '<div class="w-[316px] flex justify-center">';
-                            PrimaryButton::render('Continue', 'submit', '[200px]',  '', '', '', 'Continue', '', 'novalidate');
+                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'", 'novalidate');
         echo                '</div>
                         </form>
                     </main>';

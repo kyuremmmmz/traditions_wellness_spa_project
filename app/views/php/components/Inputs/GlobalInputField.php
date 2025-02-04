@@ -55,11 +55,11 @@ HTML;
 
             // Error Message
             if ($error) {
-                echo "<div class='mt-[8px] mb-[8px] w-[316px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive'>{$error}</div>";
+                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[8px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive'>{$error}</div>";
             } elseif ($id === "new_password_field") {
                 echo '';
             } else {
-                echo "<p class='MiniOne my-[8px] w-[316px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
+                echo "<p class='MiniOne my-[8px] w-[316px] h-[8px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
             }
  
 echo <<<HTML

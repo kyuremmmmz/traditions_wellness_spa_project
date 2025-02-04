@@ -13,28 +13,25 @@ class Page {
         session_start();
         unset($_SESSION['forgot_password_errors']);
 
+        //TODO: update profile. disabled hanggat di pa naauppload ung pic.
+
         // Start of page
         Header::render('Small');
 
-        echo '<main class="OneColumnContainer h-screen mt-[24px] sm:mt-[24px]>';
-        
-        ReturnButton::render("[316px]", "/login");
+        $disabled = 'disabled';
 
-        echo '<form method="POST" action="/forgot" class="flex flex-col items-center space-y-4">';
-
-            HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
-            BodyTwo::render("Please upload a profile picture.", 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '', '[10px]');
-
-            echo '<div class="flex justify-center w-full mt-4">';
-                ImgUploadButton::render();
-            echo '</div>';
-
-            echo '<div class="w-[316px] flex justify-center">'; 
-                PrimaryButton::render('Continue', 'submit', '[200px]', '', '', '', 'Continue', '', 'novalidate');
-            echo '</div>';
-
-        echo '</form>';
-        echo '</main>';
+        echo    '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px]">';
+        echo        '<form method="POST" action="/forgot" class="flex flex-col items-center">';
+                        HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[326px]', '[64px]', '', '[8px]');
+                        BodyTwo::render('Please upload a profile picture.', 'onBackgroundTwo','darkOnBackgroundTwo','','[326px]','','','');
+        echo        '<div class="flex justify-center w-full mt-4">';
+                        ImgUploadButton::render();
+        echo        '</div>';
+        echo        '<div class="w-[326px] flex justify-center">'; 
+                        PrimaryButton::render('Continue', 'submit', '[205px]', '', '', '', 'Continue', 'disabled', 'novalidate');
+        echo        '</div>';
+        echo        '</form>';
+        echo    '</main>';
     }
 }
 

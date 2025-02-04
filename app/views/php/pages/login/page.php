@@ -27,7 +27,7 @@ class Page
         // 2. Server Error
         // 3. Unavailable Service
         // 4. Too Many Attempts
-        $emailError = $_SESSION['login_errors']['email'] ?? '';
+        $usernameError = $_SESSION['login_errors']['username'] ?? '';
         $passwordError = $_SESSION['login_errors']['password'] ?? '';
 
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
@@ -47,7 +47,7 @@ class Page
                         HeaderTwo::render("Login to your account", "onBackground", "darkOnBackground", "center", "[312px]", "[40px]","" ,"[56px]");
 
         echo            '<form method="POST" action="/login" class="FormContainer">';
-                                GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
+                                GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                                 echo '<div class="relative">';
                                 echo '<div class="relative w-full">';
                                 GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
