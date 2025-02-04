@@ -32,7 +32,6 @@ class IconChoice
                 ';
                 break;
             case "alertBig":
-                // Define the alert icon
                 $icon = '
                     <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M18 34C26.8366 34 34 26.8366 34 18C34 9.16344 26.8366 2 18 2C9.16344 2 2 9.16344 2 18C2 26.8366 9.16344 34 18 34Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -41,6 +40,20 @@ class IconChoice
                     </svg>
                 ';
                 break;
+            case "leftArrow":
+                $icon = '
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                        <path d="M15 8H1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 15L1 8L8 1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                ';
+                break;
+            case 'miniCircle':
+                $icon =
+                    '<svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-">
+                        <circle cx="4" cy="4" r="4" fill=""/>
+                    </svg>
+';  
         };
 
         // Modify the SVG content with dynamic classes

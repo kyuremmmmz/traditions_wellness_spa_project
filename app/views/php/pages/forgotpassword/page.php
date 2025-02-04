@@ -1,9 +1,12 @@
 <?php
 namespace Project\App\Views\Php\Pages\ForgotPassword;
 
+use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Buttons\ReturnButton;
+use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
-use Project\App\Views\Php\Components\Inputs\InputField;
+use Project\App\Views\Php\Components\Texts\BodyTwo;
+use Project\App\Views\Php\Components\Texts\HeaderTwo;
 
 
 class Page
@@ -14,51 +17,19 @@ class Page
         $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
         unset($_SESSION['forgot_password_errors']);
 
-        echo <<<HTML
-        <div class="flex items-center justify-center min-h-screen">
-            <div class="flex flex-col items-center w-full max-w-md px-4">
-                <!-- Return Button -->
-                <div class="self-start mb-8">
-HTML;
-        
-        $returnButton = new ReturnButton(
-            "Return to Login", 
-            "button",  
-            16, 
-            true,
-            "window.location.href = '/login'"
-        );
-        echo $returnButton->render();
-
-        echo <<<HTML
-                </div>
-
-                <div class="w-[312px] h-[15.788px] shrink-0 flex flex-col justify-center mb-8">
-                    <h2 class="font-inter text-[22px] font-semibold leading-[150%] tracking-[-0.484px] text-center">
-                        Forgot Password?
-                    </h2>
-                </div>
-
-                <div class="flex flex-col items-center justify-center w-[312px] h-[30.588px] flex-shrink-0 text-[#71717A] mb-8">
-                    <p class="font-inter text-base font-normal leading-[21px] tracking-tight text-center">
-                       Please enter your email address below. We’ll send you a link to reset your password.
-                   </p>
-                </div>
-
-                <form method="POST" action="/forgot" class="w-full max-w-xs space-y-6">
-HTML;
-        
-        $emailField =  GlobalInputField::render('email', 'Please enter your email', 'email', 'email');
-        echo '<div class="w-full">' . $emailField . '</div>';
-
-        echo <<<HTML
-                    <button type="submit" class="w-full py-3 text-white transition-colors bg-blue-600 rounded-md hover:bg-blue-700">
-                        Continue
-                    </button>
-                </form>
-            </div>
-        </div>
-        HTML;
+        // start of page
+                    Header::render('Small');
+        echo        '<main class="OneColumnContainer min-h-screen mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';;
+                        ReturnButton::render("[316px]", "/login");
+        echo            '<form method="POST" action="/forgot">';
+                            HeaderTwo::render('Forgot Password', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '',  '[8px]');
+                            BodyTwo::render("Please enter your email address below. We'll send you a link to reset your password.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[12px]');
+                            GlobalInputField::render('email', 'Email','email', 'email_field_forgot_password', $emailError);
+        echo                '<div class="w-[316px] flex justify-center">';
+                            PrimaryButton::render('Continue', 'submit', '[200px]',  '', '', '', 'Continue', '', 'novalidate');
+        echo                '</div>
+                        </form>
+                    </main>';
     }
 }
 

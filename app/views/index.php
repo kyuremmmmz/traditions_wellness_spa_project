@@ -134,9 +134,9 @@
 
 <!-- Content -->
 <body class="bg-background font-inter flex flex-col items-center justify-between w-full h-screen m-0 p-0 tracking-custom leading-custom">
-    <!-- <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
+    <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
         Toggle Theme
-    </button> --> <!-- TESTING PURPOSES -->
+    </button><!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
 
