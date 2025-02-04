@@ -26,10 +26,16 @@ class RolesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createRoles($data)
+    public function createRoles($roleID, $name, $permissions)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions) VALUES (:roleID, :name, :permissions)");
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions)");
+        return $stmt->execute([
+            'roleID' => $roleID,
+            'name' => ucfirst(str_replace('_', '', $name)),
+            'permissions' => json_encode(explode(',', $permissions)),
+            'created_at' => date('m/d/Y h:i:s a', time()),
+            'updated_at' => date('m/d/Y h:i:s a', time()),
+        ]);
     }
 
     public function update($id, $data)
