@@ -9,7 +9,7 @@ class ReturnButton
     public static function render(string $width = "", string $goToPage): void
     {
         echo        '<button class="w-{$width} h-[14px]" onclick="goToPage()">';
-                        IconChoice::render("leftArrow", "[14px]", "[14px]", '', 'onBackground', 'darkOnBackground', 'background', 'darkBackground', 'secondary', 'darkSecondary');
+                        IconChoice::render("leftArrow", "[14px]", "[14px]", '', 'onBackground', 'darkOnBackground', 'background', 'darkBackground', '', '');
         echo        '</button>
                     <script>
                         function goToPage() {
