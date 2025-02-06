@@ -13,6 +13,7 @@ $router->post('/logout', 'AuthController@logout');
 $router->post('/register', 'AuthController@register');
 $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
+$router->post('/sendToken', 'AuthController@sendCodebyNumber');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });

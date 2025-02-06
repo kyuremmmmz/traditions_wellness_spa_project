@@ -1,199 +1,224 @@
-<?php
+    <?php
 
-namespace Project\App\Controllers;
+    namespace Project\App\Controllers;
 
-use Project\App\Mail\Mailer;
-use Project\App\Models\AuthModel;
-use function Symfony\Component\Clock\now;
+    use Project\App\Mail\Mailer;
+    use Project\App\Models\AuthModel;
+    use VanillaBackend\App\Models\ResetModel;
+    use function Symfony\Component\Clock\now;
 
 
 
 
-class AuthController
-{
-    private $controller;
-    private $mailer;
-    public function __construct()
+    class AuthController
     {
-        $this->controller = new AuthModel();
-        $this->mailer = new Mailer();
-    }
+        private $controller;
+        private $controller2;
+        private $mailer;
+        
+        public function __construct()
+        {
+            $this->controller2 = new ResetModel();
+            $this->controller = new AuthModel();
+            $this->mailer = new Mailer();
+        }
 
-    public function forgotPasswordSend()
-    {
-        // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($_POST['username'])) {
-            $tokenForGenerate = $this->generateToken();
-            $token = base64_encode($tokenForGenerate);
-            $decodedToken = base64_decode($token);
-            $response = $this->controller->find($_POST['username']);
-            if (isset($response['username'])) {
-                $this->mailer->sendToken(
-                    $response['email'],
-                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $decodedToken,
-                    $response['first_name'],);
-                $this->controller->delete($response['email']);
-                $this->controller->insertToken($token, $response['email']);
-                header('Location: /verification');
+        public function forgotPasswordSend()
+        {
+            // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($_POST['username'])) {
+                $tokenForGenerate = $this->generateToken();
+                $token = base64_encode($tokenForGenerate);
+                $decodedToken = base64_decode($token);
+                $response = $this->controller->find($_POST['username']);
+                if (isset($response['username'])) {
+                    $this->mailer->sendToken(
+                        $response['email'],
+                        'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                        'Token: ' . $decodedToken,
+                        $response['first_name'],);
+                    $this->controller->delete($response['email']);
+                    $this->controller->insertToken($token, $response['email']);
+                    header('Location: /verification');
+                }
             }
         }
-    }
 
-    public function forgotPassword()
-    {
-        //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
+        public function forgotPassword()
+        {
+            //THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
 
-        if (isset($_POST['remember_token'], $_POST['newPassword'])) {
-            $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
-            $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
-            if ($result) {
-                echo json_encode(['message' => 'Password has been updated successfully.']);
+            if (isset($_POST['remember_token'], $_POST['newPassword'])) {
+                $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
+                $result = $this->controller->forgotPassword($_POST['remember_token'], $hashedNewPassword);
+                if ($result) {
+                    echo json_encode(['message' => 'Password has been updated successfully.']);
+                } else {
+                    echo json_encode(['error' => 'Invalid token or password update failed.']);
+                }
             } else {
-                echo json_encode(['error' => 'Invalid token or password update failed.']);
+                echo json_encode(['error' => 'Required fields are missing.']);
             }
-        } else {
-            echo json_encode(['error' => 'Required fields are missing.']);
         }
-    }
 
 
-    private function generateToken()
-    {
-        $randomToken = rand(100000, 999999);
-        return $randomToken;
-    }
+        private function generateToken()
+        {
+            $randomToken = rand(100000, 999999);
+            return $randomToken;
+        }
 
-    public function resetPasswordAndUserName(){
-        $file = json_decode(file_get_contents('php://input'), true);
-        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
-        if (!preg_match($passwordPattern, $file['password'])) {
+        public function resetPasswordAndUserName(){
+            $file = json_decode(file_get_contents('php://input'), true);
+            $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+            if (!preg_match($passwordPattern, $file['password'])) {
+                echo json_encode([
+                    'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+                ]);
+                http_response_code(400);
+                return;
+            }
+        }
+
+        public function register()
+        {
+            $data = json_decode(file_get_contents('php://input'), true);
+            $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
+            $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
+            if (!preg_match($emailPattern, $data['email'])) {
+                echo json_encode([
+                    'error' => 'Invalid email format'
+                ]);
+                http_response_code(400);
+                return;
+            }
+            
+
+            $response = $this->controller->create(
+                $data['last_name'],
+                $data['first_name'],
+                $data['email'],
+                $temporaryData['password'],
+                $data['phone'],
+                $data['branch'],
+                date('Y-m-d H:i:s'),
+                $data['role'],
+                $temporaryData['username'],
+            );
+
+            $this->mailer->sendVerification(
+                $data['email'],
+                'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
+                'Username: ' . $temporaryData['username'],
+                'Password: ' . $temporaryData['password'],
+                $data['first_name'],
+            );
+
             echo json_encode([
-                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+                'data' => $response
             ]);
-            http_response_code(400);
-            return;
         }
-    }
 
-    public function register()
-    {
-        $data = json_decode(file_get_contents('php://input'), true);
-        $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
-        $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
-        if (!preg_match($emailPattern, $data['email'])) {
-            echo json_encode([
-                'error' => 'Invalid email format'
-            ]);
-            http_response_code(400);
-            return;
+        public function store()
+        {
+            if (!isset($_POST['username'], $_POST['password'])) {
+                http_response_code(400);
+                echo json_encode(['Error' => 'Username and password are required.']);
+                return;
+            }
+
+            $response = $this->controller->find($_POST['username']);
+            if (is_array($response)) {
+                if (password_verify($_POST['password'], $response['password'])) {
+                    session_start();
+                    $_SESSION['user'] = [
+                        'role' => $response['role'],
+                        'username' => $response['username'],
+                        'last_name' => $response['last_name'],
+                        'first_name' => $response['first_name'],
+                        'email' => $response['email']
+                    ];
+
+                    setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+                    if (is_null($response['email_verified_at'])) {
+                        $this->controller->update(
+                            $response['email'],
+                            $response['email_verified_at'] = date('Y-m-d H:i:s')
+                        );
+                    }
+
+                    header('Location: /dashboard');
+                    exit;
+                } else {
+                    http_response_code(401);
+                    echo json_encode(['Error' => 'Invalid credentials']);
+                }
+            } else {
+                http_response_code(404);
+                echo json_encode(['Error' => 'User not found']);
+            }
         }
+
+
+        private function generateTemporaryUserNameAndPassword($firstName, $lastName)
+        {
+            $baseUserName  = strtolower(Str($firstName . '.' . $lastName));
+            $randomNum = rand(1000, 9999);
+            $temporaryPassword = 'Temp' . $randomNum;
+            return [
+                'username' => $baseUserName . $randomNum,
+                'password' => $temporaryPassword,
+            ];
+        }
+
+        public function sendCodebyNumber(){
+            try {
+                $data = json_decode(file_get_contents('php://input'), true);
+                $response = $this->controller->findByPhone($data['phone']);
+                if (isset($response['phone']) && $data['phone'] === $response['phone']) {
+                $response2 = $this->controller2->insertTokenForPhone($response['phone']);
+                echo json_encode([
+                    'data' => $response2,
+                    'response_value' => $response
+                ]);
+                }
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    'ErrorMessage' => $th
+                ]);
+                throw $th;
+            }
+        }
+
         
 
-        $response = $this->controller->create(
-            $data['last_name'],
-            $data['first_name'],
-            $data['email'],
-            $temporaryData['password'],
-            $data['phone'],
-            $data['branch'],
-            date('Y-m-d H:i:s'),
-            $data['role'],
-            $temporaryData['username'],
-        );
 
-        $this->mailer->sendVerification(
-            $data['email'],
-            'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
-            'Username: ' . $temporaryData['username'],
-            'Password: ' . $temporaryData['password'],
-            $data['first_name'],
-        );
 
-        echo json_encode([
-            'data' => $response
-        ]);
-    }
+        public function edit($id)
+        {
 
-    public function store()
-    {
-        if (!isset($_POST['username'], $_POST['password'])) {
-            http_response_code(400);
-            echo json_encode(['Error' => 'Username and password are required.']);
-            return;
         }
 
-        $response = $this->controller->find($_POST['username']);
-        if (is_array($response)) {
-            if (password_verify($_POST['password'], $response['password'])) {
-                session_start();
-                $_SESSION['user'] = [
-                    'role' => $response['role'],
-                    'username' => $response['username'],
-                    'last_name' => $response['last_name'],
-                    'first_name' => $response['first_name'],
-                    'email' => $response['email']
-                ];
+        public function update($id)
+        {
 
-                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
-                if (is_null($response['email_verified_at'])) {
-                    $this->controller->update(
-                        $response['email'],
-                        $response['email_verified_at'] = date('Y-m-d H:i:s')
-                    );
-                }
+        }
 
-                header('Location: /dashboard');
-                exit;
-            } else {
-                http_response_code(401);
-                echo json_encode(['Error' => 'Invalid credentials']);
+        public function logout()
+        {
+            session_start();
+            session_destroy();
+
+            if (isset($_COOKIE[session_name()])) {
+                setcookie(session_name(), '', time() - 3600, '/'); 
             }
-        } else {
-            http_response_code(404);
-            echo json_encode(['Error' => 'User not found']);
-        }
-    }
 
+            if (isset($_COOKIE['user'])) {
+                setcookie('user', '', time() - 3600, '/');
+            }
 
-    private function generateTemporaryUserNameAndPassword($firstName, $lastName)
-    {
-        $baseUserName  = strtolower(Str($firstName . '.' . $lastName));
-        $randomNum = rand(1000, 9999);
-        $temporaryPassword = 'Temp' . $randomNum;
-        return [
-            'username' => $baseUserName . $randomNum,
-            'password' => $temporaryPassword,
-        ];
-    }
-
-
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update($id)
-    {
-
-    }
-
-    public function logout()
-    {
-        session_start();
-        session_destroy();
-
-        if (isset($_COOKIE[session_name()])) {
-            setcookie(session_name(), '', time() - 3600, '/'); 
+            header('Location: /login');
+            exit;
         }
 
-        if (isset($_COOKIE['user'])) {
-            setcookie('user', '', time() - 3600, '/');
-        }
-
-        header('Location: /login');
-        exit;
     }
-
-}

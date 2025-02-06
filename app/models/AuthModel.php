@@ -40,6 +40,12 @@ class AuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByPhone($phone) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :phone");
+        $stmt->execute(['phone' => $phone]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } 
+
     public function create(
         string $lastName,
         string $firstName,

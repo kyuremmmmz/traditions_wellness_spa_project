@@ -28,11 +28,6 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixLengthsPsr4 = array (
-<<<<<<< HEAD
-        'V' => 
-        array (
-            'VanillaBackend\\App\\' => 19,
-=======
         'v' => 
         array (
             'voku\\' => 5,
@@ -61,7 +56,6 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         array (
             'Respect\\Validation\\' => 19,
             'Respect\\Stringifier\\' => 20,
->>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
         ),
         'P' => 
         array (
@@ -72,11 +66,8 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
-<<<<<<< HEAD
-=======
             'Project\\App\\' => 12,
             'PhpOption\\' => 10,
->>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
             'ParagonIE\\ConstantTime\\' => 23,
             'PHPMailer\\PHPMailer\\' => 20,
             'PHPAuth\\' => 8,
@@ -122,11 +113,6 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixDirsPsr4 = array (
-<<<<<<< HEAD
-        'VanillaBackend\\App\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/app',
-=======
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
@@ -231,14 +217,11 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
->>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
         ),
         'Psr\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/clock/src',
         ),
-<<<<<<< HEAD
-=======
         'Project\\App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -247,7 +230,6 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         array (
             0 => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption',
         ),
->>>>>>> 7aa354c85f14cc5daffcd363dfaee17b727ddb09
         'ParagonIE\\ConstantTime\\' => 
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',

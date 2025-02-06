@@ -14,7 +14,7 @@ if (!is_dir($migrationsDir)) {
 echo "Choose an action: [1] Create Migration, [2] Run Migrations, [3] Rollback Migrations: ";
 $action = trim(fgets(STDIN));
 
-$pdo =  Connection::connection();
+$pdo =  Connection::globalConnection();
 
 switch ($action) {
     case '1':

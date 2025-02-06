@@ -46,10 +46,12 @@ use Project\App\Views\Php\Components\Header;
 </body>
 <script>
 function themeHandler() {  
+        const inputs = document.querySelector('label');
         const themeElement = document.getElementById("theme");
         themeElement.classList.toggle("bg-secondary");
         themeElement.classList.toggle("bg-white");
         themeElement.classList.toggle("text-black");
+        inputs.classList.toggle("bg-secondary");
     }
 
 </script>
