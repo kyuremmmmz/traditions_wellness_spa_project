@@ -1,54 +1,67 @@
 <?php
+
 namespace Project\App\Views\Php\Pages\Login;
 
-use Project\App\Views\Php\Components\Assets\Logo;
-use Project\App\Views\Php\Components\Inputs\InputField;
-use Project\App\Views\Php\Components\Inputs\PasswordField;
-use Project\App\Views\Php\Components\RememberMe;
-use Project\App\Views\Php\Components\ForgotPasswordLink;
+use Project\App\Views\Php\Components\Assets\SubmarkLogo;
+use Project\App\Views\Php\Components\Buttons\PrimaryButton;
+use Project\App\Views\Php\Components\Containers\Footer;
+use Project\App\Views\Php\Components\Inputs\GlobalInputField;
+use Project\App\Views\Php\Components\Inputs\RememberMe;
+use Project\App\Views\Php\Components\Texts\GlobalLink;
+use Project\App\Views\Php\Components\Banners\RegularBanner;
+use Project\App\Views\Php\Components\Texts\HeaderTwo;
 
 class Page
 {
-   public static function login()
-   {
-    
-       $emailError = $_SESSION['login_errors']['email'] ?? ''; 
-       
-       echo <<<HTML
-        <div class="w-full max-w-md mx-auto">
-            <!-- Centered Logo -->
-            <div class="flex justify-center mb-8">
-        HTML;
-            Logo::render();
-            echo <<<HTML
-        </div>
+    public static function login()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+
+        // Banner Logic: Needs the following logic
+        // 1. Logged Out
+        // 2. Server Error
+        // 3. Unavailable Service
+        // 4. Too Many Attempts
+        $emailError = $_SESSION['login_errors']['email'] ?? '';
+        $passwordError = $_SESSION['login_errors']['password'] ?? '';
+
+        $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
+
+        if ($tooManyAttempts) {
+            http_response_code(429);
+                        RegularBanner::render("Account Error", "Too many attempts. Please wait 5 minutes before trying again", "alertBig", "destructive", "darkDestructive");};
+
+        // 5. Deactivated account
+        // 6. Account locked
+
+        unset($_SESSION['login_errors']);
         
-        <!-- Login Form -->
-        <form method="POST" action="/login" class="flex flex-col items-center w-full space-y-6">
-            <div class="w-full max-w-xs space-y-6">
-        HTML;
-            
-                $emailField = new InputField("username", "Username", "username", $emailError);
-                echo '<div class="w-full">' . $emailField->render() . '</div>';
+        // Start of page
+        echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';
+                        SubmarkLogo::render("[201.37px]", "[88px]", "full", "");
+                        HeaderTwo::render("Login to your account", "onBackground", "darkOnBackground", "center", "[312px]", "[40px]","" ,"[56px]");
 
-                $passwordField = new PasswordField("password", "Password");
-                echo '<div class="w-full">' . $passwordField->render() . '</div>';
+        echo            '<form method="POST" action="/login" class="FormContainer">';
+                                GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
+                                GlobalInputField::render("password", "Password", "password", "password_field_login", $passwordError);
 
-                echo '<div class="flex items-center justify-between w-full px-2">';
-                RememberMe::render();
-                $forgotPasswordLink = new ForgotPasswordLink(); 
-                $forgotPasswordLink->render();
-                echo '</div>';
-                
-                echo <<<HTML
-                <button type="submit" class="w-full px-6 py-3 text-white transition-colors duration-200 bg-blue-600 rounded-lg    focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Log In
-                </button>
-            </div>
-        </form>
-    </div>
-HTML;
-   }
+        echo                    '<div class="flex justify-between w-[316px] h-[18px] items-center">';
+                                        RememberMe::render();
+                                        GlobalLink::render("/forgotpassword", "Forgot Password?");
+        echo                    '</div>';
+
+        echo                    '<div class="w-[316px] flex justify-center">';
+                                        PrimaryButton::render("Login", "submit", "[56px]", "", "", "", "Login");
+        echo                    '</div>';
+
+        echo            '</form>
+                </main>';
+
+                Footer::render();
+    }  
 }
 
 Page::login();

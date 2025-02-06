@@ -56,9 +56,10 @@ class AuthModel
         string $dateOfRegistration,
         string $role,
         string $username,
-        ?string $emailVerifiedAt = null,
+        ?string $photos = null,
         ?string $startDate = null,
-        ?string $rememberToken = null
+        ?string $rememberToken = null,
+        ?string $emailVerifiedAt = null,
     ): bool {
         $stmt = $this->pdo->prepare("INSERT INTO users 
         (
@@ -74,7 +75,8 @@ class AuthModel
         start_date, 
         role,
         username, 
-        remember_token, 
+        remember_token,
+        photos,
         created_at, 
         updated_at) 
         VALUES 
@@ -92,6 +94,7 @@ class AuthModel
         :role,
         :username, 
         :remember_token, 
+        :photos,
         :created_at, 
         :updated_at)
     ");
@@ -112,6 +115,7 @@ class AuthModel
             'role' => $role,
             'username' => $username,
             'remember_token' => $rememberToken,
+            'photos' => $photos,
             'created_at' => $currentTimestamp,
             'updated_at' => $currentTimestamp,
         ]);
