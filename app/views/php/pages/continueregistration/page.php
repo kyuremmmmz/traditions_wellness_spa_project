@@ -11,11 +11,16 @@ use Project\App\Views\Php\Components\Texts\HeaderTwo;
 class Page{
     public static function page(){
 
-        // TODO: kung nameet ung ano, dapat magbago ung onBackgroundTwo sa success color("success" na tlga ung name ng color).. 
-        // KUNG NAGING SUCCESSFULL YUNG VERIFICATION CODE, DAPAT MABAGO DIN first name!!!!!!!!! <---------
-        // HINDI MAGAACTIVATE UNG BUTTON HANGGAT NAIPASA LAHAT NG REQUIREMENTS
+        // TODO: parehas lang sa reset password + ung username...  as for the username, 
 
+        $usernameError = "";
         $passwordError = "";
+
+        $usernameCharactersCircle = "onBackgroundTwo";
+
+        $usernameLettersCircle = "onBackgroundTwo";
+
+        $usernameSpecialCircle = "onBackgroundTwo";
 
         $eightCharactersCircle = "onBackgroundTwo";
 
@@ -29,16 +34,30 @@ class Page{
 
         $firstName = 'user';
 
-        $disabled = 'disabled'; // STRING LANG IBIBIGAY KAY BUTTON, kung wala itong laman, hindi na magiging disabled ung button
+        $disabled = 'disabled'; // <---------
 
         // start of page
         Header::render('Small');
-        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
-        echo            '<form method="POST" action="/forgot" novalidate>';
-                            HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
-                            BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
+        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
+        echo            '<form method="POST" action="/forgot">';
+                            HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
+                            BodyTwo::render('Hello, ' . $firstName .'! Please enter a new username and password below.', 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
+                            GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                             GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
         echo                '<div class="w-[284px] px-[14px] relative -top-[10px]">';
+                                CaptionOne::render('Your username must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
+        echo                    '<div class="flex items-center gap-[7px]">';
+                                    IconChoice::render('miniCircle','[8px]','[8px]',$usernameCharactersCircle,);
+                                    CaptionOne::render('Between 8 and 20 characters long.','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+        echo                    '</div>';
+        echo                    '<div class="flex items-center gap-[7px]">';
+                                    IconChoice::render('miniCircle','[8px]','[8px]',$usernameLettersCircle,);
+                                    CaptionOne::render('Only letters, numbers, and underscores.','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+        echo                    '</div>';
+        echo                    '<div class="flex items-center gap-[7px]">';
+                                    IconChoice::render('miniCircle','[8px]','[8px]',$usernameSpecialCircle,);
+                                    CaptionOne::render('No other special characters.','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+        echo                    '</div>';
                                 CaptionOne::render('Your password must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$eightCharactersCircle,);
@@ -62,7 +81,7 @@ class Page{
         echo                    '</div>';
         echo                '</div>';
         echo                '<div class="w-[326px] flex justify-center">';
-                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'", 'novalidate');
+                            PrimaryButton::render('Continue', 'submit', '[50px]',  '', '', '', 'Continue', "' . $disabled . '", 'novalidate');
         echo                '</div>
                         </form>
                     </main>';

@@ -2,23 +2,19 @@
 
 namespace Project\App\Views\Php\Components\Containers;
 
-use Project\App\Views\Php\Components\Assets\MiniLogo; // Import MiniLogo
+use Project\App\Views\Php\Components\Assets\SubmarkLogo; // Import MiniLogo
 
 class Header //NOT FINISHEd
 {
     public static function render(string $HeaderChoice): void
     {
         echo <<<HTML
-        <header class="flex">
-            <button class="px-4 py-2 text-pink duration-300 red rounded-full border-[1px]" 
-                    onclick="themeHandler()" id="buttontheme" type="button">
-                Light
-            </button>
+        <header class="flex justify-center items-center py-[16px]">
         HTML;
 
         switch ($HeaderChoice) {
             case "Small":
-                MiniLogo::render(); // Call MiniLogo correctly
+                SubmarkLogo::render("[73px]", '[32px]', '', ''); // Call MiniLogo correctly
                 break;
             default:
                 // You can add a default action here if needed
