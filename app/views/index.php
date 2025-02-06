@@ -51,7 +51,7 @@
                         darkPrimaryHover:       '#4E6292',
                         darkOnPrimary:          '#FFFFFF',
                         darkSecondary:          '#18181B',
-                        darkSecondaryVariant:   '#204586',
+                        darkSecondaryVariant:   '#07142C', // <--- NABAGO UNG COLOR HERE!!!!!!!!
                         darkOnSecondary:        '#F4F4F4',
                         darkSurface:            '#01050E',
                         darkHighlightSurface:   '#E0E0E0',
@@ -117,13 +117,13 @@
                             fontSize: '8px', fontWeight: '400', lineHeight: '150%'
                         },
                         'OneColumnContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+                            width: '326px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
                         },
                         'FormContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
+                            width: '326px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
                         },
                         'FieldContainer': {
-                            width: '316px', display: 'flex', flexDirection: 'column', height: '66px'
+                            width: '326px', display: 'flex', flexDirection: 'column', height: '66px'
                         }
                     })
                 }
@@ -133,19 +133,25 @@
 </head>
 
 <!-- Content -->
-<body class="bg-background font-inter flex flex-col items-center justify-between w-full h-screen m-0 p-0 tracking-custom leading-custom">
-    <!-- <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
+<body class="bg-background font-inter flex flex-col min-h-screen items-center w-full m-0 p-0 tracking-custom leading-custom">
+    <!--<button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
         Toggle Theme
-    </button> --> <!-- TESTING PURPOSES -->
+    </button>--><!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
 
 <!-- Dark Mode and Light Mode Function -->
 <script>
     // Toggle between dark and light mode
+    const html = document.querySelector('html');
+    const body = document.body;
+
     function toggleTheme() {
-        document.body.classList.toggle('dark');
-        document.body.classList.toggle('bg-darkBackground');
+        // Toggle dark mode for both html and body
+        html.classList.toggle('dark');
+        body.classList.toggle('dark');
+        body.classList.toggle('bg-darkBackground');
+        body.classList.toggle('bg-background');
     }
 
     // Detect if the user prefers dark mode based on system preference
@@ -153,25 +159,33 @@
         const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         
         if (darkModeMediaQuery.matches) {
-            // Apply dark theme
-            document.body.classList.add('dark');
-            document.body.classList.add('bg-darkBackground');
+            // Apply dark theme to both html and body
+            html.classList.add('dark');
+            body.classList.add('dark');
+            body.classList.add('bg-darkBackground');
+            body.classList.remove('bg-background');
         } else {
-            // Apply light theme (if necessary)
-            document.body.classList.remove('dark');
-            document.body.classList.remove('bg-darkBackground');
+            // Apply light theme to both html and body
+            html.classList.remove('dark');
+            body.classList.remove('dark');
+            body.classList.remove('bg-darkBackground');
+            body.classList.add('bg-background');
         }
 
         // Listen for changes in the system theme preference
         darkModeMediaQuery.addEventListener('change', (e) => {
             if (e.matches) {
                 // Apply dark theme when the user switches to dark mode
-                document.body.classList.add('dark');
-                document.body.classList.add('bg-darkBackground');
+                html.classList.add('dark');
+                body.classList.add('dark');
+                body.classList.add('bg-darkBackground');
+                body.classList.remove('bg-background');
             } else {
                 // Apply light theme when the user switches to light mode
-                document.body.classList.remove('dark');
-                document.body.classList.remove('bg-darkBackground');
+                html.classList.remove('dark');
+                body.classList.remove('dark');
+                body.classList.remove('bg-darkBackground');
+                body.classList.add('bg-background');
             }
         });
     }
@@ -179,6 +193,7 @@
     // Call the function on page load
     detectDarkMode();
 </script>
+
 
 
 </html>

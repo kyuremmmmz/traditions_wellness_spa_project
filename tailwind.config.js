@@ -18,6 +18,7 @@ module.exports = {
                     link: '#5490F2',
                     secondary: '#334155'
                 },
+                onbackground2: '#09090B',
                 background: '#FFFFFF',
                 surface: {
                     DEFAULT: '#FAFAFA',
@@ -29,7 +30,7 @@ module.exports = {
                 },
                 border: {
                     DEFAULT: '#E4E4E7',
-                    2: '#CBD5E1',
+                    '2': '#CBD5E1',
                     highlight: '#669FFC'
                 },
                 success: '#15803D',
@@ -49,7 +50,7 @@ module.exports = {
                         link: '#5490F2',
                         secondary: '#081021'
                     },
-                    background: '#000000',
+                    background: '#050505',
                     surface: {
                         DEFAULT: '#020817',
                         highlight: '#F4F4F5'
