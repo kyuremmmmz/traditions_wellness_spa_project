@@ -102,47 +102,6 @@ class AuthController
             }
         }
 
-        public function register()
-        {
-            $data = json_decode(file_get_contents('php://input'), true);
-            $temporaryData = $this->generateTemporaryUserNameAndPassword($data['first_name'], $data['last_name']);
-            $emailPattern = '/^[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/';
-            if (!preg_match($emailPattern, $data['email'])) {
-                echo json_encode([
-                    'error' => 'Invalid email format'
-                ]);
-                http_response_code(400);
-                return;
-            }
-            
-
-            $response = $this->controller->create(
-                $data['last_name'],
-                $data['first_name'],
-                $data['email'],
-                $temporaryData['password'],
-                $data['phone'],
-                $data['branch'],
-                date('Y-m-d H:i:s'),
-                $data['role'],
-                $temporaryData['username'],
-            );
-
-            $this->mailer->sendVerification(
-                $data['email'],
-                'Good day! ' . $data['first_name'] . ', This is your temporary username and password below',
-                'Username: ' . $temporaryData['username'],
-                'Password: ' . $temporaryData['password'],
-                $data['first_name'],
-            );
-
-            echo json_encode([
-                'data' => $response
-            ]);
-        }
-
-    
-
     public function store()
     {
         session_start();
