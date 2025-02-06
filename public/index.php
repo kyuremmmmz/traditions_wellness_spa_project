@@ -10,7 +10,7 @@ $router = new Router();
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store');
 $router->post('/logout', 'AuthController@logout');
-$router->post('/register', 'AuthController@register');
+$router->post('/register', 'RegistrationController@register');
 $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');

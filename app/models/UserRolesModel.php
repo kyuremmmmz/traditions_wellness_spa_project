@@ -26,7 +26,7 @@ class UserRolesModel
 
     public function createUserRoles($userID, $roleID)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO user_roles (roleID, userID) VALUES (:roleID, :userID)");
+        $stmt = $this->pdo->prepare("INSERT INTO user_roles (roleID, userID, created_at, updated_at) VALUES (:roleID, :userID, NOW(), NOW())");
         return $stmt->execute([
             'userID' => $userID,
             'roleID' => $roleID
