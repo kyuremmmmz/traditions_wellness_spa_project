@@ -19,17 +19,21 @@ class RolesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function findByID($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE roleID = :roleID");
+        $stmt->execute(['roleID' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createRoles($data)
+    public function createRoles($roleID, $name, $permissions)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions) VALUES (:roleID, :name, :permissions)");
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions, NOW(), NOW())");
+        return $stmt->execute([
+            'roleID' => $roleID,
+            'name' => ucfirst(str_replace('_', '', $name)),
+            'permissions' => json_encode(explode(',', $permissions)),
+        ]);
     }
 
     public function update($id, $data)

@@ -5,11 +5,13 @@ namespace Project\App\Views\Php\Pages\Login;
 use Project\App\Views\Php\Components\Assets\SubmarkLogo;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Footer;
+use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\RememberMe;
 use Project\App\Views\Php\Components\Texts\GlobalLink;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
+
 
 class Page
 {
@@ -19,13 +21,13 @@ class Page
             session_start();
         }
 
-
+        // TODO: BANNER LOGICs
         // Banner Logic: Needs the following logic
         // 1. Logged Out
         // 2. Server Error
         // 3. Unavailable Service
         // 4. Too Many Attempts
-        $emailError = $_SESSION['login_errors']['email'] ?? '';
+        $usernameError = $_SESSION['login_errors']['username'] ?? '';
         $passwordError = $_SESSION['login_errors']['password'] ?? '';
 
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
@@ -45,15 +47,18 @@ class Page
                         HeaderTwo::render("Login to your account", "onBackground", "darkOnBackground", "center", "[312px]", "[40px]","" ,"[56px]");
 
         echo            '<form method="POST" action="/login" class="FormContainer">';
-                                GlobalInputField::render("username", "Username", "text", "username_field_login", $emailError);
-                                GlobalInputField::render("password", "Password", "password", "password_field_login", $passwordError);
+                                GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
+                                echo '<div class="relative">';
+                                echo '<div class="relative w-full">';
+                                GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
+        echo                    '</div>';
 
-        echo                    '<div class="flex justify-between w-[316px] h-[18px] items-center">';
+        echo                    '<div class="flex justify-between w-[326px] h-[24px] items-center">';
                                         RememberMe::render();
                                         GlobalLink::render("/forgotpassword", "Forgot Password?");
         echo                    '</div>';
 
-        echo                    '<div class="w-[316px] flex justify-center">';
+        echo                    '<div class="w-[326px] flex justify-center">';
                                         PrimaryButton::render("Login", "submit", "[56px]", "", "", "", "Login");
         echo                    '</div>';
 
