@@ -49,11 +49,11 @@ class AuthController
     {
         // THIS VAR IS FOR API: $data = json_decode(file_get_contents('php://input'), true);
         session_start();
-        if (isset($_POST['remember_token']))  {
-            $response = $this->controller->findByToken(base64_encode($_POST['remember_token']));
+        if (isset($_POST['verification']))  {
+            $response = $this->controller->findByToken(base64_encode($_POST['verification']));
             if ($response) {
                 $_SESSION['token'] = [
-                    'token' => $_POST['remember_token'],
+                    'token' => $_POST['verification'],
                 ];
                 echo json_encode(['message' => 'Token is valid.']);
                 header('Location: /resetpassword');
@@ -67,11 +67,11 @@ class AuthController
 
     public function resetPassword(){
         session_start();
-        if (isset($_SESSION['token']['token'], $_POST['newPassword'])) {
-            $hashedNewPassword = password_hash($_POST['newPassword'], PASSWORD_BCRYPT);
+        if (isset($_SESSION['token']['token'], $_POST['password'])) {
+            $hashedNewPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $result = $this->controller->forgotPassword(base64_encode($_SESSION['token']['token']), $hashedNewPassword);
             if ($result) {
-                header('Location: /success');
+                header('Location: /uploadprofile');
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
                 echo json_encode(['error' => 'Invalid token or password update failed.']);
@@ -79,7 +79,7 @@ class AuthController
         } else {
             $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
             echo json_encode(['error' => 'Required fields are missing.']);
-            header('Location: /resetpassword');
+            header('Location: /uploadprofile');
         }
     }
 

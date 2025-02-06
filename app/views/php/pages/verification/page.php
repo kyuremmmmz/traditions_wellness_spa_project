@@ -1,4 +1,5 @@
 <?php
+
 namespace Project\App\Views\Php\Pages\Verification;
 
 use Project\App\Views\Php\Components\Buttons\ReturnButton;
@@ -19,17 +20,23 @@ class Page
 
 
         // start of page
-        Header::render('Small');
-        echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
-                        ReturnButton::render("[316px]", "/forgotpassword");
-                        HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
-                        BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '','[18px]');
-                        GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
-                        echo '<div class="w-[326px] flex justify-center">';
-                            PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
-                        echo '</div>';
-                        
-        echo        '</main>';
+?>
+        <form action="/forgotPass" method="POST">
+            <?php
+            Header::render('Small');
+            echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
+            ReturnButton::render("[316px]", "/forgotpassword");
+            HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
+            BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '', '[18px]');
+            GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
+            echo '<div class="w-[326px] flex justify-center">';
+            PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+            echo '</div>';
+
+            echo        '</main>'; ?>
+        </form>
+
+<?php
 
     }
 }
