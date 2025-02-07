@@ -36,7 +36,6 @@ $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
 $router->view('/uploadprofile', 'page', 'uploadprofile');
-$router->view('/dashboard', 'page', 'dashboard');
 try {
     $router->resolve();
 } catch (Exception $e) {
@@ -44,4 +43,3 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 }
 
-$router->view('/dashboard', 'page', 'dashboard');

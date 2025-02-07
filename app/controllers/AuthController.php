@@ -66,8 +66,18 @@ class AuthController
         if (isset($_SESSION['token']['token'], $_POST['password'])) {
             $hashedNewPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $result = $this->controller->forgotPassword(base64_encode($_SESSION['token']['token']), $hashedNewPassword);
+            $sessionPayloadData = $this->controller->findByToken(base64_encode($_POST['verification']));
             if ($result) {
-                header('Location: /uploadprofile');
+                $_SESSION['user'] = [
+                    'role' => $sessionPayloadData['role'],
+                    'username' => $sessionPayloadData['username'],
+                    'last_name' => $sessionPayloadData['last_name'],
+                    'first_name' => $sessionPayloadData['first_name'],
+                    'email' => $sessionPayloadData['email'],
+                    'photos' => $sessionPayloadData['photos'],
+                ];
+                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + (86400 * 30), '/', 'localhost:8000', true, true);
+                header('Location: /dashboard');
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
                 echo json_encode(['error' => 'Invalid token or password update failed.']);

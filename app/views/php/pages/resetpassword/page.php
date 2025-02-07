@@ -34,7 +34,7 @@ class Page{
         // start of page
         Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
-        echo            '<form method="POST" action="/forgot" novalidate>';
+        echo            '<form method="POST" action="/resetPassword" novalidate>';
                             HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
                             BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
                             GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
