@@ -50,14 +50,14 @@ class Page{
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$uppercaseLetterCircle,);
-                                    CaptionOne::render('One upperrcase letter  (A-Z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+                                    CaptionOne::render('One upperrcase letter  (A-Z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'upperCaseCharacters');
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$lowercaseLetterCircle,);
                                     CaptionOne::render('One lowercase letter (a-z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
-                                    IconChoice::render('miniCircle','[8px]','[8px]',$numberCircle,);
+                                    IconChoice::render('miniCircle','[8px]','[8px]',$numberCircle);
                                     CaptionOne::render('One number (0-9).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
         echo                    '</div>';
         echo                '</div>';
