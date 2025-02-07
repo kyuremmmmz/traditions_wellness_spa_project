@@ -42,11 +42,11 @@ class Page{
                                 CaptionOne::render('Your password must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$eightCharactersCircle,);
-                                    CaptionOne::render('Eight characters','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+                                    CaptionOne::render('Eight characters','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]', '', '', '', 'eightCharacters');
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$specialCharacterCircle,);
-                                    CaptionOne::render('One special character (e.g., @, #, $, %).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+                                    CaptionOne::render('One special character (e.g., @, #, $, %).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]' , '', '', '', 'specialCharacters');
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$uppercaseLetterCircle,);
