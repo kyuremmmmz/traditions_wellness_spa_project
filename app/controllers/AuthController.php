@@ -6,10 +6,6 @@ use Project\App\Mail\Mailer;
 use Project\App\Models\AuthModel;
 use Project\App\Models\UserRolesModel;
 
-
-
-
-
 class AuthController
 {
     private $controller;
