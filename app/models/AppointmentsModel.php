@@ -24,6 +24,14 @@ class AppointmentsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
+        $stmt->execute(['id' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function create($data)
     {
         $stmt = $this->pdo->prepare("INSERT INTO your_table_name (column1, column2) VALUES (:value1, :value2)");
