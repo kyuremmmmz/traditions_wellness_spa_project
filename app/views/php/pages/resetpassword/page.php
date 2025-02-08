@@ -34,7 +34,7 @@ class Page{
         // start of page
         Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
-        echo            '<form method="POST" action="/forgot" novalidate>';
+        echo            '<form method="POST" action="/resetPassword" novalidate>';
                             HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
                             BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
                             GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
@@ -54,15 +54,15 @@ class Page{
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$lowercaseLetterCircle,);
-                                    CaptionOne::render('One lowercase letter (a-z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+                                    CaptionOne::render('One lowercase letter (a-z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'lowerCharacters');
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$numberCircle);
-                                    CaptionOne::render('One number (0-9).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]');
+                                    CaptionOne::render('One number (0-9).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'numberCharacters');
         echo                    '</div>';
         echo                '</div>';
         echo                '<div class="w-[326px] flex justify-center">';
-                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'", 'novalidate');
+                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'",'novalidate','buttonDisabled');
         echo                '</div>
                         </form>
                     </main>';

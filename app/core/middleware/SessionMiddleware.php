@@ -13,10 +13,11 @@ class SessionMiddleware
             exit;
         }
 
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] !== '/login') {
             header('Location: /login');
             exit;
         }
+
         return $next($request);
     }
 }

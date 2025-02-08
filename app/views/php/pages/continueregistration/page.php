@@ -11,7 +11,7 @@ use Project\App\Views\Php\Components\Texts\HeaderTwo;
 class Page{
     public static function page(){
 
-        // TODO: parehas lang sa reset password + ung username...  as for the username, 
+        // TODO: parehas lang sa reset password + ung username...  as for the username,
 
         $usernameError = "";
         $passwordError = "";
