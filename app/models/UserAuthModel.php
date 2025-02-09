@@ -28,9 +28,11 @@ class UserAuthModel
 
     public function create($lastName, $firstName, $gender, $phone, $password)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (last_name, first_name, gender, phone, password) VALUES (:lastname, :firstname, :gender, :phone, :password)");
+        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password, NOW(), NOW())");
+        $user = random_int(100, 200);
         return $stmt->execute(
             [
+                'userID' => $user,
                 'lastname' => $lastName,
                 'firstname' => $firstName,
                 'gender' => $gender,

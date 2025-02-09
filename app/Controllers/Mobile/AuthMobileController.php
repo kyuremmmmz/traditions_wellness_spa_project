@@ -2,13 +2,19 @@
 namespace Project\App\Controllers\Mobile;
 
 
+use Project\App\Models\AuthModel;
+use Project\App\Models\RolesModel;
 use Project\App\Models\UserAuthModel;
+use Project\App\Models\UserRolesModel;
 
 class AuthMobileController
 {
     private $controller;
+    private $controller2;
     public function __construct(){
         $this->controller = new UserAuthModel();
+        $this->controller2 = new UserRolesModel();
+        $this->controller2 = new RolesModel();
     }
     public function registration()
     {
@@ -21,7 +27,9 @@ class AuthMobileController
                 $file['phone'], 
                 password_hash($file['password'], PASSWORD_BCRYPT));
             if ($response) {
-                
+                echo json_encode([
+                    'message' => "test"
+                ]);
             }
         }
     }
