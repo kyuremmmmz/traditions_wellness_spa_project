@@ -14,6 +14,8 @@ $router->post('/register', 'RegistrationController@register');
 $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
+$router->post('/mobileLogin', 'AuthMobileController@login');
+$router->post('/mobileRegistration', 'AuthMobileController@registration');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
