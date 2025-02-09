@@ -2,13 +2,15 @@
 namespace Project\App\Models;
 
 use PDO;
+use Project\App\Config\Connection;
+
 class UserAuthModel
 {
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Connection::connection();
     }
 
     public function getAll()
@@ -24,10 +26,18 @@ class UserAuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($data)
+    public function create($lastName, $firstName, $gender, $phone, $password)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO your_table_name (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("INSERT INTO users (last_name, first_name, gender, phone, password) VALUES (:lastname, :firstname, :gender, :phone, :password)");
+        return $stmt->execute(
+            [
+                'lastname' => $lastName,
+                'firstname' => $firstName,
+                'gender' => $gender,
+                'phone' => $phone,
+                'password' => $password
+            ]
+        );
     }
 
     public function update($id, $data)

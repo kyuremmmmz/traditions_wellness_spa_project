@@ -58,16 +58,8 @@ class Router
                     $middleware = $config['middleware'] ?? null;
                     list($controllerName, $action) = explode('@', $controller);
 
-                    $isMobile = isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false;
-                    $controllerNamespace = $isMobile ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\";
+                    $controllerNamespace = json_decode(file_get_contents('php://input'), true) ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\";
                     $controllerClass = $controllerNamespace . $controllerName;
-
-                    if (!class_exists($controllerClass)) {
-                        http_response_code(500);
-                        echo json_encode(['error' => "Controller not found: $controllerClass"]);
-                        return;
-                    }
-
                     $controllerInstance = new $controllerClass();
 
                     if ($middleware) {
@@ -104,6 +96,12 @@ class Router
     private function convertToRegex($route)
     {
         $escapedRoute = preg_replace('/\//', '\\/', $route);
-        return '/^' . str_replace(['{id}'], ['(\d+)'], $escapedRoute) . '$/';
+        return '/^' . str_replace(['{id}'], ['(\\d+)'], $escapedRoute) . '$/';
+    }
+
+    private function isMobileRequest()
+    {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        return preg_match('/(android|iphone|ipad|ipod|mobile)/i', $userAgent);
     }
 }
