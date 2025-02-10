@@ -26,9 +26,9 @@ class UserAuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($lastName, $firstName, $gender, $phone, $password)
+    public function create($lastName, $firstName, $gender, $phone, $password, $email)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password, NOW(), NOW())");
+        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password,email, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password,:email, NOW(), NOW())");
         $user = random_int(100, 200);
         return $stmt->execute(
             [
@@ -37,16 +37,36 @@ class UserAuthModel
                 'firstname' => $firstName,
                 'gender' => $gender,
                 'phone' => $phone,
-                'password' => $password
+                'password' => $password,
+                'email' => $email
             ]
         );
     }
 
-    public function update($id, $data)
+    public function verifCode($verifCode, $email)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = :verifCode, updated_at = NOW() WHERE email = :email");
+        return $stmt->execute([
+            'verifCode' => $verifCode,
+            'email' => $email
+        ]);
+    }
+
+
+    public function verifyEmail($verifCode)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET email_verified_at = NOW(), updated_at = NOW() WHERE verifCode = :verifCode");
+        return $stmt->execute([
+            'verifCode' => $verifCode,
+        ]);
+    }
+
+    public function updateVerifCodeTonull($email)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = NULL, updated_at = NOW() WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email
+        ]);
     }
 
     public function delete($id)

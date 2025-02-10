@@ -33,6 +33,13 @@ class AuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByCode($code)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE verifCode = :verifCode");
+        $stmt->execute(['verifCode' => $code]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function findByPhone($phone)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :phone");
