@@ -43,11 +43,30 @@ class UserAuthModel
         );
     }
 
-    public function update($id, $data)
+    public function verifCode($verifCode, $email)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = :verifCode, updated_at = NOW() WHERE email = :email");
+        return $stmt->execute([
+            'verifCode' => $verifCode,
+            'email' => $email
+        ]);
+    }
+
+
+    public function verifyEmail($verifCode)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET email_verified_at = NOW(), updated_at = NOW() WHERE verifCode = :verifCode");
+        return $stmt->execute([
+            'verifCode' => $verifCode,
+        ]);
+    }
+
+    public function updateVerifCodeTonull($email)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = NULL, updated_at = NOW() WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email
+        ]);
     }
 
     public function delete($id)

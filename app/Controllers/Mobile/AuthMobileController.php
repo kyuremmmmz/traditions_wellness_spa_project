@@ -44,12 +44,14 @@ class AuthMobileController
                     password_hash($file['password'], PASSWORD_BCRYPT),
                     $file['email']
                 );
+                $verification = $this->verificationCode();
                 $this->mail->authMailer(
                     $file['email'],
-                    'Good day! ' . $file['first_name'] . ', This is your Vaerification code please do not share this code below',
-                    'Verification: ' . $file['first_name'],
-                    $file['first_name']
+                    'Good day! ' . $file['firstName'] . ', This is your Vaerification code please do not share this code below',
+                    '' . $verification,
+                    $file['firstName']
                 );
+                $this->controller->verifCode($verification, $file['email']);
                 echo json_encode([
                     'message' => 'Signed up successfully',
                     'status' => $response
@@ -57,6 +59,36 @@ class AuthMobileController
                 $_SESSION['success'] = [
                     'message' => 'Signed up successfully'
                 ];
+            }
+        }
+    }
+
+    private function verificationCode(){
+        $verification = random_int(100000, 999999);
+        return $verification;
+    }
+
+
+    public function verifyEmailAndPhone(){
+        $file = json_decode(file_get_contents('php://input'), true);
+        if (isset($file['verifCode'])) {
+            $response = $this->controller->verifyEmail($file['verifCode']);
+            $findByVerif = $this->webController->findByCode($file['verifCode']);
+            if(!$findByVerif){
+                echo json_encode([
+                    'message' => 'Verification code not found',
+                    'status' => false
+                ]);
+                return;
+            }
+            $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($findByVerif['email']);
+            if (is_array($findByVerif) && $response && $setVerificationCodeToNull) {
+                echo json_encode(
+                    [
+                        'message' => 'Verified',
+                        'status' => $setVerificationCodeToNull
+                    ]
+                );
             }
         }
     }
