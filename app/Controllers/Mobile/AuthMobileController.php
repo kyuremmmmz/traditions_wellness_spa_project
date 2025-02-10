@@ -15,6 +15,7 @@ class AuthMobileController
     private $controller2;
     private $webController;
     private $mail;
+    private $secret_key = "secret_key"; 
     public function __construct(){
         $this->controller = new UserAuthModel();
         $this->controller2 = new UserRolesModel();
@@ -97,17 +98,85 @@ class AuthMobileController
 
     public function login()
     {
-        //TODO: IMPLEMENT THE LOGIN LOGIC AFTER REGISTRATION
-        header('Content-Type:application-json');
+        header('Content-Type: application/json');
+
         $file = json_decode(file_get_contents('php://input'), true);
+
         if (isset($file['phone'])) {
-            echo json_encode(
-                [
-                    'message' => 'success'
-                ]
-            );
+            $phone = $this->controller->login($file['phone']);
+
+            if (is_array($phone)) {
+                if (password_verify($file['password'], $phone['password'])) {
+                    if (!is_null($phone['email_verified_at'])) {
+                        $jwt = $this->generateJWT($phone['id'], $phone['phone'], $phone['email']);
+
+                        echo json_encode([
+                            'message' => 'Login successful',
+                            'token' => $jwt
+                        ]);
+                    } else {
+                        echo json_encode(['message' => 'Please verify your email']);
+                    }
+                } else {
+                    http_response_code(401);
+                    echo json_encode(['error' => 'Invalid credentials']);
+                }
+            } else {
+                http_response_code(401);
+                echo json_encode(['error' => 'Invalid credentials']);
+            }
         }
     }
+
+    private function generateJWT($id, $phone, $email)
+    {
+        $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
+        $payload = json_encode([
+            'iss' => "your_website.com",
+            'aud' => "your_website.com",
+            'iat' => time(),
+            'exp' => time() + (60 * 60),
+            'data' => [
+                'id' => $id,
+                'phone' => $phone,
+                'email' => $email
+            ]
+        ]);
+
+        $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
+        $base64UrlPayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
+        $signature = hash_hmac('sha256', "$base64UrlHeader.$base64UrlPayload", $this->secret_key, true);
+        $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
+
+        return "$base64UrlHeader.$base64UrlPayload.$base64UrlSignature";
+    }
+
+    public function verifyJWT($jwt)
+    {
+        $tokenParts = explode('.', $jwt);
+        if (count($tokenParts) !== 3) {
+            return false;
+        }
+
+        list($header, $payload, $signature) = $tokenParts;
+        $expectedSignature = hash_hmac('sha256', "$header.$payload", $this->secret_key, true);
+        $expectedSignatureBase64 = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($expectedSignature));
+
+        if ($signature !== $expectedSignatureBase64) {
+            return false;
+        }
+
+        $decodedPayload = json_decode(base64_decode($payload), true);
+
+        if ($decodedPayload['exp'] < time()) {
+            return false;
+        }
+
+        return $decodedPayload;
+    }
+
+
+
 
     public function forgotPassword($id)
     {
