@@ -26,9 +26,9 @@ class UserAuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($lastName, $firstName, $gender, $phone, $password)
+    public function create($lastName, $firstName, $gender, $phone, $password, $email)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password, NOW(), NOW())");
+        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password,email, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password,:email, NOW(), NOW())");
         $user = random_int(100, 200);
         return $stmt->execute(
             [
@@ -37,7 +37,8 @@ class UserAuthModel
                 'firstname' => $firstName,
                 'gender' => $gender,
                 'phone' => $phone,
-                'password' => $password
+                'password' => $password,
+                'email' => $email
             ]
         );
     }
