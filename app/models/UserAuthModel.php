@@ -19,10 +19,10 @@ class UserAuthModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function login($phone)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :phone");
+        $stmt->execute(['phone' => $phone]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
