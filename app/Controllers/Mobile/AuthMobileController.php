@@ -3,6 +3,7 @@ namespace Project\App\Controllers\Mobile;
 
 
 use Project\App\Controllers\Web\RegistrationController;
+use Project\App\Mail\Mailer;
 use Project\App\Mail\UserMailer;
 use Project\App\Models\AuthModel;
 use Project\App\Models\RolesModel;
@@ -15,6 +16,7 @@ class AuthMobileController
     private $controller2;
     private $webController;
     private $mail;
+    private $mailer;
     private $secret_key = "secret_key"; 
     public function __construct(){
         $this->controller = new UserAuthModel();
@@ -22,6 +24,7 @@ class AuthMobileController
         $this->controller2 = new RolesModel();
         $this->webController = new AuthModel();
         $this->mail = new UserMailer();
+        $this->mailer = new Mailer();
     }
     public function registration()
     {
@@ -175,20 +178,84 @@ class AuthMobileController
         return $decodedPayload;
     }
 
-
-
-
-    public function forgotPassword($id)
+    public function forgotPasswordSend()
     {
-        // Code for showing an edit form
-        echo "This is the edit method of AuthMobileController for ID: $id.";
+        $data = json_decode(file_get_contents('php://input'), true);
+        if (isset($data['email'])) {
+            $tokenForGenerate = $this->generateToken();
+            $token = base64_encode($tokenForGenerate);
+            $decodedToken = base64_decode($token);
+            $response = $this->webController->findByEmail($data['email']);
+            if (isset($response['username'])) {
+                $this->mailer->sendToken(
+                    $response['email'],
+                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                    'Token: ' . $decodedToken,
+                    $response['first_name'],
+                );
+                $this->webController->delete($response['email']);
+                $this->webController->insertToken($token, $response['email']);
+                header('Location: /verification');
+            }
+        }
     }
 
-    public function forgotPasswordSend($id)
+    public function forgotPassword()
     {
-        // Code for updating resources
-        echo "This is the update method of AuthMobileController for ID: $id.";
+        $data = json_decode(file_get_contents('php://input'), true);
+        session_start();
+        if (isset($data['verification'])) {
+            $response = $this->webController->findByToken(base64_encode($data['verification']));
+            if ($response) {
+                $_SESSION['token'] = [
+                    'token' => $data['verification'],
+                ];
+                echo json_encode(['message' => 'Token is valid.']);
+                header('Location: /resetpassword');
+            } else {
+                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid token.'];
+                echo json_encode(['error' => 'Invalid token.']);
+                header('Location: /verification');
+            }
+        }
     }
+
+    public function resetPassword()
+    {
+        session_start();
+        if (isset($_SESSION['token']['token'], $_POST['password'])) {
+            $hashedNewPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $result = $this->webController->forgotPassword(base64_encode($_SESSION['token']['token']), $hashedNewPassword);
+            $sessionPayloadData = $this->webController->findByToken(base64_encode($_SESSION['token']['token']));
+            if ($result) {
+                $_SESSION['user'] = [
+                    'role' => $sessionPayloadData['role'],
+                    'username' => $sessionPayloadData['username'],
+                    'last_name' => $sessionPayloadData['last_name'],
+                    'first_name' => $sessionPayloadData['first_name'],
+                    'email' => $sessionPayloadData['email'],
+                    'photos' => $sessionPayloadData['photos'],
+                ];
+                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+                header('Location: /dashboard');
+                echo json_encode(['message' => 'Password has been updated successfully.']);
+            } else {
+                echo json_encode(['error' => 'Invalid token or password update failed.']);
+            }
+        } else {
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
+            echo json_encode(['error' => 'Required fields are missing.']);
+            header('Location: /uploadprofile');
+        }
+    }
+
+
+    private function generateToken()
+    {
+        $randomToken = rand(100000, 999999);
+        return $randomToken;
+    }
+
 
     public function logout($id)
     {
