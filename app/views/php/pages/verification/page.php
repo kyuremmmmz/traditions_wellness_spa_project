@@ -74,6 +74,17 @@ class Page
 
                 echo <<<HTML
 
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px] ">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px]  text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                HTML;
+                        Text::render('','', 'text-onBackground', 'Ayala');
+                        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackground dark:text-darkOnBackground', 'Branch');
+
+
+                echo <<<HTML
+                    </button>
+                </div>
+
                 <div class="border-border sm:border-none rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px] sm:w-[241px]">
                     <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Dashboard
@@ -149,6 +160,8 @@ class Page
                     <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px]  text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Change Phone Number
                     </button>
+
+                    
                 </div>
 
 
