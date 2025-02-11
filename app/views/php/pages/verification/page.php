@@ -68,63 +68,75 @@ class Page
 
                 </div>
 
-                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
-                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                HTML;
+
+                echo Text::render('','', 'text-onBackgroundTwo CaptionMediumOne ', 'Tools');
+
+                echo <<<HTML
+
+                <div class="border-border sm:border-none rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px] sm:w-[241px]">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Dashboard
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
-                        Acppointments
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Appointments
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Employees
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Finances
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Inventory
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Branches
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Services
                     </button>
 
-                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] sm:h-[32px] text-left BodyMediumTwo sm:bg-surface sm:dark:bg-darkSurface bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Users
                     </button>
                 </div>
 
-                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
-                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                HTML;
+
+                echo Text::render('','', 'text-onBackgroundTwo CaptionMediumOne ', 'Utilities');
+
+                echo <<<HTML
+
+                <div class="border-border sm:border-none rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[12px] sm:w-[241px]">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Calendar
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Messages
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Notifications
                     </button>
 
-                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit h-[40px] sm:h-[32px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Task & Routines
                     </button>
 
-                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit rounded-br-[5px] sm:h-[32px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Feedback & Reports
                     </button>
                 </div>
 
-                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[12px]">
 
                     <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Change Password
@@ -134,7 +146,7 @@ class Page
                         Change Email
                     </button>
 
-                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px]  text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         Change Phone Number
                     </button>
                 </div>
