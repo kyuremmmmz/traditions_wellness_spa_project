@@ -40,7 +40,7 @@ class AuthMobileController
                 ];
             }else{
                 if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/', $file['password'])) {
-                    http_response_code(401);
+                    http_response_code(400);
                     echo json_encode([
                         'error message' => 'Password must contain uppercase letters, lower case letters, special characters, and numbers'
                     ]);
