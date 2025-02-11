@@ -14,12 +14,13 @@ class AuthMobileController
 {
     private $controller;
     private $controller2;
+    private $controller3;
     private $webController;
     private $mail;
     private $secret_key = "secret_key"; 
     public function __construct(){
         $this->controller = new UserAuthModel();
-        $this->controller2 = new UserRolesModel();
+        $this->controller3 = new UserRolesModel();
         $this->controller2 = new RolesModel();
         $this->webController = new AuthModel();
         $this->mail = new UserMailer();
@@ -52,6 +53,13 @@ class AuthMobileController
                     echo json_encode([
                         'status' => $createRole
                     ]);
+                    $findRoles = $this->controller2->findByID($findRole['id']);
+                    if (is_array($findRoles)) {
+                        $createUserRoles = $this->controller3->createUserRoles($findRole['userID'],$findRoles['roleID']);
+                        echo json_encode([
+                            'status' => $createUserRoles
+                        ]);
+                    }
                 }
                 $verification = $this->verificationCode();
                 $this->mail->authMailer(
