@@ -39,43 +39,50 @@ class AuthMobileController
                     'message' => 'This phone already exist'
                 ];
             }else{
-                $response = $this->controller->create(
-                    $file['lastName'],
-                    $file['firstName'],
-                    $file['gender'],
-                    $file['phone'],
-                    password_hash($file['password'], PASSWORD_BCRYPT),
-                    $file['email']
-                );
-                $findRole = $this->webController->findByPhone($file['phone']);
-                if (is_array($findRole) && isset($findRole['phone'])) {
-                    $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
+                if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/', $file['password'])) {
+                    http_response_code(401);
                     echo json_encode([
-                        'status' => $createRole
+                        'error message' => 'Password must contain uppercase letters, lower case letters, special characters, and numbers'
                     ]);
-                    $findRoles = $this->controller2->findByID($findRole['id']);
-                    if (is_array($findRoles)) {
-                        $createUserRoles = $this->controller3->createUserRoles($findRole['userID'],$findRoles['roleID']);
+                }else{
+                    $response = $this->controller->create(
+                        $file['lastName'],
+                        $file['firstName'],
+                        $file['gender'],
+                        $file['phone'],
+                        password_hash($file['password'], PASSWORD_BCRYPT),
+                        $file['email']
+                    );
+                    $findRole = $this->webController->findByPhone($file['phone']);
+                    if (is_array($findRole) && isset($findRole['phone'])) {
+                        $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
                         echo json_encode([
-                            'status' => $createUserRoles
+                            'status' => $createRole
                         ]);
+                        $findRoles = $this->controller2->findByID($findRole['id']);
+                        if (is_array($findRoles)) {
+                            $createUserRoles = $this->controller3->createUserRoles($findRole['userID'], $findRoles['roleID']);
+                            echo json_encode([
+                                'status' => $createUserRoles
+                            ]);
+                        }
                     }
+                    $verification = $this->verificationCode();
+                    $this->mail->authMailer(
+                        $file['email'],
+                        'Good day! ' . $file['firstName'] . ', This is your Vaerification code please do not share this code below',
+                        '' . $verification,
+                        $file['firstName']
+                    );
+                    $this->controller->verifCode($verification, $file['email']);
+                    echo json_encode([
+                        'message' => 'Signed up successfully',
+                        'status' => $response
+                    ]);
+                    $_SESSION['success'] = [
+                        'message' => 'Signed up successfully'
+                    ];
                 }
-                $verification = $this->verificationCode();
-                $this->mail->authMailer(
-                    $file['email'],
-                    'Good day! ' . $file['firstName'] . ', This is your Vaerification code please do not share this code below',
-                    '' . $verification,
-                    $file['firstName']
-                );
-                $this->controller->verifCode($verification, $file['email']);
-                echo json_encode([
-                    'message' => 'Signed up successfully',
-                    'status' => $response
-                ]);
-                $_SESSION['success'] = [
-                    'message' => 'Signed up successfully'
-                ];
             }
         }
     }
