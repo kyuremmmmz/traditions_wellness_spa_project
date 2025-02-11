@@ -11,6 +11,7 @@ class Footer
 ?>
         <footer class="flex items-center justify-center w-full h-[80px] mt-[64px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo">
             <?php
+            //hey
             MiniOne::render("© 2025 Traditions Wellness Spa. <br> All Rights Reserved", "onBackgroundTwo", "darkOnBackgroundTwo", "center");
             ?>
         </footer>
