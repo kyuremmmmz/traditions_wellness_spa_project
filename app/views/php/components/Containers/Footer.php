@@ -3,6 +3,7 @@
 namespace Project\App\Views\Php\Components\Containers;
 
 use Project\App\Views\Php\Components\Texts\MiniOne;
+use Project\App\Views\Php\Components\Texts\Text;
 
 class Footer
 {
@@ -13,6 +14,7 @@ class Footer
             <?php
             //hey
             MiniOne::render("© 2025 Traditions Wellness Spa. <br> All Rights Reserved", "onBackgroundTwo", "darkOnBackgroundTwo", "center");
+            Text::render("", "", "MiniOne text-onBackgroundTwo dark:text-onBackgroundTwo text-center", "© 2025 Traditions Wellness Spa. <br> All Rights Reserved")
             ?>
         </footer>
 
