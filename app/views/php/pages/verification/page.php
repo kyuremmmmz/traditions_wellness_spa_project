@@ -8,6 +8,7 @@ use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Texts\BodyTwo;
+use Project\App\Views\Php\Components\Texts\Text;
 
 class Page
 {
@@ -26,8 +27,8 @@ class Page
             Header::render('Small');
             echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
             ReturnButton::render("[316px]", "/forgotpassword");
-            HeaderTwo::render('Verification Code', 'onBackground', 'darkOnBackground', '', '[316px]', '[40px]', '', '[8px]');
-            BodyTwo::render('Please enter the verification code we sent to your email.', 'onBackgroundTwo', 'darkOnBackgroundTwo', '', '[316px]', '', '', '[18px]');
+            Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Verification Code");
+            Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the verification code we sent to your email');
             GlobalInputField::render('verification', 'Verification Code', 'text', 'verification_field_forgot_password', $verificationError);
             echo '<div class="w-[326px] flex justify-center">';
             PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");

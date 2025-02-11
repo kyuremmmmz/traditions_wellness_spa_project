@@ -7,6 +7,8 @@ use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\BodyTwo;
 use Project\App\Views\Php\Components\Texts\CaptionOne;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
+use Project\App\Views\Php\Components\Texts\Text;
+
 
 class Page{
     public static function page(){
