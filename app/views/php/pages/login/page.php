@@ -44,7 +44,7 @@ class Page
         // Start of page
         echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';
                         SubmarkLogo::render("[201.37px]", "[88px]", "full", "");
-                        Text::render("", "", "HeaderTwo text-center mt-[40px] mb-[56px]", "Login to your account");
+                        Text::render("", "", "HeaderTwo text-center mt-[40px] mb-[56px] text-onBackground dark:text-darkOnBackground", "Login to your account");
         echo            '<form method="POST" action="/login" class="FormContainer">';
                                 GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                                 echo '<div class="relative">';
