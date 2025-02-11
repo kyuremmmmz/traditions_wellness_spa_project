@@ -33,8 +33,158 @@ class Page
             echo '<div class="w-[326px] flex justify-center">';
             PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
             echo '</div>';
+            // Testing
+            echo <<<HTML
 
-            echo        '</main>'; ?>
+                <div class="border-border rounded-[6px] border-[2px] mb-[24px] w-[50px] h-[50px] flex flex-col">
+                    <button class="w-inherit rounded-[6px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        k
+                    </button>
+                </div>
+
+
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px]">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Personal Info
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Activities
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Security
+                    </button>
+
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Report Tickets
+                    </button>
+                </div>
+
+                <div class="border-border rounded-[6px] border-[2px] mt-[24px] flex flex-col w-[316px]">
+                    <button class="w-inherit h-[40px] rounded-[5px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        About
+                    </button>
+
+                </div>
+
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Dashboard
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Acppointments
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Employees
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Finances
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Inventory
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Branches
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Services
+                    </button>
+
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Users
+                    </button>
+                </div>
+
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Calendar
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Messages
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Notifications
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Task & Routines
+                    </button>
+
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Feedback & Reports
+                    </button>
+                </div>
+
+                <div class="border-border rounded-[6px] border-[2px] flex flex-col w-[316px] mt-[24px]">
+
+                    <button class="w-inherit rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Change Password
+                    </button>
+
+                    <button class="w-inherit h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Change Email
+                    </button>
+
+                    <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        Change Phone Number
+                    </button>
+                </div>
+
+
+            HTML;
+
+            echo        '</main>';
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Personal Info");
+            echo        GlobalInputField::render('', 'First Name', 'text', '', '');
+            echo        GlobalInputField::render('', 'Last Name', 'text', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Change Password");
+            echo        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', "Please enter your new password below.");
+            echo        GlobalInputField::render('', 'Old Password', 'password', '', '');
+            echo        GlobalInputField::render('', 'New Password', 'password', '', '');
+            echo        GlobalInputField::render('', 'Confirm Password', 'password', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Change Email");
+            echo        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', "Please enter your new email address below. We'll send you a code.");
+            echo        GlobalInputField::render('', 'Email', 'email', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Verification Code");
+            echo        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', "Please enter the verification code we sent to your email.");
+            echo        GlobalInputField::render('', 'Verification Code', 'verification', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Change Number");
+            echo        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', "Please enter your new phone number below. We'll send you a code.");
+            echo        GlobalInputField::render('', 'Phone Number', 'phone number', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+            echo        ReturnButton::render("[316px]", "");
+            echo        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Verification Code");
+            echo        Text::render('','', 'BodyTwo w-[316px] mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo', "Please enter the verification code we sent to your phone number.");
+            echo        GlobalInputField::render('', 'Verification Code', 'verification', '', '');
+            echo        PrimaryButton::render("Continue", "submit", "[200px]", "", "", "", "Continue");
+
+
+
+            ?>
         </form>
 
 <?php
