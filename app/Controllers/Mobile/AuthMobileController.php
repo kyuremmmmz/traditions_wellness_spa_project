@@ -46,6 +46,13 @@ class AuthMobileController
                     password_hash($file['password'], PASSWORD_BCRYPT),
                     $file['email']
                 );
+                $findRole = $this->webController->findByPhone($file['phone']);
+                if (is_array($findRole) && isset($findRole['phone'])) {
+                    $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
+                    echo json_encode([
+                        'status' => $createRole
+                    ]);
+                }
                 $verification = $this->verificationCode();
                 $this->mail->authMailer(
                     $file['email'],
