@@ -5,8 +5,6 @@ use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Buttons\ReturnButton;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
-use Project\App\Views\Php\Components\Texts\BodyTwo;
-use Project\App\Views\Php\Components\Texts\HeaderTwo;
 use Project\App\Views\Php\Components\Texts\Text;
 
 
