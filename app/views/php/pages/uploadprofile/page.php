@@ -7,6 +7,8 @@ use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Buttons\ImgUploadButton;
 use Project\App\Views\Php\Components\Texts\BodyTwo;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
+use Project\App\Views\Php\Components\Texts\Text;
+
 
 class Page {
     public static function uploadprofile() {
@@ -22,8 +24,13 @@ class Page {
 
         echo    '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
         echo        '<form method="POST" action="/forgot" class="flex flex-col items-center">';
-                        HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[326px]', '[64px]', '', '[8px]');
-                        BodyTwo::render('Please upload a profile picture.', 'onBackgroundTwo','darkOnBackgroundTwo','','[326px]','','','');
+
+                        // HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[326px]', '[64px]', '', '[8px]');
+        echo            Text::render("", "", "HeaderTwo text-left w-[326px] mt-[64px] mb-[8px] text-onBackground dark:text-darkOnBackground", 'Continue Registration');
+
+                        // BodyTwo::render('Please upload a profile picture.', 'onBackgroundTwo','darkOnBackgroundTwo','','[326px]','','','');
+        echo            Text::render("", "", "BodyTwo text-left w-[326px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", 'Please upload a profile picture.');
+
         echo        '<div class="flex justify-center w-full mt-4">';
                         ImgUploadButton::render();
         echo        '</div>';
