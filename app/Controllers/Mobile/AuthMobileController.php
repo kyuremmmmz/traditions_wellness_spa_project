@@ -116,6 +116,7 @@ class AuthMobileController
                             'token' => $jwt
                         ]);
                     } else {
+                        http_response_code(403);
                         echo json_encode(['message' => 'Please verify your email']);
                     }
                 } else {
