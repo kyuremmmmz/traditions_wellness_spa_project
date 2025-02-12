@@ -8,16 +8,20 @@ class SessionMiddleware
     {
         session_start();
 
-        if (isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] !== '/dashboard') {
+        $isAuthenticated = isset($_SESSION['user']);
+        $currentRoute = $_SERVER['REQUEST_URI'];
+
+        if ($isAuthenticated && in_array($currentRoute, ['/login', '/forgotpassword', '/register'])) {
             header('Location: /dashboard');
             exit;
         }
 
-        if (!isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] !== '/login') {
+        if (!$isAuthenticated && in_array($currentRoute, ['/dashboard', '/profile', '/settings'])) {
             header('Location: /login');
             exit;
         }
 
         return $next($request);
     }
+
 }

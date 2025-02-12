@@ -27,13 +27,13 @@ $router->get('/test', function () {
 
 
 // VIEWS ROUTES
-$router->view('/login', 'page', 'Auth/login');
-$router->view('/register', 'page', 'Auth/register');
-$router->view('/forgotpassword', 'page', 'Auth/forgotpassword');
-$router->view('/verification', 'page', 'Auth/verification');
+$router->view('/login', 'page', 'Auth/login', 'SessionMiddleware');
+$router->view('/register', 'page', 'Auth/register', 'SessionMiddleware');
+$router->view('/forgotpassword', 'page', 'Auth/forgotpassword', 'SessionMiddleware');
+$router->view('/verification', 'page', 'Auth/verification', 'SessionMiddleware');
 $router->view( '/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'DataPages/dashboard', 'SessionMiddleware');
-$router->view('/resetpassword', 'page', 'Auth/resetpassword');
+$router->view('/resetpassword', 'page', 'Auth/resetpassword', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
 $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');

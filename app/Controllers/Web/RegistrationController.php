@@ -26,8 +26,9 @@ class RegistrationController
     private function generateTemporaryUserNameAndPassword($firstName, $lastName)
     {
         $baseUserName  = strtolower(Str($firstName . '.' . $lastName));
-        $randomNum = rand(1000, 9999);
-        $temporaryPassword = 'Temp' . $randomNum;
+        $randomNum = rand(100000, 999999);
+        $randomPnum = rand(100000, 999999);
+        $temporaryPassword = $randomPnum;
         return [
             'username' => $baseUserName . $randomNum,
             'password' => $temporaryPassword,

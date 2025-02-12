@@ -40,30 +40,30 @@ class Page{
                             Text::render("", "", "BodyTwo w-[316px] mt-[16x] text-left mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Please enter your new password below.");
                             GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
         echo                '<div class="w-[284px] px-[14px] relative -top-[10px]">';
-                                Text::render('', "", "CaptionOne w-[284px] mt-[12px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Your password must contain at least:");
+                                Text::render('', "", "CaptionOne w-[284px] mt-[12px] text-onBackgroundTwo text-darkOnBackgroundTwo", "Your password must contain at least:");
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$eightCharactersCircle,);
-                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Eight characters");
+                                    Text::render('eightCharacters', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo text-darkOnBackgroundTwo", "Eight characters");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$specialCharacterCircle,);
-                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One special character (e.g., @, #, $, %).");
+                                    Text::render('specialCharacters', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo text-darkOnBackgroundTwo", "One special character (e.g., @, #, $, %).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$uppercaseLetterCircle,);
-                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One upperrcase letter  (A-Z).");
+                                    Text::render('upperCaseCharacters', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo text-darkOnBackgroundTwo", "One upperrcase letter  (A-Z).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$lowercaseLetterCircle,);
-                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One lowercase letter (a-z).");
+                                    Text::render('lowerCharacters', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo text-darkOnBackgroundTwo", "One lowercase letter (a-z).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$numberCircle);
-                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One number (0-9).");
+                                    Text::render('numberCharacters', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo text-darkOnBackgroundTwo", "One number (0-9).");
         echo                    '</div>';
         echo                '</div>';
         echo                '<div class="w-[326px] flex justify-center">';
-                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'",'novalidate','buttonDisabled');
+                            PrimaryButton::render('Continue', 'submit', '[99px]',  '', '', '', 'Continue', "' . $disabled .'",'novalidate', 'buttonDisabled');
         echo                '</div>
                         </form>
                     </main>';

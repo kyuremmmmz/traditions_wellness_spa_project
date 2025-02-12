@@ -22,24 +22,41 @@ class AuthController
 
     public function forgotPasswordSend()
     {
-        // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
         if (isset($_POST['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
             $response = $this->controller->findByEmail($_POST['email']);
             if (isset($response['username'])) {
-                $this->mailer->sendToken(
-                    $response['email'],
-                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $decodedToken,
-                    $response['first_name'],);
-                $this->controller->delete($response['email']);
-                $this->controller->insertToken($token, $response['email']);
-                header('Location: /verification');
+                    $token_sender = $this->mailer->sendToken(
+                        $response['email'],
+                        'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                        'Token: ' . $decodedToken,
+                        $response['first_name']
+                    );
+                    if ($token_sender['status'] === 'error') {
+                        session_start();
+                        $_SESSION['server_error'] = [
+                            'error' => 'Email sending failed. Please try again.'
+                        ];
+                        header('Location: /forgotpassword');
+                        exit();
+                    } else {
+                        $this->controller->delete($response['email']);
+                        $this->controller->insertToken($token, $response['email']);
+                        header('Location: /verification');
+                        exit();
+                    }
+                } 
+            } else {
+                $_SESSION['server_error'] = [
+                    'error' => 'Email not found.'
+                ];
+                header('Location: /forgotpassword');
+                exit();
             }
-        }
-    }
+        } 
+
 
     public function forgotPassword()
     {
