@@ -3,15 +3,16 @@
 namespace Project\App\Views\Php\Pages\Login;
 
 use Project\App\Views\Php\Components\Assets\SubmarkLogo;
+use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Footer;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\RememberMe;
 use Project\App\Views\Php\Components\Texts\GlobalLink;
-use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
 use Project\App\Views\Php\Components\Texts\Text;
+
 
 class Page
 {
@@ -44,7 +45,7 @@ class Page
         // Start of page
         echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';
                         SubmarkLogo::render("[201.37px]", "[88px]", "full", "");
-                        Text::render("", "", class: "HeaderTwo text-center mt-[40px] mb-[56px] text-onBackground dark:text-darkOnBackground", "Login to your account");
+                        Text::render("", "", "HeaderTwo text-center mt-[40px] mb-[56px] text-onBackground dark:text-darkOnBackground", "Login your account");
         echo            '<form method="POST" action="/login" class="FormContainer">';
                                 GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                                 echo '<div class="relative">';
