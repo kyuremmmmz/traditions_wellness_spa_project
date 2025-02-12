@@ -27,7 +27,8 @@ class RegistrationController
     {
         $baseUserName  = strtolower(Str($firstName . '.' . $lastName));
         $randomNum = rand(100000, 999999);
-        $temporaryPassword = $randomNum;
+        $randomPnum = rand(100000, 999999);
+        $temporaryPassword = $randomPnum;
         return [
             'username' => $baseUserName . $randomNum,
             'password' => $temporaryPassword,
