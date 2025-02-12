@@ -7,6 +7,7 @@ use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\BodyTwo;
 use Project\App\Views\Php\Components\Texts\CaptionOne;
 use Project\App\Views\Php\Components\Texts\HeaderTwo;
+use Project\App\Views\Php\Components\Texts\Text;
 
 class Page{
     public static function page(){
@@ -35,30 +36,30 @@ class Page{
         Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
         echo            '<form method="POST" action="/resetPassword" novalidate>';
-                            HeaderTwo::render('Hello, ' . $firstName .'', 'onBackground', 'darkOnBackground', '', '[316px]', '[64px]', '',  '[8px]');
-                            BodyTwo::render("Please enter your new password below.", 'onBackgroundTwo','darkOnBackgroundTwo','','[316px]','','','[18px]');
+                            Text::render("", "", "HeaderTwo text-left mt-[40px] mb-[8px] text-onBackground dark:text-darkOnBackground", "Hello, $firstName"); 
+                            Text::render("", "", "BodyTwo w-[316px] mt-[16x] text-left mb-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Please enter your new password below.");
                             GlobalInputField::render("password", "Password", "password", "password_field", $passwordError);
         echo                '<div class="w-[284px] px-[14px] relative -top-[10px]">';
-                                CaptionOne::render('Your password must contain at least:','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[12px]');
+                                Text::render('', "", "CaptionOne w-[284px] mt-[12px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Your password must contain at least:");
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$eightCharactersCircle,);
-                                    CaptionOne::render('Eight characters','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]', '', '', '', 'eightCharacters');
+                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "Eight characters");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$specialCharacterCircle,);
-                                    CaptionOne::render('One special character (e.g., @, #, $, %).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]', '[2px]' , '', '', '', 'specialCharacters');
+                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One special character (e.g., @, #, $, %).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$uppercaseLetterCircle,);
-                                    CaptionOne::render('One upperrcase letter  (A-Z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'upperCaseCharacters');
+                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One upperrcase letter  (A-Z).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$lowercaseLetterCircle,);
-                                    CaptionOne::render('One lowercase letter (a-z).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'lowerCharacters');
+                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One lowercase letter (a-z).");
         echo                    '</div>';
         echo                    '<div class="flex items-center gap-[7px]">';
                                     IconChoice::render('miniCircle','[8px]','[8px]',$numberCircle);
-                                    CaptionOne::render('One number (0-9).','onBackgroundTwo', 'darkonBackgroundTwo',  '','[284px]','[2px]', '', '', '', 'numberCharacters');
+                                    Text::render('', "", "CaptionOne w-[284px] mt-[2px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo", "One number (0-9).");
         echo                    '</div>';
         echo                '</div>';
         echo                '<div class="w-[326px] flex justify-center">';
