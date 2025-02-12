@@ -18,7 +18,7 @@ class Page
             session_start();
         }
         $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
-        $serviceUnavailable = $_SESSION['service_unavailable']['service_unavailable'] ?? '';
+        $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
         if ($serviceUnavailable) {
             RegularBanner::render(
                 "Server Error",
@@ -27,6 +27,7 @@ class Page
                 "destructive",
                 "darkDestructive"
             );
+            unset($_SESSION['server_error']);
         }
         unset($_SESSION['forgot_password_errors']);
         // start of page
