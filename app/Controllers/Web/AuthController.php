@@ -149,6 +149,9 @@ class AuthController
                     'email' => $response['email'],
                     'photos' => $response['photos'],
                 ];
+                if (!empty($_POST['remember_me'])) {
+                    setcookie('remember_cookie', base64_encode(json_encode($_SESSION['user']['role'])), time() + 3600);
+                }
                 setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
