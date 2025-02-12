@@ -35,8 +35,21 @@ class Page
 
         if ($tooManyAttempts) {
             http_response_code(429);
-                        RegularBanner::render("Account Error", "Too many attempts. Please wait 5 minutes before trying again", "alertBig", "destructive", "darkDestructive");};
-
+            RegularBanner::render(
+            "Account Error", 
+            "Too many attempts. Please wait 5 minutes before trying again", 
+            "alertBig", 
+            "destructive",
+            "darkDestructive");
+        }elseif($usernameError && $passwordError){
+            RegularBanner::render(
+                "Account Error",
+                "Error username or password, please try again",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+        }
         // 5. Deactivated account
         // 6. Account locked
 

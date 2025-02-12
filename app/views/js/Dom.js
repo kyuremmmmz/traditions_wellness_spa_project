@@ -9,50 +9,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
     passwordInput.addEventListener('input', function () {
         const password = passwordInput.value;
-
         let isValid = true;
 
         if (password.length >= 8) {
             eightChar.classList.add('text-white');
-            eightChar.classList.remove('onBackgroundTwo');
+            eightChar.classList.remove('text-darkOnBackgroundTwo');
         } else {
-            eightChar.classList.add("onBackgroundTwo");
+            eightChar.classList.add("text-darkOnBackgroundTwo");
             eightChar.classList.remove("text-white");
             isValid = false;
         }
 
         if (/[A-Z]/.test(password)) {
             upperCaseCharacters.classList.add('text-white');
-            upperCaseCharacters.classList.remove('onBackgroundTwo');
+            upperCaseCharacters.classList.remove('text-darkOnBackgroundTwo');
         } else {
-            upperCaseCharacters.classList.add("onBackgroundTwo");
+            upperCaseCharacters.classList.add("text-darkOnBackgroundTwo");
             upperCaseCharacters.classList.remove("text-white");
             isValid = false;
         }
 
         if (/[a-z]/.test(password)) {
             lowerCaseCharacters.classList.add('text-white');
-            lowerCaseCharacters.classList.remove('onBackgroundTwo');
+            lowerCaseCharacters.classList.remove('text-darkOnBackgroundTwo');
         } else {
-            lowerCaseCharacters.classList.add("onBackgroundTwo");
+            lowerCaseCharacters.classList.add("text-darkOnBackgroundTwo");
             lowerCaseCharacters.classList.remove("text-white");
             isValid = false;
         }
 
         if (/[0-9]/.test(password)) {
             numberCharacters.classList.add('text-white');
-            numberCharacters.classList.remove('onBackgroundTwo');
+            numberCharacters.classList.remove('text-darkOnBackgroundTwo');
         } else {
-            numberCharacters.classList.add("onBackgroundTwo");
+            numberCharacters.classList.add("text-darkOnBackgroundTwo");
             numberCharacters.classList.remove("text-white");
             isValid = false;
         }
 
         if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
             specialCharacter.classList.add('text-white');
-            specialCharacter.classList.remove('onBackgroundTwo');
+            specialCharacter.classList.remove('text-darkOnBackgroundTwo');
         } else {
-            specialCharacter.classList.add("onBackgroundTwo");
+            specialCharacter.classList.add("text-darkOnBackgroundTwo");
             specialCharacter.classList.remove("text-white");
             isValid = false;
         }

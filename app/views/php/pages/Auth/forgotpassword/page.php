@@ -1,6 +1,7 @@
 <?php
 namespace Project\App\Views\Php\Pages\ForgotPassword;
 
+use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Buttons\ReturnButton;
 use Project\App\Views\Php\Components\Containers\Header;
@@ -13,10 +14,21 @@ class Page
     public static function forgotpassword()
     {
         // TODO: EMAIL ERROR MESSAGE!!! dapat sabihin niya email not registered, invalid email format.
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
+        $serviceUnavailable = $_SESSION['service_unavailable']['service_unavailable'] ?? '';
+        if ($serviceUnavailable) {
+            RegularBanner::render(
+                "Server Error",
+                "Something went wrong on our end. Please try again later.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+        }
         unset($_SESSION['forgot_password_errors']);
-
         // start of page
                     Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
