@@ -16,7 +16,7 @@ class SessionMiddleware
             exit;
         }
 
-        if (!$isAuthenticated && in_array($currentRoute, ['/dashboard', '/profile', '/settings'])) {
+        if (!$isAuthenticated && in_array($currentRoute, ['/','/dashboard', '/profile', '/settings'])) {
             header('Location: /login');
             exit;
         }

@@ -97,7 +97,7 @@ class AuthController
                 header('Location: /dashboard');
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
-                echo json_encode(['error' => 'Invalid token or password update failed.']);
+                echo json_encode(['error' => 'Required fields are missing.']);
             }
         } else {
             $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
@@ -107,25 +107,23 @@ class AuthController
     }
 
 
-    private function generateToken()
-    {
-        $randomToken = rand(100000, 999999);
-        return $randomToken;
-    }
-
-    public function resetPasswordAndUserName(){
-        $file = json_decode(file_get_contents('php://input'), true);
-        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
-        if (!preg_match($passwordPattern, $file['password'])) {
-            echo json_encode([
-                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
-            ]);
-            http_response_code(400);
-            return;
+        private function generateToken()
+        {
+            $randomToken = rand(100000, 999999);
+            return $randomToken;
         }
-    }
 
-    
+        public function resetPasswordAndUserName(){
+            $file = json_decode(file_get_contents('php://input'), true);
+            $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+            if (!preg_match($passwordPattern, $file['password'])) {
+                echo json_encode([
+                    'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+                ]);
+                http_response_code(400);
+                return;
+            }
+        }
 
     public function store()
     {
@@ -214,5 +212,4 @@ class AuthController
         header('Location: /login');
         exit;
     }
-
 }
