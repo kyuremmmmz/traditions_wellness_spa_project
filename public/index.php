@@ -14,29 +14,35 @@ $router->post('/register', 'RegistrationController@register');
 $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
+$router->post('/mobileLogin', 'AuthMobileController@login');
+$router->post('/mobileRegistration', 'AuthMobileController@registration');
+$router->post('/mobileVerification', 'AuthMobileController@verifyEmailAndPhone');
+$router->post('/mobileforgot', 'AuthMobileController@forgotPasswordSend');
+$router->post('/mobileforgotPass', 'AuthMobileController@forgotPassword');
+$router->post('/mobileresetPassword', 'AuthMobileController@resetPassword');
+$router->post('/mobileLogin', 'AuthMobileController@login');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);
 });
 
 
 // VIEWS ROUTES
-$router->view('/login', 'page', 'login');
-$router->view('/register', 'page', 'register');
-$router->view('/forgotpassword', 'page', 'forgotpassword');
-$router->view('/verification', 'page', 'verification');
-$router->view( '/profile', 'page', 'dashboard/profile', 'SessionMiddleware');
-$router->view('/dashboard', 'page', 'dashboard', 'SessionMiddleware');
-$router->view('/resetpassword', 'page', 'resetpassword');
+$router->view('/login', 'page', 'Auth/login', 'SessionMiddleware');
+$router->view('/register', 'page', 'Auth/register', 'SessionMiddleware');
+$router->view('/forgotpassword', 'page', 'Auth/forgotpassword', 'SessionMiddleware');
+$router->view('/verification', 'page', 'Auth/verification', 'SessionMiddleware');
+$router->view( '/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
+$router->view('/dashboard', 'page', 'DataPages/dashboard', 'SessionMiddleware');
+$router->view('/resetpassword', 'page', 'Auth/resetpassword', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
 $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
-$router->view('/continueregistration', 'page', 'continueregistration');
+$router->view('/continueregistration', 'page', 'Auth/continueregistration');
 $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
-$router->view('/uploadprofile', 'page', 'uploadprofile');
-$router->view('/dashboard', 'page', 'dashboard');
+$router->view('/uploadprofile', 'page', 'Auth/uploadprofile');
 try {
     $router->resolve();
 } catch (Exception $e) {
@@ -44,4 +50,3 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 }
 
-$router->view('/dashboard', 'page', 'dashboard');
