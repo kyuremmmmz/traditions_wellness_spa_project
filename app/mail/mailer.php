@@ -3,10 +3,10 @@ namespace Project\App\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
 
 use PHPMailer\PHPMailer\Exception;
-require 'C:\xampp\htdocs\Project\VanillaBackend\vendor\autoload.php';
-require 'C:\xampp\htdocs\Project\VanillaBackend\vendor\phpmailer\phpmailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\Project\VanillaBackend\vendor\phpmailer\phpmailer\src\SMTP.php';
-require 'C:\xampp\htdocs\Project\VanillaBackend\vendor\phpmailer\phpmailer\src\Exception.php';
+require 'C:\xampp\htdocs\TraditionsWellnessSpa\Project\vendor\autoload.php';
+require 'C:\xampp\htdocs\TraditionsWellnessSpa\Project\vendor\phpmailer\phpmailer\src\PHPMailer.php';
+require 'C:\xampp\htdocs\TraditionsWellnessSpa\Project\vendor\phpmailer\phpmailer\src\SMTP.php';
+require 'C:\xampp\htdocs\TraditionsWellnessSpa\Project\vendor\phpmailer\phpmailer\src\Exception.php';
 
 class Mailer{
     private $mail;
