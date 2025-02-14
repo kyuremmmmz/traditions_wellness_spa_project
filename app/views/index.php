@@ -33,5 +33,6 @@
 </body>
 <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Dom.js"></script>
 <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/LightModeDarkMode.js"></script>
+<script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/ContinueRegDom.js"></script>
 
 </html>

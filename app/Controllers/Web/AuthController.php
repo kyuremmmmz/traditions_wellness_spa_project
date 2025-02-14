@@ -174,7 +174,11 @@ class AuthController
                         date('Y-m-d H:i:s')
                     );
                 }
-                header('Location: /dashboard');
+                if ($response['isFirstTimeLogin'] === 1) {
+                    header('Location: /continueregistration');
+                }else{
+                    header('Location: /dashboard');
+                }
                 exit;
             } else {
                 $_SESSION['login_attempts']++;

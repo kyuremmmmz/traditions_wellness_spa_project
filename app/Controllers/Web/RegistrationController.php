@@ -61,7 +61,6 @@ class RegistrationController
                     ]);
                 }
             }
-            $photo = file_get_contents($_FILES['photos']['tmp_name']);
             $response = $this->controller->create(
                 $data['last_name'],
                 $data['first_name'],
@@ -72,7 +71,6 @@ class RegistrationController
                 date('Y-m-d H:i:s'),
                 $data['role'],
                 $temporaryData['username'],
-                'data:image/jpeg;base64,' . base64_encode($photo),
             );
             $findId = $this->controller->findByEmail($data['email']);
             $roleIDs = [

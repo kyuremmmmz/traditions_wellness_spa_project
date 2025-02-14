@@ -84,7 +84,7 @@ class AuthModel
         role,
         username, 
         remember_token,
-        photos,
+        isFirstTimeLogin ,
         created_at, 
         updated_at) 
         VALUES 
@@ -102,7 +102,7 @@ class AuthModel
         :role,
         :username, 
         :remember_token, 
-        :photos,
+        1,
         :created_at, 
         :updated_at)
     ");
@@ -123,7 +123,6 @@ class AuthModel
             'role' => $role,
             'username' => $username,
             'remember_token' => $rememberToken,
-            'photos' => $photos,
             'created_at' => $currentTimestamp,
             'updated_at' => $currentTimestamp,
         ]);
