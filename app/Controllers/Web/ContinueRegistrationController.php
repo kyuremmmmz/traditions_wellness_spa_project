@@ -22,6 +22,7 @@ class ContinueRegistrationController
 
     public function continueRegistrationFunction()
     {
+        // Logic 1. create a DOM for js regex
         
     }
 
