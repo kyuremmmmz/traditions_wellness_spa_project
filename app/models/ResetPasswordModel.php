@@ -1,12 +1,16 @@
 <?php
+namespace Project\App\Models;
+
+use PDO;
+use Project\App\Config\Connection;
 
 class ResetPasswordModel
 {
     private $pdo;
 
-    public function __construct($pdo)
+    public function __construct()
     {
-        $this->pdo = $pdo;
+        $this->pdo = Connection::connection();
     }
 
     public function getAll()
@@ -15,10 +19,10 @@ class ResetPasswordModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function findByPreviousUserName($previousUname)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
+        $stmt->execute(['username' => $previousUname]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -28,11 +32,14 @@ class ResetPasswordModel
         return $stmt->execute($data);
     }
 
-    public function update($id, $data)
+    public function changePassword($password, $username, $id)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE users SET username = :username, password = :password WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id,
+            'username' => $username,
+            'password' => $password
+        ]);
     }
 
     public function delete($id)

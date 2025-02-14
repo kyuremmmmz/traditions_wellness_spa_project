@@ -1,16 +1,43 @@
 document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById('password_field');
+    const userInput = document.getElementById('username_field_login');
     const eightChar = document.getElementById('eightCharacters');
     const specialCharacter = document.getElementById('specialCharacter');
     const upperCaseCharacters = document.getElementById('upperCaseCharacters');
     const lowerCaseCharacters = document.getElementById('lowerCharacters');
     const numberCharacters = document.getElementById('numberCharacters');
     const button = document.getElementById('buttonDisabled');
+    const usernameEightCharacter = document.getElementById('usernameEightCharacter');
+    const userOnlyLettersAndNumbers = document.getElementById('userOnlyLettersAndNumbers');
+    
+    userInput.addEventListener('input', function() {
+        const username = userInput.value;
+        let isValid = true;
 
+        if (username.length >= 8) {
+            usernameEightCharacter.classList.add('text-white');
+            usernameEightCharacter.classList.remove('text-darkOnBackgroundTwo');
+        } else {
+            usernameEightCharacter.classList.add('text-darkOnBackgroundTwo');
+            usernameEightCharacter.classList.remove('text-white');
+            isValid = false;
+        }
+
+        if (/^[A-Za-z0-9_]+$/.test(username)) {
+            userOnlyLettersAndNumbers.classList.add('text-white');
+            userOnlyLettersAndNumbers.classList.remove('text-darkOnBackgroundTwo');
+        } else {
+            userOnlyLettersAndNumbers.classList.remove('text-white');
+            userOnlyLettersAndNumbers.classList.add('text-darkOnBackgroundTwo');
+            isValid = false;
+        }
+
+
+        button.disabled = !isValid;
+    })
     passwordInput.addEventListener('input', function () {
         const password = passwordInput.value;
         let isValid = true;
-
         if (password.length >= 8) {
             eightChar.classList.add('text-white');
             eightChar.classList.remove('text-darkOnBackgroundTwo');
