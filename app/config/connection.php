@@ -11,9 +11,9 @@ class Connection
         session_start();
         header('Content-Type: application/json');
         $db = 'traditionswellnessspa';
-        $password = '';
+        $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
             echo json_encode([
@@ -31,9 +31,9 @@ class Connection
         header('Content-Type: application/json');
 
         $db = 'traditionswellnessspa';
-        $password = '';
+        $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         switch ($_SERVER['REQUEST_METHOD']) {
             case 'GET':
                 try {
