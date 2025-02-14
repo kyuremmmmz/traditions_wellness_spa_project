@@ -42,6 +42,15 @@ class ResetPasswordModel
         ]);
     }
 
+    public function uploadPhoto($photo, $email)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET photos = :photo WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
+            'photo' => $photo,
+        ]);
+    }
+
     public function delete($id)
     {
         $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
