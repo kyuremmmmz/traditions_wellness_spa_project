@@ -41,7 +41,7 @@ class Page{
         // start of page
         Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
-        echo            '<form method="POST" action="/continueRegister">';
+        echo            '<form method="POST" action="/continueRegistrationFunction">';
                             Text::render('','','HeaderTwo text-left text-onBackground dark:text-darkOnBackground w-[316px] mt-[40px] mb-[8px]','Continue Registration');
                             Text::render('','','BodyTwo text-left text-onBackground dark:text-darkOnBackground w-[316px] mb-[18px] ',"Hello, $firstName! Please enter a new username and password below.");
                             GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);

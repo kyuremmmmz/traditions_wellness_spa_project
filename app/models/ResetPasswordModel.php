@@ -21,8 +21,8 @@ class ResetPasswordModel
 
     public function findByPreviousUserName($previousUname)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->execute(['username' => $previousUname]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $previousUname]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -32,13 +32,22 @@ class ResetPasswordModel
         return $stmt->execute($data);
     }
 
-    public function changePassword($password, $username, $id)
+    public function changePassword($password, $username, $email)
     {
-        $stmt = $this->pdo->prepare("UPDATE users SET username = :username, password = :password WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE users SET username = :username, password = :password, isFirstTimeLogin = 0 WHERE email = :email");
         return $stmt->execute([
-            'id' => $id,
+            'email' => $email,
             'username' => $username,
             'password' => $password
+        ]);
+    }
+
+    public function uploadPhoto($photo, $email)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET photos = :photo WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
+            'photo' => $photo,
         ]);
     }
 

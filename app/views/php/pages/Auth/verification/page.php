@@ -15,7 +15,6 @@ class Page
     public static function verification()
     {
         // TODO: error kineme
-        session_start();
         $verificationError = $_SESSION['forgot_password_errors']['verification'] ?? '';
         //unset($_SESSION['forgot_password_errors']);
 

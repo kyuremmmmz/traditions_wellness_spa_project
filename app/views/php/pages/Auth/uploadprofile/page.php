@@ -23,7 +23,7 @@ class Page {
         $disabled = 'disabled';
 
         echo    '<main class="OneColumnContainer mt-[24px] sm:mt-[24px]">';
-        echo        '<form method="POST" action="/forgot" class="flex flex-col items-center">';
+        echo        '<form method="POST" action="/uploadProfile" enctype="multipart/form-data" class="flex flex-col items-center">';
 
                         // HeaderTwo::render('Continue Registration', 'onBackground', 'darkOnBackground', '', '[326px]', '[64px]', '', '[8px]');
         echo            Text::render("", "", "HeaderTwo text-left w-[326px] mt-[64px] mb-[8px] text-onBackground dark:text-darkOnBackground", 'Continue Registration');
@@ -35,7 +35,7 @@ class Page {
                         ImgUploadButton::render();
         echo        '</div>';
         echo        '<div class="w-[326px] flex justify-center">'; 
-                        PrimaryButton::render('Continue', 'submit', '[205px]', '', '', '', 'Continue', 'disabled', 'novalidate');
+                        PrimaryButton::render('Continue', 'submit', '[205px]', '', '', '', 'Continue','novalidate');
         echo        '</div>';
         echo        '</form>';
         echo    '</main>';
