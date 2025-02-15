@@ -44,11 +44,22 @@ $router->view('/continueregistration', 'page', 'Auth/continueregistration');
 $router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
-$router->view('/uploadprofile', 'page', 'Auth/uploadprofile');
+$router->view('/uploadprofile', 'page', 'Auth/uploadprofile', 'SessionMiddleware');
+$router->view('/appointments', 'page', 'Tools/Appointments', 'SessionMiddleware');
+$router->view('/employees', 'page', 'Tools/Employees', 'SessionMiddleware');
+$router->view('/finances', 'page', 'Tools/Finances', 'SessionMiddleware');
+$router->view('/inventory', 'page', 'Tools/Inventory', 'SessionMiddleware');
+$router->view('/branches', 'page', 'Tools/Branches', 'SessionMiddleware');
+$router->view('/services', 'page', 'Tools/Services', 'SessionMiddleware');
+$router->view('/users', 'page', 'Tools/Users', 'SessionMiddleware');
+$router->view('/calendar', 'page', 'Utilities/Calendar', 'SessionMiddleware');
+$router->view('/messages', 'page', 'Utilities/Messages', 'SessionMiddleware');
+$router->view('/notifications', 'page', 'Utilities/Notifications', 'SessionMiddleware');
+$router->view('/tasks', 'page', 'Utilities/Tasks', 'SessionMiddleware');
+$router->view('/feedbacks', 'page', 'Utilities/Feedbacks', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);
 }
-

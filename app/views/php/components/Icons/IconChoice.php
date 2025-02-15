@@ -103,7 +103,7 @@ class IconChoice
 
             case "securitySmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M12.6667 7.33334H3.33333C2.59695 7.33334 2 7.9303 2 8.66668V13.3333C2 14.0697 2.59695 14.6667 3.33333 14.6667H12.6667C13.403 14.6667 14 14.0697 14 13.3333V8.66668C14 7.9303 13.403 7.33334 12.6667 7.33334Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M4.66666 7.33334V4.66668C4.66666 3.78262 5.01785 2.93478 5.64297 2.30965C6.2681 1.68453 7.11594 1.33334 8 1.33334C8.88405 1.33334 9.7319 1.68453 10.357 2.30965C10.9821 2.93478 11.3333 3.78262 11.3333 4.66668V7.33334" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -112,7 +112,7 @@ class IconChoice
 
             case "reportTicketSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M2 4.66668V6.00001C2.53043 6.00001 3.03914 6.21072 3.41421 6.5858C3.78929 6.96087 4 7.46958 4 8.00001C4 8.53044 3.78929 9.03915 3.41421 9.41422C3.03914 9.7893 2.53043 10 2 10V11.3333C2 12.0667 2.6 12.6667 3.33333 12.6667H12.6667C13.0203 12.6667 13.3594 12.5262 13.6095 12.2762C13.8595 12.0261 14 11.687 14 11.3333V10C13.4696 10 12.9609 9.7893 12.5858 9.41422C12.2107 9.03915 12 8.53044 12 8.00001C12 7.46958 12.2107 6.96087 12.5858 6.5858C12.9609 6.21072 13.4696 6.00001 14 6.00001V4.66668C14 4.31305 13.8595 3.97392 13.6095 3.72387C13.3594 3.47382 13.0203 3.33334 12.6667 3.33334H3.33333C2.97971 3.33334 2.64057 3.47382 2.39052 3.72387C2.14048 3.97392 2 4.31305 2 4.66668Z" stroke="#3F3F46" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8.66666 3.33334V4.66668" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8.66666 11.3333V12.6667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -123,7 +123,7 @@ class IconChoice
             
             case "vectorSmall":
                 $icon = '
-                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M1 9L5 5L1 1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 ';
@@ -131,7 +131,7 @@ class IconChoice
 
             case "aboutSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M8 14.6667C11.6819 14.6667 14.6667 11.6819 14.6667 8.00001C14.6667 4.31811 11.6819 1.33334 8 1.33334C4.3181 1.33334 1.33333 4.31811 1.33333 8.00001C1.33333 11.6819 4.3181 14.6667 8 14.6667Z" stroke="#3F3F46" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8 10.6667V8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8 5.33334H8.00667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -141,7 +141,7 @@ class IconChoice
 
             case "sideBarMedium":
                 $icon = '
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#3F3F46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M3 9H21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M9 21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -151,7 +151,7 @@ class IconChoice
 
             case "settingsMedium": 
                 $icon = '
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M12.22 2H11.78C11.2496 2 10.7409 2.21071 10.3658 2.58579C9.99072 2.96086 9.78 3.46957 9.78 4V4.18C9.77964 4.53073 9.68706 4.87519 9.51154 5.17884C9.33602 5.48248 9.08374 5.73464 8.78 5.91L8.35 6.16C8.04596 6.33554 7.70108 6.42795 7.35 6.42795C6.99893 6.42795 6.65404 6.33554 6.35 6.16L6.2 6.08C5.74107 5.81526 5.19584 5.74344 4.684 5.88031C4.17217 6.01717 3.73555 6.35154 3.47 6.81L3.25 7.19C2.98526 7.64893 2.91345 8.19416 3.05031 8.706C3.18717 9.21783 3.52154 9.65445 3.98 9.92L4.13 10.02C4.43228 10.1945 4.68362 10.4451 4.85905 10.7468C5.03448 11.0486 5.1279 11.391 5.13 11.74V12.25C5.1314 12.6024 5.03965 12.949 4.86405 13.2545C4.68844 13.5601 4.43521 13.8138 4.13 13.99L3.98 14.08C3.52154 14.3456 3.18717 14.7822 3.05031 15.294C2.91345 15.8058 2.98526 16.3511 3.25 16.81L3.47 17.19C3.73555 17.6485 4.17217 17.9828 4.684 18.1197C5.19584 18.2566 5.74107 18.1847 6.2 17.92L6.35 17.84C6.65404 17.6645 6.99893 17.5721 7.35 17.5721C7.70108 17.5721 8.04596 17.6645 8.35 17.84L8.78 18.09C9.08374 18.2654 9.33602 18.5175 9.51154 18.8212C9.68706 19.1248 9.77964 19.4693 9.78 19.82V20C9.78 20.5304 9.99072 21.0391 10.3658 21.4142C10.7409 21.7893 11.2496 22 11.78 22H12.22C12.7504 22 13.2591 21.7893 13.6342 21.4142C14.0093 21.0391 14.22 20.5304 14.22 20V19.82C14.2204 19.4693 14.3129 19.1248 14.4885 18.8212C14.664 18.5175 14.9163 18.2654 15.22 18.09L15.65 17.84C15.954 17.6645 16.2989 17.5721 16.65 17.5721C17.0011 17.5721 17.346 17.6645 17.65 17.84L17.8 17.92C18.2589 18.1847 18.8042 18.2566 19.316 18.1197C19.8278 17.9828 20.2645 17.6485 20.53 17.19L20.75 16.8C21.0147 16.3411 21.0866 15.7958 20.9497 15.284C20.8128 14.7722 20.4785 14.3356 20.02 14.07L19.87 13.99C19.5648 13.8138 19.3116 13.5601 19.136 13.2545C18.9604 12.949 18.8686 12.6024 18.87 12.25V11.75C18.8686 11.3976 18.9604 11.051 19.136 10.7455C19.3116 10.4399 19.5648 10.1862 19.87 10.01L20.02 9.92C20.4785 9.65445 20.8128 9.21783 20.9497 8.706C21.0866 8.19416 21.0147 7.64893 20.75 7.19L20.53 6.81C20.2645 6.35154 19.8278 6.01717 19.316 5.88031C18.8042 5.74344 18.2589 5.81526 17.8 6.08L17.65 6.16C17.346 6.33554 17.0011 6.42795 16.65 6.42795C16.2989 6.42795 15.954 6.33554 15.65 6.16L15.22 5.91C14.9163 5.73464 14.664 5.48248 14.4885 5.17884C14.3129 4.87519 14.2204 4.53073 14.22 4.18V4C14.22 3.46957 14.0093 2.96086 13.6342 2.58579C13.2591 2.21071 12.7504 2 12.22 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -160,7 +160,7 @@ class IconChoice
 
             case "dashboardSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M6.66667 2H2V8H6.66667V2Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14 2H9.33331V5.33333H14V2Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14 8H9.33331V14H14V8Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -170,7 +170,7 @@ class IconChoice
                 break;
             case "appointmentsSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M7.99998 14.6667C11.6819 14.6667 14.6666 11.6819 14.6666 8.00001C14.6666 4.31811 11.6819 1.33334 7.99998 1.33334C4.31808 1.33334 1.33331 4.31811 1.33331 8.00001C1.33331 11.6819 4.31808 14.6667 7.99998 14.6667Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M8 4V8L10.6667 9.33333" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -179,7 +179,7 @@ class IconChoice
             
             case "employeesSmall": 
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M10.6666 14V12.6667C10.6666 11.9594 10.3857 11.2811 9.8856 10.781C9.3855 10.281 8.70722 10 7.99998 10H3.99998C3.29274 10 2.61446 10.281 2.11436 10.781C1.61426 11.2811 1.33331 11.9594 1.33331 12.6667V14" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.99998 7.33333C7.47274 7.33333 8.66665 6.13943 8.66665 4.66667C8.66665 3.19391 7.47274 2 5.99998 2C4.52722 2 3.33331 3.19391 3.33331 4.66667C3.33331 6.13943 4.52722 7.33333 5.99998 7.33333Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M12.6666 8.66667C13.403 8.66667 14 8.06971 14 7.33333C14 6.59695 13.403 6 12.6666 6C11.9303 6 11.3333 6.59695 11.3333 7.33333C11.3333 8.06971 11.9303 8.66667 12.6666 8.66667Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -195,16 +195,16 @@ class IconChoice
             
             case "financesSmall": 
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M8 1.33334V14.6667" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M11.3333 3.33334H6.33333C5.71449 3.33334 5.121 3.57918 4.68342 4.01676C4.24583 4.45435 4 5.04784 4 5.66668C4 6.28552 4.24583 6.87901 4.68342 7.31659C5.121 7.75418 5.71449 8.00001 6.33333 8.00001H9.66667C10.2855 8.00001 10.879 8.24584 11.3166 8.68343C11.7542 9.12101 12 9.7145 12 10.3333C12 10.9522 11.7542 11.5457 11.3166 11.9833C10.879 12.4208 10.2855 12.6667 9.66667 12.6667H4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 ';
                 break;
 
-            case "invertorySmall":
+            case "inventorySmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M1.97998 8.61333C1.78315 8.73159 1.6202 8.89867 1.5069 9.09839C1.39361 9.29812 1.33382 9.52371 1.33331 9.75333V11.9133C1.33382 12.143 1.39361 12.3685 1.5069 12.5683C1.6202 12.768 1.78315 12.9351 1.97998 13.0533L3.97998 14.2533C4.18735 14.3779 4.42472 14.4437 4.66665 14.4437C4.90857 14.4437 5.14594 14.3779 5.35331 14.2533L7.36841 13.0453C7.76021 12.8104 7.99998 12.3871 7.99998 11.9303V9.73605C7.99998 9.27941 7.76039 8.85625 7.36882 8.62131L5.33577 7.40147C4.92393 7.15437 4.40941 7.15447 3.99767 7.40172L1.97998 8.61333Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M4.66665 11L1.50665 9.10001" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M4.66669 11L8.00002 9" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -222,7 +222,7 @@ class IconChoice
                 break;
             case  "branchesSmall": 
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M4 14.6667V2.66668C4 2.48668 4 2.30001 4.04667 2.12001C4.08747 1.94043 4.17782 1.77589 4.30745 1.64508C4.43708 1.51427 4.60079 1.42244 4.78 1.38001C4.97333 1.33334 5.82 1.33334 6 1.33334H10.6667C10.8467 1.33334 11.0333 1.33334 11.2133 1.38001C11.3929 1.42082 11.5575 1.51116 11.6883 1.64079C11.8191 1.77042 11.9109 1.93414 11.9533 2.11334C12 2.30001 12 2.48668 12 2.66668V14.6667H4Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1.33339 9.33333V13.3333C1.33339 14.0667 1.93339 14.6667 2.66672 14.6667H4.00006V8H2.66672C2.48672 8 2.30006 8 2.12006 8.04667C1.94006 8.09333 1.77339 8.18 1.64006 8.31333C1.51339 8.44 1.42672 8.60667 1.38006 8.78667C1.34242 8.96633 1.32675 9.14989 1.33339 9.33333Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M13.88 6.04665C13.7003 6.00902 13.5168 5.99335 13.3333 5.99999H12V14.6667H13.3333C13.687 14.6667 14.0261 14.5262 14.2761 14.2761C14.5262 14.0261 14.6667 13.6869 14.6667 13.3333V7.33332C14.6667 7.14665 14.6667 6.96665 14.62 6.78665C14.5733 6.60665 14.4867 6.43999 14.3533 6.30665C14.2267 6.17999 14.06 6.09332 13.88 6.04665Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -236,7 +236,7 @@ class IconChoice
 
             case "servicesSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M7.33334 13.3333C6.16271 13.3369 5.03351 12.9003 4.16968 12.1103C3.30586 11.3202 2.77052 10.2343 2.66983 9.06805C2.56914 7.90176 2.91047 6.74022 3.62611 5.81381C4.34175 4.88739 5.37943 4.26378 6.53334 4.06665C10.3333 3.33331 11.3333 2.98665 12.6667 1.33331C13.3333 2.66665 14 4.11998 14 6.66665C14 10.3333 10.8133 13.3333 7.33334 13.3333Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M1.33331 14C1.33331 12 2.56665 10.4267 4.71998 10C6.33331 9.68 7.99998 8.66667 8.66665 8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -245,7 +245,7 @@ class IconChoice
                 break;
             case "usersSmall": 
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M10.6666 14V12.6667C10.6666 11.9594 10.3857 11.2811 9.8856 10.781C9.3855 10.281 8.70722 10 7.99998 10H3.99998C3.29274 10 2.61446 10.281 2.11436 10.781C1.61426 11.2811 1.33331 11.9594 1.33331 12.6667V14" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.99998 7.33333C7.47274 7.33333 8.66665 6.13943 8.66665 4.66667C8.66665 3.19391 7.47274 2 5.99998 2C4.52722 2 3.33331 3.19391 3.33331 4.66667C3.33331 6.13943 4.52722 7.33333 5.99998 7.33333Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M14.6667 14V12.6667C14.6662 12.0758 14.4696 11.5019 14.1076 11.0349C13.7456 10.5679 13.2388 10.2344 12.6667 10.0867" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -256,7 +256,7 @@ class IconChoice
             
             case "calendarSmall": 
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M12.6667 2.66669H3.33333C2.59695 2.66669 2 3.26364 2 4.00002V13.3334C2 14.0697 2.59695 14.6667 3.33333 14.6667H12.6667C13.403 14.6667 14 14.0697 14 13.3334V4.00002C14 3.26364 13.403 2.66669 12.6667 2.66669Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M10.6667 1.33331V3.99998" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M5.33331 1.33331V3.99998" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -273,7 +273,7 @@ class IconChoice
             
             case "messagesSmall":
                 $icon = '
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                         <path d="M14 7.66669C14.0023 8.5466 13.7967 9.41461 13.4 10.2C12.9296 11.1412 12.2065 11.9328 11.3116 12.4862C10.4168 13.0396 9.3855 13.3329 8.33333 13.3334C7.45342 13.3356 6.58541 13.1301 5.8 12.7334L2 14L3.26667 10.2C2.86995 9.41461 2.66437 8.5466 2.66667 7.66669C2.66707 6.61452 2.96041 5.58325 3.51381 4.68839C4.06722 3.79352 4.85884 3.0704 5.8 2.60002C6.58541 2.20331 7.45342 1.99772 8.33333 2.00002H8.66667C10.0562 2.07668 11.3687 2.66319 12.3528 3.64726C13.3368 4.63132 13.9233 5.94379 14 7.33335V7.66669Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
 
@@ -282,7 +282,7 @@ class IconChoice
             
             case "notificationSmall":
                 $icon = '
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                             <path d="M12 5.6665C12 4.60564 11.5786 3.58822 10.8284 2.83808C10.0783 2.08793 9.06087 1.6665 8 1.6665C6.93913 1.6665 5.92172 2.08793 5.17157 2.83808C4.42143 3.58822 4 4.60564 4 5.6665C4 10.3332 2 11.6665 2 11.6665H14C14 11.6665 12 10.3332 12 5.6665Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M9.15335 14.333C9.03614 14.5351 8.86791 14.7028 8.6655 14.8194C8.46309 14.9359 8.2336 14.9973 8.00001 14.9973C7.76643 14.9973 7.53694 14.9359 7.33453 14.8194C7.13212 14.7028 6.96389 14.5351 6.84668 14.333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -291,7 +291,7 @@ class IconChoice
             
             case "taskSmall": 
                 $icon = ' 
-                        <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                             <path d="M8.33366 1.6665H4.33366C3.96547 1.6665 3.66699 1.96498 3.66699 2.33317V3.6665C3.66699 4.03469 3.96547 4.33317 4.33366 4.33317H8.33366C8.70185 4.33317 9.00033 4.03469 9.00033 3.6665V2.33317C9.00033 1.96498 8.70185 1.6665 8.33366 1.6665Z" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M9 2.99982H10.3333C10.687 2.99982 11.0261 3.14029 11.2761 3.39034C11.5262 3.64039 11.6667 3.97953 11.6667 4.33315V13.6665C11.6667 14.0201 11.5262 14.3592 11.2761 14.6093C11.0261 14.8593 10.687 14.9998 10.3333 14.9998H2.33333C1.97971 14.9998 1.64057 14.8593 1.39052 14.6093C1.14048 14.3592 1 14.0201 1 13.6665V4.33315C1 3.97953 1.14048 3.64039 1.39052 3.39034C1.64057 3.14029 1.97971 2.99982 2.33333 2.99982H3.66667" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M6.33337 7.6665H9.00004" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -304,7 +304,7 @@ class IconChoice
             
             case "feedbacksSmall": 
                 $icon = ' 
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                             <path d="M7.66667 14.6668C11.3486 14.6668 14.3333 11.6821 14.3333 8.00016C14.3333 4.31826 11.3486 1.3335 7.66667 1.3335C3.98477 1.3335 1 4.31826 1 8.00016C1 11.6821 3.98477 14.6668 7.66667 14.6668Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M7.6665 5.3335V8.00016" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             <path d="M7.6665 10.6665H7.67317" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -320,7 +320,7 @@ class IconChoice
             $classes = $matches[1];
 
             // Add the dynamic classes here
-            $classes .= " w-{$width} h-{$height} fill-{$fill} text-{$lightstroke} dark:text-{$darkstroke} bg-{$bgcolor} dark:bg-{$darkbgcolor} hover:bg-{$bgcolorhighlight} dark:hover:bg-{$darkbgcolorhighlight} px-{$px} py-{$py} rounded-[6px]";
+            $classes .= " w-{$width} h-{$height} fill-{$fill} text-{$lightstroke} dark:text-{$darkstroke} bg-{$bgcolor} dark:bg-{$darkbgcolor} hover:bg-{$bgcolorhighlight} dark:hover:bg-{$darkbgcolorhighlight} px-{$px} py-{$py}";
             
             return 'class="' . $classes . '"';
         }, $icon);

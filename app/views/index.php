@@ -20,18 +20,17 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
+    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
 </head>
 
 <!-- Content -->
 
 <body class="flex flex-col items-center w-full min-h-screen p-0 m-0 bg-background font-inter tracking-custom leading-custom">
-    <!--<button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
+    <button onclick="toggleTheme()" class="bg-primary text-onPrimary dark:bg-darkPrimary dark:text-darkOnPrimary">
         Toggle Theme
-    </button>--><!-- TESTING PURPOSES -->
+    </button><!-- TESTING PURPOSES -->
     <?= $content; ?>
 </body>
-<script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Dom.js"></script>
 <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/LightModeDarkMode.js"></script>
 <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/ContinueRegDom.js"></script>
 

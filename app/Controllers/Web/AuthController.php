@@ -71,7 +71,7 @@ class AuthController
                 echo json_encode(['message' => 'Token is valid.']);
                 header('Location: /resetpassword');
             }else{
-                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid token.']; 
+                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid code. Please try again.']; 
                 echo json_encode(['error' => 'Invalid token.']);
                 header('Location: /verification');
             }
@@ -100,7 +100,7 @@ class AuthController
                 echo json_encode(['error' => 'Required fields are missing.']);
             }
         } else {
-            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Please try again.'];
             echo json_encode(['error' => 'Required fields are missing.']);
             header('Location: /uploadprofile');
         }

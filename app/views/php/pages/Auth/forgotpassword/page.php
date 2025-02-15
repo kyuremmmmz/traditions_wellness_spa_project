@@ -1,38 +1,28 @@
 <?php
 namespace Project\App\Views\Php\Pages\ForgotPassword;
 
-use Project\App\Views\Php\Components\Banners\RegularBanner;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Buttons\ReturnButton;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\Text;
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
 
 
 class Page
 {
     public static function forgotpassword()
     {
-        // TODO: EMAIL ERROR MESSAGE!!! dapat sabihin niya email not registered, invalid email format.
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+
         $emailError = $_SESSION['forgot_password_errors']['email'] ?? '';
-        $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
-        if ($serviceUnavailable) {
-            RegularBanner::render(
-                "Server Error",
-                "Something went wrong on our end. Please try again later.",
-                "alertBig",
-                "destructive",
-                "darkDestructive"
-            );
-            unset($_SESSION['server_error']);
-        }
+        
         unset($_SESSION['forgot_password_errors']);
-        // start of page
                     Header::render('Small');
         echo        '<main class="OneColumnContainer mt-[24px] sm:mt-[24px] bg-background dark:bg-darkBackground">';
+                        WorkingBanner::render(); // Banner Logic
                         ReturnButton::render("[316px]", "/login");
         echo            '<form method="POST" action="/forgot">';
                             Text::render("", "", "HeaderTwo text-left mt-[40px] mb-[8px] text-onBackground dark:text-darkOnBackground", "Forgot Password");

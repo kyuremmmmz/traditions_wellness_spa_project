@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById('password_field');
     const eightChar = document.getElementById('eightCharacters');
-    const specialCharacter = document.getElementById('specialCharacters');
+    const specialCharacter = document.getElementById('specialCharacter');
     const upperCaseCharacters = document.getElementById('upperCaseCharacters');
     const lowerCaseCharacters = document.getElementById('lowerCharacters');
     const numberCharacters = document.getElementById('numberCharacters');
