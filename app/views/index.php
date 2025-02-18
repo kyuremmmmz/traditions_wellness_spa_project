@@ -18,6 +18,7 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
     <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/LightModeDarkMode.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/ContinueRegDom.js"></script>
