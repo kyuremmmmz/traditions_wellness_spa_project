@@ -16,10 +16,9 @@ class Sidebar
         <!--<form action="/logout" method="post">
             <button type="submit">Logout puta</button>
         </form>-->
-        <aside class="h-full flex flex-col justify-between fixed left-0 top-0 w-[48px] hover:w-[258px] p-[8px] bg-surface dark:bg-darkSurface group hover:group duration-200 ease-in-out z-20">
-                <section> <!-- wag palitan ang id ng branch button-->
-                    <button id="branchButton" class="h-[32px] w-[32px] group-hover:w-[241px] group-hover:h-[48px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface p-[0px] transition-all duration-300 ease-in-out group-hover:opacity-100">
-                        <div class="flex w-[48px] group-hover:w-[225px] h-[32px] group-hover:pl-[8px] transition-all duration-300 ease-in-out group-hover:opacity-100">
+        <aside id="sidebar" class="w-[0px] bg-surface dark:bg-darkSurface p-[0px] sm:h-full sm:flex sm:flex-col sm:justify-between fixed sm:left-0 sm:top-0 sm:w-[48px] sm:hover:w-[258px] sm:p-[8px] sm:bg-surface sm:dark:bg-darkSurface group sm:hover:group duration-200 sm:ease-in-out z-10 sm:z-20 h-full overflow-y-auto">                <section> <!-- wag palitan ang id ng branch button-->
+                    <button id="sidebarButton" class="w-[0px] p-[0px] h-[48px] hidden sm:flex bg-background dark:bg-darkBackground border-border dark:border-darkBorder sm:border-none border-[1px] sm:border-[0px] sm:h-[32px] sm:w-[32px] sm:group-hover:w-[241px] sm:group-hover:h-[48px] rounded-[6px] sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface sm:p-[0px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
+                        <div id="sidebarContainer" class="flex w-[48px] sm:w-[48px] sm:group-hover:w-[225px] sm:h-[32px] sm:group-hover:h-[48px] sm:group-hover:p-[8px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
                             <div class="bg-primary dark:bg-darkPrimary w-[32px] h-[32px] rounded-[6px] flex justify-center items-center">
                                 <div class="w-[24px] h-[10.45px]">
                                     <svg viewBox="0 0 74 32" fill="white" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +29,7 @@ class Sidebar
                                     </svg>
                                 </div>
                             </div>
-                            <div class="h-full flex flex-col justify-center max-w-[0px] overflow-hidden pl-[8px] gap-[4px] opacity-0 transition-all duration-300 ease-in-out group-hover:max-w-[152px] group-hover:opacity-100">
+                            <div id="sidebarText" class="h-full flex w-[0px] flex-col justify-center sm:w-[0px] sm:overflow-hidden pl-[8px] gap-[4px] sm:opacity-0 transition-all duration-300 ease-in-out sm:group-hover:w-[152px] sm:group-hover:opacity-100">
                                 <?php 
                                 Text::render('','', 'text-onBackground text-semibold text-left text-[14px] text-onBackground dark:text-darkOnBackground leading-none', 'Ayala');
                                 Text::render('','', 'MiniOne text-onBackground text-left dark:text-darkOnBackground leading-none', 'Branch');
@@ -39,78 +38,81 @@ class Sidebar
                         </div>
                     </button>
 
-                    <div>
-                        <?php echo Text::render('', '', 'text-onBackgroundTwo h-[0px] group-hover:h-[12px] dark:text-darkOnBackgroundTwo CaptionMediumOne opacity-0 group-hover:opacity-100 leading-none w-[0px] group-hover:w-[241px] mt-[0px] group-hover:mt-[24px] pl-[8px] text-left transition-all duration-300 ease-in-out', 'Tools'); ?>
-                        <div class="flex flex-col mt-[12px]">
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                    <div class="mt-[48px] sm:mt-0">
+                        <div id="sidebarContainer" class="hidden sm:hidden">
+                            <?php echo Text::render('', '', 'text-onBackgroundTwo ml-[8px] dark:text-darkOnBackgroundTwo CaptionMediumOne leading-none  text-left transition-all duration-300 ease-in-out', 'Tools'); ?>
+                        </div>
+                        <?php echo Text::render('', '', 'text-onBackgroundTwo sm:h-[0px] hidden sm:flex sm:group-hover:h-[12px] dark:text-darkOnBackgroundTwo CaptionMediumOne sm:opacity-0 sm:group-hover:opacity-100 leading-none sm:w-[0px] sm:group-hover:w-[241px] sm:mt-[0px] sm:group-hover:mt-[24px] sm:pl-[8px] text-left transition-all duration-300 ease-in-out', 'Tools'); ?>
+                        <div class="flex flex-col mt-[12px] border-border dark:border-darkBorder border-[1px] sm:border-none rounded-[6px] sm:rounded-none bg-surface dark:bg-darkSurface sm:bg-surface sm:bg-darkSurface">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/dashboard">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] rounded-tr-[5px] rounded-tl-[5px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('dashboardSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Dashboard')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Dashboard')?>
                                     </button>
                                 </a>    
                             </div> 
 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/appointments">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('appointmentsSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Appointments')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Appointments')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/employees">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('employeesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Employees')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Employees')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/finances">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('financesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Finances')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Finances')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/inventory">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('inventorySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Inventory')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Inventory')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/branches">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('branchesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Branches')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Branches')?>
                                     </button>
                                 </a>    
                             </div>
                             
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/services">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('servicesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Services')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Services')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/users">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] rounded-br-[5px] rounded-bl-[5px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('usersSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Users')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Users')?>
                                     </button>
                                 </a>    
                             </div> 
@@ -120,63 +122,66 @@ class Sidebar
 
                 <section>
                     <div>
-                        <?php echo Text::render('','', 'text-onBackgroundTwo dark:text-darkOnBackgroundTwo CaptionMediumOne opacity-0 group-hover:opacity-100 leading-none w-[0px] group-hover:w-[241px] mt-[0px] group-hover:mt-[24px] pl-[8px] text-left transition-all duration-300 ease-in-out', 'Utilities'); ?>
-                        <div class="flex flex-col mt-[12px]">
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                        <div id="sidebarContainer" class="hidden sm:hidden">
+                            <?php echo Text::render('', '', 'text-onBackgroundTwo ml-[8px] dark:text-darkOnBackgroundTwo CaptionMediumOne leading-none mt-[24px] text-left transition-all duration-300 ease-in-out', 'Utilities'); ?>
+                        </div>
+                        <?php echo Text::render('', '', 'text-onBackgroundTwo sm:h-[0px] hidden sm:flex sm:group-hover:h-[12px] dark:text-darkOnBackgroundTwo CaptionMediumOne sm:opacity-0 sm:group-hover:opacity-100 leading-none sm:w-[0px] sm:group-hover:w-[241px] sm:mt-[0px] sm:group-hover:mt-[24px] sm:pl-[8px] text-left transition-all duration-300 ease-in-out', 'Utilities'); ?>
+                        <div class="flex flex-col mt-[12px] border-border dark:border-darkBorder border-[1px] sm:border-none rounded-[6px] sm:rounded-none bg-background dark:bg-darkBackground sm:bg-surface sm:bg-darkSurface">
+                        <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/calendar">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('calendarSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Calendar')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Calendar')?>
                                     </button>
                                 </a>    
-                            </div> 
+                            </div>
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
-                                <a href="/Messages">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                                <a href="/messages">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('messagesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Messages')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Messages')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/notifications">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('notificationSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Notifications')?>
+                                        Text::render('sidebarText', '', 'text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Notifications')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/tasks">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('taskSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', ' whitespace-nowrap text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Tasks & Routines')?>
+                                        Text::render('sidebarText', '', 'whitespace-nowrap text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Tasks & Routines')?>
                                     </button>
                                 </a>    
                             </div> 
 
-                            <div class="w-[32px] group-hover:w-[241px] transition-all duration-300 ease-in-out">
+                            <div id="sidebarButton" class="sm:w-[32px] sm:group-hover:w-[241px] transition-all duration-300 ease-in-out">
                                 <a href="/feedbacks">
-                                    <button class="w-full p-[8px] h-[32px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
+                                    <button id="sidebarButton" class="w-full p-[8px] pl-[14px] sm:pl-[8px] h-[40px] sm:h-[32px] rounded-br-[5px] rounded-bl-[5px] sm:rounded-[6px] bg-background dark:bg-darkBackground sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface flex items-center">
                                         <?php IconChoice::render('feedbacksSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
-                                        Text::render('', '', 'whitespace-nowrap text-onBackground w-[0px] group-hover:w-[152px] text-semibold text-left text-[14px] pl-[0px] group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100', 'Feedbacks & Reports')?>
+                                        Text::render('sidebarText', '', 'whitespace-nowrap text-onBackground w-[0px] sm:w-[0px] pl-[8px] sm:pl-[0px] sm:group-hover:w-[152px] text-semibold text-left text-[14px] pl-[8px] sm:group-hover:pl-[8px] text-onSurface dark:text-darkOnSurface leading-none sm:opacity-0 transition-all duration-300 ease-in-out opacity-0 sm:group-hover:opacity-100', 'Feedbacks & Reports')?>
                                     </button>
                                 </a>    
                             </div> 
                         </div>
                     </div>
 
-                    <button class="h-[32px] w-[32px] group group-hover:w-[241px]  mt-[12px] group-hover:mt-[24px]  group-hover:h-[48px] rounded-[6px] bg-surface dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface p-[0px] transition-all duration-300 ease-in-out group-hover:opacity-100">
-                        <div class="flex w-[48px] group-hover:w-[225px] h-[32px] group-hover:pl-[8px] transition-all duration-300 ease-in-out group-hover:opacity-100">
+                    <button id="sidebarButton" class="w-[0px] p-[0px] h-[48px] mt-[48px] sm:mt-[24px] hidden sm:flex bg-background dark:bg-darkBackground border-border dark:border-darkBorder sm:border-none border-[1px] sm:border-[0px] sm:h-[32px] sm:w-[32px] sm:group-hover:w-[241px] sm:group-hover:h-[48px] rounded-[6px] sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface sm:p-[0px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100 z-3">
+                        <div id="sidebarContainer" class="flex w-[48px] sm:w-[48px] sm:group-hover:w-[225px] sm:h-[32px] sm:group-hover:h-[48px] sm:group-hover:p-[8px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
                             <div class="bg-primary dark:bg-darkPrimary w-[32px] h-[32px] rounded-[6px] flex justify-center items-center">
                                 <?php  Photo::render() ?>
                             </div>
-                            <div class="h-full flex flex-col justify-center max-w-0 overflow-hidden pl-[8px] gap-[4px] opacity-0 transition-all duration-300 ease-in-out group-hover:max-w-[152px] group-hover:opacity-100">
+                            <div id="sidebarText" class="h-full flex w-[0px] flex-col justify-center sm:w-[0px] sm:overflow-hidden pl-[8px] gap-[4px] sm:opacity-0 transition-all duration-300 ease-in-out sm:group-hover:w-[152px] sm:group-hover:opacity-100">
                                 <?php 
-                                Text::render('','', 'text-onBackground text-semibold text-left text-[14px] text-onBackground dark:text-darkOnBackground leading-none', $userFullNameOnSideBar);
+                                Text::render('','', 'text-onBackground text-semibold text-left text-[14px] truncate text-onBackground dark:text-darkOnBackground leading-none', $userFullNameOnSideBar);
                                 Text::render('','', 'MiniOne text-onBackground text-left dark:text-darkOnBackground leading-none', $userRoleOnSideBar);
                                 ?>
                             </div>
@@ -184,11 +189,51 @@ class Sidebar
                     </button>
                 </section>
         </aside>
+        <button id="sidebarToggle" class="absolute transition-all duration-200 left-[40px] top-[48px] p-[4px] flex rounded-[6px] bg-background sm:hidden dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+            <div class="w-[24px] h-[24px] flex justify-center items-center">
+            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+            </div>
+            <?php
+            IconChoice::render('sideBarMedium', '24px', '24px', '', 'onSurface', 'darkOnSurface');?>
+        </button>
             <script> // THIS IS IMPORTANT! 
                 window.addEventListener('load', () => {
                     setTimeout(() => {
-                    document.getElementById('branchButton').classList.add('transition-all');
+                    document.getElementById('sidebarButton').classList.add('transition-all');
                     }, 2000); // 2000ms = 2 seconds
+                });
+                document.getElementById("sidebarToggle").addEventListener("click", function () {
+                    document.querySelectorAll("#sidebar").forEach(sidebar => {
+                        if (sidebar.classList.contains("w-[0px]")) {
+                            sidebar.classList.remove("w-[0px]", "p-[0px]");
+                            sidebar.classList.add("w-full", "p-[48px]");
+                        }
+                    });
+
+                    document.querySelectorAll("#sidebarButton").forEach(sidebarButton => {
+                        if (sidebarButton.classList.contains("w-[0px]", "hidden", "p-[0px]")) {
+                            sidebarButton.classList.remove("w-[0px]", "hidden", "p-[0px]");
+                            sidebarButton.classList.add("w-full", "flex", "p-[8px]");
+                        }
+                    });
+
+                    document.querySelectorAll("#sidebarText").forEach(sidebarText => {
+                        if (sidebarText.classList.contains("w-[0px]")) {
+                            sidebarText.classList.remove("w-[0px]",'opacity-0');
+                            sidebarText.classList.add("w-full", 'opacity-100');
+                        }
+                    });
+
+                    document.querySelectorAll("#sidebarContainer").forEach(sidebarContainer => {
+                        if (sidebarContainer.classList.contains("w-[48px]")) {
+                            sidebarContainer.classList.remove("w-[48px]");
+                            sidebarContainer.classList.add("w-full");
+                        }
+
+                        if (sidebarContainer.classList.contains("hidden")) {
+                            sidebarContainer.classList.remove("hidden");
+                        }
+                    });
                 });
             </script>
         <?php

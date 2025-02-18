@@ -33,13 +33,14 @@ class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
 
 echo <<<HTML
         <script src="/js/password-toggle.js"></script>
-        <div class='relative FieldContainer'>
+        <div class='relative FieldContainer min-w-[316px] max-w-[400px]'>
             <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)'; 
-                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$errorClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-md autofill:bg-background dark:autofill:bg-background' />
+                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$errorClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background' />
             <label for='{$id}' id='{$id}-label' 
-                class='absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
-                peer-placeholder-shown:translate-y-[10px] peer-focus:-translate-y-1 peer-focus:text-onBackground dark:peer-focus:text-darkOnBackground peer-focus:MiniOne
-                dark:bg-darkBackground bg-background px-[7px] pointer-events-none origin-top-left'>
+                class="transition-all ease-in-out absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
+                peer-placeholder-shown:translate-y-[10px] peer-placeholder-shown:BodyOne
+                peer-focus:-translate-y-1 peer-focus:text-onBackground dark:peer-focus:text-darkOnBackground peer-focus:MiniOne
+                peer-[&:not(:placeholder-shown)]:MiniOne peer-[&:not(:placeholder-shown)]:-translate-y-1 dark:bg-darkBackground bg-background px-[7px] pointer-events-none origin-top-left">
                 {$label}
             </label>
 HTML;       

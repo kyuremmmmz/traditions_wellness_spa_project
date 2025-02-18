@@ -120,15 +120,13 @@ class IconChoice
                     </svg>
                 ';
                 break;
-            
-            case "vectorSmall":
+            case "chevronRightSmall":
                 $icon = '
-                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
-                        <path d="M1 9L5 5L1 1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                        <path d="M7 1L1 7L7 13" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 ';
                 break;
-
             case "aboutSmall":
                 $icon = '
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
@@ -142,7 +140,7 @@ class IconChoice
             case "sideBarMedium":
                 $icon = '
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
-                        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#3F3F46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M3 9H21" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M9 21V9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -311,8 +309,49 @@ class IconChoice
                         </svg>
                 ';
                 break;
-        
-            
+            case "servicesMedium":
+                $icon = '
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M11 20C9.24406 20.0053 7.55025 19.3505 6.25452 18.1654C4.95878 16.9803 4.15577 15.3515 4.00474 13.6021C3.8537 11.8527 4.36569 10.1104 5.43915 8.72074C6.51261 7.33112 8.06913 6.3957 9.8 6.1C15.5 5 17 4.48 19 2C20 4 21 6.18 21 10C21 15.5 16.22 20 11 20Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 21C2 18 3.85 15.64 7.08 15C9.5 14.52 12 13 13 12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break;
+            case "plusSmall":
+                $icon = '
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M8 3.33334V12.6667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.33334 8H12.6667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break; 
+            case "defaultSmall":
+                $icon = '
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M3.33333 2C2.97971 2 2.64057 2.14048 2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12.6667 2C13.0203 2 13.3594 2.14048 13.6095 2.39052C13.8595 2.64057 14 2.97971 14 3.33333" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 12.6666C14 13.0202 13.8595 13.3594 13.6095 13.6094C13.3594 13.8595 13.0203 14 12.6667 14" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M3.33333 14C2.97971 14 2.64057 13.8595 2.39052 13.6094C2.14048 13.3594 2 13.0202 2 12.6666" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 2H6.66667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 14H6.66667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.33331 2H9.99998" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.33331 14H9.99998" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 6V6.66667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 6V6.66667" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 9.33337V10" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 9.33337V10" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break; 
+            case "plusBoxVerySmall":
+                $icon = '
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M9.5 1.5H2.5C1.94772 1.5 1.5 1.94772 1.5 2.5V9.5C1.5 10.0523 1.94772 10.5 2.5 10.5H9.5C10.0523 10.5 10.5 10.0523 10.5 9.5V2.5C10.5 1.94772 10.0523 1.5 9.5 1.5Z" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 4V8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 6H8" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break;
         };
 
         // Modify the SVG content with dynamic classes
