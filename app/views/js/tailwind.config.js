@@ -44,7 +44,7 @@ tailwind.config = {
                 darkOnBackgroundLink: '#5490F2',
                 darkBorder: '#262629',
                 darkBorderTwo: '#1E293B',
-                darkBorderHighlight: '#D4D4D8',
+                darkBorderHighlight: '#669FFC',
                 darkSuccess: '#15803D',
                 darkDestructive: '#D92626',
             },
@@ -99,7 +99,7 @@ tailwind.config = {
                 '.BodyTwo': {
                     fontSize: '14px',
                     fontWeight: '400',
-                    lineHeight: '150%'
+                    lineHeight: '150%',
                 },
                 '.CaptionMediumOne': {
                     fontSize: '12px',
@@ -113,6 +113,11 @@ tailwind.config = {
                 },
                 '.CaptionOne': {
                     fontSize: '12px',
+                    fontWeight: '400',
+                    lineHeight: '150%'
+                },
+                '.CaptionTwo': {
+                    fontSize: '10px',
                     fontWeight: '400',
                     lineHeight: '150%'
                 },
