@@ -5,7 +5,7 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
 
 
-    public static function render(string $name, string $label, string $type, string $id, ?string $error = null):void {
+    public static function render(string $name, string $label, string $type, string $id, ?string $error = null, ?string $extras = null, ?string $extraClasses = null):void {
         switch ($id) {
             case "email_field":
                 $Attributes = "title='Please enter a valid email address.'";
@@ -29,13 +29,21 @@ class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
 
         $errorClass = $error ? "border-destructive dark:border-darkDestructive focus:border-destructive dark:focus:border-darkDestructive" : "border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight";
 
-
+        // Add validation classes
+        $validationClass = "";
+        if ($type === 'number') {
+            $validationClass = "validate-price-number";
+        } elseif (strpos($name, 'newShortDescription') !== false) {
+            $validationClass = "validate-short-description";
+        } elseif ($name === 'serviceNameInputField') {
+            $validationClass = "validate-service-name";
+        }
 
 echo <<<HTML
         <script src="/js/password-toggle.js"></script>
-        <div class='relative FieldContainer min-w-[316px] max-w-[400px]'>
-            <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)'; 
-                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$errorClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background' />
+        <div class='relative FieldContainer min-w-[316px] w-full max-w-[400px]'>
+            <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)' $extras
+                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$extraClasses} {$errorClass} {$validationClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' />
             <label for='{$id}' id='{$id}-label' 
                 class="transition-all ease-in-out absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
                 peer-placeholder-shown:translate-y-[10px] peer-placeholder-shown:BodyOne
@@ -56,11 +64,11 @@ HTML;
 
             // Error Message
             if ($error) {
-                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[8px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive leading-none'>{$error}</div>";
+                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[14px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive leading-none'>{$error}</div>";
             } elseif ($id === "new_password_field") {
                 echo '';
             } else {
-                echo "<p class='MiniOne my-[8px] w-[316px] h-[8px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
+                echo "<p class='MiniOne my-[8px] w-[316px] h-[14px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
             }
  
 echo <<<HTML
@@ -93,6 +101,64 @@ echo <<<HTML
                     // If the input is empty, keep the error class
                     if (!input.value && '{$error}') {
                         input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    }
+                }
+
+                // Add validation for short descriptions
+                if (input.classList.contains('validate-short-description')) {
+                    const maxLength = 45;
+                    const value = input.value;
+                    const errorMessage = input.parentElement.querySelector('.text-destructive');
+                    
+                    if (value.length >= maxLength) {
+                        // Prevent further input if at max length
+                        if (value.length > maxLength) {
+                            input.value = value.slice(0, maxLength);
+                        }
+                        errorMessage.textContent = 'Maximum ' + maxLength + ' characters allowed';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    } else {
+                        input.classList.remove('border-destructive', 'dark:border-darkDestructive');
+                        errorMessage.innerHTML = "&nbsp;";
+                    }
+                }
+
+                // Add validation for service name
+                if (input.classList.contains('validate-service-name')) {
+                    const maxLength = 30;
+                    const value = input.value;
+                    const errorMessage = input.parentElement.querySelector('.text-destructive');
+                    
+                    if (value.length > maxLength) {
+                        input.value = value.slice(0, maxLength);
+                        errorMessage.textContent = 'Maximum ' + maxLength + ' characters allowed';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    } else {
+                        input.classList.remove('border-destructive', 'dark:border-darkDestructive');
+                        errorMessage.innerHTML = "&nbsp;";
+                    }
+                }
+
+                // Add number validation
+                if (input.classList.contains('validate-price-number')) {
+                    const value = input.value;
+                    const errorMessage = input.parentElement.querySelector('.text-destructive');
+                    
+                    if (value === '' || isNaN(value)) {
+                        errorMessage.textContent = 'Please enter a valid number';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                        return;
+                    }
+
+                    const numValue = parseFloat(value);
+                    if (numValue > 5000) {
+                        errorMessage.textContent = 'Price cannot exceed ₱5,000';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                        input.value = 5000;
+                    } else if (numValue < 0) {
+                        errorMessage.textContent = 'Price cannot be negative';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                        input.value = 0;
                     }
                 }
             }
