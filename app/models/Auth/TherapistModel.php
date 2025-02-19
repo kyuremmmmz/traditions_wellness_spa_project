@@ -1,10 +1,10 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Auth;
 
 use PDO;
 use Project\App\Config\Connection;
 
-class RolesModel
+class TherapistModel
 {
     private $pdo;
 
@@ -19,22 +19,20 @@ class RolesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByID($id)
+    public function findByPhone($phone)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE roleID = :roleID");
-        $stmt->execute(['roleID' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :phone");
+        $stmt->execute(['phone' => $phone]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createRoles($roleID, $name, $permissions)
+    public function findByEmail($email)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions, NOW(), NOW())");
-        return $stmt->execute([
-            'roleID' => $roleID,
-            'name' => ucfirst(str_replace('_', '', $name)),
-            'permissions' => json_encode(explode(',', $permissions)),
-        ]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
 
     public function update($id, $data)
     {

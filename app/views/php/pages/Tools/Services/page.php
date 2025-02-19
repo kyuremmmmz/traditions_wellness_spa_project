@@ -56,7 +56,7 @@ class Page
                             <?php IconChoice::render('plusBoxVerySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'CaptionMediumOne text-left text-onSurface dark:text-darkOnSurface leading-none pl-[12px]', 'Add a new category'); ?>
                         </button>
-                        <p id="test">dadas</p>
+                        <p id="test">No there's no services yet</p>
                     </div>
                 </div>
                 <form method="post" action="/createCategory">
@@ -97,14 +97,17 @@ class Page
                                 <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Category.&nbsp;'); ?>
                                 <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'Where does the new service belong?'); ?>
                             </div>
-                            <div class="mt-[24px] min-w-[316px] w-full max-w-[400px]">
-                                <div class="flex gap-2 min-w-[316px] w-full max-w-[400px]" >
-                                    <input type="radio" id="option1" name="radioGroup" class="hidden peer/option1">
-                                    <label for="option1"
-                                        class="cursor-pointer border-border dark:border-darkBorder rounded-[6px] w-full h-[40px] peer-checked/option1:border-borderHighlight dark:peer-checked/option1:border-darkBorderHighlight border-[2px] transition-all flex items-center pl-[12px]">
-                                        <?php IconChoice::render('defaultSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface'); ?>
-                                        <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface pl-[12px]', 'Category Name'); ?>
-                                    </label>
+
+                            <div id="radioContainer">
+                                <div class="mt-[24px] min-w-[316px] max-w-[400px]">
+                                    <div id="" class="flex gap-2">
+                                        <input type="radio" id="option1" name="radioGroup" class="hidden peer/option1">
+                                        <label for="option1" id="radioButton"
+                                            class="cursor-pointer border-border dark:border-darkBorder rounded-[6px] w-full h-[40px] peer-checked/option1:border-borderHighlight dark:peer-checked/option1:border-darkBorderHighlight border-[2px] transition-all flex items-center pl-[12px]">
+                                            <?php IconChoice::render('defaultSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface'); ?>
+                                            <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface pl-[12px]', 'Category Name'); ?>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </section>
