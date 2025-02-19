@@ -16,6 +16,7 @@ $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
 $router->post('/createCategory', 'ServicesController@createCategory');
 $router->get('/store', 'ServicesController@store');
+$router->post('/edit', 'ServicesController@edit');
 $router->post('/mobileLogin', 'AuthMobileController@login');
 $router->post('/mobileRegistration', 'AuthMobileController@registration');
 $router->post('/mobileVerification', 'AuthMobileController@verifyEmailAndPhone');
