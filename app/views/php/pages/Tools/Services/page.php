@@ -87,13 +87,13 @@ class Page
                             </div>
                         </button>
                     </div>
-                    <div class="min-w-[316px] w-full max-w-[400px] flex items-center sm:justify-start flex-col">
-                        <section class="flex flex-col gap-[12px] min-w-[316px] w-full max-w-[400px]">
+                    <div class="flex flex-col w-full  sm:items-start">
+                        <section class="flex flex-col gap-[12px] min-w-[316px] w-full justify-center sm:justify-start">
                             <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new service');
                             Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
                         </section>
-                        <section id="newServiceCategory" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out delay-400">
-                            <div class="flex items-end">
+                        <section id="newServiceCategory" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out delay-400 min-w-[316px] flex flex-col w-full items-center sm:items-start">
+                            <div class="flex items-end w-full max-w-[400px]">
                                 <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Category.&nbsp;'); ?>
                                 <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'Where does the new service belong?'); ?>
                             </div>
@@ -111,25 +111,25 @@ class Page
                             </div>
                         </section>
 
-                        <section id="newServiceName" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out" data-step="2" hidden>
-                            <div class="flex items-end">
+                        <section id="newServiceName" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out delay-400 min-w-[316px] flex flex-col w-full items-center sm:items-start" data-step="2" hidden>
+                            <div class="flex items-end w-full max-w-[400px]">
                                 <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Name.&nbsp;'); ?>
                                 <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'What is it called?'); ?>
                             </div>
-                            <div id="input-container">
-                                <div class="mt-[24px]" id="input-field-1">
-                                    <?php GlobalInputField::render('serviceNameInputField', 'Service Name', 'text', '', ''); ?>
+                            <div id="input-container" class="flex justify-center w-full sm:justify-start">
+                                <div class="mt-[24px] min-w-[316px] w-full max-w-[400px]" id="input-field-1">
+                                    <?php GlobalInputField::render('serviceNameInputField', 'Service Name', 'text', 'newServiceNameInputField', ''); ?>
                                 </div>
                             </div>
                         </section>
 
-                        <section id="newServiceDescription" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out" data-step="3" hidden>
-                            <div class="flex items-end">
+                        <section id="newServiceDescription" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out delay-400 min-w-[316px] flex flex-col w-full items-center sm:items-start" data-step="3" hidden>
+                            <div class="flex items-end w-full max-w-[400px]">
                                 <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Description.&nbsp;');
-                                Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'What are its details?'); ?>
+                                Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'What are its details? (Optional)');?>
                             </div>
                             <div class="mt-[24px] min-w-[316px] max-w-[400px]">
-                                <?php Text::render('', '', 'CaptionOne w-full text-onSurface dark:text-darkOnSurface', 'This is optional but you may provide a list of short descriptions. It should follow the order below.'); ?>
+                                <?php Text::render('', '', 'CaptionOne w-full text-onSurface dark:text-darkOnSurface', 'You may provide a list of short descriptions. It should follow the order below.'); ?>
                                 <ul class="CaptionOne text-onSurface dark:text-darkOnSurface">
                                     <li>• Duration <em>(1 hour, 1 hour and 30 minutes, etc.)</em></li>
                                     <li>• Choice <em>(Any choice of..., Hilot or Swedish Massage) </em></li>
@@ -137,59 +137,31 @@ class Page
                                     <li>• Number of clients <em>(For one person, For two people, etc.)</em></li>
                                 </ul>
                             </div>
-                            <div id="input-container-list" class="mt-[24px]">
-                                <?php
-                                // Initially render one input field
-                                GlobalInputField::render('', 'Short Description 1', 'text', '', '');
-                                ?>
+                            <div id="input-container-list" class="mt-[24px] w-full flex flex-col items-center sm:items-start">
                             </div>
-                            <button id="add-short-description" type="button" class="w-full h-[45px] px-[12px] border-dashed bg-background flex items-center text-left dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo rounded-[6px] autofill:bg-background dark:autofill:bg-background hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                            <button id="add-short-description" type="button" class="w-full h-[45px] max-w-[400px] min-w-[316px] px-[12px] border-dashed bg-background flex items-center text-left dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo rounded-[6px] autofill:bg-background dark:autofill:bg-background hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                                 <?php IconChoice::render('plusBoxVerySmall', '[16px]', '[16px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo');
                                 Text::render('', '', 'BodyOne pl-[12px] leading-none text-onBackgroundTwo dark:text-onBackgroundTwo', 'Add a new description'); ?>
                             </button>
                         </section>
 
-                        <section id="newServicePrice" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out" data-step="4" hidden>
-                            <div class="flex items-end">
+                        <section id="newServicePrice" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out flex flex-col w-full items-center sm:items-start" data-step="4" hidden>
+                            <div class="flex items-end w-full max-w-[400px]">
                                 <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Price.&nbsp;');
                                 Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'How much does it cost?'); ?>
                             </div>
-                            <div class="mt-[24px] w-full">
-                                <?php Text::render('', '', 'CaptionOne w-full text-onSurface dark:text-darkOnSurface', 'You can leave this blank if the price of the new service is affected by choice of duration, add-ons, and etc..'); ?>
+                            <div class="mt-[24px] w-full max-w-[400px]">
+                                <?php 
+                                // Simply render the input field with validation attributes
+                                GlobalInputField::render('newServicePriceInputField', 'Price', 'number', 'servicePriceInputField', '', 'min="0" max="5000" step="1"','validate-price-number'
+                                ); 
+                                ?>
                             </div>
-                            <div class="mt-[24px]">
-                                <?php GlobalInputField::render('', 'Price', 'number', '', ''); ?>
                         </section>
 
-                        <section id="newServicePreview" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out" data-step="5" hidden>
-                            <div class="flex items-end">
-                                <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Preview.&nbsp;'); ?>
-                            </div>
-                            <div class="mt-[24px] w-full">
-                                <?php Text::render('', '', 'CaptionOne w-full text-onSurface dark:text-darkOnSurface min-w-[316px] max-w-[400px]', 'Your new service will appear like this in your $categoryName Category.'); ?>
-                            </div>
-                            <div class="mt-[24px]">
-                                <div class="border-borderHighlight dark:border-darkBorderHighlight border-[2px] rounded-[6px] bg-background dark:bg-darkBackground p-[32px]  min-w-[316px] max-w-[400px]">
-                                    <div class="flex justify-between">
-                                        <?php Text::render('', '', 'BodyMediumTwo leading-none text-onBackground dark:text-darkOnBackground', '$serviceName');
-                                        Text::render('', '', 'BodyMediumTwo leading-none text-onBackground dark:text-darkOnBackground', '$priceOfService'); ?>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <ul class="CaptionOne text-onSurface dark:text-darkOnSurface mt-[16px]">
-                                            <li>• $shortDescription1</em></li>
-                                            <li>• ganto itsura kapag may description siya</em></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-[24px]">
-                                <div class="border-borderHighlight dark:border-darkBorderHighlight border-[2px] rounded-[6px] bg-background dark:bg-darkBackground flex justify-between items-center h-[40px]  min-w-[316px] max-w-[400px] px-[12px]">
-                                    <?php Text::render('', '', 'BodyTwo leading-none text-onBackground dark:text-darkOnBackground', 'gantokapagwala');
-                                    Text::render('', '', 'BodyMediumTwo leading-none text-onBackground dark:text-darkOnBackground', '$priceOfService'); ?>
-                                </div>
-                            </div>
-                            <div class="mt-[64px] mb-[150px] w-full flex justify-center translate-y-4 transition-all duration-500 ease-in-out">
-                                <?php PrimaryButton::render("Create service", "submit", "[56px]", "", "", "", "Create service"); ?>
+                        <section id="newServicePreview" class="mt-[64px] opacity-0 translate-y-4 transition-all duration-500 ease-in-out flex flex-col w-full items-center sm:items-start" data-step="5" hidden>
+                            <div class="mt-[64px] mb-[150px] w-full flex justify-center translate-y-4 transition-all duration-500 ease-in-out max-w-[400px]">      
+                                <?php PrimaryButton::render("Create Service", "button", "", "", "", "", null, null, null, "openConfirmationModal"); ?>
                             </div>
                         </section>
                     </div>
@@ -208,9 +180,35 @@ class Page
                     </div>
                 </div>
             </div>
+            <!-- Add Confirmation Modal -->
+            <div id="confirmationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+                <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] z-[60]">
+                    <div>
+                        <div class="w-full flex justify-end mb-[48px]">
+                            <button id="closeConfirmationModal" class="cursor-pointer w-[16px] h-[16px]">
+                                <?php IconChoice::render('exitSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');?>
+                            </button>
+                        </div>
+                        <?php Text::render('', '', 'HeaderTwo m-0 p-0 leading-none text-left text-onBackground dark:text-darkOnBackground mb-[16px]', 'Confirm new service');
+                        Text::render('', '', 'BodyTwo m-0 p-0 leading-none text-left text-onBackgroundTwo dark:text-darkOnBackgroundTwo mb-[32px]', 'Please review the details below.');?>
+                        
+                        <!-- Move the preview card here -->
+                            <div id="servicePreviewCard"  class="border-borderHighlight dark:border-darkBorderHighlight w-full border-[2px] rounded-[6px] bg-background dark:bg-darkBackground p-[32px]">
+                                <div class="flex justify-between">
+                                    <span id="previewServiceName" class="leading-none BodyMediumTwo text-onBackground dark:text-darkOnBackground">Service Name</span>
+                                    <span id="previewServicePrice" class="leading-none BodyMediumTwo text-onBackground dark:text-darkOnBackground">₱0.00</span>
+                                </div>
+                                <p id="previewShortDescription" class="flex flex-col CaptionOne text-onSurface dark:text-darkOnSurface mt-[16px]" style="word-break: break-word;"></p>
+                            </div>
+                    </div>
+                    <div class="flex justify-center gap-2 mt-[48px]">
+                        <?php PrimaryButton::render("Confirm", "submit"); ?>
+                    </div>
+                </div>
+            </div>
             <?php Sidebar::render(); ?>
         </main>
-<?php
+        <?php
     }
 }
 
