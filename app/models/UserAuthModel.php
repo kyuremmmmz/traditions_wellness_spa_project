@@ -26,21 +26,21 @@ class UserAuthModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($lastName, $firstName, $gender, $phone, $password, $email)
+    public function create($lastName, $firstName, $gender, $phone, $password, $email, $username)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (userID ,last_name, first_name, gender, phone, password,email, created_at, updated_at) VALUES (:userID,:lastname, :firstname, :gender, :phone, :password,:email, NOW(), NOW())");
+        $stmt = $this->pdo->prepare("INSERT INTO users (userID, last_name, first_name, gender, phone, password, email, username, role, created_at, updated_at) 
+            VALUES (:userID, :lastname, :firstname, :gender, :phone, :password, :email, :username, 'Customer', NOW(), NOW())");
         $user = random_int(100, 200);
-        return $stmt->execute(
-            [
-                'userID' => $user,
-                'lastname' => $lastName,
-                'firstname' => $firstName,
-                'gender' => $gender,
-                'phone' => $phone,
-                'password' => $password,
-                'email' => $email
-            ]
-        );
+        return $stmt->execute([
+            'userID' => $user,
+            'lastname' => $lastName,
+            'firstname' => $firstName,
+            'gender' => $gender,
+            'phone' => $phone,
+            'password' => $password,
+            'email' => $email,
+            'username' => $username
+        ]);
     }
 
     public function verifCode($verifCode, $email)

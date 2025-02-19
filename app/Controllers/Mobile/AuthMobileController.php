@@ -27,8 +27,43 @@ class AuthMobileController
     }
     public function registration()
     {
-        $file = json_decode(file_get_contents('php://input'), true);
-        if (isset($file['phone'])) {
+        header('Content-Type: application/json');
+
+        try {
+            $file = json_decode(file_get_contents('php://input'), true);
+            if (!$file) {
+                http_response_code(400);
+                echo json_encode([
+                    'error' => 'Invalid JSON data'
+                ]);
+                return;
+            }
+
+            if (!isset($file['phone'])) {
+                http_response_code(400);
+                echo json_encode([
+                    'error' => 'Phone number is required'
+                ]);
+                return;
+            }
+
+            // Handle both camelCase and lowercase keys
+            $firstName = $file['firstName'] ?? $file['firstname'] ?? null;
+            $lastName = $file['lastName'] ?? $file['lastname'] ?? null;
+
+            // Validate required fields
+            if (!$firstName || !$lastName) {
+                http_response_code(400);
+                echo json_encode([
+                    'error' => 'First name and last name are required'
+                ]);
+                return;
+            }
+
+            // Update the file array with correct keys
+            $file['firstName'] = $firstName;
+            $file['lastName'] = $lastName;
+
             $findPhone = $this->webController->findByPhone($file['phone']);
             if (is_array($findPhone) && $file['phone'] === $findPhone['phone']) {
                 http_response_code(401);
@@ -38,52 +73,72 @@ class AuthMobileController
                 $_SESSION['error'] = [
                     'message' => 'This phone already exist'
                 ];
-            }else{
-                if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/', $file['password'])) {
-                    http_response_code(400);
-                    echo json_encode([
-                        'error message' => 'Password must contain uppercase letters, lower case letters, special characters, and numbers'
-                    ]);
-                }else{
-                    $response = $this->controller->create(
-                        $file['lastName'],
-                        $file['firstName'],
-                        $file['gender'],
-                        $file['phone'],
-                        password_hash($file['password'], PASSWORD_BCRYPT),
-                        $file['email']
-                    );
-                    $findRole = $this->webController->findByPhone($file['phone']);
-                    if (is_array($findRole) && isset($findRole['phone'])) {
-                        $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
-                        echo json_encode([
-                            'status' => $createRole
-                        ]);
-                        $findRoles = $this->controller2->findByID($findRole['id']);
-                        if (is_array($findRoles)) {
-                            $createUserRoles = $this->controller3->createUserRoles($findRole['userID'], $findRoles['roleID']);
-                            echo json_encode([
-                                'status' => $createUserRoles
-                            ]);
-                        }
-                    }
-                    $verification = $this->verificationCode();
-                    $this->mail->authMailer(
-                        $file['email'],
-                        'Good day! ' . $file['firstName'] . ', This is your Vaerification code please do not share this code below',
-                        '' . $verification,
-                        $file['firstName']
-                    );
-                    $this->controller->verifCode($verification, $file['email']);
-                    echo json_encode([
-                        'message' => 'Signed up successfully',
-                        'status' => $response
-                    ]);
-                    $_SESSION['success'] = [
-                        'message' => 'Signed up successfully'
-                    ];
+                return;
+            }
+
+            if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/', $file['password'])) {
+                http_response_code(400);
+                echo json_encode([
+                    'error message' => 'Password must contain uppercase letters, lower case letters, special characters, and numbers'
+                ]);
+                return;
+            }
+
+            // Generate username
+            $username = strtolower(str_replace(' ', '', $file['firstName'])) . 
+                       strtolower(str_replace(' ', '', $file['lastName']));
+
+            $response = $this->controller->create(
+                $lastName,
+                $firstName,
+                $file['gender'],
+                $file['phone'],
+                password_hash($file['password'], PASSWORD_BCRYPT),
+                $file['email'],
+                $username
+            );
+
+            if (!$response) {
+                http_response_code(500);
+                echo json_encode([
+                    'error' => 'Failed to create user'
+                ]);
+                return;
+            }
+
+            $findRole = $this->webController->findByPhone($file['phone']);
+            if (is_array($findRole) && isset($findRole['phone'])) {
+                $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
+                $findRoles = $this->controller2->findByID($findRole['id']);
+                if (is_array($findRoles)) {
+                    $createUserRoles = $this->controller3->createUserRoles($findRole['userID'], $findRoles['roleID']);
                 }
             }
+
+            $verification = $this->verificationCode();
+            $this->mail->authMailer(
+                $file['email'],
+                'Good day! ' . $file['firstName'] . ', This is your Verification code please do not share this code below',
+                '' . $verification,
+                $file['firstName']
+            );
+            $this->controller->verifCode($verification, $file['email']);
+            
+            echo json_encode([
+                'message' => 'Signed up successfully',
+                'status' => true,
+                'data' => [
+                    'username' => $username,
+                    'email' => $file['email']
+                ]
+            ]);
+
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Server error',
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
