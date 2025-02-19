@@ -26,12 +26,6 @@ class ServicesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createService($data)
-    {
-        $stmt = $this->pdo->prepare("INSERT INTO services (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
-    }
-
 
     public function createCategory($category)
     {
@@ -41,11 +35,15 @@ class ServicesModel
         ]);
     }
 
-    public function update($id, $data)
+    public function update($id, $description, $price, $serviceName)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE services SET description = :description, price = :price, serviceName = :serviceName WHERE category = :radio");
+        return $stmt->execute([
+            'radio' => $id,
+            'description' => $description,
+            'price' => $price,
+            'serviceName' => $serviceName
+        ]);
     }
 
     public function delete($id)
