@@ -10,7 +10,7 @@ class Page
     public static function page()
     {
         ?>
-        <main class="w-full flex">
+        <main class="flex w-full">
             <?php Sidebar::render(); ?>
             <div class="ml-[48px]">
             </div>

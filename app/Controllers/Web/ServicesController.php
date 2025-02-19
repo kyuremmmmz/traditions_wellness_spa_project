@@ -1,6 +1,6 @@
 <?php
 namespace Project\App\Controllers\Web;
-use Project\App\Models\ServicesModel;
+use Project\App\Models\Services\ServicesModel;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 
 class ServicesController

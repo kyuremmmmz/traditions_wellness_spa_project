@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Auth;
 use Project\App\Config\Connection;
 use PDO;
 class PhotoUpdloadModel

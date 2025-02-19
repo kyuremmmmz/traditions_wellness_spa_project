@@ -1,9 +1,10 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Services;
+
 use PDO;
 use Project\App\Config\Connection;
 
-class CrudModelModel
+class ServicesModel
 {
     private $pdo;
 
@@ -14,7 +15,7 @@ class CrudModelModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM users");
+        $stmt = $this->pdo->query("SELECT * FROM services");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -25,10 +26,19 @@ class CrudModelModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($data =[])
+    public function createService($data)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (column1, column2) VALUES (:value1, :value2)");
+        $stmt = $this->pdo->prepare("INSERT INTO services (column1, column2) VALUES (:value1, :value2)");
         return $stmt->execute($data);
+    }
+
+
+    public function createCategory($category)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO services (category, updated_at, created_at) VALUES (:categoryNameField, NOW(), NOW())");
+        return $stmt->execute([
+            'categoryNameField' => $category
+        ]);
     }
 
     public function update($id, $data)

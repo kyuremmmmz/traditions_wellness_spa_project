@@ -1,10 +1,8 @@
 <?php
-namespace Project\App\Models;
-
-use PDO;
+namespace Project\App\Models\Auth;
 use Project\App\Config\Connection;
-
-class ServicesModel
+use Pdo;
+class UserRolesModel
 {
     private $pdo;
 
@@ -15,7 +13,7 @@ class ServicesModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT category FROM services");
+        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -26,20 +24,16 @@ class ServicesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createService($data)
+    public function createUserRoles($userID, $roleID)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO services (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
-    }
-
-
-    public function createCategory($category)
-    {
-        $stmt = $this->pdo->prepare("INSERT INTO services (category, updated_at, created_at) VALUES (:categoryNameField, NOW(), NOW())");
+        $stmt = $this->pdo->prepare("INSERT INTO user_roles (roleID, userID, created_at, updated_at) VALUES (:roleID, :userID, NOW(), NOW())");
         return $stmt->execute([
-            'categoryNameField' => $category
+            'userID' => $userID,
+            'roleID' => $roleID
         ]);
     }
+
+    
 
     public function update($id, $data)
     {

@@ -3,8 +3,10 @@
 namespace Project\App\Controllers\Web;
 
 use Project\App\Mail\Mailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\PhotoUpdloadModel;
+use Project\App\Models\Auth\UserRolesModel;
+
 
 class AuthController
 {
@@ -17,7 +19,7 @@ class AuthController
         $this->controller = new AuthModel();
         $this->mailer = new Mailer();
         $this->userRolesModel = new UserRolesModel();
-        $this->photos = new \Project\App\Models\PhotoUpdloadModel();
+        $this->photos = new PhotoUpdloadModel();
     }
 
     public function forgotPasswordSend()
@@ -164,10 +166,17 @@ class AuthController
                     'email' => $response['email'],
                     'photos' => $response['photos'],
                 ];
+                $_SESSION['u.id'] = [
+                    'role' => $response['role'],
+                    'username' => $response['username'],
+                    'last_name' => $response['last_name'],
+                    'first_name' => $response['first_name'],
+                    'email' => $response['email'],
+                ];
                 if (!empty($_POST['remember_me'])) {
                     setcookie('remember_cookie', base64_encode(json_encode($_SESSION['user']['role'])), time() + 3600);
                 }
-                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+                setcookie('user', base64_encode(json_encode($_SESSION['u.id'])), time() + 3600, '/');
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],

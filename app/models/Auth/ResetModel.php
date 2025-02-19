@@ -1,14 +1,14 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Auth;
 use Project\App\Config\Connection;
-use Pdo;
-class UserRolesModel
+use PDO;
+class ResetModel
 {
     private $pdo;
 
     public function __construct()
     {
-        $this->pdo = Connection::connection();
+        $this->pdo =  Connection::connection();
     }
 
     public function getAll()
@@ -24,23 +24,20 @@ class UserRolesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createUserRoles($userID, $roleID)
+    public function insertTokenForPhone($phone)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO user_roles (roleID, userID, created_at, updated_at) VALUES (:roleID, :userID, NOW(), NOW())");
-        return $stmt->execute([
-            'userID' => $userID,
-            'roleID' => $roleID
-        ]);
+        $stmt = $this->pdo->prepare("INSERT INTO reset_phone_numbers_token (phone, token) VALUES (:phone, :token)");
+        return $stmt->execute($phone);
     }
 
-    
-
-    public function update($id, $data)
+    public function update($token, $data, $number)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
+        $stmt = $this->pdo->prepare("UPDATE users SET phoone = :phone, column2 = :value2 WHERE token = :token AND phone = :phone");
+        $data['token'] = $token;
+        $data['phone'] = $number;
         return $stmt->execute($data);
     }
+
 
     public function delete($id)
     {

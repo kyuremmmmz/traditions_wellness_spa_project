@@ -1,10 +1,11 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Auth;
+
 
 use PDO;
 use Project\App\Config\Connection;
 
-class TherapistModel
+class ResetTokensModel
 {
     private $pdo;
 
@@ -19,19 +20,28 @@ class TherapistModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByPhone($phone)
+    public function find($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :phone");
-        $stmt->execute(['phone' => $phone]);
+        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
+        $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function findByEmail($email)
+    public function upsert($phone, $data)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-        $stmt->execute(['email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("INSERT INTO phone_reset_tokens (token, phone) VALUES (:token, :phone)");
+        $stmt->execute([
+            'phone' => $phone,
+            'token' => $data['token']
+        ]);
+        $update = $this->pdo->prepare("UPDATE users SET phone_tokens = :phone_tokens, phone = :phone WHERE phone_tokens = :phone_tokens AND phone=:phone");
+        $update->execute([
+            'phone' => $phone,
+            'phone_tokens' => $data['token']
+        ]);
+        return true;
     }
+
 
 
     public function update($id, $data)
