@@ -1,7 +1,8 @@
 <?php
 
-namespace Project\App\Views\Php\Pages\Dashboard;
+namespace Project\App\Views\Php\Pages\Tools\Services;
 
+use Project\App\Controllers\Web\ServicesController;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
@@ -55,9 +56,10 @@ class Page
                             <?php IconChoice::render('plusBoxVerySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'CaptionMediumOne text-left text-onSurface dark:text-darkOnSurface leading-none pl-[12px]', 'Add a new category'); ?>
                         </button>
+                        <p id="test">dadas</p>
                     </div>
                 </div>
-                <form method="post" action="">
+                <form method="post" action="/createCategory">
                     <div id="addANewCategoryModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
                         <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] h-[600px]">
                             <div>

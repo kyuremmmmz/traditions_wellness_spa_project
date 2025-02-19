@@ -1,6 +1,7 @@
 <?php
 namespace Project\App\Controllers\Web;
 use Project\App\Models\ServicesModel;
+use Project\App\Views\Php\Components\Banners\RegularBanner;
 
 class ServicesController
 {
@@ -12,20 +13,31 @@ class ServicesController
     {
         $data = $_POST;
         if (isset($data['categoryNameField'])) {
-            $data = $this->model->createCategory($data['categoryNameField']);
-            echo json_encode(
-                [
-                    'status' => $data
-                ]
-            );
+            if (empty($data['categoryNameField'])) {
+                header('Location: /services');
+            }else{
+                $data = $this->model->createCategory($data['categoryNameField']);
+                header('Location: /services');
+            }
+        }else{
+            header('Location: /services');
         }
     }
 
     public function store()
     {
-        // Code for storing new resources
-        echo "This is the store method of ServicesController.";
+        ob_clean();
+        $data = $this->model->getAll();
+        echo json_encode([
+            'message' => 'Connected successfully',
+            'data' => $data
+        ]);
+
+        exit;
     }
+
+
+
 
     public function edit($id)
     {

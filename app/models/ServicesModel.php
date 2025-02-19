@@ -15,7 +15,7 @@ class ServicesModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT category FROM services");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
