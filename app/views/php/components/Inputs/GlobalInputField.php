@@ -125,7 +125,7 @@ echo <<<HTML
 
                 // Add validation for service name
                 if (input.classList.contains('validate-service-name')) {
-                    const maxLength = 30;
+                    const maxLength = 25;
                     const value = input.value;
                     const errorMessage = input.parentElement.querySelector('.text-destructive');
                     
