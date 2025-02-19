@@ -10,15 +10,15 @@ class ImgUploadButton
     {
         echo '<div class="relative group">';
         echo '  <label for="imgUpload" id="imgUploadLabel" class="w-[128px] h-[128px] mt-[90px] bg-background dark:bg-darkBackground rounded-full hover:bg-secondary dark:hover:bg-darkSecondary border-[2px] border-border dark:border-darkBorder flex justify-center items-center cursor-pointer overflow-hidden relative">';
-        echo '      <img id="profilePreview" src="" alt="Profile Picture" class="w-full h-full object-cover rounded-full hidden absolute top-0 left-0"/>';
+        echo '      <img id="profilePreview" src="" alt="Profile Picture" class="absolute top-0 left-0 hidden object-cover w-full h-full rounded-full"/>';
         
         // Upload icon container (visible by default, hidden after image upload, reappears on hover)
-        echo '      <div id="uploadIconContainer" class="absolute inset-0 flex justify-center items-center rounded-full transition-opacity duration-300 opacity-100 group-hover:opacity-100">';
+        echo '      <div id="uploadIconContainer" class="absolute inset-0 flex items-center justify-center transition-opacity duration-300 rounded-full opacity-100 group-hover:opacity-100">';
         IconChoice::render('uploadBig', '[24px]', '[24px]', '', '[primary]', '[darkPrimary]');
         echo '      </div>';
 
         echo '  </label>';
-        echo '  <input type="file" id="imgUpload" name="imgUpload" class="hidden" accept="image/*" maxlength="2097152" />';
+        echo '  <input type="file" id="imgUpload" name="imgUpload" class="hidden" accept="image/*" />';
         echo '</div>';
 
         // JavaScript to handle image preview and icon behavior
