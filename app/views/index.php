@@ -21,6 +21,7 @@
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/LightModeDarkMode.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/ContinueRegDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/ServicesDom.js"></script>
 </head>
 
 <!-- Content -->

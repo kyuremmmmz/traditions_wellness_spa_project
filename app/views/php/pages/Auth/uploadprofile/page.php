@@ -10,7 +10,6 @@ use Project\App\Views\Php\Components\Texts\Text;
 
 class Page {
     public static function uploadprofile() {
-        session_start();
         unset($_SESSION['forgot_password_errors']);
 
         Header::render('Small');
