@@ -61,6 +61,15 @@ $router->view('/tasks', 'page', 'Utilities/Tasks', 'SessionMiddleware');
 $router->view('/feedbacks', 'page', 'Utilities/Feedbacks', 'SessionMiddleware');
 $router->view('/account', 'page', 'Utilities/Account', 'SessionMiddleware');
 $router->view('/personalinfo', 'page', 'Utilities/Personalinfo', 'SessionMiddleware');
+$router->view('/activities', 'page', 'Utilities/Activities', 'SessionMiddleware');
+$router->view('/reporttickets', 'page', 'Utilities/ReportTickets', 'SessionMiddleware');
+$router->view('/changepassword', 'page', 'Utilities/ChangeInfo/ChangePassword', 'SessionMiddleware');
+$router->view('/changeemail', 'page', 'Utilities/ChangeInfo/ChangeEmail', 'SessionMiddleware');
+$router->view('/changephonenumber', 'page', 'Utilities/ChangeInfo/ChangePhoneNumber', 'SessionMiddleware');
+$router->view('/verificationforchangeemail', 'page', 'Utilities/VerificationInfo/VerificationForChangeEmail', 'SessionMiddleware');
+$router->view('/editemail', 'page', 'Utilities/EditInfo/EditEmail', 'SessionMiddleware');
+$router->view('/verificationforchangephonenumber', 'page', 'Utilities/VerificationInfo/VerificationForChangePhoneNumber', 'SessionMiddleware');
+$router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {
