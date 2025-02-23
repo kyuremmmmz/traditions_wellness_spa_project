@@ -4,30 +4,9 @@ namespace Project\App\Views\Php\Components\Inputs;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
 
-
     public static function render(string $name, string $label, string $type, string $id, ?string $error = null, ?string $extras = null, ?string $extraClasses = null):void {
-        switch ($id) {
-            case "email_field":
-                $Attributes = "title='Please enter a valid email address.'";
-                break;
-            case "password_field": // ITO LANG DAPAT!
-                $Attributes = "title='Please enter your password.'";
-                break;
-            case "phone_number_field":
-                $Attributes = "pattern='^09[0-9]{9}$' title='Please enter your phone number.'";
-                break;
-            case "number_field":
-                $Attributes = "pattern='[0-9]{6}' title='Please enter your verification code.'";
-                break;
-            case "username_field_login":
-                $Attributes = "title='Please enter your username'";
-                break;
-            case "username_field":
-                $Attributes = "";
-                break;
-        }
 
-        $errorClass = $error ? "border-destructive dark:border-darkDestructive focus:border-destructive dark:focus:border-darkDestructive" : "border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight";
+        $errorClass = $error ? "border-destructive dark:border-darkDestructive focus:border-destructive dark:focus:border-darkDestructive" : "border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-borderHighlight";
 
         // Add validation classes
         $validationClass = "";
@@ -37,13 +16,15 @@ class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
             $validationClass = "validate-short-description";
         } elseif ($name === 'serviceNameInputField') {
             $validationClass = "validate-service-name";
+        } elseif ($name === 'firstNameInputField' || $name === 'lastNameInputField') {
+            $validationClass = "validate-name";
         }
 
 echo <<<HTML
         <script src="/js/password-toggle.js"></script>
         <div class='relative FieldContainer min-w-[316px] w-full max-w-[400px]'>
             <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)' $extras
-                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$extraClasses} {$errorClass} {$validationClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' />
+                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$extraClasses} {$errorClass} {$validationClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-borderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' />
             <label for='{$id}' id='{$id}-label' 
                 class="transition-all ease-in-out absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
                 peer-placeholder-shown:translate-y-[10px] peer-placeholder-shown:BodyOne
@@ -59,8 +40,6 @@ HTML;
                 IconChoice::render($eye, '[20px]', '[20px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo' );
                 echo '</div></button>';
             }
-
-
 
             // Error Message
             if ($error) {
@@ -86,7 +65,7 @@ echo <<<HTML
 
                     // Remove the error border when the user starts typing
                     input.classList.remove('border-destructive', 'dark:border-darkDestructive', 'focus:border-destructive', 'dark:focus:border-darkDestructive');
-                    input.classList.add('border-borderTwo', 'dark:border-darkBorderTwo', 'focus:border-borderHighlight', 'dark:focus:border-darkBorderHighlight'); // Reset to normal border
+                    input.classList.add('border-borderTwo', 'dark:border-darkBorderTwo', 'focus:border-borderHighlight', 'dark:focus:border-borderHighlight'); // Reset to normal border
 
                     // Clear the error message when user starts typing again
                     if (errorMessage) {
@@ -159,6 +138,26 @@ echo <<<HTML
                         errorMessage.textContent = 'Price cannot be negative';
                         input.classList.add('border-destructive', 'dark:border-darkDestructive');
                         input.value = 0;
+                    }
+                }
+
+                // Add validation for names
+                if (input.classList.contains('validate-name')) {
+                    const namePattern = /^[a-zA-Z\s'-]+$/;
+                    const maxLength = 25;
+                    const value = input.value;
+                    const errorMessage = input.parentElement.querySelector('.text-destructive');
+
+                    if (!namePattern.test(value)) {
+                        errorMessage.textContent = 'Please enter a valid name';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    } else if (value.length > maxLength) {
+                        input.value = value.slice(0, maxLength);
+                        errorMessage.textContent = 'Maximum ' + maxLength + ' characters allowed';
+                        input.classList.add('border-destructive', 'dark:border-darkDestructive');
+                    } else {
+                        input.classList.remove('border-destructive', 'dark:border-darkDestructive');
+                        errorMessage.innerHTML = "&nbsp;";
                     }
                 }
             }

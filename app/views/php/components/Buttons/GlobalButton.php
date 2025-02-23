@@ -15,7 +15,7 @@ class GlobalButton
                 $class="text-onPrimary dark:text-darkOnPrimary transition-all ease-in-out text-BodyMediumTwo bg-primary dark:bg-darkPrimary hover:bg-primaryHover dark:hover:bg-darkPrimaryHover disabled:bg-secondaryVariant dark:disabled:bg-darkSecondaryVariant rounded-[6px] w-[148px] h-[40px]";
                 break;
             case "secondary":
-                $class="";
+                $class="text-onSurface dark:text-darkOnSurface transition-all ease-in-out text-BodyMediumTwo bg-background dark:bg-darkBackground hover:bg-secondary dark:hover:bg-darkSecondary disabled:bg-secondaryVariant dark:disabled:bg-darkSecondaryVariant rounded-[6px] w-[148px] h-[40px]";
                 break;
             case "navigationMain":
                 $class="";

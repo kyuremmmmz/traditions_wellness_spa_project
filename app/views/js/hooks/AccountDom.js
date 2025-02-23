@@ -3,18 +3,43 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const openPersonalInfoModalButton = document.getElementById("openPersonalInfoModalButton");
-    const personalInfoModal = document.getElementById("personalInfoModal");
-    const closePersonalInfoModalButton = document.getElementById("closePersonalInfoModalButton");
+    const accountPage = (function() {
+        const openPersonalInformationButton = document.getElementById("openPersonalInformationButton");
+        const personalInformationModal = document.getElementById("personalInformationModal");
+        const closePersonalInformationButton = document.getElementById("closePersonalInformationButton");
+        const savePersonalInformationButton = document.getElementById("savePersonalInformationButton");
+        const personalInformationConfirmationDialogBox = document.getElementById("personalInformationConfirmationDialogBox");
+        const closePersonalInformationConfirmationDialogBox = document.getElementById("closePersonalInformationConfirmationDialogBox");
 
-    openPersonalInfoModalButton.addEventListener("click", function () {
-        personalInfoModal.classList.remove("translate-x-full");
-        document.body.classList.add("overflow-hidden"); 
-    });
+        function init() {
+            openPersonalInformationButton.addEventListener("click", openModal);
+            closePersonalInformationButton.addEventListener("click", closeModal);
+            savePersonalInformationButton.addEventListener("click", showPersonalInformationConfirmationDialogBox);
+            closePersonalInformationConfirmationDialogBox.addEventListener("click", hidePersonalInformationConfirmationDialogBox);
+        }
 
-    // Close modal
-    closePersonalInfoModalButton.addEventListener("click", function () {
-        personalInfoModal.classList.add("translate-x-full");
-        document.body.classList.remove("overflow-hidden");
-    });
+        function openModal() {
+            personalInformationModal.classList.remove("translate-x-full");
+            document.body.classList.add("overflow-hidden");
+        }
+
+        function closeModal() {
+            personalInformationModal.classList.add("translate-x-full");
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        function showPersonalInformationConfirmationDialogBox() {
+            personalInformationConfirmationDialogBox.classList.remove("hidden");
+        }
+
+        function hidePersonalInformationConfirmationDialogBox() {
+            personalInformationConfirmationDialogBox.classList.add("hidden");
+        }
+
+        return {
+            init: init
+        };
+    })();
+
+    accountPage.init();
 });
