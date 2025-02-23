@@ -57,8 +57,8 @@ class Page
                         <?php Text::render('', '', 'BodyMediumOne leading-none w-full h-[32px] relative right-[16px] flex items-center justify-center text-onBackground text-center dark:text-darkOnBackground', 'Personal Information'); ?>
                     </section>
                     <section class="flex flex-col mb-[32px] min-w-[316px] max-w-[400px] w-full">
-                        <?php GlobalInputField::render('firstNameInputField', 'First Name', 'text', '', '', '', '');
-                        GlobalInputField::render('lastNameInputField', 'Last Name', 'text', '', '', '', '');
+                        <?php GlobalInputField::render('firstNameInputField', 'First Name', 'text', 'firstNameInputField', '', '', '');
+                        GlobalInputField::render('lastNameInputField', 'Last Name', 'text', 'lastNameInputField', '', '', '');
                         $options = array(
                             'Male' => 'Male',
                             'Female' => 'Female',
@@ -84,6 +84,18 @@ class Page
                     </div>
                 </div>
 
+                <!-- Personal Information Warning Dialog Box -->
+                <div id="personalInformationWarningDialogBox" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+                    <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] z-[60]">
+                        <div class="flex flex-col justify-center gap-2 mt-[48px]">
+                            <?php Text::render('', '', 'BodyOne m-0 p-0 text-center text-onBackground dark:text-darkOnBackground mb-[48px]', 'Are you sure you want to proceed? Unsaved changes will be lost.'); ?>
+                            <div class="flex w-full justify-center gap-[24px]">
+                                <?php GlobalButton::render("primary", 'Proceed', '', '', '');
+                                GlobalButton::render('secondary', "Cancel", "", "", "closePersonalInformationWarningDialogBox"); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- More Dialog Boxes-->
             </div>
             <?php Sidebar::render(); ?>
