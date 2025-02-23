@@ -297,7 +297,7 @@ class Page
                             </button>
                         </div>
                         <div class="">
-                            <?php Text::render('', '', 'HeaderTwo text-onBackground dark:text-onBackground text-left leading-none', 'Category Name'); ?>
+                            <?php Text::render('', '', 'HeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Category Name'); ?>
                         </div>
                     </div>
                     <!-- Add Confirmation Modal -->
@@ -330,8 +330,9 @@ class Page
                             </div>
                         </div>
                     </div>
-                </form>
-                <?php Sidebar::render(); ?>
+                </div>
+            </div>
+            <?php Sidebar::render(); ?>
         </main>
 <?php
     }
