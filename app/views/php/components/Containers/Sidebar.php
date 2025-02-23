@@ -169,7 +169,7 @@ class Sidebar
                         <button id="sidebarButton" class="w-[0px] p-[0px] h-[48px] mt-[48px] sm:mt-[24px] hidden sm:flex bg-background dark:bg-darkBackground border-border dark:border-darkBorder sm:border-none border-[1px] sm:border-[0px] sm:h-[32px] sm:w-[32px] sm:group-hover:w-[241px] sm:group-hover:h-[48px] rounded-[6px] sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface sm:p-[0px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100 z-3">
                             <div id="sidebarContainer" class="flex w-[48px] sm:w-[48px] sm:group-hover:w-[225px] sm:h-[32px] sm:group-hover:h-[48px] sm:group-hover:p-[8px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
                                 <div class="bg-primary dark:bg-darkPrimary w-[32px] h-[32px] rounded-[6px] flex justify-center items-center">
-                                    <?php Photo::render() ?>
+                                    <?php  Photo::render() ?>
                                 </div>
                                 <div id="sidebarText" class="h-full flex w-[0px] flex-col justify-center sm:w-[0px] sm:overflow-hidden pl-[8px] gap-[4px] sm:opacity-0 transition-all duration-300 ease-in-out sm:group-hover:w-[152px] sm:group-hover:opacity-100">
                                     <?php 
