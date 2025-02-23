@@ -1,6 +1,6 @@
 <?php
 namespace Project\App\Controllers\Web;
-use Project\App\Models\ServicesModel;
+use Project\App\Models\Services\ServicesModel;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 
 class ServicesController
@@ -39,10 +39,13 @@ class ServicesController
 
 
 
-    public function edit($id)
+    public function edit()
     {
-        // Code for showing an edit form
-        echo "This is the edit method of ServicesController for ID: $id.";
+        $data = $_POST;
+        if (isset($data['radioGroup'])) {
+            $response = $this->model->update($data['radio'], json_encode($data['descriptions']), $data['price'], $data['serviceName']);
+            header('Location:/services');
+        }
     }
 
     public function update($id)

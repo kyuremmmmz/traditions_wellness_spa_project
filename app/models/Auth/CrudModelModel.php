@@ -1,10 +1,9 @@
 <?php
-namespace Project\App\Models;
-
+namespace Project\App\Models\Auth;
 use PDO;
 use Project\App\Config\Connection;
 
-class RolesModel
+class CrudModelModel
 {
     private $pdo;
 
@@ -15,25 +14,21 @@ class RolesModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT * FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findByID($id)
+    public function find($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE roleID = :roleID");
-        $stmt->execute(['roleID' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
+        $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createRoles($roleID, $name, $permissions)
+    public function create($data =[])
     {
-        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions, NOW(), NOW())");
-        return $stmt->execute([
-            'roleID' => $roleID,
-            'name' => ucfirst(str_replace('_', '', $name)),
-            'permissions' => json_encode(explode(',', $permissions)),
-        ]);
+        $stmt = $this->pdo->prepare("INSERT INTO users (column1, column2) VALUES (:value1, :value2)");
+        return $stmt->execute($data);
     }
 
     public function update($id, $data)

@@ -1,11 +1,10 @@
 <?php
-namespace Project\App\Models;
-
+namespace Project\App\Models\Auth;
 
 use PDO;
 use Project\App\Config\Connection;
 
-class ResetTokensModel
+class RolesModel
 {
     private $pdo;
 
@@ -20,29 +19,22 @@ class ResetTokensModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function findByID($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM roles WHERE roleID = :roleID");
+        $stmt->execute(['roleID' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function upsert($phone, $data)
+    public function createRoles($roleID, $name, $permissions)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO phone_reset_tokens (token, phone) VALUES (:token, :phone)");
-        $stmt->execute([
-            'phone' => $phone,
-            'token' => $data['token']
+        $stmt = $this->pdo->prepare("INSERT INTO roles (roleID, name, permissions, created_at, updated_at) VALUES (:roleID, :name, :permissions, NOW(), NOW())");
+        return $stmt->execute([
+            'roleID' => $roleID,
+            'name' => ucfirst(str_replace('_', '', $name)),
+            'permissions' => json_encode(explode(',', $permissions)),
         ]);
-        $update = $this->pdo->prepare("UPDATE users SET phone_tokens = :phone_tokens, phone = :phone WHERE phone_tokens = :phone_tokens AND phone=:phone");
-        $update->execute([
-            'phone' => $phone,
-            'phone_tokens' => $data['token']
-        ]);
-        return true;
     }
-
-
 
     public function update($id, $data)
     {

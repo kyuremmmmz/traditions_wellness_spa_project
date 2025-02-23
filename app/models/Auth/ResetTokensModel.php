@@ -1,10 +1,11 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Auth;
+
 
 use PDO;
 use Project\App\Config\Connection;
 
-class ServicesModel
+class ResetTokensModel
 {
     private $pdo;
 
@@ -15,7 +16,7 @@ class ServicesModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT category FROM services");
+        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -26,20 +27,22 @@ class ServicesModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function createService($data)
+    public function upsert($phone, $data)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO services (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
-    }
-
-
-    public function createCategory($category)
-    {
-        $stmt = $this->pdo->prepare("INSERT INTO services (category, updated_at, created_at) VALUES (:categoryNameField, NOW(), NOW())");
-        return $stmt->execute([
-            'categoryNameField' => $category
+        $stmt = $this->pdo->prepare("INSERT INTO phone_reset_tokens (token, phone) VALUES (:token, :phone)");
+        $stmt->execute([
+            'phone' => $phone,
+            'token' => $data['token']
         ]);
+        $update = $this->pdo->prepare("UPDATE users SET phone_tokens = :phone_tokens, phone = :phone WHERE phone_tokens = :phone_tokens AND phone=:phone");
+        $update->execute([
+            'phone' => $phone,
+            'phone_tokens' => $data['token']
+        ]);
+        return true;
     }
+
+
 
     public function update($id, $data)
     {

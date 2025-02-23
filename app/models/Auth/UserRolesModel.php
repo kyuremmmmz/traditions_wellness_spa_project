@@ -1,9 +1,8 @@
 <?php
-namespace Project\App\Models;
-use PDO;
+namespace Project\App\Models\Auth;
 use Project\App\Config\Connection;
-
-class CrudModelModel
+use Pdo;
+class UserRolesModel
 {
     private $pdo;
 
@@ -14,7 +13,7 @@ class CrudModelModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM users");
+        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -25,11 +24,16 @@ class CrudModelModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($data =[])
+    public function createUserRoles($userID, $roleID)
     {
-        $stmt = $this->pdo->prepare("INSERT INTO users (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("INSERT INTO user_roles (roleID, userID, created_at, updated_at) VALUES (:roleID, :userID, NOW(), NOW())");
+        return $stmt->execute([
+            'userID' => $userID,
+            'roleID' => $roleID
+        ]);
     }
+
+    
 
     public function update($id, $data)
     {

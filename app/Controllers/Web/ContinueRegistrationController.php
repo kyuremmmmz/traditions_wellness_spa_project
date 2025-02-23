@@ -1,6 +1,7 @@
 <?php
 namespace Project\App\Controllers\Web;
-use Project\App\Models\ResetPasswordModel;
+
+use Project\App\Models\Auth\ResetPasswordModel;
 
 class ContinueRegistrationController
 {
