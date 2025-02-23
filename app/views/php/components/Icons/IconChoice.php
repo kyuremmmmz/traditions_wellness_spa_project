@@ -352,6 +352,25 @@ class IconChoice
                         </svg>
                 ';
                 break;
+            case "addServiceSmall":
+                $icon = '
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M7.3334 13.3333C6.16277 13.3369 5.03357 12.9003 4.16975 12.1103C3.30592 11.3202 2.77058 10.2343 2.66989 9.06805C2.5692 7.90176 2.91053 6.74022 3.62617 5.81381C4.34181 4.88739 5.37949 4.26378 6.5334 4.06665C10.3334 3.33331 11.3334 2.98665 12.6667 1.33331C13.3334 2.66665 14.0001 4.11998 14.0001 6.66665C14.0001 7.91902 13.9616 8.32946 13.3334 9.33331" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M1.33325 14C1.33325 12 2.56659 10.4267 4.71992 10C6.33325 9.68 7.99992 8.66667 8.66659 8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M9.33325 12H13.3333" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.3333 10V14" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break;
+            case "logoutSmall":
+                $icon = '
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M6 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H6" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.6667 11.3334L14.0001 8.00002L10.6667 4.66669" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 8H6" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break;
         };
 
         // Modify the SVG content with dynamic classes

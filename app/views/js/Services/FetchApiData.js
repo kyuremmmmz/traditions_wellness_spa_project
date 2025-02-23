@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const listData = document.getElementById('test');
     
     const fetchData = async () => {
-        const response = await fetch('http://localhost:8000/store');
+        const response = await fetch('http://192.168.0.3/store');
         const jsonData = await response.json();
         if (jsonData.data && Array.isArray(jsonData.data)) {
             console.log(jsonData);

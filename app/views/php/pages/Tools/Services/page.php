@@ -2,7 +2,6 @@
 
 namespace Project\App\Views\Php\Pages\Tools\Services;
 
-use Project\App\Controllers\Web\ServicesController;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
@@ -20,10 +19,10 @@ class Page
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
                 <div id="topSection">
                     <section class="flex h-[50px]">
-                        <button class="w-[50px] h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
+                        <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
                             <?php IconChoice::render('servicesMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
-                        <div class="h-full flex flex-col justify-center h-full w-[232px] pl-[8px] gap-[4px]">
+                        <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[8px] gap-[4px]">
                             <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Services');
                             echo LastUpdated::render(); ?>
                         </div>
@@ -31,8 +30,8 @@ class Page
 
 
                     <section class="flex mt-[24px]">
-                        <button id="addANewServiceButton" class="w-[200px] h-[42px] flex justify-start items-center pl-[12px] bg-primary dark:bg-darkPrimary hover:bg-primaryHover dark:hover:bg-darkPrimaryHover rounded-[6px] transition-all">
-                            <?php IconChoice::render('plusSmall', '[16px]', '[16px]', '', 'onPrimary', 'darkOnPrimary');
+                        <button id="addANewServiceButton" class="min-w-[200px] min-h-[42px] flex justify-start items-center pl-[12px] bg-primary dark:bg-darkPrimary hover:bg-primaryHover dark:hover:bg-darkPrimaryHover rounded-[6px] transition-all">
+                            <?php IconChoice::render('addServiceSmall', '[16px]', '[16px]', '', 'onPrimary', 'darkOnPrimary');
                             Text::render('', '', 'BodyTwo leading-none text-onPrimary dark:text-darkOnPrimary pl-[12px]', 'Add a new service'); ?>
                         </button>
                     </section>
@@ -52,34 +51,57 @@ class Page
                             </div>
                             <?php IconChoice::render('chevronRightSmall', '[6px] rotate-180 mr-[12px]', '[10px]', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
-                        <button id="openAddANewCategoryModal" class="flex transition-all justify-center items-center m-[16px] w-[282px] h-[32px] rounded-[6px] border-[1px] border-border border-dashed dark:border-darkBorder bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <button id="openAddANewCategorySection" class="flex transition-all justify-center items-center m-[16px] w-[282px] h-[32px] rounded-[6px] border-[1px] border-border border-dashed dark:border-darkBorder bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <?php IconChoice::render('plusBoxVerySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'CaptionMediumOne text-left text-onSurface dark:text-darkOnSurface leading-none pl-[12px]', 'Add a new category'); ?>
                         </button>
-                        <p id="test">dadas</p>
                     </div>
                 </div>
-                <form method="post" action="/createCategory">
-                    <div id="addANewCategoryModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
-                        <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] h-[600px]">
-                            <div>
-                                <div class="w-full flex justify-end mb-[48px]">
-                                    <button id="closeAddANewCategoryModal" class="cursor-pointer w-[16px] h-[16px] ">
-                                        <?php IconChoice::render('exitSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface'); ?>
-                                    </button>
-                                </div>
-                                <?php Text::render('', '', 'HeaderTwo m-0 p-0 leading-none text-left text-onBackground dark:text-darkOnBackground', 'Add a new category');
-                                Text::render('', '', 'BodyTwo m-0 p-0  my-[16px] leading-none text-left text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.');
-                                GlobalInputField::render('categoryNameField', 'Category Name', 'text', '', ''); ?>
+                <div id="addANewCategorySection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
+                    <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
+                        <button id="closeAddANewCategorySection" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                            <div class="w-[24px] h-[24px] flex justify-center items-center">
+                                <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                             </div>
-                            <div class="flex justify-center gap-2">
+                        </button>
+                    </div>
+                    <form method="post" action="/createCategory">
+                        <div class="w-full flex sm:items-start flex-col">
+                            <section class="flex flex-col gap-[12px] min-w-[316px] w-full justify-center sm:justify-start">
+                                <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new category');
+                                Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                            </section>
+                            <section class="mt-[64px] translate-y-4 transition-all duration-500 ease-in-out delay-400 min-w-[316px] flex flex-col w-full items-center sm:items-start" data-step="2" hidden>
+                                <div class="flex items-end w-full max-w-[400px]">
+                                    <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Name.&nbsp;'); ?>
+                                    <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', 'What is it called?'); ?>
+                                </div>
+                                <div class="w-full flex justify-center sm:justify-start">
+                                    <div class="mt-[24px] min-w-[316px] w-full max-w-[400px]">
+                                        <?php GlobalInputField::render('categoryNameField', 'Service Name', 'text', '', ''); ?>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="mt-[64px] translate-y-4 transition-all duration-500 ease-in-out delay-400 min-w-[316px] flex flex-col w-full items-center sm:items-start" data-step="2" hidden>
+                                <div class="flex items-end w-full max-w-[400px]">
+                                    <?php Text::render('', '', 'BodyMediumOne leading-none text-onBackground dark:text-darkOnBackground', 'Icon.&nbsp;'); ?>
+                                    <?php Text::render('', '', 'BodyMediumTwo leading-none text-onSurface dark:text-darkOnSurface', ''); ?>
+                                </div>
+                                <div class="w-full flex justify-center sm:justify-start">
+                                    <div class="mt-[24px] min-w-[316px] w-full max-w-[400px]">
+                                        <?php GlobalInputField::render('categoryNameField', 'Service Name', 'text', '', ''); ?>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="flex justify-center gap-2 mt-[48px]">
                                 <?php PrimaryButton::render('Create', 'submit'); ?>
                             </div>
                         </div>
-                    </div>
-                </form>
-
-                <div id="addANewServiceSection" class="sm:ml-[48px] ml-[0px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
+                    </form>
+                </div>
+                
+                <!-- Add a new service -->
+                <div id="addANewServiceSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
                     <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
                         <button id="closeAddANewServiceButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
@@ -165,7 +187,8 @@ class Page
                     </div>
                 </div>
 
-                <div id="categoryDetailsSection" class="fixed sm:ml-[48px] sm:px-[20%] px-[48px] inset-0 bg-background flex flex-col mt-[48px] sm:mt-[160px] w-full dark:bg-darkBackground transform translate-x-full transition-transform duration-300 ease-in-out z-4">
+                <!-- Category Details -->
+                <div id="categoryDetailsSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
                     <div class="w-full flex justify-start mb-[48px]">
                         <button id="closeCategoryDetails" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
@@ -174,7 +197,7 @@ class Page
                         </button>
                     </div>
                     <div class="">
-                        <?php Text::render('', '', 'HeaderTwo text-onBackground dark:text-onBackground text-left leading-none', 'Category Name'); ?>
+                        <?php Text::render('', '', 'HeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', '$CategoryName'); ?>
                     </div>
                 </div>
             </div>

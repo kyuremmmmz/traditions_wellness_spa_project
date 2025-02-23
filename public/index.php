@@ -39,7 +39,6 @@ $router->view( '/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'DataPages/dashboard', 'SessionMiddleware');
 $router->view('/resetpassword', 'page', 'Auth/resetpassword', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
-$router->view('/test', 'page', 'test');
 $router->view('/success', 'page', 'Success');
 $router->view('/Simulation', 'page', 'Simulation');
 $router->view('/continueregistration', 'page', 'Auth/continueregistration');
@@ -59,6 +58,8 @@ $router->view('/messages', 'page', 'Utilities/Messages', 'SessionMiddleware');
 $router->view('/notifications', 'page', 'Utilities/Notifications', 'SessionMiddleware');
 $router->view('/tasks', 'page', 'Utilities/Tasks', 'SessionMiddleware');
 $router->view('/feedbacks', 'page', 'Utilities/Feedbacks', 'SessionMiddleware');
+$router->view('/account', 'page', 'Utilities/Account', 'SessionMiddleware');
+$router->view('/personalinfo', 'page', 'Utilities/Personalinfo', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {

@@ -21,8 +21,8 @@
     <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
     <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/LightModeDarkMode.js"></script>
     <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/ContinueRegDom.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
     <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/Services/FetchApiData.js"></script>
+    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
 
 </head>
 
