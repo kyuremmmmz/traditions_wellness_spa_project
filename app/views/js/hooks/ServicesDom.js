@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname !== '/services') {
+        return; // Exit if not on the personal info page
+    }
     const openModalButton = document.getElementById("openAddANewCategorySection");
     const closeModalButton = document.getElementById("closeAddANewCategorySection");
     const categoryModal = document.getElementById("addANewCategorySection");
-    const main = document.getElementById("main");
 
     // Open modal
     openModalButton.addEventListener("click", function () {
@@ -39,12 +41,12 @@ document.addEventListener("DOMContentLoaded", function () {
     
     addANewServiceButton.addEventListener("click", function () {
         addANewServiceSection.classList.remove("translate-x-full");
-        document.body.classList.add("overflow-hidden");  // Disable body scrolling
+        document.body.classList.add("overflow-hidden");
     });
 
     closeAddANewServiceButton.addEventListener("click", function () {
         addANewServiceSection.classList.add("translate-x-full");
-        document.body.classList.remove("overflow-hidden");  // Disable body scrolling
+        document.body.classList.remove("overflow-hidden"); 
 
     });
 

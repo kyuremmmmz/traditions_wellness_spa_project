@@ -32,14 +32,25 @@ class GlobalButton
             case "navigationSecondary":
                 $class="w-inherit rounded-[5px] h-[40px] text-left px-[10px] flex items-center BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface";
                 break;
+            case "backSmall":
+                $class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-[32px] h-[32px] flex justify-center items-center";
+                break;
         }
         echo '<button class="' . $class . '" ' . $extraAttributes . ' id="' . $id . '">';
         if ($choice == "navigationSecondaryTop" || $choice == "navigationSecondaryBottom" || $choice == "navigationSecondaryMiddle" || $choice == "navigationSecondary") {
             echo IconChoice::render($iconChoice, '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
         }
-        echo Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', $content);
+        if ($content != "" && $choice != "primary") {
+            echo Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', $content);
+        } else {
+            echo "$content";
+        }
         if ($choice == "navigationSecondaryTop" || $choice == "navigationSecondaryBottom" || $choice == "navigationSecondaryMiddle" || $choice == "navigationSecondary") {
             echo IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface');
+        } elseif ($choice == "backSmall") {
+            echo '<div class="w-[32px] h-[32px] flex justify-center items-center">';
+            echo    IconChoice::render('chevronRightSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
+            echo '</div>';
         }
         echo '</button>';
     }
