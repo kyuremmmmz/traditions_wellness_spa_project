@@ -1,0 +1,34 @@
+<?php
+
+namespace Project\App\Views\Php\Components\Banners;
+
+use Project\App\Views\Php\Components\Banners\RegularBanner;
+
+class WorkingBanner
+{
+    public static function render(?string $className = null): void
+    {
+        $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
+        $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
+
+        if ($tooManyAttempts) {
+            http_response_code(429);
+            RegularBanner::render(
+            "Account Error", 
+            "Too many attempts. Please wait 5 minutes before trying again", 
+            "alertBig", 
+            "destructive",
+            "darkDestructive");
+        }
+        if ($serviceUnavailable) {
+            RegularBanner::render(
+                "Server Error",
+                "Something went wrong on our end. Please try again later.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['server_error']);
+        }
+    }
+}

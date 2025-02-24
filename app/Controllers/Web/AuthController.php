@@ -3,8 +3,10 @@
 namespace Project\App\Controllers\Web;
 
 use Project\App\Mail\Mailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\PhotoUpdloadModel;
+use Project\App\Models\Auth\UserRolesModel;
+
 
 class AuthController
 {
@@ -17,29 +19,46 @@ class AuthController
         $this->controller = new AuthModel();
         $this->mailer = new Mailer();
         $this->userRolesModel = new UserRolesModel();
-        $this->photos = new \Project\App\Models\PhotoUpdloadModel();
+        $this->photos = new PhotoUpdloadModel();
     }
 
     public function forgotPasswordSend()
     {
-        // THIS IS FOR API TESTING DON'T REMOVE IT: $data = json_decode(file_get_contents('php://input'), true);
         if (isset($_POST['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
             $response = $this->controller->findByEmail($_POST['email']);
             if (isset($response['username'])) {
-                $this->mailer->sendToken(
-                    $response['email'],
-                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
-                    'Token: ' . $decodedToken,
-                    $response['first_name'],);
-                $this->controller->delete($response['email']);
-                $this->controller->insertToken($token, $response['email']);
-                header('Location: /verification');
+                    $token_sender = $this->mailer->sendToken(
+                        $response['email'],
+                        'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                        'Token: ' . $decodedToken,
+                        $response['first_name']
+                    );
+                    if ($token_sender['status'] === 'error') {
+                        session_start();
+                        $_SESSION['server_error'] = [
+                            'error' => 'Email sending failed. Please try again.'
+                        ];
+                        header('Location: /forgotpassword');
+                        exit();
+                    } else {
+                        $this->controller->delete($response['email']);
+                        $this->controller->insertToken($token, $response['email']);
+                        header('Location: /verification');
+                        exit();
+                    }
+                } 
+            } else {
+                $_SESSION['server_error'] = [
+                    'error' => 'Email not found.'
+                ];
+                header('Location: /forgotpassword');
+                exit();
             }
-        }
-    }
+        } 
+
 
     public function forgotPassword()
     {
@@ -54,7 +73,7 @@ class AuthController
                 echo json_encode(['message' => 'Token is valid.']);
                 header('Location: /resetpassword');
             }else{
-                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid token.']; 
+                $_SESSION['forgot_password_errors'] = ['verification' => 'Invalid code. Please try again.']; 
                 echo json_encode(['error' => 'Invalid token.']);
                 header('Location: /verification');
             }
@@ -80,35 +99,33 @@ class AuthController
                 header('Location: /dashboard');
                 echo json_encode(['message' => 'Password has been updated successfully.']);
             } else {
-                echo json_encode(['error' => 'Invalid token or password update failed.']);
+                echo json_encode(['error' => 'Required fields are missing.']);
             }
         } else {
-            $_SESSION['forgot_password_errors'] = ['verification' => 'Required fields are missing.'];
+            $_SESSION['forgot_password_errors'] = ['verification' => 'Please try again.'];
             echo json_encode(['error' => 'Required fields are missing.']);
             header('Location: /uploadprofile');
         }
     }
 
 
-    private function generateToken()
-    {
-        $randomToken = rand(100000, 999999);
-        return $randomToken;
-    }
-
-    public function resetPasswordAndUserName(){
-        $file = json_decode(file_get_contents('php://input'), true);
-        $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
-        if (!preg_match($passwordPattern, $file['password'])) {
-            echo json_encode([
-                'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
-            ]);
-            http_response_code(400);
-            return;
+        private function generateToken()
+        {
+            $randomToken = rand(100000, 999999);
+            return $randomToken;
         }
-    }
 
-    
+        public function resetPasswordAndUserName(){
+            $file = json_decode(file_get_contents('php://input'), true);
+            $passwordPattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+            if (!preg_match($passwordPattern, $file['password'])) {
+                echo json_encode([
+                    'error' => 'Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character'
+                ]);
+                http_response_code(400);
+                return;
+            }
+        }
 
     public function store()
     {
@@ -149,14 +166,28 @@ class AuthController
                     'email' => $response['email'],
                     'photos' => $response['photos'],
                 ];
-                setcookie('user', base64_encode(json_encode($_SESSION['user'])), time() + 3600, '/');
+                $_SESSION['u.id'] = [
+                    'role' => $response['role'],
+                    'username' => $response['username'],
+                    'last_name' => $response['last_name'],
+                    'first_name' => $response['first_name'],
+                    'email' => $response['email'],
+                ];
+                if (!empty($_POST['remember_me'])) {
+                    setcookie('remember_cookie', base64_encode(json_encode($_SESSION['user']['role'])), time() + 3600);
+                }
+                setcookie('user', base64_encode(json_encode($_SESSION['u.id'])), time() + 3600, '/');
                 if (is_null($response['email_verified_at'])) {
                     $this->controller->update(
                         $response['email'],
                         date('Y-m-d H:i:s')
                     );
                 }
-                header('Location: /dashboard');
+                if ($response['isFirstTimeLogin'] === 1) {
+                    header('Location: /continueregistration');
+                }else{
+                    header('Location: /dashboard');
+                }
                 exit;
             } else {
                 $_SESSION['login_attempts']++;
@@ -185,17 +216,13 @@ class AuthController
     {
         session_start();
         session_destroy();
-
         if (isset($_COOKIE[session_name()])) {
             setcookie(session_name(), '', time() - 3600, '/'); 
         }
-
         if (isset($_COOKIE['user'])) {
             setcookie('user', '', time() - 3600, '/');
         }
-
         header('Location: /login');
         exit;
     }
-
 }

@@ -4,12 +4,12 @@ tailwind.config = {
         extend: {
             colors: {
                 // Light theme colors
-                primary: '#0F172A',
-                primaryHover: '#1E2D53',
+                primary: '#006736',
+                primaryHover: '#009950',
                 onPrimary: '#FFFFFF',
-                secondary: '#F1F5F9',
-                secondaryVariant: '#94A3AB',
-                onSecondary: '#081021',
+                secondary: '#F2F9F1',
+                secondaryVariant: '#98AB94',
+                onSecondary: '#0C2108',
                 surface: '#FAFAFA',
                 highlightSurface: '#F4F4F5',
                 onSurface: '#3F3F46',
@@ -23,23 +23,28 @@ tailwind.config = {
                 success: '#15803D',
                 destructive: '#D92626',
 
+                // Other colors
+                yellow: '#FFEA06',
+                blue: '32A3FF',
+                orange: 'FDA93C',
+
                 // Dark theme colors
-                darkPrimary: '#3B4A6E',
-                darkPrimaryHover: '#4E6292',
+                darkPrimary: '#006736',
+                darkPrimaryHover: '#009950',
                 darkOnPrimary: '#FFFFFF',
-                darkSecondary: '#18181B',
-                darkSecondaryVariant: '#07142C', // <--- NABAGO UNG COLOR HERE!!!!!!!!
+                darkSecondary: '#12240F',
+                darkSecondaryVariant: '#657B60', 
                 darkOnSecondary: '#F4F4F4',
-                darkSurface: '#01050E',
-                darkHighlightSurface: '#E0E0E0',
-                darkOnSurface: '#F4F4F5',
+                darkSurface: '#181818',
+                darkHighlightSurface: '#2B2B2B',
+                darkOnSurface: '#E0E0E0',
                 darkBackground: '#050505',
                 darkOnBackground: '#FAFAFA',
                 darkOnBackgroundTwo: '#B2B2B2',
                 darkOnBackgroundLink: '#5490F2',
                 darkBorder: '#262629',
                 darkBorderTwo: '#1E293B',
-                darkBorderHighlight: '#D4D4D8',
+                darkBorderHighlight: '#669FFC',
                 darkSuccess: '#15803D',
                 darkDestructive: '#D92626',
             },
@@ -94,7 +99,7 @@ tailwind.config = {
                 '.BodyTwo': {
                     fontSize: '14px',
                     fontWeight: '400',
-                    lineHeight: '150%'
+                    lineHeight: '150%',
                 },
                 '.CaptionMediumOne': {
                     fontSize: '12px',
@@ -108,6 +113,11 @@ tailwind.config = {
                 },
                 '.CaptionOne': {
                     fontSize: '12px',
+                    fontWeight: '400',
+                    lineHeight: '150%'
+                },
+                '.CaptionTwo': {
+                    fontSize: '10px',
                     fontWeight: '400',
                     lineHeight: '150%'
                 },
