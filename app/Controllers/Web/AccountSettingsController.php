@@ -117,8 +117,5 @@ class AccountSettingsController
     }
 
 
-    public function updateEmail()
-    {
-        
-    }
+    
 }
