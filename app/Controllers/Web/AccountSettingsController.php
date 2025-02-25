@@ -71,6 +71,7 @@ class AccountSettingsController
         }
 
         if (!password_verify($data['oldPasswordInputField'], $response['password'])) {
+            http_response_code(400);
             echo json_encode([
                 'error' => 'Old password is incorrect.',
                 'data' => $data['oldPasswordInputField'],
