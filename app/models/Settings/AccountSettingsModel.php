@@ -24,6 +24,13 @@ class AccountSettingsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByEmail($email)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt->execute(['email' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function findByToken($verifCode)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE verifCode = :verifCode");
@@ -48,6 +55,31 @@ class AccountSettingsModel
         return $stmt->execute([
             'oldPassword' => $oldPassword,
             'newPassword' => $newPassword,
+        ]);
+    }
+
+    public function updateCode($email, $verifCode)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = :verifCode WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
+            'verifCode' => $verifCode,
+        ]);
+    }
+
+    public function newEmail($email, $verifCode)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET email = :email WHERE verifCode = :verifCode");
+        return $stmt->execute([
+            'email' => $email,
+            'verifCode' => $verifCode,
+        ]);
+    }
+    public function deleteCode($email)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = NULL WHERE email = :email");
+        return $stmt->execute([
+            'email' => $email,
         ]);
     }
 }
