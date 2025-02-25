@@ -116,9 +116,9 @@ class AccountSettingsController
         }
     }
 
-    public function delete($id)
+
+    public function updateEmail()
     {
-        // Code for deleting resources
-        echo "This is the delete method of AccountSettingsController for ID: $id.";
+        
     }
 }

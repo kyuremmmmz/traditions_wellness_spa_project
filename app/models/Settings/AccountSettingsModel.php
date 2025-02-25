@@ -24,6 +24,13 @@ class AccountSettingsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByToken($verifCode)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE verifCode = :verifCode");
+        $stmt->execute(['verifCode' => $verifCode]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function update($id, $first_name, $last_name, $gender)
     {
         $stmt = $this->pdo->prepare("UPDATE users SET first_name = :first_name, last_name = :last_name, gender = :gender WHERE id = :id");

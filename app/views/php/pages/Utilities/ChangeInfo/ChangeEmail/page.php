@@ -28,7 +28,7 @@ class Page {
                         <?php GlobalInputField::render('emailInputField', 'Email', 'email', 'emailInputField'); ?>
                         <div class="w-full flex justify-center mt-[250px]">
                             <a href="/verificationforchangeemail">
-                                <?php GlobalButton::render('primary', 'Continue')?>
+                                <?php GlobalButton::render('primary', 'Continue', '', '', '', 'submit', 'submit')?>
                             </a>
                         </div>
                     </section>
