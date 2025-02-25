@@ -19,9 +19,9 @@ class AccountSettingsController
             $response = $this->accountSettingsModel->findByPhone($session['phone']);
             if (is_array($response)) {
                 $update = $this->accountSettingsModel->update(
-                    $response['id'], 
-                    $data['firstNameInputField'], 
-                    $data['lastNameInputField'], 
+                    $response['id'],
+                    $data['firstNameInputField'],
+                    $data['lastNameInputField'],
                     $data['gender']);
                 if ($update) {
                     header('Location: /account');
