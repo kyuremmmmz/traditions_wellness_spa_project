@@ -17,7 +17,7 @@ class Page
         <main class="flex w-full">
             <div id="main" class="overflow-y-auto px-[48px] flex flex-col sm:items-center mt-[104px] sm:mt-[160px] w-full">
                 <div id="topSection">
-                <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
+                    <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
                         <button id="closeAddANewServiceButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
                                 <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
@@ -39,33 +39,33 @@ class Page
                             <button class="w-full rounded-tr-[5px] rounded-tl-[5px] h-[40px] text-left px-[10px] flex items-center BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                                 <?php IconChoice::render('userSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                                 Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', 'Personal Info');
-                                IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface');?>
+                                IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface'); ?>
                             </button>
                         </a>
 
                         <button class="w-inherit h-[40px] text-left px-[10px] flex items-center BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <?php IconChoice::render('activitiesSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', 'Activities');
-                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface');?>
+                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
 
                         <button class="w-inherit h-[40px] text-left px-[10px] flex items-center BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <?php IconChoice::render('securitySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', 'Security');
-                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface');?>
+                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
 
                         <button class="w-inherit rounded-br-[5px] rounded-bl-[5px] h-[40px] text-left px-[10px] flex items-center BodyMediumTwo bg-background dark:bg-darkBackground text-onSurface dark:text-darkOnSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <?php IconChoice::render('reportTicketSmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'BodyMediumTwo leading-none w-full text-onSurface dark:text-darkOnSurface px-[10px]', 'Report Tickets');
-                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface');?>
+                            IconChoice::render('chevronRightSmall', '[10px]', '[10px] rotate-180', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
-                    </div>                 
+                    </div>
                 </div>
             </div>
             <?php Sidebar::render(); ?>
         </main>
-        <?php
+<?php
     }
 }
 

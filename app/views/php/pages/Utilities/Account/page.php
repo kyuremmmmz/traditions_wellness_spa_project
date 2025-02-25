@@ -40,11 +40,11 @@ class Page
                             GlobalButton::render("navigationSecondaryMiddle", "Activities", "", "activitiesSmall", 'openActivitiesButton');
                             GlobalButton::render("navigationSecondaryMiddle", "Security", "", "securitySmall", 'openSecurityModalButton');
                             GlobalButton::render("navigationSecondaryMiddle", "Report Tickets", "", "reportTicketSmall", "openReportTicketsButton"); ?>
-                        </div>   
+                        </div>
                         <div class="border-border dark:border-darkBorder rounded-[6px] border-[1px] flex flex-col w-full">
                             <?php GlobalButton::render("navigationSecondary", "Logout", "", "logoutSmall", 'openLogoutDialogBox'); ?>
-                        </div> 
-                    </section>  
+                        </div>
+                    </section>
                 </section>
 
                 <!-- Personal Info Modal -->
@@ -52,39 +52,39 @@ class Page
                     <!-- Back Button -->
                     <section class="flex justify-center mb-[24px] min-w-[316px] max-w-[400px] w-full">
                         <div class="relative right-[12px]">
-                            <?php GlobalButton::render('backSmall', '', '', '', 'closePersonalInformationButton' ); ?>
+                            <?php GlobalButton::render('backSmall', '', '', '', 'closePersonalInformationButton'); ?>
                         </div>
                         <?php Text::render('', '', 'BodyMediumOne leading-none w-full h-[32px] relative right-[16px] flex items-center justify-center text-onBackground text-center dark:text-darkOnBackground', 'Personal Information'); ?>
                     </section>
                     <!-- Content -->
-                    <section class="flex flex-col mb-[32px] min-w-[316px] max-w-[400px] w-full">
-                        <?php GlobalInputField::render('firstNameInputField', 'First Name', 'text', 'firstNameInputField', '', '', '');
-                        GlobalInputField::render('lastNameInputField', 'Last Name', 'text', 'lastNameInputField', '', '', '');
-                        $options = array(
-                            'Male' => 'Male',
-                            'Female' => 'Female',
-                            'Other' => 'Other',
-                        );
-                        SelectField::render($options, 'Gender', 'gender', 'genderSelectField', 'Male'); ?>
-                        <div class="mt-[200px] flex justify-center ">
-                            <?php GlobalButton::render('primary', 'Save', '', '', 'savePersonalInformationButton');?>
-                        </div>
-                    </section>
-                </section>
-
-                <!-- Personal Information Confirmation Dialog Box -->
-                <div id="personalInformationConfirmationDialogBox" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
-                    <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] z-[60]">
-                        <div class="flex flex-col justify-center gap-2 mt-[48px]">
-                            <?php Text::render('', '', 'BodyOne m-0 p-0 leading-none text-center text-onBackground dark:text-darkOnBackground mb-[48px]', 'Are you sure you want to proceed?'); ?>
-                            <div class="flex w-full justify-center gap-[24px]">
-                                <?php GlobalButton::render("primary", 'Proceed', '', '', '');
-                                GlobalButton::render('secondary', "Cancel", "", "", "closePersonalInformationConfirmationDialogBox"); ?>
+                    <form action="/update" method="post">
+                        <section class="flex flex-col mb-[32px] min-w-[316px] max-w-[400px] w-full">
+                            <?php GlobalInputField::render('firstNameInputField', 'First Name', 'text', 'firstNameInputField', '', '', '');
+                            GlobalInputField::render('lastNameInputField', 'Last Name', 'text', 'lastNameInputField', '', '', '');
+                            $options = array(
+                                'Male' => 'Male',
+                                'Female' => 'Female',
+                                'Other' => 'Other',
+                            );
+                            SelectField::render($options, 'Gender', 'gender', 'genderSelectField', 'Male'); ?>
+                            <div class="mt-[200px] flex justify-center ">
+                                <?php GlobalButton::render('primary', 'Save', '', '', 'savePersonalInformationButton', 'button',); ?>
+                            </div>
+                        </section>
+                        <!-- Personal Information Confirmation Dialog Box -->
+                        <div id="personalInformationConfirmationDialogBox" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+                            <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] z-[60]">
+                                <div class="flex flex-col justify-center gap-2 mt-[48px]">
+                                    <?php Text::render('', '', 'BodyOne m-0 p-0 leading-none text-center text-onBackground dark:text-darkOnBackground mb-[48px]', 'Are you sure you want to proceed?'); ?>
+                                    <div class="flex w-full justify-center gap-[24px]">
+                                        <?php GlobalButton::render("primary", 'Proceed', '', '', '', 'submit', 'submit');
+                                        GlobalButton::render('secondary', "Cancel", "", "", "closePersonalInformationConfirmationDialogBox", 'cancel'); ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
+                    </form>
+                </section>
                 <!-- Personal Information Warning Dialog Box -->
                 <div id="personalInformationWarningDialogBox" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
                     <div class="bg-background dark:bg-darkBackground p-[48px] border-border border-[1px] dark:border-darkBorder flex flex-col justify-between rounded-[6px] w-[364px] sm:w-[496px] z-[60]">
@@ -113,7 +113,7 @@ class Page
                             <?php GlobalButton::render("navigationSecondaryTop", "Change Password", "", "passwordSmall", 'openChangePasswordButton');
                             GlobalButton::render("navigationSecondaryMiddle", "Change Email", "", "emailSmall", 'openChangeEmailButton');
                             GlobalButton::render("navigationSecondaryBottom", "Change Phone Number", "", "phoneSmall", 'openChangePhoneNumberButton'); ?>
-                        </div>  
+                        </div>
                     </section>
                 </section>
 
@@ -137,7 +137,7 @@ class Page
             </div>
             <?php Sidebar::render(); ?>
         </main>
-        <?php
+<?php
     }
 }
 

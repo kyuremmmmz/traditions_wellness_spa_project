@@ -165,6 +165,7 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email'],
                     'photos' => $response['photos'],
+                    'phone' => $response['phone'],
                 ];
                 $_SESSION['u.id'] = [
                     'role' => $response['role'],

@@ -50,10 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById("hiddenContainer2").innerHTML = `<input type="hidden" value="${event.target.value}" name="radio">`;
             });
         });
-
-
     };
-
-
     fetchData();
 });
