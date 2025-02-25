@@ -34,4 +34,13 @@ class AccountSettingsModel
             'gender' => $gender,
         ]);
     }
+
+    public function updatePassword($oldPassword, $newPassword)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET password = :newPassword WHERE password = :oldPassword");
+        return $stmt->execute([
+            'oldPassword' => $oldPassword,
+            'newPassword' => $newPassword,
+        ]);
+    }
 }

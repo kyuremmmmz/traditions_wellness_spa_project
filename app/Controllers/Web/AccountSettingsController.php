@@ -44,6 +44,77 @@ class AccountSettingsController
         }
     }
 
+    public function updatePassword()
+    {
+        session_start();
+        $data = $_POST;
+
+        if (!isset($data['oldPasswordInputField']) || !isset($data['NewPasswordInputField'])) {
+            http_response_code(400);
+            echo json_encode([
+                'error' => 'Invalid request. Missing password fields.',
+                'data' => $data['oldPasswordInputField'],
+                'newPasswordInputField' => $data['NewPasswordInputField']
+            ]);
+            exit;
+        }
+
+        $session = $_SESSION['user'];
+        $response = $this->accountSettingsModel->findByPhone($session['phone']);
+
+        if (!is_array($response) || empty($response['password'])) {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Unable to verify account.'
+            ]);
+            exit;
+        }
+
+        if (!password_verify($data['oldPasswordInputField'], $response['password'])) {
+            echo json_encode([
+                'error' => 'Old password is incorrect.',
+                'data' => $data['oldPasswordInputField'],
+                'hashed' => password_verify($data['oldPasswordInputField'], $response['password'])
+            ]);
+            exit;
+        }
+
+        if ($data['oldPasswordInputField'] === $data['NewPasswordInputField']) {
+            http_response_code(400);
+            echo json_encode([
+                'error' => 'New password must be different from old password.'
+            ]);
+            exit;
+        }
+
+        if ($data['NewPasswordInputField'] !== $data['ConfirmPasswordInputField']) {
+            http_response_code(400);
+            echo json_encode([
+                'error' => 'New password and confirm password do not match.'
+            ]);
+            exit;
+        }
+        $newPasswordHash = password_hash($data['ConfirmPasswordInputField'], PASSWORD_BCRYPT);
+        $update = $this->accountSettingsModel->updatePassword(
+            $response['password'],
+            $newPasswordHash
+        );
+
+        if ($update) {
+            $_SESSION['server_success'] = [
+                'success' => 'Account updated successfully.'
+            ];
+            header('Location: /account');
+            exit;
+        } else {
+            http_response_code(500);
+            echo json_encode([
+                'error' => 'Account update failed. Please try again.'
+            ]);
+            exit;
+        }
+    }
+
     public function delete($id)
     {
         // Code for deleting resources
