@@ -2,10 +2,12 @@
 namespace Project\App\Controllers\Web;
 
 use Project\App\Mail\Mailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\PhotoUpdloadModel;
-use Project\App\Models\RolesModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\PhotoUpdloadModel;
+use Project\App\Models\Auth\RolesModel;
+use Project\App\Models\Auth\UserRolesModel;
+
+
 
 class RegistrationController
 {

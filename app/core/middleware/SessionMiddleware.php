@@ -28,7 +28,11 @@ class SessionMiddleware
                 '/employees',
                 '/appointments',
                 '/finances',
-                '/inventory'
+                '/inventory',
+                '/account',
+                '/changephonenumber',
+                '/verificationforchangephonenumber',
+                '/changepassword'
             ])
         ) {
             header('Location: /login');
