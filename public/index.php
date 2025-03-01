@@ -75,6 +75,7 @@ $router->view('/verificationforchangeemail', 'page', 'Utilities/VerificationInfo
 $router->view('/editemail', 'page', 'Utilities/EditInfo/EditEmail', 'SessionMiddleware');
 $router->view('/verificationforchangephonenumber', 'page', 'Utilities/VerificationInfo/VerificationForChangePhoneNumber', 'SessionMiddleware');
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
+$router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {

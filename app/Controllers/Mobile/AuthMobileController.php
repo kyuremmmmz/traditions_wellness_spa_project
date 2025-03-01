@@ -2,13 +2,12 @@
 namespace Project\App\Controllers\Mobile;
 
 
-use Project\App\Controllers\Web\RegistrationController;
-use Project\App\Mail\Mailer;
 use Project\App\Mail\UserMailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\RolesModel;
-use Project\App\Models\UserAuthModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\RolesModel;
+use Project\App\Models\Auth\UserAuthModel;
+use Project\App\Models\Auth\UserRolesModel;
+
 
 class AuthMobileController
 {

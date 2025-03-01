@@ -1,6 +1,6 @@
 <?php
 
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\Auth\AuthModel;
