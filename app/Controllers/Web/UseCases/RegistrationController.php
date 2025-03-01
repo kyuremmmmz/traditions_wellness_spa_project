@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\Auth\AuthModel;
@@ -83,7 +83,6 @@ class RegistrationController
                 'staff' => 5,
                 'customer' => 6,
             ];
-            // this variable will remove the _ inside the array of strings
             $roleName = strtolower(str_replace(' ', '_', $findId['role']));
             $search = $roleIDs[$roleName] ?? null;
             if (!$search) {

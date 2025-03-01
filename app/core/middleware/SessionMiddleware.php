@@ -17,8 +17,7 @@ class SessionMiddleware
             exit;
         }
 
-        if (
-            !$isAuthenticated && !$hasCookie  &&
+        if (!$isAuthenticated && !$hasCookie  &&
             in_array($currentRoute, [
                 '/',
                 '/dashboard',
