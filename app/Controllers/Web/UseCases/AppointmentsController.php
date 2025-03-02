@@ -24,8 +24,7 @@ class AppointmentsController
 
     public function store()
     {
-        // Code for storing new resources
-        echo "This is the store method of AppointmentsController.";
+    
     }
 
     public function edit($id)

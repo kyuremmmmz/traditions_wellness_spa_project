@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    if (window.location.pathname !== '/services') {
-        return; // Exit if not on the personal info page
-    }
-    const openModalButton = document.getElementById("openAddANewCategorySection");
-    const closeModalButton = document.getElementById("closeAddANewCategorySection");
-    const categoryModal = document.getElementById("addANewCategorySection");
+    const openModalButton = document.getElementById("openAddANewCategoryModal");
+    const closeModalButton = document.getElementById("closeAddANewCategoryModal");
+    const categoryModal = document.getElementById("addANewCategoryModal");
+    const main = document.getElementById("main");
 
     // Open modal
     openModalButton.addEventListener("click", function () {
@@ -38,15 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const addANewServiceButton = document.getElementById("addANewServiceButton");
     const addANewServiceSection = document.getElementById("addANewServiceSection");
     const closeAddANewServiceButton = document.getElementById("closeAddANewServiceButton")
-    
+
     addANewServiceButton.addEventListener("click", function () {
         addANewServiceSection.classList.remove("translate-x-full");
-        document.body.classList.add("overflow-hidden");
+        document.body.classList.add("overflow-hidden");  // Disable body scrolling
     });
 
     closeAddANewServiceButton.addEventListener("click", function () {
         addANewServiceSection.classList.add("translate-x-full");
-        document.body.classList.remove("overflow-hidden"); 
+        document.body.classList.remove("overflow-hidden");  // Disable body scrolling
 
     });
 
@@ -77,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkButtonVisibility();
 
     // Add event delegation for remove buttons
-    inputContainer.addEventListener("click", function(event) {
+    inputContainer.addEventListener("click", function (event) {
         if (event.target.closest(".remove-button")) {
             const inputField = event.target.closest(".FieldContainer");
             inputField.remove();
@@ -104,13 +102,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add event delegation for input validation
-    inputContainer.addEventListener("input", function(event) {
+    inputContainer.addEventListener("input", function (event) {
         if (event.target.classList.contains("short-description-input")) {
             const maxLength = 45;
             const input = event.target;
             const value = input.value;
             const errorMessage = input.parentElement.querySelector('.text-destructive');
-            
+
             if (value.length >= maxLength) {
                 errorMessage.textContent = 'Maximum ' + maxLength + ' characters allowed';
                 input.classList.add('border-destructive', 'dark:border-darkDestructive');
@@ -127,23 +125,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-                    // Remove maxlength attribute from initial input
-                    const firstInput = document.getElementById('newServiceShortDescriptionInputField1');
-                    if (firstInput) {
-                        firstInput.removeAttribute('maxlength');
-                    }
+    // Remove maxlength attribute from initial input
+    const firstInput = document.getElementById('newServiceShortDescriptionInputField1');
+    if (firstInput) {
+        firstInput.removeAttribute('maxlength');
+    }
 
-                    // Update the addButton event listener to remove maxlength from new inputs
-                    addButton.addEventListener("click", function () {
-                        if (fieldCount < 6) { // Adjusted to match the maximum field count
-                            // Get the actual next number by counting existing fields
-                            const existingFields = inputContainer.querySelectorAll('.short-description-input').length;
-                            const nextNumber = existingFields + 1; // Start numbering from 1
-                            
-                            const newInput = document.createElement("div");
-                            newInput.classList.add("relative", "FieldContainer", "min-w-[316px]", "max-w-[400px]", "w-full", "opacity-0", "translate-y-4");
-                            
-                            newInput.innerHTML = `
+    // Update the addButton event listener to remove maxlength from new inputs
+    addButton.addEventListener("click", function () {
+        if (fieldCount < 6) { // Adjusted to match the maximum field count
+            // Get the actual next number by counting existing fields
+            const existingFields = inputContainer.querySelectorAll('.short-description-input').length;
+            const nextNumber = existingFields + 1; // Start numbering from 1
+
+            const newInput = document.createElement("div");
+            newInput.classList.add("relative", "FieldContainer", "min-w-[316px]", "max-w-[400px]", "w-full", "opacity-0", "translate-y-4");
+
+            newInput.innerHTML = `
                                 <input type="text" name="short_description_${nextNumber}" placeholder=" " id="newServiceShortDescriptionInputField${nextNumber}"
                                     class="short-description-input peer w-full min-w-[316px] max-w-[400px] h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-darkBorderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background transition-all duration-300" />
                                 
@@ -162,21 +160,21 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </button>
                                 <p class='MiniOne my-[8px] w-[316px] h-[14px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp;</p>
                             `;
-                            
-                            inputContainer.appendChild(newInput);
-                            
-                            // Trigger reflow and add transition classes
-                            setTimeout(() => {
-                                newInput.classList.add("transition-all", "duration-300", "ease-in-out");
-                                newInput.classList.remove("opacity-0", "translate-y-4");
-                            }, 50);
-                            
-                            fieldCount++; // Increment field count
-                            trackInputCompletion();
-                            updatePreview();
-                            checkButtonVisibility();
-                        }
-                    });
+
+            inputContainer.appendChild(newInput);
+
+            // Trigger reflow and add transition classes
+            setTimeout(() => {
+                newInput.classList.add("transition-all", "duration-300", "ease-in-out");
+                newInput.classList.remove("opacity-0", "translate-y-4");
+            }, 50);
+
+            fieldCount++; // Increment field count
+            trackInputCompletion();
+            updatePreview();
+            checkButtonVisibility();
+        }
+    });
 
     // ✅ Event Delegation for Input Focus and Blur
     inputContainer.addEventListener("focusin", function (event) {
@@ -212,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-    
+
 
     const sections = document.querySelectorAll("#addANewServiceSection section");
     let currentStep = 1; // Start from the first section
@@ -239,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const trackInputCompletion = () => {
         const currentSection = sections[currentStep];
         const inputs = currentSection.querySelectorAll("input, select, textarea");
-        
+
         let allInputsFilled = true;
 
         inputs.forEach(input => {
@@ -283,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add Confirmation Modal Handlers
     if (openConfirmationModal) {
-        openConfirmationModal.addEventListener("click", function() {
+        openConfirmationModal.addEventListener("click", function () {
             updatePreview(); // Update preview before showing
             confirmationModal.classList.remove("hidden");
             document.body.classList.add("overflow-hidden", "flex");
@@ -292,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (closeConfirmationModal) {
-        closeConfirmationModal.addEventListener("click", function() {
+        closeConfirmationModal.addEventListener("click", function () {
             confirmationModal.classList.add("hidden");
             document.body.classList.remove("overflow-hidden");
             checkFormValidity(); // Check form validity when closing the modal
@@ -301,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Close modal when clicking outside
     if (confirmationModal) {
-        confirmationModal.addEventListener("click", function(event) {
+        confirmationModal.addEventListener("click", function (event) {
             if (event.target === confirmationModal) {
                 confirmationModal.classList.add("hidden");
                 document.body.classList.remove("overflow-hidden");
@@ -310,10 +308,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Add price input validation
-    servicePriceInput.addEventListener('input', function() {
+    servicePriceInput.addEventListener('input', function () {
         let value = this.value;
         const errorElement = document.querySelector('[data-error="newServicePriceError"]');
-        
+
         // Check for invalid input
         if (value === '' || isNaN(value)) {
             errorElement.textContent = 'Please enter a valid number';
@@ -338,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Add blur event to validate empty field
-    servicePriceInput.addEventListener('blur', function() {
+    servicePriceInput.addEventListener('blur', function () {
         const errorElement = document.querySelector('[data-error="newServicePriceError"]');
         if (this.value.trim() === '') {
             errorElement.textContent = 'Please enter a price';
@@ -353,17 +351,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const previewServiceName = document.getElementById("previewServiceName");
     const previewServicePrice = document.getElementById("previewServicePrice");
     const previewShortDescription = document.getElementById("previewShortDescription");
-    const hiddencontainer = document.getElementById('hiddenContainer');
+
     // Function to update preview
     function updatePreview() {
-        let serviceName = previewServiceName.textContent = serviceNameInput.value || "Service Name";
-        
+        previewServiceName.textContent = serviceNameInput.value || "Service Name";
+
         // Count existing fields for accurate field count
         fieldCount = inputContainer.querySelectorAll('.FieldContainer').length;
-        
+
         // Collect all short descriptions
         let descriptions = [];
-        
+
         // Get all the inputs
         const additionalInputs = inputContainer.querySelectorAll('.short-description-input');
         additionalInputs.forEach(input => {
@@ -382,20 +380,16 @@ document.addEventListener("DOMContentLoaded", function () {
             previewShortDescription.classList.add("hidden"); // Hide the element if it's empty
             document.getElementById("servicePreviewCard").style.padding = "12px"; // Set padding for empty descriptions
         }
-        
+
         let price = parseFloat(servicePriceInput.value);
-        let priceFinal  = previewServicePrice.textContent = price ? `₱${price.toLocaleString("en-PH", { minimumFractionDigits: 2 })}` : "₱0.00";
-        hiddencontainer.innerHTML = `
-        <input type="hidden" name="serviceName" value="${serviceName}">
-        <input type="hidden" name="price" value="${priceFinal}">
-        <input type="hidden" name="descriptions" value="${previewShortDescription.innerHTML}">
-        `;
+        previewServicePrice.textContent = price ? `₱${price.toLocaleString("en-PH", { minimumFractionDigits: 2 })}` : "₱0.00";
+
         checkButtonVisibility();
     }
 
     // Remove this duplicate initialization
     // revealNextSection(currentStep);
-    
+
     // Add this new function
     function checkAndHideButton() {
         const actualFieldCount = inputContainer.querySelectorAll('.FieldContainer').length;
@@ -408,73 +402,73 @@ document.addEventListener("DOMContentLoaded", function () {
     checkAndHideButton();
     setInterval(checkAndHideButton, 100); // Check periodically
 
-        openConfirmationModal.addEventListener("click", function() {
-            updatePreview(); // Update preview before showing
-            confirmationModal.classList.remove("hidden");
-        });
+    openConfirmationModal.addEventListener("click", function () {
+        updatePreview(); // Update preview before showing
+        confirmationModal.classList.remove("hidden");
+    });
 
-        closeConfirmationModal.addEventListener("click", function() {
+    closeConfirmationModal.addEventListener("click", function () {
+        confirmationModal.classList.add("hidden");
+    });
+
+    // Close modal when clicking outside
+    confirmationModal.addEventListener("click", function (event) {
+        if (event.target === confirmationModal) {
             confirmationModal.classList.add("hidden");
-        });
-
-        // Close modal when clicking outside
-        confirmationModal.addEventListener("click", function(event) {
-            if (event.target === confirmationModal) {
-                confirmationModal.classList.add("hidden");
-            }
-        });
-
-        const reviewDetailsButton = document.querySelector("#openConfirmationModal");
-
-        // Function to check form validity
-        function checkFormValidity() {
-            let isValid = true;
-
-            // Check if any required input field is empty
-            const inputs = document.querySelectorAll("#addANewServiceSection input:not(.short-description-input)");
-            inputs.forEach(input => {
-                if (input.value.trim() === "") {
-                    isValid = false;
-                }
-            });
-
-            // Check for any error messages, including short description errors
-            const errorMessages = document.querySelectorAll(".text-destructive");
-            errorMessages.forEach(error => {
-                if (error.textContent.trim() !== "") {
-                    isValid = false;
-                }
-            });
-
-            // Check short description inputs for errors only
-            const shortDescriptionInputs = document.querySelectorAll(".short-description-input");
-            shortDescriptionInputs.forEach(input => {
-                const errorMessage = input.parentElement.querySelector('.text-destructive');
-                if (errorMessage && errorMessage.textContent.trim() !== "") {
-                    isValid = false;
-                }
-                // Ensure maxlength validation is enforced
-                if (input.value.length > 45) {
-                    isValid = false;
-                }
-            });
-
-            // Enable or disable the button based on validity
-            if (isValid) {
-                reviewDetailsButton.removeAttribute("disabled");
-                reviewDetailsButton.classList.remove("opacity-50", "cursor-not-allowed");
-            } else {
-                reviewDetailsButton.setAttribute("disabled", "true");
-                reviewDetailsButton.classList.add("opacity-50", "cursor-not-allowed");
-            }
         }
+    });
 
-        // Call checkFormValidity on input and blur events
-        document.querySelectorAll("#addANewServiceSection input").forEach(input => {
-            input.addEventListener("input", checkFormValidity);
-            input.addEventListener("blur", checkFormValidity);
+    const reviewDetailsButton = document.querySelector("#openConfirmationModal");
+
+    // Function to check form validity
+    function checkFormValidity() {
+        let isValid = true;
+
+        // Check if any required input field is empty
+        const inputs = document.querySelectorAll("#addANewServiceSection input:not(.short-description-input)");
+        inputs.forEach(input => {
+            if (input.value.trim() === "") {
+                isValid = false;
+            }
         });
 
-        // Initial check
-        checkFormValidity();
+        // Check for any error messages, including short description errors
+        const errorMessages = document.querySelectorAll(".text-destructive");
+        errorMessages.forEach(error => {
+            if (error.textContent.trim() !== "") {
+                isValid = false;
+            }
+        });
+
+        // Check short description inputs for errors only
+        const shortDescriptionInputs = document.querySelectorAll(".short-description-input");
+        shortDescriptionInputs.forEach(input => {
+            const errorMessage = input.parentElement.querySelector('.text-destructive');
+            if (errorMessage && errorMessage.textContent.trim() !== "") {
+                isValid = false;
+            }
+            // Ensure maxlength validation is enforced
+            if (input.value.length > 45) {
+                isValid = false;
+            }
+        });
+
+        // Enable or disable the button based on validity
+        if (isValid) {
+            reviewDetailsButton.removeAttribute("disabled");
+            reviewDetailsButton.classList.remove("opacity-50", "cursor-not-allowed");
+        } else {
+            reviewDetailsButton.setAttribute("disabled", "true");
+            reviewDetailsButton.classList.add("opacity-50", "cursor-not-allowed");
+        }
+    }
+
+    // Call checkFormValidity on input and blur events
+    document.querySelectorAll("#addANewServiceSection input").forEach(input => {
+        input.addEventListener("input", checkFormValidity);
+        input.addEventListener("blur", checkFormValidity);
+    });
+
+    // Initial check
+    checkFormValidity();
 });
