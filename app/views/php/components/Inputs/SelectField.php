@@ -6,7 +6,7 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 
 class SelectField
 {
-    public static function render(array $options, string $label, ?string $name = null, ?string $id = null, ?string $defaultValue = null): void
+    public static function render(?array $options = null, string $label, ?string $name = null, ?string $id = null, ?string $defaultValue = null): void
     {
         $nameAttribute = $name ? "name=\"$name\"" : '';
         $idAttribute = $id ? "id=\"$id\"" : '';
