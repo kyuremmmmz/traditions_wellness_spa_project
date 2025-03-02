@@ -1,7 +1,8 @@
 <?php
 namespace Project\App\Controllers\Web\UseCases;
 
-use Project\App\Models\AppointmentsModel;
+use Project\App\Models\Utilities\AppointmentsModel;
+
 class AppointmentsController
 {
     private $controller;
@@ -18,13 +19,17 @@ class AppointmentsController
     {
         $file = json_decode(file_get_contents('php://input'),true);
         if (isset($file['email'], $file['first_name'], $file['last_name'], $file['phone'])) {
-            //$this->controller->find();
-        }// this code will execute the select function if the condition is true
+            
+        }
     }
 
-    public function store()
+    public function searchCustomer()
     {
-    
+        $data = $_POST;
+        if (isset($data['search'])) {
+            $response = $this->controller->findByRole($data['search']);
+            echo json_encode($response);
+        }
     }
 
     public function edit($id)

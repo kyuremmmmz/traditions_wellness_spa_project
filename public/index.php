@@ -15,6 +15,7 @@ $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
 $router->post('/createCategory', 'ServicesController@createCategory');
+$router->post('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/update', 'AccountSettingsController@update');

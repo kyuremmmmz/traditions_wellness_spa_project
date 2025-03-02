@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Models;
+namespace Project\App\Models\Utilities;
 use Project\App\Config\Connection;
 use PDO;
 class AppointmentsModel
@@ -28,6 +28,13 @@ class AppointmentsModel
     {
         $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
         $stmt->execute(['id' => $email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findByRole($role)
+    {
+        $stmt = $this->pdo->prepare("SELECT users.first_name AS firstName, users.last_name AS lastName, roles.name AS roles  FROM users JOIN roles ON users.id = roles.roleID WHERE roles.name = :role");
+        $stmt->execute(['role' => $role]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
