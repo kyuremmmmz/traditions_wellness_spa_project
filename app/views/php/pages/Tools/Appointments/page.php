@@ -40,22 +40,27 @@ class Page
                         ?>
                         <div class="flex flex-col gap-[24px] pb-[48px]">
                             <?php
-                            SelectField::render($options, 'Source of appointment', 'sourceOfAppointment');
-                            SelectField::render($options2, 'Type of appointment', 'typeOfAppointment');
+                            SelectField::render($options, 'Source of appointment', 'sourceOfAppointment', 'ewan');
+                            SelectField::render($options2, 'Type of appointment', 'typeOfAppointment', 'what');
                             ?>
                         </div
                             </div>
-                        <div id="" class="flex flex-col pb-[48px]">
+                        <div class="flex flex-col pb-[48px]">
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '2. Service Choice');
-                            SelectField::render([], '', '', 'select');
+                            SelectField::render([], 'Package', '', 'select');
                             ?>
                         </div>
                         <div>
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '3. Customer Details');
-                            GlobalInputField::render('search', 'Search for existing customer', 'text', '', '');
+                            GlobalInputField::render('', 'Search for existing customer', 'text', 'search', '');
                             ?>
+                            <div class=" rounded-lg bg-primary hover:bg-slate-500 cursor-pointer" id="wrapper">
+                                <ul class="hover:bg-slate-400" id="suggestions">
+                                    <li id="li"></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="text-[16px]  flex justify-center pt-[148px]">
                             <?php

@@ -13,7 +13,7 @@ class AppointmentsModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT first_name, last_name, id, userID,  FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -33,9 +33,9 @@ class AppointmentsModel
 
     public function findByRole($role)
     {
-        $stmt = $this->pdo->prepare("SELECT users.first_name AS firstName, users.last_name AS lastName, roles.name AS roles  FROM users JOIN roles ON users.id = roles.roleID WHERE roles.name = :role");
+        $stmt = $this->pdo->prepare("SELECT first_name, last_name, role  FROM users WHERE role = :role ");
         $stmt->execute(['role' => $role]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

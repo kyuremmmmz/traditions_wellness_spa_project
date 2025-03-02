@@ -25,6 +25,7 @@
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/AccountDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectBoxDynamicDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchCustomers.js"></script>
 </head>
 
 <!-- Content -->

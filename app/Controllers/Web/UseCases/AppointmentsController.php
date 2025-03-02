@@ -25,11 +25,10 @@ class AppointmentsController
 
     public function searchCustomer()
     {
-        $data = $_POST;
-        if (isset($data['search'])) {
-            $response = $this->controller->findByRole($data['search']);
+        ob_clean();
+            $response = $this->controller->findByRole('Customer');
             echo json_encode($response);
-        }
+        exit;
     }
 
     public function edit($id)
