@@ -17,10 +17,10 @@ class AppointmentsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    public function findByNumber($number)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :number");
+        $stmt->execute(['number' => $number]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -39,11 +39,72 @@ class AppointmentsModel
     }
 
 
-    public function create($data)
-    {
-        $stmt = $this->pdo->prepare("INSERT INTO your_table_name (column1, column2) VALUES (:value1, :value2)");
-        return $stmt->execute($data);
+    public function create(
+        $nameOfTheUser,
+        $user_id,
+        $address,
+        $contactNumber,
+        $start_time,
+        $end_time,
+        $total_price,
+        $addOns,
+        $services_id,
+        $booking_date,
+        $status,
+        $hrs,
+        $therapist_id
+    ) {
+        $stmt = $this->pdo->prepare("INSERT INTO appointments (
+        nameOfTheUser, 
+        user_id,
+        address,
+        contactNumber,
+        start_time,
+        end_time,
+        total_price,
+        addOns,
+        services_id,
+        booking_date,
+        status,
+        hrs,
+        therapist_id,
+        created_at,
+        updated_at
+    ) VALUES (
+        :nameOfTheUser, 
+        :user_id,
+        :address,
+        :contactNumber,
+        :start_time,
+        :end_time,
+        :total_price,
+        :addOns,
+        :services_id,
+        :booking_date,
+        :status,
+        :hrs,
+        :therapist_id,
+        NOW(), 
+        NOW()
+    )");
+
+        return $stmt->execute([
+            'nameOfTheUser' => $nameOfTheUser,
+            'user_id' => $user_id,
+            'address' => $address,
+            'contactNumber' => $contactNumber,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'total_price' => $total_price,
+            'addOns' => $addOns,
+            'services_id' => $services_id,
+            'booking_date' => $booking_date,
+            'status' => $status,
+            'hrs' => $hrs,
+            'therapist_id' => $therapist_id
+        ]);
     }
+
 
     public function update($id, $data)
     {

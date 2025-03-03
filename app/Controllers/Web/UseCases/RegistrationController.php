@@ -5,6 +5,7 @@ use Project\App\Mail\Mailer;
 use Project\App\Models\Auth\AuthModel;
 use Project\App\Models\Auth\PhotoUpdloadModel;
 use Project\App\Models\Auth\RolesModel;
+use Project\App\Models\Auth\TherapistModel;
 use Project\App\Models\Auth\UserRolesModel;
 
 
@@ -15,6 +16,7 @@ class RegistrationController
     private $userRolesModel;
     private $mailer;
     private $photos;
+    private $therapistModel;
     private $roleModel;
     public function __construct()
     {
@@ -23,6 +25,7 @@ class RegistrationController
         $this->userRolesModel = new UserRolesModel();
         $this->photos = new PhotoUpdloadModel();
         $this->roleModel = new RolesModel();
+        $this->therapistModel = new TherapistModel();
     }
 
     private function generateTemporaryUserNameAndPassword($firstName, $lastName)
@@ -101,6 +104,10 @@ class RegistrationController
                 6 => 'book_a_service',
             ];
             $searchPermissions = $rolePermissions[$search] ?? null;
+            
+            
+            
+            
             $createRole = $this->roleModel->createRoles($findId['id'], $findId['role'], $searchPermissions);
             if (isset($createRole)) {
                 $this->mailer->sendVerification(
@@ -119,6 +126,9 @@ class RegistrationController
                 echo json_encode([
                     'status' => $createUserRoles
                 ]);
+                if ($findId['role']=='Therapist') {
+                    $createTherapist = $this->therapistModel->createTherapist($findId['id'], $findId['first_name'], $findId['last_name']);
+                }
             }
         } catch (\Throwable $th) {
             http_response_code(500);

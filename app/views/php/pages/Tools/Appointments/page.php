@@ -5,9 +5,13 @@ namespace Project\App\Views\Php\Pages\Dashboard;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
+use Project\App\Views\Php\Components\DatePicker\DatePicker;
+use Project\App\Views\Php\Components\Inputs\DefaultInputField;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\SelectField;
 use Project\App\Views\Php\Components\Texts\Text;
+
+use function Symfony\Component\Clock\now;
 
 class Page
 {
@@ -30,11 +34,12 @@ class Page
                         $options = array(
                             'Select',
                             'Walk-in',
-                            'Branch'
+                            'Chat',
+                            'Call'
                         );
                         $options2 = array(
                             'Select',
-                            'Walk-in',
+                            'Home',
                             'Branch'
                         );
                         ?>
@@ -51,15 +56,31 @@ class Page
                             SelectField::render([], 'Package', '', 'select');
                             ?>
                         </div>
-                        <div>
+                        <div class="flex flex-col w-full">
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '3. Customer Details');
-                            GlobalInputField::render('', 'Search for existing customer', 'text', 'search', '');
+                            DefaultInputField::render('', 'Search for existing customer', 'text', 'search', '', '',);
                             ?>
-                            <div class=" rounded-lg bg-primary hover:bg-slate-500 cursor-pointer" id="wrapper">
+                            <div class=" rounded-xl bg-primary hover:bg-slate-500 cursor-pointer w-[325px]" id="wrapper">
                                 <ul class="hover:bg-slate-400" id="suggestions">
                                     <li id="li"></li>
                                 </ul>
+                            </div>
+                            <div class=" py-[10px]">
+                                <?php DefaultInputField::render('guestCustomer', 'Add a guest customer', 'text', 'search', '', '',); ?>
+                            </div>
+                        </div>
+                        <div class=" flex flex-col py-[48px]">
+                            <?php
+                            Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '4. Therapist Choice, Date, & Time');
+                            ?>
+                            <div class="flex flex-col gap-[24px]">
+                                <?php
+                                GlobalInputField::render('', 'Select date', 'date', '');
+                                GlobalInputField::render('', 'Select time','time','');
+                                SelectField::render($options, 'Therapist', 'therapist', 'ewan');
+                                ?>
+                                <div class="" id="wrapperDom"></div>
                             </div>
                         </div>
                         <div class="text-[16px]  flex justify-center pt-[148px]">
