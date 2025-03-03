@@ -33,6 +33,33 @@ class TherapistModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function createTherapist($therapist_id, $first_name, $last_name)
+    {
+        $stmt = $this->pdo->prepare("INSERT 
+        INTO therapist (
+        therapist_id, 
+        first_name, 
+        last_name, 
+        start_time,
+        end_time,
+        date, 
+        created_at, 
+        updated_at) 
+        VALUES (
+        :therapist_id,
+        :last_name,
+        :first_name,
+        NULL, 
+        NULL,
+        NULL,
+        NOW(), 
+        NOW())");
+        return $stmt->execute([
+            'therapist_id' => $therapist_id,
+            'first_name' => $first_name,
+            'last_name' => $last_name
+        ]);
+    }
 
     public function update($id, $data)
     {

@@ -15,6 +15,8 @@ $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
 $router->post('/createCategory', 'ServicesController@createCategory');
+$router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
+$router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/update', 'AccountSettingsController@update');
@@ -76,9 +78,11 @@ $router->view('/editemail', 'page', 'Utilities/EditInfo/EditEmail', 'SessionMidd
 $router->view('/verificationforchangephonenumber', 'page', 'Utilities/VerificationInfo/VerificationForChangePhoneNumber', 'SessionMiddleware');
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
 $router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
+$router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);
 }
+

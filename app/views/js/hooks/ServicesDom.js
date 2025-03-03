@@ -351,10 +351,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const previewServiceName = document.getElementById("previewServiceName");
     const previewServicePrice = document.getElementById("previewServicePrice");
     const previewShortDescription = document.getElementById("previewShortDescription");
-
+    const hiddencontainer = document.getElementById('hiddenContainer');
     // Function to update preview
     function updatePreview() {
-        previewServiceName.textContent = serviceNameInput.value || "Service Name";
+        let serviceName = previewServiceName.textContent = serviceNameInput.value || "Service Name";
 
         // Count existing fields for accurate field count
         fieldCount = inputContainer.querySelectorAll('.FieldContainer').length;
@@ -382,8 +382,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let price = parseFloat(servicePriceInput.value);
-        previewServicePrice.textContent = price ? `₱${price.toLocaleString("en-PH", { minimumFractionDigits: 2 })}` : "₱0.00";
-
+        let priceFinal = previewServicePrice.textContent = price ? `₱${price.toLocaleString("en-PH", { minimumFractionDigits: 2 })}` : "₱0.00";
+        hiddencontainer.innerHTML = `
+        <input type="hidden" name="serviceName" value="${serviceName}">
+        <input type="hidden" name="price" value="${priceFinal}">
+        <input type="hidden" name="descriptions" value="${previewShortDescription.innerHTML}">
+        `;
         checkButtonVisibility();
     }
 

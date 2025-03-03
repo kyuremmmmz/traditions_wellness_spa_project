@@ -1,7 +1,9 @@
 <?php
 namespace Project\App\Controllers\Web\UseCases;
 
-use Project\App\Models\AppointmentsModel;
+use DateTime;
+use Project\App\Models\Utilities\AppointmentsModel;
+
 class AppointmentsController
 {
     private $controller;
@@ -13,35 +15,91 @@ class AppointmentsController
         // Code for listing resources
         echo "This is the index method of AppointmentsController.";
     }
+    /*
+    TODO:
+    INTRO LINE
+    if the available inputs are empty except optionals,
+    Message("please enter required fields");
+    else
+    $findByUsers = $this->controller->findByUser(); this method is in the model select
 
-    public function create()
-    {
-        $file = json_decode(file_get_contents('php://input'),true);
-        if (isset($file['email'], $file['first_name'], $file['last_name'], $file['phone'])) {
-            //$this->controller->find();
-        }// this code will execute the select function if the condition is true
-    }
-
-    public function store()
-    {
+    THERAPIST LINE
+    if therapistTime > currenttime || therapistStatus['status'] == "available"
+    Message("This therapist is  avaiblable")
+    else
+    Message("This therapist is not avaiblable")
+    Consider the realtime updates of the therapist tables
     
+
+    SERVICE LINE:
+    findByServiceID = findByID
+    if service chosen is not match to or in array $file['serviceChosen']
+    */
+    public function appointCustomer()
+    {
+        $file = $_POST;
+        $requiredFields = ['name', 'contactNumber', 'serviceChosen', 'date', 'time', 'hrs'];
+        foreach ($requiredFields as $field) {
+            if (!isset($file[$field]) || trim($file[$field]) === '') {
+                http_response_code(400);
+                echo json_encode([
+                    'message' => "Please enter required fields: $field is missing"
+                ]);
+                return;
+            }
+        }
+
+        $findUsers = $this->controller->findByNumber(trim($file['contactNumber']));
+        if ($findUsers) {
+            http_response_code(200);
+
+            $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
+
+            $startTime = new DateTime($file['time']);
+            $duration = (int) $file['hrs'];
+
+            $endTime = clone $startTime;
+            $endTime->modify("+{$duration} hours");
+
+            $formattedStartTime = $startTime->format("H:i");
+            $formattedEndTime = $endTime->format("H:i");
+
+            $appointCustomer = $this->controller->create(
+                $name,
+                $findUsers['userID'],
+                $findUsers['address'],
+                $findUsers['phone'],
+                $formattedStartTime,
+                $formattedEndTime,  
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+                '',
+            );
+
+            echo json_encode([
+                'message' => 'Appointment created successfully',
+                'start_time' => $formattedStartTime,
+                'end_time' => $formattedEndTime,
+                'total_hrs' => $duration
+            ]);
+        } else {
+            http_response_code(404);
+            echo json_encode([
+                'message' => 'Phone not found'
+            ]);
+        }
     }
 
-    public function edit($id)
-    {
-        // Code for showing an edit form
-        echo "This is the edit method of AppointmentsController for ID: $id.";
-    }
 
-    public function update($id)
+    public function searchCustomer()
     {
-        // Code for updating resources
-        echo "This is the update method of AppointmentsController for ID: $id.";
-    }
-
-    public function delete($id)
-    {
-        // Code for deleting resources
-        echo "This is the delete method of AppointmentsController for ID: $id.";
+        ob_clean();
+            $response = $this->controller->findByRole('Customer');
+            echo json_encode($response);
+        exit;
     }
 }
