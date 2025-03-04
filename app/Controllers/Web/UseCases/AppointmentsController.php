@@ -20,27 +20,13 @@ class AppointmentsController
         echo "This is the index method of AppointmentsController.";
     }
     /*
-    TODO:
-    INTRO LINE
-    if the available inputs are empty except optionals,
-    Message("please enter required fields");
-    else
-    $findByUsers = $this->controller->findByUser(); this method is in the model select
-
-    THERAPIST LINE
-    if therapistTime > currenttime || therapistStatus['status'] == "available"
-    Message("This therapist is  avaiblable")
-    else
-    Message("This therapist is not avaiblable")
-    Consider the realtime updates of the therapist tables
-    
-
-    SERVICE LINE:
-    findByServiceID = findByID
-    if service chosen is not match to or in array $file['serviceChosen']
+    TO FIX: 
+    - addOnss
+    - duration calculation
     */
     public function appointCustomer()
     {
+        session_start();
         $file = $_POST;
         if (!isset($file['guestCustomer']) && !isset($file['SearchCustomer'])) {
             echo json_encode([
@@ -53,37 +39,41 @@ class AppointmentsController
         if ($findUsers) {
             http_response_code(200);
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-            $appointCustomer = $this->controller->create(
+            $this->controller->create(
                 $name,
                 $findUsers['id'],
                 $findUsers['address'],
                 $findUsers['phone'],
                 $file['time'],
-                $file['time'] + 2000,
+                $file['time'],
                 $findServiceByID['price'],
                 'Hilot ko gago HAHAHAHAHAH',
                 $file['service'],
                 'pending',
                 '2',
             );
-
-            echo json_encode([
+            $_SESSION['message'] = [
                 'message' => 'Appointment created successfully',
-            ]);
+            ];
+            header('Location: /appointments');
         } else {
-            $appointCustomer = $this->controller->create(
+            $this->controller->create(
                 $file['guestCustomer'],
                 1,
                 'Ayala Ave, Quezon City',
                 '09083217645',
                 $file['time'],
-                $file['time'] + 2000,
+                $file['time'],
                 $findServiceByID['price'],
                 'Hilot ko gago HAHAHAHAHAH',
                 $file['service'],
                 'pending',
                 '2',
             );
+            $_SESSION['message'] = [
+                'message' => 'Appointment created successfully',
+            ];
+            header('Location: /appointments');
         }
     }
 

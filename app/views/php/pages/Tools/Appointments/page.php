@@ -2,6 +2,7 @@
 
 namespace Project\App\Views\Php\Pages\Dashboard;
 
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
@@ -19,7 +20,9 @@ class Page
     {
 ?>
         <main class="flex w-full">
-            <?php Sidebar::render(); ?>
+            <?php Sidebar::render(); 
+            WorkingBanner::render()
+            ?>
             <div class=" overflow-y-auto  flex flex-col mt-[104px] sm:mt-[160px] md:justify-center items-center w-full">
                 <form class="flex flex-col gap-12" action="/appointCustomer" method="POST">
                     <div class="flex flex-col gap-2">

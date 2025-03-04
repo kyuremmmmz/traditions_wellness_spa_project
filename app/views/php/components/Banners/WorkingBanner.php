@@ -10,7 +10,7 @@ class WorkingBanner
     {
         $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
-
+        $success = isset($_SESSION['message']['message']);
         if ($tooManyAttempts) {
             http_response_code(429);
             RegularBanner::render(
@@ -29,6 +29,16 @@ class WorkingBanner
                 "darkDestructive"
             );
             unset($_SESSION['server_error']);
+        }
+        if ($success) {
+            RegularBanner::render(
+                "Success",
+                "{$_SESSION['message']['message']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['message']);
         }
     }
 }
