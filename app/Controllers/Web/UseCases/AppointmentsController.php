@@ -1,13 +1,17 @@
 <?php
+
 namespace Project\App\Controllers\Web\UseCases;
 
 use DateTime;
 use Project\App\Models\Utilities\AppointmentsModel;
 
+use function Symfony\Component\Clock\now;
+
 class AppointmentsController
 {
     private $controller;
-    public function __construct(){
+    public function __construct()
+    {
         $this->controller = new AppointmentsModel();
     }
     public function index()
@@ -38,68 +42,65 @@ class AppointmentsController
     public function appointCustomer()
     {
         $file = $_POST;
-        $requiredFields = ['name', 'contactNumber', 'serviceChosen', 'date', 'time', 'hrs'];
-        foreach ($requiredFields as $field) {
-            if (!isset($file[$field]) || trim($file[$field]) === '') {
-                http_response_code(400);
-                echo json_encode([
-                    'message' => "Please enter required fields: $field is missing"
-                ]);
-                return;
-            }
+        if (!isset($file['guestCustomer']) && !isset($file['SearchCustomer'])) {
+            echo json_encode([
+                'message' => 'Required fields are missing'
+            ]);
         }
 
-        $findUsers = $this->controller->findByNumber(trim($file['contactNumber']));
+        $findUsers = $this->controller->findByNumber(trim($file['hiddenValue']));
+        $findServiceByID = $this->controller->findById($file['service']);
         if ($findUsers) {
             http_response_code(200);
-
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-
-            $startTime = new DateTime($file['time']);
-            $duration = (int) $file['hrs'];
-
-            $endTime = clone $startTime;
-            $endTime->modify("+{$duration} hours");
-
-            $formattedStartTime = $startTime->format("H:i");
-            $formattedEndTime = $endTime->format("H:i");
-
             $appointCustomer = $this->controller->create(
                 $name,
-                $findUsers['userID'],
+                $findUsers['id'],
                 $findUsers['address'],
                 $findUsers['phone'],
-                $formattedStartTime,
-                $formattedEndTime,  
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
+                $file['time'],
+                $file['time'] + 2000,
+                $findServiceByID['price'],
+                'Hilot ko gago HAHAHAHAHAH',
+                $file['service'],
+                'pending',
+                '2',
             );
 
             echo json_encode([
                 'message' => 'Appointment created successfully',
-                'start_time' => $formattedStartTime,
-                'end_time' => $formattedEndTime,
-                'total_hrs' => $duration
             ]);
         } else {
-            http_response_code(404);
-            echo json_encode([
-                'message' => 'Phone not found'
-            ]);
+            $appointCustomer = $this->controller->create(
+                $file['guestCustomer'],
+                1,
+                'Ayala Ave, Quezon City',
+                '09083217645',
+                $file['time'],
+                $file['time'] + 2000,
+                $findServiceByID['price'],
+                'Hilot ko gago HAHAHAHAHAH',
+                $file['service'],
+                'pending',
+                '2',
+            );
         }
+    }
+
+    public function searchTherapist()
+    {
+        ob_clean();
+        $response = $this->controller->getAll();
+        echo json_encode($response);
+        exit;
     }
 
 
     public function searchCustomer()
     {
         ob_clean();
-            $response = $this->controller->findByRole('Customer');
-            echo json_encode($response);
+        $response = $this->controller->findByRole('Customer');
+        echo json_encode($response);
         exit;
     }
 }
