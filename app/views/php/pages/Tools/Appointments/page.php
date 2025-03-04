@@ -2,6 +2,7 @@
 
 namespace Project\App\Views\Php\Pages\Dashboard;
 
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
@@ -19,9 +20,11 @@ class Page
     {
 ?>
         <main class="flex w-full">
-            <?php Sidebar::render(); ?>
+            <?php Sidebar::render(); 
+            WorkingBanner::render()
+            ?>
             <div class=" overflow-y-auto  flex flex-col mt-[104px] sm:mt-[160px] md:justify-center items-center w-full">
-                <form class="flex flex-col gap-12" accept="" method="post">
+                <form class="flex flex-col gap-12" action="/appointCustomer" method="POST">
                     <div class="flex flex-col gap-2">
                         <?php
                         Text::render('', '', 'text-onBackground dark:text-white text-[22px] font-[600]', 'Book an Appointment');
@@ -53,21 +56,24 @@ class Page
                         <div class="flex flex-col pb-[48px]">
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '2. Service Choice');
-                            SelectField::render([], 'Package', '', 'select');
+                            SelectField::render([], 'Package', 'service', 'select');
                             ?>
                         </div>
                         <div class="flex flex-col w-full">
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '3. Customer Details');
-                            DefaultInputField::render('', 'Search for existing customer', 'text', 'search', '', '',);
+                            DefaultInputField::render('SearchCustomer', 'Search for existing customer', 'text', 'search', '', '',);
                             ?>
+                            <div id="hiddenValue">
+                        
+                            </div>
                             <div class=" rounded-xl bg-primary hover:bg-slate-500 cursor-pointer w-[325px]" id="wrapper">
                                 <ul class="hover:bg-slate-400" id="suggestions">
                                     <li id="li"></li>
                                 </ul>
                             </div>
                             <div class=" py-[10px]">
-                                <?php DefaultInputField::render('guestCustomer', 'Add a guest customer', 'text', 'search', '', '',); ?>
+                                <?php DefaultInputField::render('guestCustomer', 'Add a guest customer', 'text', 'm', '', '',); ?>
                             </div>
                         </div>
                         <div class=" flex flex-col py-[48px]">
@@ -76,16 +82,23 @@ class Page
                             ?>
                             <div class="flex flex-col gap-[24px]">
                                 <?php
-                                GlobalInputField::render('', 'Select date', 'date', '');
-                                GlobalInputField::render('', 'Select time','time','');
-                                SelectField::render($options, 'Therapist', 'therapist', 'ewan');
+                                GlobalInputField::render('date', 'Select date', 'date', '');
+                                GlobalInputField::render('time', 'Select time', 'time', '');
                                 ?>
                                 <div class="" id="wrapperDom"></div>
                             </div>
                         </div>
                         <div class="text-[16px]  flex justify-center pt-[148px]">
                             <?php
-                            GlobalButton::render('primary', 'Book', '', '', '', 'submit', 'appointmentButton');
+                            GlobalButton::render(
+                                'primary',
+                                'Book',
+                                '',
+                                '',
+                                '',
+                                'submit',
+                                'appointmentButton',
+                            );
                             ?>
                         </div>
                 </form>

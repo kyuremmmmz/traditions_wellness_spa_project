@@ -16,6 +16,7 @@ $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
 $router->post('/createCategory', 'ServicesController@createCategory');
 $router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
+$router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
@@ -43,7 +44,7 @@ $router->view('/login', 'page', 'Auth/login', 'SessionMiddleware');
 $router->view('/register', 'page', 'Auth/register', 'SessionMiddleware');
 $router->view('/forgotpassword', 'page', 'Auth/forgotpassword', 'SessionMiddleware');
 $router->view('/verification', 'page', 'Auth/verification', 'SessionMiddleware');
-$router->view( '/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
+$router->view('/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'DataPages/dashboard', 'SessionMiddleware');
 $router->view('/resetpassword', 'page', 'Auth/resetpassword', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
@@ -85,4 +86,3 @@ try {
     http_response_code(404);
     echo json_encode(['error' => $e->getMessage()]);
 }
-

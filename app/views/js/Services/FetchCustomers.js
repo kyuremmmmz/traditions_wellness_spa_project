@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchSuggestions = document.querySelector('#suggestions');
     const wrapper = document.querySelector('#wrapper');
     const listTemplate = document.querySelector('#li');
-
+    const hiddenValue = document.querySelector('#hiddenValue');
     const showRecommendedList = (listOfRecommendations) => {
         searchSuggestions.innerHTML = '';
+        hiddenValue.innerHTML = '';
         searchSuggestions.classList.add('bg-primary');
         wrapper.classList.add('dark:text-white');
         listTemplate.classList.add('hover:bg-slate-200')
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
             listItem.textContent = `${item.first_name} ${item.last_name}`;
             listItem.addEventListener('click', () => {
                 searchInput.value = `${item.first_name} ${item.last_name}`;
+                hiddenValue.innerHTML = `<input type="hidden" name="hiddenValue" value="${item.phone}">`
                 searchSuggestions.innerHTML = '';
             });
             searchSuggestions.appendChild(listItem);
@@ -33,6 +35,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         showRecommendedList(recommendedList);
     };
-
     searchInput.addEventListener('keyup', fetchData);
 });

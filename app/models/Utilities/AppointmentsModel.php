@@ -1,7 +1,10 @@
 <?php
+
 namespace Project\App\Models\Utilities;
-use Project\App\Config\Connection;
+
 use PDO;
+use Project\App\Config\Connection;
+
 class AppointmentsModel
 {
     private $pdo;
@@ -13,7 +16,7 @@ class AppointmentsModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT first_name, last_name, id, userID,  FROM users");
+        $stmt = $this->pdo->query("SELECT * FROM therapist");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -24,6 +27,14 @@ class AppointmentsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findById($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     public function findByEmail($email)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
@@ -33,8 +44,14 @@ class AppointmentsModel
 
     public function findByRole($role)
     {
-        $stmt = $this->pdo->prepare("SELECT first_name, last_name, role  FROM users WHERE role = :role ");
+        $stmt = $this->pdo->prepare("SELECT *  FROM users WHERE role = :role ");
         $stmt->execute(['role' => $role]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function findByRoleTherapist()
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM therapist");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -49,10 +66,8 @@ class AppointmentsModel
         $total_price,
         $addOns,
         $services_id,
-        $booking_date,
         $status,
         $hrs,
-        $therapist_id
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO appointments (
         nameOfTheUser, 
@@ -67,7 +82,6 @@ class AppointmentsModel
         booking_date,
         status,
         hrs,
-        therapist_id,
         created_at,
         updated_at
     ) VALUES (
@@ -80,15 +94,13 @@ class AppointmentsModel
         :total_price,
         :addOns,
         :services_id,
-        :booking_date,
+        NOW(),
         :status,
         :hrs,
-        :therapist_id,
         NOW(), 
         NOW()
     )");
-
-        return $stmt->execute([
+        $exe = $stmt->execute([
             'nameOfTheUser' => $nameOfTheUser,
             'user_id' => $user_id,
             'address' => $address,
@@ -98,11 +110,10 @@ class AppointmentsModel
             'total_price' => $total_price,
             'addOns' => $addOns,
             'services_id' => $services_id,
-            'booking_date' => $booking_date,
-            'status' => $status,
+            'status'=>ucfirst(str_replace('', '', $status)),
             'hrs' => $hrs,
-            'therapist_id' => $therapist_id
         ]);
+        return is_array($exe);
     }
 
 
