@@ -119,7 +119,7 @@ class AppointmentsModel
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare("UPDATE appointments SET column1 = :value1, column2 = :value2");
+        $stmt = $this->pdo->prepare("UPDATE your_table_name SET booking_date = :booking_date, start_time = :value2 WHERE id = :id");
         $data['id'] = $id;
         return $stmt->execute($data);
     }

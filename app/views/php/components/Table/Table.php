@@ -15,9 +15,13 @@ class Table
                     <tr>
                         <th scope="col" class="px-6 py-4 font-semibold">Appointments</th>
                         <th scope="col" class="px-6 py-4 font-semibold">Appt. ID</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Phone Number</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Address</th>
                         <th scope="col" class="px-6 py-4 font-semibold">Patient</th>
                         <th scope="col" class="px-6 py-4 font-semibold">Date</th>
-                        <th scope="col" class="px-6 py-4 font-semibold">Time</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Start</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">End</th>
+                        <th scope="col" class="px-6 py-4 font-semibold">Total price</th>
                         <th scope="col" class="px-6 py-4 font-semibold">Status</th>
                         <th scope="col" class="px-6 py-4 font-semibold">Action</th>
                     </tr>
