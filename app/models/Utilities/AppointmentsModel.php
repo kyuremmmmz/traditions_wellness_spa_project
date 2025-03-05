@@ -117,16 +117,54 @@ class AppointmentsModel
     }
 
 
-    public function update($id, $data)
-    {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET booking_date = :booking_date, start_time = :value2 WHERE id = :id");
-        $data['id'] = $id;
+    public function update(
+        $nameOfTheUser,
+        $user_id,
+        $address,
+        $contactNumber,
+        $start_time,
+        $end_time,
+        $total_price,
+        $addOns,
+        $services_id,
+        $status,
+        $hrs,
+        $id
+    ) {
+        $stmt = $this->pdo->prepare("UPDATE appointments SET 
+            nameOfTheUser = :nameOfTheUser,
+            user_id = :user_id,
+            address = :address,
+            contactNumber = :contactNumber,
+            start_time = :start_time,
+            end_time = :end_time,
+            total_price = :total_price,
+            addOns = :addOns,
+            services_id = :services_id,
+            status = :status,
+            hrs = :hrs,
+            updated_at = NOW()
+            WHERE id = :id");
+
+        $data = [
+            'nameOfTheUser' => $nameOfTheUser,
+            'user_id' => $user_id,
+            'address' => $address,
+            'contactNumber' => $contactNumber,
+            'start_time' => $start_time,
+            'end_time' => $end_time,
+            'total_price' => $total_price,
+            'addOns' => $addOns,
+            'services_id' => $services_id,
+            'status' => ucfirst(str_replace('', '', $status)),
+            'hrs' => $hrs,
+            'id' => $id
+        ];
         return $stmt->execute($data);
     }
-
     public function delete($id)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
+        $stmt = $this->pdo->prepare("DELETE FROM appointments WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
 }
