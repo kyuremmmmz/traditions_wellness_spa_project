@@ -20,6 +20,8 @@ $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
+$router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
+$router->post('/deleteAppointment', 'AppointmentsController@deleteAppointment');
 $router->get('/fetchAppointments', 'AppointmentsController@fetchAppointments');
 $router->post('/update', 'AccountSettingsController@update');
 $router->post('/updatePassword', 'AccountSettingsController@updatePassword');

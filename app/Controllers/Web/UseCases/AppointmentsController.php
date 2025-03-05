@@ -25,6 +25,39 @@ class AppointmentsController
     - duration calculation
     */
 
+    public function updateAppointment()
+    {
+        header('Content-Type: application/json');
+        session_start();
+        $file = $_POST;
+
+        if (!isset($file['id']) || !isset($file['nameOfTheUser'])) {
+            echo json_encode(['message' => 'Required fields are missing']);
+            return;
+        }
+
+        $response = $this->controller->update(
+            $file['nameOfTheUser'],
+            $file['uid'],
+            $file['address'],
+            $file['contactNumber'],
+            $file['start_time'],
+            $file['end_time'],
+            $file['price'],
+            $file['addOns'],
+            $file['sid'],
+            $file['status'],
+            $file['total_hrs'],
+            $file['id']
+        );
+        header('Location:/Tracker');
+        $_SESSION['success_message'] = [
+            'success_message' => 'Updated Successfully'
+        ];
+        echo json_encode(['status' => $response]);
+    }
+
+
     public function appointCustomer()
     {
         session_start();
@@ -86,7 +119,7 @@ class AppointmentsController
         exit;
     }
 
-    public function fetchAppointments()
+    public function fetchAppointments(): array
     {
         ob_clean();
         $appointment = $this->controller->getAll();
@@ -101,5 +134,12 @@ class AppointmentsController
         $response = $this->controller->findByRole('Customer');
         echo json_encode($response);
         exit;
+    }
+
+    public function deleteAppointment()
+    {
+        $file = $_POST;
+        $response = $this->controller->delete($file['id']);
+        header('Location: /Tracker');
     }
 }
