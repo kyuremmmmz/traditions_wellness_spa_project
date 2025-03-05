@@ -24,6 +24,7 @@ class AppointmentsController
     - addOnss
     - duration calculation
     */
+
     public function appointCustomer()
     {
         session_start();
@@ -82,6 +83,14 @@ class AppointmentsController
         ob_clean();
         $response = $this->controller->getAll();
         echo json_encode($response);
+        exit;
+    }
+
+    public function fetchAppointments()
+    {
+        ob_clean();
+        $appointment = $this->controller->getAll();
+        echo json_encode($appointment);
         exit;
     }
 

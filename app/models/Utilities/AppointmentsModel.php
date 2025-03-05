@@ -16,7 +16,7 @@ class AppointmentsModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM therapist");
+        $stmt = $this->pdo->query("SELECT * FROM appointments");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -119,7 +119,7 @@ class AppointmentsModel
 
     public function update($id, $data)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
+        $stmt = $this->pdo->prepare("UPDATE appointments SET column1 = :value1, column2 = :value2");
         $data['id'] = $id;
         return $stmt->execute($data);
     }

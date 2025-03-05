@@ -17,8 +17,10 @@ class Page
                 Text::render('', '', 'text-onBackground dark:text-white text-[22px] font-[600]', 'Appointment Tracker');
                 ?>
             </div>
-            <?php
-            Table::render() ?>
+            <form class="w-full overflow-y-auto" action="" method="post">
+                <?php
+                Table::render('', 'tableWrapper') ?>
+            </form>
         </div>
 <?php
         Sidebar::render();
