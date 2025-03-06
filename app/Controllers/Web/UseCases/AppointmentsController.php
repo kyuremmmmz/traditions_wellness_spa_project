@@ -68,8 +68,8 @@ class AppointmentsController
             ]);
         }
 
-        $findUsers = $this->controller->findByNumber(trim($file['hiddenValue']));
-        $findServiceByID = $this->controller->findById($file['service']);
+        $findUsers = $this->controller->findByNumber($file['hiddenValue']);
+        $findServiceByID = $this->controller->findById($file['service_id']);
         if ($findUsers) {
             http_response_code(200);
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
@@ -81,8 +81,8 @@ class AppointmentsController
                 $file['time'],
                 $file['time'],
                 $findServiceByID['price'],
-                'Hilot ko gago HAHAHAHAHAH',
-                $file['service'],
+                'Test',
+                $file['service_id'],
                 'pending',
                 '2',
             );
