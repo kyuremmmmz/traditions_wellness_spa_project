@@ -56,7 +56,7 @@ class Page
                         <div class="flex flex-col pb-[48px]">
                             <?php
                             Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '2. Service Choice');
-                            SelectField::render([], 'Package', 'service', 'select');
+                            SelectField::render([], 'Package', 'service_id', 'select');
                             ?>
                         </div>
                         <div class="flex flex-col w-full">
