@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Status</label>
                             <select name="status" id="modalStatus" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                                <option value="pending">Pending</option>
+                                 <option value="cancelled">Cancelled</option>
                                 <option value="confirmed">Confirmed</option>
                             </select>
                         </div>
@@ -116,14 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td class="px-6 py-4 text-center">${item.address || ''}</td>
                 <td class="px-6 py-4 text-center">${item.nameOfTheUser || ''}</td>
                 <td class="px-6 py-4 text-center">${formattedDate}</td>
-                <td class="px-6 py-4 text-center">${formattedStartTime}</td>
-                <td class="px-6 py-4 text-center">${formattedEndTime}</td>
                 <td class="px-6 py-4 text-center">${item.total_price || ''}</td>
-                <td class="px-6 py-4 text-center">${item.hrs || ''}</td>
                 <td class="px-6 py-4 text-center">${item.addOns || ''}</td>
                 <td class="px-6 py-4 text-center">${item.status || ''}</td>
-                <td class="px-6 py-4 text-center">${item.services_id || ''}</td>
-                <td class="px-6 py-4 text-center">${item.user_id || ''}</td>
                 <td class="px-6 py-4 text-center">
                     ${item.status === 'pending' ?
                     `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Pending</span>` :
@@ -135,15 +130,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         data-contact="${item.contactNumber || ''}"
                         data-address="${item.address || ''}"
                         data-name="${item.nameOfTheUser || ''}"
-                        data-date="${item.booking_date || ''}"
-                        data-start="${item.start_time || ''}"
-                        data-end="${item.end_time || ''}"
                         data-price="${item.total_price || ''}"
                         data-hours="${item.hrs || ''}"
                         data-addons="${item.addOns || ''}"
                         data-status="${item.status || 'pending'}"
-                        data-service-id="${item.services_id || ''}"
-                        data-user-id="${item.user_id || ''}">Update</button>
+                        }">Update</button>
                     <form action="/deleteAppointment" method="post" class="inline">
                         <input type="hidden" name="id" value="${item.id || ''}">
                         <button type="submit" class="px-3 py-1 text-xs font-medium text-white bg-red-500 rounded hover:bg-red-600">Delete</button>

@@ -73,23 +73,33 @@ class AppointmentsController
         if ($findUsers) {
             http_response_code(200);
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-            $this->controller->create(
-                $name,
-                $findUsers['id'],
-                $findUsers['address'],
-                $findUsers['phone'],
-                $file['time'],
-                $file['time'],
-                $findServiceByID['price'],
-                'Hilot ko gago HAHAHAHAHAH',
-                $file['service'],
-                'pending',
-                '2',
-            );
-            $_SESSION['message'] = [
-                'message' => 'Appointment created successfully',
-            ];
-            header('Location: /appointments');
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
+            if ($findDateAndTime>5) {
+                http_response_code(401);
+                $_SESSION['therapistError'] = [
+                    'therapistError' => 'Appointment Busy'
+                ];
+                header('Location: /appointments');
+            }else{
+                $this->controller->create(
+                    $name,
+                    $findUsers['id'],
+                    $findUsers['address'],
+                    $findUsers['phone'],
+                    $file['time'],
+                    $file['time'],
+                    $findServiceByID['price'],
+                    'Hilot ko  HAHAHAHAHAH',
+                    $file['service'],
+                    $file['date'],
+                    'pending',
+                    '2',
+                );
+                $_SESSION['message'] = [
+                    'message' => 'Appointment created successfully',
+                ];
+                header('Location: /appointments');
+            }
         } else {
             $this->controller->create(
                 $file['guestCustomer'],
@@ -99,8 +109,9 @@ class AppointmentsController
                 $file['time'],
                 $file['time'],
                 $findServiceByID['price'],
-                'Hilot ko gago HAHAHAHAHAH',
+                'Hilot ko HAHAHAHAHAH',
                 $file['service'],
+                $file['date'],
                 'pending',
                 '2',
             );

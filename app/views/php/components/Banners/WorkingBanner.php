@@ -12,6 +12,7 @@ class WorkingBanner
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
         $success = isset($_SESSION['message']['message']);
         $messageSuccess = isset($_SESSION['success_message']['success_message']);
+        $appointmentError = isset($_SESSION['therapistError']['therapistError']);
         if ($tooManyAttempts) {
             http_response_code(429);
             RegularBanner::render(
@@ -50,6 +51,16 @@ class WorkingBanner
                 "darkDestructive"
             );
             unset($_SESSION['success_message']);
+        }
+
+        if ($appointmentError) {
+            RegularBanner::render(
+                "Busy",
+                "{$_SESSION['therapistError']['therapistError']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive");
+                unset($_SESSION['therapistError']);
         }
     }
 }

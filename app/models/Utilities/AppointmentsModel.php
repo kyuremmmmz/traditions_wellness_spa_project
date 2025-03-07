@@ -34,6 +34,16 @@ class AppointmentsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByDateAndTime($date, $time)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM appointments WHERE booking_date = :booking_date AND start_time = :start_time");
+        $stmt->execute([
+            'booking_date' => $date,
+            'start_time' => $time
+        ]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 
     public function findByEmail($email)
     {
@@ -66,6 +76,7 @@ class AppointmentsModel
         $total_price,
         $addOns,
         $services_id,
+        $booking_date,
         $status,
         $hrs,
     ) {
@@ -94,7 +105,7 @@ class AppointmentsModel
         :total_price,
         :addOns,
         :services_id,
-        NOW(),
+        :booking_date,
         :status,
         :hrs,
         NOW(), 
@@ -110,6 +121,7 @@ class AppointmentsModel
             'total_price' => $total_price,
             'addOns' => $addOns,
             'services_id' => $services_id,
+            'booking_date' => $booking_date,
             'status'=>ucfirst(str_replace('', '', $status)),
             'hrs' => $hrs,
         ]);
