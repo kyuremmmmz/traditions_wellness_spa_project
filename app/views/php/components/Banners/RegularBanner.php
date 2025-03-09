@@ -24,7 +24,6 @@ class RegularBanner
                                 SmallExitButton::render("banner");
         echo '              </div>
                         </div>';
-     // JavaScript to show the banner
         echo <<<HTML
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
@@ -42,8 +41,8 @@ class RegularBanner
 
                                     // Hide the banner completely after fading out
                                     setTimeout(function() {
-                                        banner.style.display = "none"; // Remove banner from DOM after animation
-                                    }, 6000); // 1 second after fading out
+                                        banner.style.display = "none";
+                                    }, 6000);
                                 }
                             });
                         </script>

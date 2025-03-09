@@ -8,15 +8,36 @@ class SessionMiddleware
     {
         session_start();
 
-        if (isset($_SESSION['user']) && $_SERVER['REQUEST_URI'] !== '/dashboard') {
+        $isAuthenticated = isset($_SESSION['user']);
+        $hasCookie = isset($_COOKIE['user']);
+        $currentRoute = $_SERVER['REQUEST_URI'];
+
+        if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register', '/'])) {
             header('Location: /dashboard');
             exit;
         }
 
-        if (!isset($_SESSION['user'])) {
+        if (!$isAuthenticated && !$hasCookie  &&
+            in_array($currentRoute, [
+                '/',
+                '/dashboard',
+                '/profile',
+                '/settings',
+                '/services',
+                '/employees',
+                '/appointments',
+                '/finances',
+                '/inventory',
+                '/account',
+                '/changephonenumber',
+                '/verificationforchangephonenumber',
+                '/changepassword'
+            ])
+        ) {
             header('Location: /login');
             exit;
         }
+
         return $next($request);
     }
 }

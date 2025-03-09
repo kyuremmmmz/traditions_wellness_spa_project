@@ -20,7 +20,7 @@ class Page
     {
 ?>
         <main class="flex w-full">
-            <?php Sidebar::render(); 
+            <?php Sidebar::render();
             WorkingBanner::render()
             ?>
             <div class=" overflow-y-auto  flex flex-col mt-[104px] sm:mt-[160px] md:justify-center items-center w-full">
