@@ -19,7 +19,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         items.forEach(item => {
             const html = `
-                <option value="${item.id}" selected>${item.category}</option>
+                <div class="relative">
+                <input
+                    type="radio"
+                    id="${item.id}" 
+                    name="category_selection" 
+                    value="${item.category}"
+                    class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0"
+                />
+                <label 
+                    for="${item.id}" 
+                    id="${item.id}-label"
+                    class="transition-all ease-in-out absolute BodyOne left-[7px] mt-[10px]   text-onBackgroundTwo dark:text-darkOnBackgroundTwo peer-checked:text-onBackground dark:peer-checked:text-darkOnBackground  dark:bg-darkBackground bg-background px-[7px] pointer-events-none "
+                >
+                    ${item.category}
+                </label>
+            </div>
             `;
             selectionBox.innerHTML += html;
         });

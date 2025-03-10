@@ -12,6 +12,7 @@ use Project\App\Views\Php\Components\GridViewDefault\GridViewLocation;
 use Project\App\Views\Php\Components\Inputs\DefaultInputField;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\SelectField;
+use Project\App\Views\Php\Components\Inputs\StaticRadioButton;
 use Project\App\Views\Php\Components\Texts\Text;
 
 use function Symfony\Component\Clock\now;
@@ -60,52 +61,76 @@ class Page
                             Text::render('', '', 'text-[16px] font-[400] dark:text-white pb-[24px]', ' What will be booked?');
                             ?>
                         </div>
-                        <?php
-                        SelectField::render([], 'Package', 'service_id', 'select');
-                        ?>
-                    </div>
-                    <div class="flex flex-col w-full">
-                        <?php
-                        Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '3. Customer Details');
-                        DefaultInputField::render('SearchCustomer', 'Search for existing customer', 'text', 'search', '', '',);
-                        ?>
-                        <div id="hiddenValue">
+                        <div id="select" class="flex flex-col gap-[16px] FieldContainer min-w-[316px] w-full max-w-[400px] pb-[64px]">
 
                         </div>
-                        <div class=" rounded-xl bg-primary hover:bg-slate-500 cursor-pointer w-[325px]" id="wrapper">
-                            <ul class="hover:bg-slate-400" id="suggestions">
-                                <li id="li"></li>
-                            </ul>
-                        </div>
-                        <div class=" py-[10px]">
-                            <?php DefaultInputField::render('guestCustomer', 'Add a guest customer', 'text', 'm', '', '',); ?>
-                        </div>
-                    </div>
-                    <div class=" flex flex-col py-[48px]">
-                        <?php
-                        Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', '4. Therapist Choice, Date, & Time');
-                        ?>
-                        <div class="flex flex-col gap-[24px]">
+
+                        <div class="flex flex-row gap-2">
                             <?php
-                            GlobalInputField::render('date', 'Select date', 'date', '');
-                            GlobalInputField::render('time', 'Select time', 'time', '');
+                            Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Add-ons.  ');
+                            Text::render('', '', 'text-[16px] font-[400] dark:text-white pb-[24px]', ' Are there special requests?');
                             ?>
-                            <div class="" id="wrapperDom"></div>
                         </div>
-                    </div>
-                    <div class="text-[16px]  flex justify-center pt-[148px]">
-                        <?php
-                        GlobalButton::render(
-                            'primary',
-                            'Book',
-                            '',
-                            '',
-                            '',
-                            'submit',
-                            'appointmentButton',
-                        );
-                        ?>
-                    </div>
+                        <div class="pb-[64px]">
+                            <?php StaticRadioButton::render() ?>
+                        </div>
+
+                        <div class="flex flex-row gap-2">
+                            <?php
+                            Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Date.');
+                            Text::render('', '', 'text-[16px] font-[400] dark:text-white pb-[24px]', ' What day will it happen?');
+                            ?>
+                        </div>
+                        <div class=" pb-[64px]">
+                            <?php GlobalInputField::render('date', 'Select date', 'date', ''); ?>
+                        </div>
+
+                        <div class="flex flex-row gap-2">
+                            <?php
+                            Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Time.');
+                            Text::render('', '', 'text-[16px] font-[400] dark:text-white pb-[24px]', ' What time will it start?');
+                            ?>
+                        </div>
+                        <div class=" pb-[64px]">
+                            <?php GlobalInputField::render('time', 'Select time', 'time', ''); ?>
+                        </div>
+
+                        <div class="flex flex-col w-full">
+                            <div class="flex flex-row gap-2">
+                                <?php
+                                Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Customer.  ');
+                                Text::render('', '', 'text-[16px] font-[400] dark:text-white pb-[24px]', ' Who is the client?');
+                                ?>
+                            </div>
+                            <?php
+
+                            DefaultInputField::render('SearchCustomer', 'Search for existing customer', 'text', 'search', '', '',);
+                            ?>
+                            <div id="hiddenValue">
+                            </div>
+                            <div class=" rounded-xl bg-primary hover:bg-slate-500 cursor-pointer w-[325px]" id="wrapper">
+                                <ul class="hover:bg-slate-400" id="suggestions">
+                                    <li id="li"></li>
+                                </ul>
+                            </div>
+                            <div class=" py-[10px]">
+                                <?php DefaultInputField::render('guestCustomer', 'Add a guest customer', 'text', 'm', '', '',); ?>
+                            </div>
+                        </div>
+                        
+                        <div class="text-[16px]  flex justify-center pt-[148px]">
+                            <?php
+                            GlobalButton::render(
+                                'primary',
+                                'Book',
+                                '',
+                                '',
+                                '',
+                                'submit',
+                                'appointmentButton',
+                            );
+                            ?>
+                        </div>
                 </form>
             </div>
         </main>

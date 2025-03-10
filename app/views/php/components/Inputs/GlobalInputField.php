@@ -36,7 +36,7 @@ echo <<<HTML
                 peer-[&:not(:placeholder-shown)]:MiniOne peer-[&:not(:placeholder-shown)]:-translate-y-1 dark:bg-darkBackground bg-background px-[7px] pointer-events-none origin-top-left">
                 {$label}
             </label>
-HTML;       
+HTML;
 
             if ($type === "password") {
                 $eye = "eyeClose";
