@@ -48,7 +48,6 @@ class AuthMobileController
                         $file['lastName'],
                         $file['firstName'],
                         $file['gender'],
-                        $file['email'],
                         password_hash($file['password'], PASSWORD_BCRYPT),
                         $file['email']
                     );
@@ -254,7 +253,6 @@ class AuthMobileController
             if ($result) {
                 $_SESSION['user'] = [
                     'role' => $sessionPayloadData['role'],
-                    'username' => $sessionPayloadData['username'],
                     'last_name' => $sessionPayloadData['last_name'],
                     'first_name' => $sessionPayloadData['first_name'],
                     'email' => $sessionPayloadData['email'],
