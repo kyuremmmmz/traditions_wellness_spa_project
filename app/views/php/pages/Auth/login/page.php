@@ -33,11 +33,7 @@ class Page
         echo    '<main class="OneColumnContainer mt-[80px] sm:mt-[100px] bg-background dark:bg-darkBackground">';
                         WorkingBanner::render(); // Banner Logic
                         SubmarkLogo::render("[201.37px]", "[88px]", "full", "");
-<<<<<<< HEAD:app/views/php/pages/login/page.php
-                        Text::render("","", "HeaderTwo text-left text-onBackground dark:text-darkOnBackground mt-[40px] mb-[8px]", "Verification Code");
-=======
                         Text::render("", "", "HeaderTwo text-center mt-[40px] mb-[56px] text-onBackground dark:text-darkOnBackground", "Login your account");
->>>>>>> 95efdd6d5ca6a1ce9bdd11f2fb25376928f48fb3:app/views/php/pages/Auth/login/page.php
         echo            '<form method="POST" action="/login" class="FormContainer">';
                                 GlobalInputField::render("username", "Username", "text", "username_field_login", $usernameError);
                                 echo '<div class="relative">';
