@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         items.forEach(item => {
             const html = `
-                <option value="${item.id}" selected>${item.serviceName} - ${item.price}</option>
+                <option value="${item.id}" selected>${item.category}</option>
             `;
             selectionBox.innerHTML += html;
         });

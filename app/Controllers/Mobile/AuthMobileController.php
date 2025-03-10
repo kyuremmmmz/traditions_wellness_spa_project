@@ -48,7 +48,7 @@ class AuthMobileController
                         $file['lastName'],
                         $file['firstName'],
                         $file['gender'],
-                        password_hash($file['password'], PASSWORD_BCRYPT),
+                        
                         $file['email']
                     );
                     $findRole = $this->webController->findByEmail($file['email']);

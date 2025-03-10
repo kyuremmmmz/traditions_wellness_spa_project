@@ -36,11 +36,19 @@ class UserAuthModel
                 'lastname' => $lastName,
                 'firstname' => $firstName,
                 'gender' => $gender,
-                'password' => $password,
                 'email' => $email
             ]
         );
     }
+
+    public function setPassword($password)
+    {
+        $stmt = $this->pdo->prepare("UPDATE users SET verifCode = NULL, password=:password updated_at = NOW() WHERE verifCode = :verifCode");
+        return $stmt->execute([
+            'password' => $password,
+        ]);
+    }
+
 
     public function verifCode($verifCode, $email)
     {
