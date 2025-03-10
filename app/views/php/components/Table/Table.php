@@ -20,9 +20,7 @@ class Table
                     <th scope='col' class='px-6 py-4 font-semibold'>Customer</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Date</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Start</th>
-                    <th scope='col' class='px-6 py-4 font-semibold'>End</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Total Price</th>
-                    <th scope='col' class='px-6 py-4 font-semibold'>Hours</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Add-ons</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Status</th>
                     <th scope='col' class='px-6 py-4 font-semibold'>Action</th>

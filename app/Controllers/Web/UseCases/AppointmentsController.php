@@ -38,16 +38,12 @@ class AppointmentsController
 
         $response = $this->controller->update(
             $file['nameOfTheUser'],
-            $file['uid'],
             $file['address'],
             $file['contactNumber'],
-            $file['start_time'],
-            $file['end_time'],
+            $file['booking_date'],
             $file['price'],
             $file['addOns'],
-            $file['sid'],
             $file['status'],
-            $file['total_hrs'],
             $file['id']
         );
         header('Location:/Tracker');
@@ -90,7 +86,7 @@ class AppointmentsController
                     $file['time'],
                     $findServiceByID['price'],
                     'Hilot ko  HAHAHAHAHAH',
-                    $file['service'],
+                    $file['service_id'],
                     $file['date'],
                     'pending',
                     '2',
@@ -101,24 +97,33 @@ class AppointmentsController
                 header('Location: /appointments');
             }
         } else {
-            $this->controller->create(
-                $file['guestCustomer'],
-                1,
-                'Ayala Ave, Quezon City',
-                '09083217645',
-                $file['time'],
-                $file['time'],
-                $findServiceByID['price'],
-                'Hilot ko HAHAHAHAHAH',
-                $file['service'],
-                $file['date'],
-                'pending',
-                '2',
-            );
-            $_SESSION['message'] = [
-                'message' => 'Appointment created successfully',
-            ];
-            header('Location: /appointments');
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
+            if ($findDateAndTime>5) {
+                http_response_code(401);
+                $_SESSION['therapistError'] = [
+                    'therapistError' => 'Appointment Busy'
+                ];
+                header('Location: /appointments');
+            }else{
+                $this->controller->create(
+                    $file['guestCustomer'],
+                    1,
+                    'Ayala Ave, Quezon City',
+                    '09083217645',
+                    $file['time'],
+                    $file['time'],
+                    $findServiceByID['price'],
+                    'Hilot ko HAHAHAHAHAH',
+                    $file['service'],
+                    $file['date'],
+                    'pending',
+                    '2',
+                );
+                $_SESSION['message'] = [
+                    'message' => 'Appointment created successfully',
+                ];
+                header('Location: /appointments');
+            }
         }
     }
 

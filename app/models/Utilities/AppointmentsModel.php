@@ -131,45 +131,32 @@ class AppointmentsModel
 
     public function update(
         $nameOfTheUser,
-        $user_id,
         $address,
         $contactNumber,
-        $start_time,
-        $end_time,
+        $booking_date,
         $total_price,
         $addOns,
-        $services_id,
         $status,
-        $hrs,
         $id
     ) {
         $stmt = $this->pdo->prepare("UPDATE appointments SET 
             nameOfTheUser = :nameOfTheUser,
-            user_id = :user_id,
             address = :address,
             contactNumber = :contactNumber,
-            start_time = :start_time,
-            end_time = :end_time,
             total_price = :total_price,
+            booking_date = :booking_date,
             addOns = :addOns,
-            services_id = :services_id,
             status = :status,
-            hrs = :hrs,
             updated_at = NOW()
             WHERE id = :id");
-
         $data = [
             'nameOfTheUser' => $nameOfTheUser,
-            'user_id' => $user_id,
             'address' => $address,
+            'booking_date' => $booking_date,
             'contactNumber' => $contactNumber,
-            'start_time' => $start_time,
-            'end_time' => $end_time,
             'total_price' => $total_price,
             'addOns' => $addOns,
-            'services_id' => $services_id,
             'status' => ucfirst(str_replace('', '', $status)),
-            'hrs' => $hrs,
             'id' => $id
         ];
         return $stmt->execute($data);

@@ -34,21 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
                             <label class="block text-sm font-medium text-gray-700">Booking Date</label>
                             <input type="date" name="booking_date" id="modalBookingDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Start Time</label>
-                            <input type="time" name="start_time" id="modalStartTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">End Time</label>
-                            <input type="time" name="end_time" id="modalEndTime" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
+                       
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Total Price</label>
                             <input type="text" name="price" id="modalTotalPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Hours</label>
-                            <input type="number" name="total_hrs" id="modalHours" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         </div>
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Add-ons</label>
@@ -57,17 +46,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <div class="mb-4">
                             <label class="block text-sm font-medium text-gray-700">Status</label>
                             <select name="status" id="modalStatus" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                                 <option value="cancelled">Cancelled</option>
+                                <option value="pending" disabled selected>Pending</option>
+                                <option value="cancelled">Cancelled</option>
                                 <option value="confirmed">Confirmed</option>
                             </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Service ID</label>
-                            <input type="text" name="sid" id="modalServicesId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">User ID</label>
-                            <input type="text" name="uid" id="modalUserId" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
                         </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
@@ -106,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data.forEach((item, index) => {
             const formattedDate = formatDate(item.booking_date);
             const formattedStartTime = formatTime(item.start_time);
-            const formattedEndTime = formatTime(item.end_time);
+            
 
             html += `
             <tr class="transition-colors duration-200 hover:bg-indigo-50">
@@ -116,13 +98,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td class="px-6 py-4 text-center">${item.address || ''}</td>
                 <td class="px-6 py-4 text-center">${item.nameOfTheUser || ''}</td>
                 <td class="px-6 py-4 text-center">${formattedDate}</td>
+                <td class="px-6 py-4 text-center">${formattedStartTime}</td>
                 <td class="px-6 py-4 text-center">${item.total_price || ''}</td>
                 <td class="px-6 py-4 text-center">${item.addOns || ''}</td>
-                <td class="px-6 py-4 text-center">${item.status || ''}</td>
                 <td class="px-6 py-4 text-center">
                     ${item.status === 'pending' ?
-                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Pending</span>` :
-                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">Confirmed</span>`}
+                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status.toUpperCase()}</span>` :
+                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status.toUpperCase()}</span>`}
                 </td>
                 <td class="px-6 py-4 text-center">
                     <button type="button" class="update-btn px-3 py-1 mr-2 text-xs font-medium text-white bg-primary rounded hover:bg-primary" 
@@ -151,15 +133,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('modalContactNumber').value = this.getAttribute('data-contact');
                 document.getElementById('modalAddress').value = this.getAttribute('data-address');
                 document.getElementById('modalName').value = this.getAttribute('data-name');
-                document.getElementById('modalBookingDate').value = this.getAttribute('data-date') ? this.getAttribute('data-date').split(' ')[0] : '';
-                document.getElementById('modalStartTime').value = this.getAttribute('data-start')
-                document.getElementById('modalEndTime').value = this.getAttribute('data-end');
+                document.getElementById('modalBookingDate').value = this.getAttribute('data-date');
                 document.getElementById('modalTotalPrice').value = this.getAttribute('data-price');
-                document.getElementById('modalHours').value = this.getAttribute('data-hours');
                 document.getElementById('modalAddOns').value = this.getAttribute('data-addons');
                 document.getElementById('modalStatus').value = this.getAttribute('data-status');
-                document.getElementById('modalServicesId').value = this.getAttribute('data-service-id');
-                document.getElementById('modalUserId').value = this.getAttribute('data-user-id');
                 modal.classList.remove('hidden');
                 setTimeout(() => {
                     modal.classList.remove('opacity-0');
