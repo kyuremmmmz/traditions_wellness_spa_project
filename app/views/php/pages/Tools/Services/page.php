@@ -2,12 +2,15 @@
 
 namespace Project\App\Views\Php\Pages\Tools\Services;
 
+use Project\App\Controllers\Web\ServicesController;
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
+use Project\App\Views\Php\Components\Inputs\SelectField;
 
 class Page
 {
@@ -201,6 +204,76 @@ class Page
                         <?php Text::render('', '', 'HeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', '$CategoryName'); ?>
                     </div>
                 </div>
+            <?php 
+                Sidebar::render();
+                WorkingBanner::render();
+            ?>
+            <div class="overflow-auto flex flex-col mt-[104px] sm:mt-[160px] md:justify-center items-center w-full">
+                <form class="flex flex-col gap-12" action="/createService" method="POST">
+                    <div class="flex flex-col gap-2">
+                        <?php
+                            Text::render('', '', 'text-onBackground dark:text-white text-[22px] font-[600]', 'Create a Service');
+                            Text::render('', '', 'text-onBackground dark:text-white text-[14px] font-[400]', 'Details');
+                        ?>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <?php
+                        Text::render('', '', 'text-[16px] font-[500] dark::text-white pb-[0spx]', '');
+                        $options = array(
+                            'Massage',
+                            'Body Scrub',
+                            'Stone Massage'
+                        );
+                        ?>
+
+                        <div class="flex flex-col gap-[24px] pb-[0px]">
+                            <?php 
+                            SelectField::render($options, 'Category', 'categoryService', 'ewan' );
+                            ?>
+                        </div>
+
+                        <?php
+                        Text::render('', '', 'text-[16px] font-[500] dark::text-white pb-[24px]', 'Service Name');
+                        $options1 = array(
+                            'Bamboossage Massage',
+                            'Body Scrub',
+                            'Stone Massage'
+                        );
+                        ?>
+
+                        <div class="flex flex-col gap-[24px] pb-[0px]">
+                            <?php 
+                            SelectField::render($options1, 'Service Name', 'serviceName', 'ewan' );
+                            ?>
+                        </div>
+
+                        <?php
+                        Text::render('', '', 'text-[16px] font-[500] dark::text-white pb-[24px]', 'Caption');
+                        $options1 = array(
+                            'Massage',
+                            'Body Scrub',
+                            'Stone Massage'
+                        );
+                        ?>
+
+                        <div class="flex flex-col gap-[24px] pb-[48px]">
+                            <?php 
+                            SelectField::render($options1, 'Caption', 'captionName', 'ewan' );
+                            ?>
+                        </div>
+                        
+                        <div class="flex flex-col gap-[24px] pb-[48px] w-full">
+                            <?php 
+                            Text::render('', '', 'text-[16px] font-[500] dark:text-white', 'Description');
+                            ?>
+                            <textarea name="captionName" placeholder="Enter your message..." 
+                                class="w-full h-[150px] border border-gray-400 rounded-md px-4 py-3 
+                                    bg-transparent text-onBackground dark:text-white focus:outline-none resize-none">
+                            </textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- Add Confirmation Modal -->
             <div id="confirmationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
