@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input
                     type="radio"
                     id="${item.id}" 
-                    name="category_selection" 
-                    value="${item.category}"
+                    name="service_id" 
+                    value="${item.id}"
                     class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0"
                 />
                 <label 

@@ -48,8 +48,9 @@ class AuthMobileController
                         $file['lastName'],
                         $file['firstName'],
                         $file['gender'],
-                        
+                        $file['password'],
                         $file['email']
+                        
                     );
                     $findRole = $this->webController->findByEmail($file['email']);
                     if (is_array($findRole) && isset($findRole['email'])) {

@@ -23,7 +23,7 @@ class StaticRadioButton
                                 <input
                                     type="checkbox"
                                     id="1"
-                                    name="category_selection"
+                                    name="body_massage"
                                     value="150"
                                     class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0 checked:shadow-blue-500/10 relative before:content-[''] before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-transparent before:scale-0 checked:before:content-['✓'] checked:before:bg-borderHighlight dark:checked:before:bg-darkBorderHighlight checked:before:scale-100 before:flex before:items-center before:justify-center before:text-white before:text-lg before:transition-all before:duration-200" />
                                 <label
@@ -39,7 +39,7 @@ class StaticRadioButton
                                 <input
                                     type="checkbox"
                                     id="2"
-                                    name="category_selection"
+                                    name="body_scrub"
                                     value="150"
                                     class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0 checked:shadow-blue-500/10 relative before:content-[''] before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-transparent before:scale-0 checked:before:content-['✓'] checked:before:bg-borderHighlight dark:checked:before:bg-darkBorderHighlight checked:before:scale-100 before:flex before:items-center before:justify-center before:text-white before:text-lg before:transition-all before:duration-200" />
                                 <label
@@ -54,7 +54,7 @@ class StaticRadioButton
                                 <input
                                     type="checkbox"
                                     id="2"
-                                    name="category_selection"
+                                    name="hotstone"
                                     value="150"
                                     class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0 checked:shadow-blue-500/10 relative before:content-[''] before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-transparent before:scale-0 checked:before:content-['✓'] checked:before:bg-borderHighlight dark:checked:before:bg-darkBorderHighlight checked:before:scale-100 before:flex before:items-center before:justify-center before:text-white before:text-lg before:transition-all before:duration-200" />
                                 <label
@@ -69,7 +69,7 @@ class StaticRadioButton
                                 <input
                                     type="checkbox"
                                     id="2"
-                                    name="category_selection"
+                                    name="earcandling"
                                     value="150"
                                     class="peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground border-[2px] border-borderTwo dark:border-darkBorderTwo checked:border-borderHighlight dark:checked:border-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] appearance-none cursor-pointer focus:ring-0 checked:shadow-blue-500/10 relative before:content-[''] before:absolute before:left-2 before:top-1/2 before:-translate-y-1/2 before:w-6 before:h-6 before:rounded-full before:bg-transparent before:scale-0 checked:before:content-['✓'] checked:before:bg-borderHighlight dark:checked:before:bg-darkBorderHighlight checked:before:scale-100 before:flex before:items-center before:justify-center before:text-white before:text-lg before:transition-all before:duration-200" />
                                 <label
