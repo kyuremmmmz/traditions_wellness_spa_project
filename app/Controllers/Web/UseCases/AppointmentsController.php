@@ -68,6 +68,8 @@ class AppointmentsController
         $findServiceByID = $this->controller->findById($file['service_id']);
         if ($findUsers) {
             http_response_code(200);
+            $addOnsPrice = $file['body_massage'] + $file['body_scrub'] + $file['hotstone'] + $file['earcandling'];
+            $total = $addOnsPrice + $findServiceByID['price'];
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
             $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
             if ($findDateAndTime>5) {
@@ -84,7 +86,7 @@ class AppointmentsController
                     $findUsers['phone'],
                     $file['time'],
                     $file['time'],
-                    $findServiceByID['price'],
+                    $total,
                     'Hilot ko  HAHAHAHAHAH',
                     $file['service_id'],
                     $file['date'],
@@ -105,6 +107,8 @@ class AppointmentsController
                 ];
                 header('Location: /appointments');
             }else{
+                $addOnsPrice = $file['body_massage'] + $file['body_scrub'] + $file['hotstone'] + $file['earcandling'];
+                $total = $addOnsPrice + $findServiceByID['price'];
                 $this->controller->create(
                     $file['guestCustomer'],
                     1,
@@ -112,7 +116,7 @@ class AppointmentsController
                     '09083217645',
                     $file['time'],
                     $file['time'],
-                    $findServiceByID['price'],
+                    $total,
                     'Hilot ko HAHAHAHAHAH',
                     $file['service'],
                     $file['date'],
