@@ -2,13 +2,12 @@
 namespace Project\App\Controllers\Mobile;
 
 
-use Project\App\Controllers\Web\RegistrationController;
-use Project\App\Mail\Mailer;
 use Project\App\Mail\UserMailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\RolesModel;
-use Project\App\Models\UserAuthModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\RolesModel;
+use Project\App\Models\Auth\UserAuthModel;
+use Project\App\Models\Auth\UserRolesModel;
+
 
 class AuthMobileController
 {
@@ -28,15 +27,15 @@ class AuthMobileController
     public function registration()
     {
         $file = json_decode(file_get_contents('php://input'), true);
-        if (isset($file['phone'])) {
-            $findPhone = $this->webController->findByPhone($file['phone']);
-            if (is_array($findPhone) && $file['phone'] === $findPhone['phone']) {
+        if (isset($file['email'])) {
+            $findEmail = $this->webController->findByEmail($file['email']);
+            if (is_array($findEmail) && $file['email'] === $findEmail['email']) {
                 http_response_code(401);
                 echo json_encode([
-                    'message' => 'This phone already exist'
+                    'message' => 'This email already exist'
                 ]);
                 $_SESSION['error'] = [
-                    'message' => 'This phone already exist'
+                    'message' => 'This email already exist'
                 ];
             }else{
                 if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/', $file['password'])) {
@@ -49,12 +48,11 @@ class AuthMobileController
                         $file['lastName'],
                         $file['firstName'],
                         $file['gender'],
-                        $file['phone'],
                         password_hash($file['password'], PASSWORD_BCRYPT),
                         $file['email']
                     );
-                    $findRole = $this->webController->findByPhone($file['phone']);
-                    if (is_array($findRole) && isset($findRole['phone'])) {
+                    $findRole = $this->webController->findByEmail($file['email']);
+                    if (is_array($findRole) && isset($findRole['email'])) {
                         $createRole = $this->controller2->createRoles($findRole['id'], 'Customer', 'book_a_service');
                         echo json_encode([
                             'status' => $createRole
@@ -125,13 +123,13 @@ class AuthMobileController
 
         $file = json_decode(file_get_contents('php://input'), true);
 
-        if (isset($file['phone'])) {
-            $phone = $this->controller->login($file['phone']);
+        if (isset($file['email'])) {
+            $email = $this->controller->login($file['email']);
 
-            if (is_array($phone)) {
-                if (password_verify($file['password'], $phone['password'])) {
-                    if (!is_null($phone['email_verified_at'])) {
-                        $jwt = $this->generateJWT($phone['id'], $phone['phone'], $phone['email']);
+            if (is_array($email)) {
+                if (password_verify($file['password'], $email['password'])) {
+                    if (!is_null($email['email_verified_at'])) {
+                        $jwt = $this->generateJWT($email['id'],  $email['email']);
 
                         echo json_encode([
                             'message' => 'Login successful',
@@ -152,7 +150,7 @@ class AuthMobileController
         }
     }
 
-    private function generateJWT($id, $phone, $email)
+    private function generateJWT($id, $email)
     {
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
         $payload = json_encode([
@@ -162,7 +160,6 @@ class AuthMobileController
             'exp' => time() + (60 * 60),
             'data' => [
                 'id' => $id,
-                'phone' => $phone,
                 'email' => $email
             ]
         ]);
@@ -202,12 +199,12 @@ class AuthMobileController
     public function forgotPasswordSend()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-        if (isset($data['phone'])) {
+        if (isset($data['email'])) {
             $tokenForGenerate = $this->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
-            $response = $this->webController->findByPhone($data['phone']);
-            if (isset($response['phone'])) {
+            $response = $this->webController->findByEmail($data['email']);
+            if (isset($response['email'])) {
                 $this->mail->sendToken(
                     $response['email'],
                     'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
@@ -219,7 +216,7 @@ class AuthMobileController
             }else{
                 http_response_code(404);
                 echo json_encode([
-                    'response code' => 'Phone not found'
+                    'response code' => 'Email not found'
                 ]);
             }
         }
@@ -256,7 +253,6 @@ class AuthMobileController
             if ($result) {
                 $_SESSION['user'] = [
                     'role' => $sessionPayloadData['role'],
-                    'username' => $sessionPayloadData['username'],
                     'last_name' => $sessionPayloadData['last_name'],
                     'first_name' => $sessionPayloadData['first_name'],
                     'email' => $sessionPayloadData['email'],

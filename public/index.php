@@ -15,8 +15,19 @@ $router->post('/forgot', 'AuthController@forgotPasswordSend');
 $router->post('/forgotPass', 'AuthController@forgotPassword');
 $router->post('/resetPassword', 'AuthController@resetPassword');
 $router->post('/createCategory', 'ServicesController@createCategory');
+$router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
+$router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
+$router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
+$router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
+$router->post('/deleteAppointment', 'AppointmentsController@deleteAppointment');
+$router->get('/fetchAppointments', 'AppointmentsController@fetchAppointments');
+$router->post('/update', 'AccountSettingsController@update');
+$router->post('/updatePassword', 'AccountSettingsController@updatePassword');
+$router->post('/updateEmail', 'UpdateEmailController@updateEmail');
+$router->post('/findByCode', 'UpdateEmailController@findByCode');
+$router->post('/newEmail', 'UpdateEmailController@newEmail');
 $router->post('/mobileLogin', 'AuthMobileController@login');
 $router->post('/mobileRegistration', 'AuthMobileController@registration');
 $router->post('/mobileVerification', 'AuthMobileController@verifyEmailAndPhone');
@@ -36,7 +47,7 @@ $router->view('/login', 'page', 'Auth/login', 'SessionMiddleware');
 $router->view('/register', 'page', 'Auth/register', 'SessionMiddleware');
 $router->view('/forgotpassword', 'page', 'Auth/forgotpassword', 'SessionMiddleware');
 $router->view('/verification', 'page', 'Auth/verification', 'SessionMiddleware');
-$router->view( '/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
+$router->view('/profile', 'page', 'DataPages/profile', 'SessionMiddleware');
 $router->view('/dashboard', 'page', 'DataPages/dashboard', 'SessionMiddleware');
 $router->view('/resetpassword', 'page', 'Auth/resetpassword', 'SessionMiddleware');
 $router->view('/', 'index', '', 'SessionMiddleware');
@@ -70,6 +81,8 @@ $router->view('/verificationforchangeemail', 'page', 'Utilities/VerificationInfo
 $router->view('/editemail', 'page', 'Utilities/EditInfo/EditEmail', 'SessionMiddleware');
 $router->view('/verificationforchangephonenumber', 'page', 'Utilities/VerificationInfo/VerificationForChangePhoneNumber', 'SessionMiddleware');
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
+$router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
+$router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
 try {
     $router->resolve();
 } catch (Exception $e) {

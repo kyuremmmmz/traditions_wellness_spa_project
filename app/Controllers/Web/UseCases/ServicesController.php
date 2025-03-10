@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 use Project\App\Models\Services\ServicesModel;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 
@@ -27,10 +27,10 @@ class ServicesController
     public function store()
     {
         ob_clean();
-        $data = $this->model->getAll();
+        $data2 = $this->model->getAll();
         echo json_encode([
             'message' => 'Connected successfully',
-            'data' => $data
+            'data' => $data2
         ]);
 
         exit;

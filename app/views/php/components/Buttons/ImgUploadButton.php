@@ -57,8 +57,8 @@ class ImgUploadButton
                 const file = event.target.files[0];
 
                 if (file) {
-                    const maxSize = 500 * 1024; // 500KB limit
-                    const allowedTypes = ["image/jpeg", "image/jpg"];
+                    const maxSize = 1000 * 1024; // 500KB limit
+                    const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
 
                     // Check file type
                     if (!allowedTypes.includes(file.type)) {

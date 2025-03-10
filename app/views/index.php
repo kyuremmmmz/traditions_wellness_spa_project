@@ -18,12 +18,16 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/LightModeDarkMode.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/ContinueRegDom.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/Services/FetchApiData.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
-    <script src="http://192.168.0.3/TraditionsWellnessSpa/Project/app/views/js/hooks/AccountDom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/tailwind.config.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/LightModeDarkMode.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ContinueRegDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchApiData.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/AccountDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectBoxDynamicDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchAppointment.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchCustomers.js"></script>
 </head>
 
 <!-- Content -->

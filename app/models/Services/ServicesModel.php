@@ -19,6 +19,14 @@ class ServicesModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllServiceName()
+    {
+        $stmt = $this->pdo->query("SELECT id,serviceName, price, description FROM services");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     public function find($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");

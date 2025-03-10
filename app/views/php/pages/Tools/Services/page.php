@@ -68,5 +68,4 @@ class Page
     }
 }
 
-// Call the page function to render
 Page::page();

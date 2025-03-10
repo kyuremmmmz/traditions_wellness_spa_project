@@ -12,13 +12,12 @@ class SessionMiddleware
         $hasCookie = isset($_COOKIE['user']);
         $currentRoute = $_SERVER['REQUEST_URI'];
 
-        if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register'])) {
+        if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register', '/'])) {
             header('Location: /dashboard');
             exit;
         }
 
-        if (
-            !$isAuthenticated && !$hasCookie  &&
+        if (!$isAuthenticated && !$hasCookie  &&
             in_array($currentRoute, [
                 '/',
                 '/dashboard',
@@ -28,7 +27,11 @@ class SessionMiddleware
                 '/employees',
                 '/appointments',
                 '/finances',
-                '/inventory'
+                '/inventory',
+                '/account',
+                '/changephonenumber',
+                '/verificationforchangephonenumber',
+                '/changepassword'
             ])
         ) {
             header('Location: /login');

@@ -1,7 +1,9 @@
 <?php
 namespace Project\App\Controllers\Mobile;
 
-use Project\App\Models\TherapistModel;
+use Project\App\Models\Auth\TherapistModel;
+
+
 
 
 class TherapistAuthController

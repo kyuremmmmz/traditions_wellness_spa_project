@@ -1,11 +1,14 @@
 <?php
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 
 use Project\App\Mail\Mailer;
-use Project\App\Models\AuthModel;
-use Project\App\Models\PhotoUpdloadModel;
-use Project\App\Models\RolesModel;
-use Project\App\Models\UserRolesModel;
+use Project\App\Models\Auth\AuthModel;
+use Project\App\Models\Auth\PhotoUpdloadModel;
+use Project\App\Models\Auth\RolesModel;
+use Project\App\Models\Auth\TherapistModel;
+use Project\App\Models\Auth\UserRolesModel;
+
+
 
 class RegistrationController
 {
@@ -13,6 +16,7 @@ class RegistrationController
     private $userRolesModel;
     private $mailer;
     private $photos;
+    private $therapistModel;
     private $roleModel;
     public function __construct()
     {
@@ -21,6 +25,7 @@ class RegistrationController
         $this->userRolesModel = new UserRolesModel();
         $this->photos = new PhotoUpdloadModel();
         $this->roleModel = new RolesModel();
+        $this->therapistModel = new TherapistModel();
     }
 
     private function generateTemporaryUserNameAndPassword($firstName, $lastName)
@@ -81,7 +86,6 @@ class RegistrationController
                 'staff' => 5,
                 'customer' => 6,
             ];
-            // this variable will remove the _ inside the array of strings
             $roleName = strtolower(str_replace(' ', '_', $findId['role']));
             $search = $roleIDs[$roleName] ?? null;
             if (!$search) {
@@ -100,6 +104,10 @@ class RegistrationController
                 6 => 'book_a_service',
             ];
             $searchPermissions = $rolePermissions[$search] ?? null;
+            
+            
+            
+            
             $createRole = $this->roleModel->createRoles($findId['id'], $findId['role'], $searchPermissions);
             if (isset($createRole)) {
                 $this->mailer->sendVerification(
@@ -118,6 +126,9 @@ class RegistrationController
                 echo json_encode([
                     'status' => $createUserRoles
                 ]);
+                if ($findId['role']=='Therapist') {
+                    $createTherapist = $this->therapistModel->createTherapist($findId['id'], $findId['first_name'], $findId['last_name']);
+                }
             }
         } catch (\Throwable $th) {
             http_response_code(500);

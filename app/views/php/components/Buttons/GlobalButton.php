@@ -7,7 +7,7 @@ use Project\App\Views\Php\Components\Texts\Text;
 
 class GlobalButton
 {
-    public static function render(string $choice, string $content, ?string $extraAttributes = null, string $iconChoice = "", ?string $id = null): void
+    public static function render(string $choice, string $content, ?string $extraAttributes = null, string $iconChoice = "", ?string $id = null, ?string $type = null, ?string $name=null): void
     {
         $class = "";
         switch ($choice) {
@@ -36,7 +36,7 @@ class GlobalButton
                 $class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-[32px] h-[32px] flex justify-center items-center";
                 break;
         }
-        echo '<button class="' . $class . '" ' . $extraAttributes . ' id="' . $id . '">';
+        echo '<button class="' . $class . '" ' . $extraAttributes . ' id="' . $id . '" type="'. $type .'", name="'.$name.'">';
         if ($choice == "navigationSecondaryTop" || $choice == "navigationSecondaryBottom" || $choice == "navigationSecondaryMiddle" || $choice == "navigationSecondary") {
             echo IconChoice::render($iconChoice, '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
         }

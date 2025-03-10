@@ -58,7 +58,7 @@ class Router
                     $middleware = $config['middleware'] ?? null;
                     list($controllerName, $action) = explode('@', $controller);
 
-                    $controllerNamespace = json_decode(file_get_contents('php://input'), true) ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\";
+                    $controllerNamespace = json_decode(file_get_contents('php://input'), true) ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\UseCases\\";
                     $controllerClass = $controllerNamespace . $controllerName;
                     $controllerInstance = new $controllerClass();
 

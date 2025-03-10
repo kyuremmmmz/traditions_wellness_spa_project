@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelectorAll('input[name="radioGroup"]').forEach((radio) => {
             radio.addEventListener("change", (event) => {
-                console.log("Selected Value:", event.target.value); 
+                console.log("Selected Value:", event.target.value);
                 document.getElementById("hiddenContainer2").innerHTML = `<input type="hidden" value="${event.target.value}" name="radio">`;
             });
         });

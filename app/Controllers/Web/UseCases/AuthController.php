@@ -1,6 +1,6 @@
 <?php
 
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 
 use Project\App\Mail\Mailer;
 use Project\App\Models\Auth\AuthModel;
@@ -165,6 +165,7 @@ class AuthController
                     'first_name' => $response['first_name'],
                     'email' => $response['email'],
                     'photos' => $response['photos'],
+                    'phone' => $response['phone'],
                 ];
                 $_SESSION['u.id'] = [
                     'role' => $response['role'],

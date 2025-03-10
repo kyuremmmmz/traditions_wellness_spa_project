@@ -1,13 +1,15 @@
 <?php
-namespace Project\App\Controllers\Web;
+namespace Project\App\Controllers\Web\UseCases;
 
 use Project\App\Models\Auth\ResetPasswordModel;
 
 class ContinueRegistrationController
 {
     private $controller;
+    private $fileUpload;
     public function __construct(){
         $this->controller = new ResetPasswordModel();
+        $this->fileUpload = new FileUploadUseCaseController();
     }
     public function continueRegistrationFunction()
     {
@@ -36,9 +38,9 @@ class ContinueRegistrationController
         if (isset($data['imgUpload'])) {
             $firstResponse = $this->controller->findByPreviousUserName($sessionPayload);
             if (is_array($firstResponse)) {
-                $photo = file_get_contents($_FILES['imgUpload']['tmp_name']);
-                $upload = 'data:image/jpeg;base64,' . base64_encode($photo);
-                $uploadStep2 = $this->controller->uploadPhoto($upload,$firstResponse['email']);
+                $photo = $_FILES['imgUpload']['tmp_name'];
+                $upload = $this->fileUpload->imageUpload($photo);
+                $uploadStep2 = $this->controller->uploadPhoto($upload['image']['url'],$firstResponse['email']);
                 echo $uploadStep2;
                 if ($uploadStep2) {
                     header('Location: /dashboard');
