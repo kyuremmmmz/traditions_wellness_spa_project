@@ -2,6 +2,7 @@
 namespace Project\App\Controllers\Mobile;
 
 
+use Project\App\Entities\PrivateFunctions;
 use Project\App\Mail\UserMailer;
 use Project\App\Models\Auth\AuthModel;
 use Project\App\Models\Auth\RolesModel;
@@ -16,13 +17,16 @@ class AuthMobileController
     private $controller3;
     private $webController;
     private $mail;
-    private $secret_key = "secret_key"; 
+    private $entities;
+    private $secret_key = "secret_key";
+
     public function __construct(){
         $this->controller = new UserAuthModel();
         $this->controller3 = new UserRolesModel();
         $this->controller2 = new RolesModel();
         $this->webController = new AuthModel();
         $this->mail = new UserMailer();
+        $this->entities = new PrivateFunctions();
     }
     public function registration()
     {
@@ -64,7 +68,7 @@ class AuthMobileController
                             ]);
                         }
                     }
-                    $verification = $this->verificationCode();
+                    $verification = $this->entities->verificationCode();
                     $this->mail->authMailer(
                         $file['email'],
                         'Good day! ' . $file['firstName'] . ', This is your Vaerification code please do not share this code below',
@@ -84,10 +88,48 @@ class AuthMobileController
         }
     }
 
-    private function verificationCode(){
-        $verification = random_int(100000, 999999);
-        return $verification;
+    public function addPassword()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (isset($data['verifCode']) && isset($data['password'])) {
+            $password = $data['password'];
+
+            $passwordPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{8,}$/';
+
+            if (!preg_match($passwordPattern, $data['password'])) {
+                http_response_code(400);
+                echo json_encode([
+                    'message' => 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+                ]);
+                return;
+            }
+
+            $response = $this->webController->findByCode($data['verifCode']);
+
+            if (is_array($response)) {
+                $setPassword = $this->controller->setPassword(password_hash($password, PASSWORD_BCRYPT), $data['verifCode']);
+
+                if ($setPassword) {
+                    echo json_encode([
+                        'value' => 'Password applied successfully',
+                        'status' => $setPassword
+                    ]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode([
+                        'message' => 'Internal Server Error'
+                    ]);
+                }
+            }
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Missing required fields'
+            ]);
+        }
     }
+
 
 
     public function verifyEmailAndPhone(){
@@ -128,7 +170,7 @@ class AuthMobileController
             if (is_array($email)) {
                 if (password_verify($file['password'], $email['password'])) {
                     if (!is_null($email['email_verified_at'])) {
-                        $jwt = $this->generateJWT($email['id'],  $email['email']);
+                        $jwt = $this->entities->generateJWT($email['id'],  $email['email'], $this->secret_key);
 
                         echo json_encode([
                             'message' => 'Login successful',
@@ -149,27 +191,7 @@ class AuthMobileController
         }
     }
 
-    private function generateJWT($id, $email)
-    {
-        $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
-        $payload = json_encode([
-            'iss' => "your_website.com",
-            'aud' => "your_website.com",
-            'iat' => time(),
-            'exp' => time() + (60 * 60),
-            'data' => [
-                'id' => $id,
-                'email' => $email
-            ]
-        ]);
-
-        $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
-        $base64UrlPayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
-        $signature = hash_hmac('sha256', "$base64UrlHeader.$base64UrlPayload", $this->secret_key, true);
-        $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
-
-        return "$base64UrlHeader.$base64UrlPayload.$base64UrlSignature";
-    }
+    
 
     public function verifyJWT($jwt)
     {
@@ -199,7 +221,7 @@ class AuthMobileController
     {
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['email'])) {
-            $tokenForGenerate = $this->generateToken();
+            $tokenForGenerate = $this->entities->generateToken();
             $token = base64_encode($tokenForGenerate);
             $decodedToken = base64_decode($token);
             $response = $this->webController->findByEmail($data['email']);
@@ -269,11 +291,7 @@ class AuthMobileController
     }
 
 
-    private function generateToken()
-    {
-        $randomToken = rand(100000, 999999);
-        return $randomToken;
-    }
+    
 
 
     public function logout($id)
@@ -281,4 +299,5 @@ class AuthMobileController
         // Code for deleting resources
         echo "This is the delete method of AuthMobileController for ID: $id.";
     }
+    
 }

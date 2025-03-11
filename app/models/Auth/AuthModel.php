@@ -2,6 +2,7 @@
 namespace Project\App\Models\Auth;
 use PDO;
 use Project\App\Config\Connection;
+use Project\App\Entities\PrivateFunctions;
 
 
 class AuthModel
@@ -170,4 +171,5 @@ class AuthModel
         $stmt = $this->pdo->prepare("DELETE FROM password_reset_tokens WHERE email = :email");
         return $stmt->execute(['email' => $email]);
     }
+    
 }
