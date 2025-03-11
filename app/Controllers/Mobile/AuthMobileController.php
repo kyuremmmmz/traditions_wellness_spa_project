@@ -48,9 +48,7 @@ class AuthMobileController
                         $file['lastName'],
                         $file['firstName'],
                         $file['gender'],
-                        $file['password'],
                         $file['email']
-                        
                     );
                     $findRole = $this->webController->findByEmail($file['email']);
                     if (is_array($findRole) && isset($findRole['email'])) {
@@ -104,7 +102,7 @@ class AuthMobileController
                 ]);
                 return;
             }
-            $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($findByVerif['email']);
+            $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($findByVerif['email'], $file['verifCode']);
             if (is_array($findByVerif) && $response && $setVerificationCodeToNull) {
                 echo json_encode(
                     [
