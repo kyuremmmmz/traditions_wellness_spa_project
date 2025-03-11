@@ -35,6 +35,7 @@ $router->post('/mobileforgot', 'AuthMobileController@forgotPasswordSend');
 $router->post('/mobileforgotPass', 'AuthMobileController@forgotPassword');
 $router->post('/mobileresetPassword', 'AuthMobileController@resetPassword');
 $router->post('/mobileLogin', 'AuthMobileController@login');
+$router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {
