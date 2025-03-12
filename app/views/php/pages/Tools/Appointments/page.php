@@ -2,20 +2,20 @@
 
 namespace Project\App\Views\Php\Pages\Dashboard;
 
+use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
-use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
-use Project\App\Views\Php\Components\DatePicker\DatePicker;
 use Project\App\Views\Php\Components\GridViewDefault\GridViewDefaultComponent;
 use Project\App\Views\Php\Components\GridViewDefault\GridViewLocation;
 use Project\App\Views\Php\Components\Inputs\DefaultInputField;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
-use Project\App\Views\Php\Components\Inputs\SelectField;
 use Project\App\Views\Php\Components\Inputs\StaticRadioButton;
 use Project\App\Views\Php\Components\Texts\Text;
+use Project\App\Views\Php\Components\Icons\IconChoice;
+use Project\App\Views\Php\Components\Inputs\SearchField;
+use Project\App\Views\Php\Components\Texts\LastUpdated;
 
-use function Symfony\Component\Clock\now;
 
 class Page
 {
@@ -26,7 +26,32 @@ class Page
             <?php Sidebar::render();
             WorkingBanner::render()
             ?>
-            <div class=" overflow-y-auto  flex flex-col mt-[104px] sm:mt-[102px] md:justify-center items-center w-full">
+            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
+                <div>
+                    <section class="flex h-[50px]">
+                        <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
+                            <?php IconChoice::render('servicesMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
+                        </button>
+                        <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[16px] gap-[4px]">
+                            <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Services');
+                            echo LastUpdated::render(); ?>
+                        </div>
+                    </section>
+
+                    <section class="flex gap-[16px] py-[16px]">
+                        <?php 
+                        ActionButton::render('calendarPlus', 'Book an appointment', 'placeOnClickHere'); 
+                        SearchField::render('Search Customer', '')
+                        ?>
+                    </section>
+                    <div class="flex border border-border dark:border-darkBorder border-[1px] rounded-[6px]">
+                        <section>
+                            
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden">
                 <form class="flex flex-col gap-12" action="/appointCustomer" method="POST">
                     <div class="flex flex-col gap-2">
                         <?php

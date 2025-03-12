@@ -393,6 +393,18 @@ class IconChoice
                         </svg>
                 ';
                 break;
+            case "calendarPlus":
+                $icon = '
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M14.52 8.6665V3.99984C14.52 3.64622 14.3795 3.30708 14.1295 3.05703C13.8794 2.80698 13.5403 2.6665 13.1867 2.6665H3.85335C3.49973 2.6665 3.16059 2.80698 2.91054 3.05703C2.6605 3.30708 2.52002 3.64622 2.52002 3.99984V13.3332C2.52002 13.6868 2.6605 14.0259 2.91054 14.276C3.16059 14.526 3.49973 14.6665 3.85335 14.6665H9.18669" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.1866 1.3335V4.00016" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5.85339 1.3335V4.00016" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2.52002 6.6665H14.52" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.1866 10.6665V14.6665" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M11.1866 12.6665H15.1866" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                ';
+                break;
         };
 
         // Modify the SVG content with dynamic classes
