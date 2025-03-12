@@ -6,6 +6,7 @@ use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
+use Project\App\Views\Php\Components\Texts\CountDisplayer;
 use Project\App\Views\Php\Components\GridViewDefault\GridViewDefaultComponent;
 use Project\App\Views\Php\Components\GridViewDefault\GridViewLocation;
 use Project\App\Views\Php\Components\Inputs\DefaultInputField;
@@ -15,15 +16,25 @@ use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\SearchField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
+use Project\App\Views\Php\Components\Charts\AppointmentsChart;
+
 
 
 class Page
 {
     public static function page()
     {
+        $completedCount = '5';
+        $awaitingReviewCount = '3';
+        $ongoingCount = '9';
+        $upcomingCount = '5';
+        $pendingCount = '2';
+        $cancelledCount = '2';
+        $total = $completedCount + $awaitingReviewCount + $ongoingCount + $upcomingCount + $pendingCount + $cancelledCount;
 ?>
         <main class="flex w-full">
-            <?php Sidebar::render();
+            <?php 
+            Sidebar::render();
             WorkingBanner::render()
             ?>
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
@@ -44,11 +55,31 @@ class Page
                         SearchField::render('Search Customer', '')
                         ?>
                     </section>
-                    <div class="flex border border-border dark:border-darkBorder border-[1px] rounded-[6px]">
-                        <section>
-                            
-                        </section>
-                    </div>
+
+                    <table class="border border-border dark:border-darkBorder border-[1px] rounded-[6px] bg-background dark:bg-darkBackground">
+                        <tr>
+                            <td>
+                                <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
+                                    <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
+                                    <div class="flex flex-col gap-[8px] pl-[24px]">
+                                        <?php 
+                                            CountDisplayer::render('success', $completedCount, 'Completed', '', '');
+                                            CountDisplayer::render('blue', $awaitingReviewCount, 'Awaiting Review', '', '');
+                                            CountDisplayer::render('orange', $ongoingCount, 'Ongoing', '', ''); 
+                                            CountDisplayer::render('yellow', $upcomingCount, 'Upcoming', '', ''); 
+                                            CountDisplayer::render('onBackgroundTwo', $pendingCount, 'Pending', '', ''); 
+                                            CountDisplayer::render('destructive', $cancelledCount, 'Canceled', '', ''); 
+                                        ?>
+                                    </div>
+                                </section>
+                            </td>
+                            <td>
+                                <section class="">
+                                
+                                </section>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div class="hidden">
@@ -159,7 +190,8 @@ class Page
                 </form>
             </div>
         </main>
-<?php
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
+        <?php
     }
 }
 
