@@ -5,6 +5,7 @@ namespace Project\App\Views\Php\Pages\Dashboard;
 use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
+use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\CountDisplayer;
 use Project\App\Views\Php\Components\GridViewDefault\GridViewDefaultComponent;
@@ -32,12 +33,59 @@ class Page
         $cancelledCount = '2';
         $total = $completedCount + $awaitingReviewCount + $ongoingCount + $upcomingCount + $pendingCount + $cancelledCount;
 
+        // id = SourceOfBooking
         $sourceOfBookingOptions = ['Call', 'Messenger', 'Walk-in'];
         $sourceOfBookingOptionsError = '';
-
+        // id = CustomerType
         $customerTypeOptions = ['New Guest Customer', 'Existing Customer'];
         $customerTypeOptionsError = '';
-
+        // id = CustomerName
+        $customerNameError = '';
+        // id = CustomerEmail
+        $customerEmailError = '';
+        // id = ServiceBookedOptions
+        $ServiceBookedOptions = ['Service 1', 'Service 2', 'Service 3'];
+        $ServiceBookedOptionsError = '';
+        // id = DurationOptions
+        $DurationOptions = ['1 Hour', '1 Hour and 30 minutes', '2 Hours'];
+        $DurationOptionsError = '';
+        // id = PartySizeOptions
+        $PartySizeOptions = [
+            ['quantity' => 'Solo', 'price' => '1000'],
+            ['quantity' => 'Duo', 'price' => '1800'],
+            ['quantity' => 'Group', 'price' => '2500']
+        ];
+        $PartySizeOptionsError = '';
+        // id = MassageOptions
+        $MassageOptions = ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'];
+        $MassageOptionsError = '';
+        // id = BodyScrubOptions
+        $BodyScrubOptions = ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'];
+        $BodyScrubOptionsError = '';
+        // id = Addons
+        $addonsOptions = [
+            ['label' => 'Hot Stone Therapy', 'duration' => '30 mins', 'price' => '150'],
+            ['label' => 'Swedish Massage', 'duration' => '60 mins', 'price' => '200'],
+            ['label' => 'Deep Tissue Massage', 'duration' => '45 mins', 'price' => '180']
+        ];
+        $addonsOptionsError = '';
+        // id = Date
+        $DateError = '';
+        // id = Time
+        $TimeError = '';
+        // id = BedSlots
+        $BedSlots = ['1', '2', '3', '4', '5'];
+        $BedSlotsError = '';
+        // id = FinalValidationMessage
+        $FinalValidationMessage = 'Please fill in all the required fields.';
+        $FinalDuration = '1 hour and 30 minutes';
+        $FinalEndTIme = '2:30 PM';
+        $FinalDurationMessage = "The appointment will last for " . $FinalDuration . ".";
+        $FinalEndTimeMessage = "It will end at " . $FinalEndTIme . ".";
+        // id = FinalTotal
+        $FinalTotal = '2000';
+        $FinalTotalMessage = '₱' . $FinalTotal;
+        
 ?>
         <main class="flex w-full">
             <?php 
@@ -95,6 +143,8 @@ class Page
                     </table>
                 </div>
             </div>
+            
+            <!-- Book an appointment -->
             <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
                 <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
                     <button id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
@@ -103,23 +153,82 @@ class Page
                         </div>
                     </button>
                 </div>
-                <div class=" w-full flex sm:items-start flex-col">
-                    <section class="flex flex-col gap-[12px] min-w-[316px] w-full justify-center sm:justify-start">
-                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment');
-                        Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                <div class="w-full flex gap-[48px]">
+                    <section class="flex flex-col gap-[16px] w-[400px]">
+                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
+                        <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                        <div class="flex flex-col mt-[48px] gap-[16px]">
+                            <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', 'Select Source of Booking', $sourceOfBookingOptions, $sourceOfBookingOptionsError, null, 'SourceOfBooking')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError, null, 'CustomerTypeOptions')?>
+                        </div>
+                        <div class="flex flex-col my-[48px] gap-[16px]">
+                            <?php SecondaryInputField::render('textfield', 'Customer Name', 'Enter Customer Name', [], $customerNameError, null, 'CustomerName')?>
+                            <?php SecondaryInputField::render('emailfield', 'Email (Optional)', 'Enter Email', [], $customerEmailError, null, 'CSustomerEmail')?>
+                        </div>
+                        <div class="flex flex-col gap-[16px]">
+                            <?php SecondaryInputField::render('dropdownfield', 'Service Booked', '', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Duration', '', $DurationOptions, $DurationOptionsError, null, 'DurationOptions')?>
+                            <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', '', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions)?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', '', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true)?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', '', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true)?>
+                        </div>
                     </section>
                     <section class="flex flex-col gap-[16px]">
-                        <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', '', $sourceOfBookingOptions, $sourceOfBookingOptionsError)?>
-                        <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError)?>
-                        <?php SecondaryInputField::render('textfield', 'Customer Name', 'Enter Customer Name', [], $sourceOfBookingOptionsError)?>
-                        <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError)?>
+                        <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions')?>
+                        <div class="flex flex-col my-[48px] gap-[16px]">
+                            <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date')?>
+                            <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time')?>
+                            <?php SecondaryInputField::render('slotpickerfield','Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots' ) ?>
+                            <div class="pl-[81px] flex flex-col gap-[8px]">
+                                <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
+                                <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
+                                <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
+                            </div>
+                        </div>
+                        <div class="flex gap-[16px] items-center">
+                            <?php Text::render('FinalTotal', '', 'BodyMediumTwo leading-none text-primary dark:text-darkPrimary w-[65px] text-right', $FinalTotalMessage); ?>
+                            <?php NewPrimaryButton::render('Book', '', 'BookButton', '257px', null)?>
+                        </div>
                     </section>
                 </div>
             </div>
 
+            <!-- Unsaved Progress Modal -->
+            <div id="UnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button id="closeUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button id="proceedUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Confirm Appointment Modal -->
+            <div id="ConfirmAppointmentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to book this appointment?</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button id="cancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button id="confirmAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                    </div>
+                </div>
+            </div>
 
-
+    <!-- CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+     CHRISTIAN
+      -->
+     
             <div class="hidden">
                 <form class="flex flex-col gap-12" action="/appointCustomer" method="POST">
                     <div class="flex flex-col gap-2">

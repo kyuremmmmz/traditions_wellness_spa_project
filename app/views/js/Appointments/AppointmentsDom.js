@@ -1,17 +1,105 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const openBookAnAppointmentButton = document.getElementById("openBookAnAppointmentButton");
-    const bookAnAppointmentSection = document.getElementById("bookAnAppointmentSection");
-    const closeBookAnAppointmentButton = document.getElementById("closeBookAnAppointmentButton")
+class AppointmentForm {
+    constructor() {
+        this.openButton = document.getElementById("openBookAnAppointmentButton");
+        this.section = document.getElementById("bookAnAppointmentSection");
+        this.closeButton = document.getElementById("closeBookAnAppointmentButton");
+        this.unsavedModal = document.getElementById("UnsavedProgressModal");
+        this.cancelButton = document.getElementById("closeUnsavedProgressButton");
+        this.proceedButton = document.getElementById("proceedUnsavedProgressButton");
+        this.bookButton = document.getElementById("BookButton");
+        this.confirmModal = document.getElementById("ConfirmAppointmentModal");
+        this.cancelAppointmentButton = document.getElementById("cancelAppointmentButton");
+        this.confirmAppointmentButton = document.getElementById("confirmAppointmentButton");
+        this.hasUnsavedChanges = false;
 
-    openBookAnAppointmentButton.addEventListener("click", function () {
-        bookAnAppointmentSection.classList.remove("translate-x-full");
-        document.body.classList.add("overflow-hidden");  // Disable body scrolling
-    });
+        this.initializeEventListeners();
+    }
 
-    closeBookAnAppointmentButton.addEventListener("click", function () {
-        bookAnAppointmentSection.classList.add("translate-x-full");
-        document.body.classList.remove("overflow-hidden");  // Disable body scrolling
+    initializeEventListeners() {
+        this.openButton.addEventListener("click", () => this.openForm());
+        this.closeButton.addEventListener("click", () => this.handleClose());
+        this.cancelButton.addEventListener("click", () => this.hideModal());
+        this.proceedButton.addEventListener("click", () => this.handleProceed());
+        this.bookButton.addEventListener("click", () => this.showConfirmModal());
+        this.cancelAppointmentButton.addEventListener("click", () => this.hideConfirmModal());
+        this.confirmAppointmentButton.addEventListener("click", () => this.handleConfirmAppointment());
+        this.trackFormChanges();
+    }
 
-    });
+    showConfirmModal() {
+        this.confirmModal.classList.remove("hidden");
+    }
 
+    hideConfirmModal() {
+        this.confirmModal.classList.add("hidden");
+    }
+
+    handleConfirmAppointment() {
+        // Here you can add the logic to submit the form or make an API call
+        this.hideConfirmModal();
+        this.resetFields();
+        this.closeForm();
+    }
+
+    trackFormChanges() {
+        const inputs = this.section.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            ['input', 'change'].forEach(eventType => {
+                input.addEventListener(eventType, () => {
+                    this.hasUnsavedChanges = true;
+                });
+            });
+        });
+    }
+
+    openForm() {
+        this.section.classList.remove("translate-x-full");
+        document.body.classList.add("overflow-hidden");
+        this.hasUnsavedChanges = false;
+    }
+
+    handleClose() {
+        if (this.hasUnsavedChanges) {
+            this.showModal();
+        } else {
+            this.closeForm();
+        }
+    }
+
+    handleProceed() {
+        this.resetFields();
+        this.hideModal();
+        this.closeForm();
+    }
+
+    resetFields() {
+        const inputs = this.section.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            if (input.type === 'checkbox') {
+                input.checked = false;
+            } else if (input.tagName.toLowerCase() === 'select') {
+                input.selectedIndex = 0;
+            } else {
+                input.value = '';
+            }
+        });
+    }
+
+    showModal() {
+        this.unsavedModal.classList.remove("hidden");
+    }
+
+    hideModal() {
+        this.unsavedModal.classList.add("hidden");
+    }
+
+    closeForm() {
+        this.section.classList.add("translate-x-full");
+        document.body.classList.remove("overflow-hidden");
+        this.hasUnsavedChanges = false;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    new AppointmentForm();
 });
