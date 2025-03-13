@@ -367,6 +367,7 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDom.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsTableRealtime.js"></script>
         <?php
     }
 }

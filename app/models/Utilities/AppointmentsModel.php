@@ -19,6 +19,11 @@ class AppointmentsModel
         $stmt = $this->pdo->query("SELECT * FROM appointments");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllServices()
+{
+    $stmt = $this->pdo->query("SELECT * FROM services");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
     public function getAllTotal()
     {
