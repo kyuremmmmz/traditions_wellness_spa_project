@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const itemUpcoming = document.getElementById('upcoming');
         const itemOngoing = document.getElementById('ongoing');
         const itemCompleted = document.getElementById('completed');
+        const itemTotal = document.getElementById('total');
+        itemTotal.innerText = `${item.total}`;
         itemPending.innerText = `${item.pending}`
         itemUpcoming.innerText = `${item.upcoming}`
         itemCompleted.innerText = `${item.completed}`
