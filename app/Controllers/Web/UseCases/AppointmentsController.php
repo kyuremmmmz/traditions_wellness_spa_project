@@ -147,6 +147,14 @@ class AppointmentsController
         exit;
     }
 
+    public function getAllTotal()
+    {
+        ob_clean();
+        $appointmentTotal = $this->controller->getAllTotal();
+        echo json_encode($appointmentTotal);
+        exit;
+    }
+
 
     public function searchCustomer()
     {
