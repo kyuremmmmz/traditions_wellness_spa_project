@@ -20,6 +20,19 @@ class AppointmentsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllTotal()
+    {
+        $stmt = $this->pdo->query("SELECT 
+                SUM(status='pending' ) AS pending, 
+                SUM(status='cancelled') AS cancelled, 
+                SUM(status='confirmed') AS confirmed, 
+                SUM(status='completed') AS completed, 
+                SUM(status = 'pending') + SUM(status = 'cancelled') + 
+                SUM(status = 'confirmed') + SUM(status = 'completed') AS total
+                FROM appointments");
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function findByNumber($number)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE phone = :number");
