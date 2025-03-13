@@ -20,7 +20,7 @@ class AppointmentsTable
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[120px]'>Scheduled Date</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Start Time</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Duration</th>
-                    <th scope='col' class='pr-[48px] pl-[8px] CaptionTwo py-4 w-[80px]'>Status</th>
+                    <th scope='col' class='pr-[48px] pl-[8px] CaptionTwo py-4 w-[128px]'>Status</th>
                 </tr>
             </thead>";
         echo "<tbody id='$id' class='divide-y divide-gray-100'>";

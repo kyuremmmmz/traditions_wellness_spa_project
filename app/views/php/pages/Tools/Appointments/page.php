@@ -123,7 +123,7 @@ class Page
 
                     <table class="border border-border dark:border-darkBorder border-[1px] rounded-[6px] bg-background dark:bg-darkBackground">
                         <tr>
-                            <td class="rounded-tl-[6px] border border-border dark:border-darkBorder border-[1px]">
+                            <td class="border border-border dark:border-darkBorder border-[1px]">
                                 <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
                                     <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                     <div class="flex flex-col gap-[8px] pl-[24px]">
@@ -138,14 +138,14 @@ class Page
                                     </div>
                                 </section>
                             </td>
-                            <td class="rounded-tr-[6px]">
+                            <td class="p-0">
                                 <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                     <?php 
                                     SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
                                     SecondaryInputField::render('datefield', 'Show appointments from', '');
                                     ?>
                                 </section>
-                                <section class="max-w-[1072px]">
+                                <section class="max-w-[1120px]">
                                     <?php AppointmentsTable::render('appointmentsTable', '');?>
                                 </section>
                             </td>
@@ -153,6 +153,9 @@ class Page
                     </table>
                 </div>
             </div>
+            <form action="/updateAppointment" id="modalWrapper" method="post">
+
+            </form>
             
             <!-- Book an appointment -->
             <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
@@ -367,7 +370,7 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDom.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsTableRealtime.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
         <?php
     }
 }

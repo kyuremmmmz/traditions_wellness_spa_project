@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let table = document.getElementById('tableWrapper');
+    if (window.location.pathname !== '/appointments') {
+        return;
+    }
+
+    let table = document.getElementById('appointmentsTable');
     if (!table) {
         console.error('Table wrapper element not found!');
         return;
@@ -86,43 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         let html = '';
         data.forEach((item, index) => {
+            console.log('Processing item:', item); // Debugging line
             const formattedDate = formatDate(item.booking_date);
             const formattedStartTime = formatTime(item.start_time);
+    
             
-
-            html += `
-            <tr class="transition-colors duration-200 hover:bg-indigo-50">
-                <td class="px-6 py-4 font-medium text-center">${index + 1}</td>
-                <td class="px-6 py-4 font-medium text-center text-indigo-600">${item.id || ''}</td>
-                <td class="px-6 py-4 text-center">${item.contactNumber || ''}</td>
-                <td class="px-6 py-4 text-center">${item.address || ''}</td>
-                <td class="px-6 py-4 text-center">${item.nameOfTheUser || ''}</td>
-                <td class="px-6 py-4 text-center">${formattedDate}</td>
-                <td class="px-6 py-4 text-center">${formattedStartTime}</td>
-                <td class="px-6 py-4 text-center">${item.total_price || ''}</td>
-                <td class="px-6 py-4 text-center">${item.addOns || ''}</td>
-                <td class="px-6 py-4 text-center">
-                    ${item.status === 'pending' ?
-                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status.toUpperCase()}</span>` :
-                    `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">${item.status.toUpperCase()}</span>`}
-                </td>
-                <td class="px-6 py-4 text-center">
-                    <button type="button" class="update-btn px-3 py-1 mr-2 text-xs font-medium text-white bg-primary rounded hover:bg-primary" 
-                        data-id="${item.id || ''}"
-                        data-contact="${item.contactNumber || ''}"
-                        data-address="${item.address || ''}"
-                        data-name="${item.nameOfTheUser || ''}"
-                        data-price="${item.total_price || ''}"
-                        data-hours="${item.hrs || ''}"
-                        data-addons="${item.addOns || ''}"
-                        data-status="${item.status || 'pending'}"
-                        }">Update</button>
-                    <form action="/deleteAppointment" method="post" class="inline">
-                        <input type="hidden" name="id" value="${item.id || ''}">
-                        <button type="submit" class="px-3 py-1 text-xs font-medium text-white bg-red-500 rounded hover:bg-red-600">Delete</button>
-                    </form>
-                </td>
-            </tr>`;
         });
         table.innerHTML += html + '</tbody>';
         document.querySelectorAll('.update-btn').forEach(button => {

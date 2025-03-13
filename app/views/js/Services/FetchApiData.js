@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.pathname !== '/services') {
+        return;
+    }
     const listData = document.getElementById('test');
     const radioButtonContainer = document.getElementById('radioContainer');
     const list = document.getElementById('paragraphData');

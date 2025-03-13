@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.pathname !== '/services') {
+        return;
+    }
+
     const openModalButton = document.getElementById("openAddANewCategoryModal");
     const closeModalButton = document.getElementById("closeAddANewCategoryModal");
     const categoryModal = document.getElementById("addANewCategoryModal");
