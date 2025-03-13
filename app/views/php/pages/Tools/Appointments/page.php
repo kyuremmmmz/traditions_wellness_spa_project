@@ -20,6 +20,7 @@ use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Charts\AppointmentsChart;
 use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
 use Project\App\Views\Php\Components\Table\AppointmentsTable;
+use Project\App\Views\Php\Components\Texts\TextRowContainer;
 
 class Page
 {
@@ -39,8 +40,16 @@ class Page
         // id = CustomerType
         $customerTypeOptions = ['New Guest Customer', 'Existing Customer'];
         $customerTypeOptionsError = '';
-        // id = CustomerName
-        $customerNameError = '';
+        // id = SearchCustomerName
+        $SearchedCustomerName = 'John Doe';
+        $SearchedGender = 'Male';
+        $SearchedEmail = 'none';
+        // id = FirstName
+        $FirstNameError = '';
+         // id = LastName
+         $LastNameError = '';
+        // id = GenderOptions
+        $GenderOption = ['Male', 'Female', 'Other'];
         // id = CustomerEmail
         $customerEmailError = '';
         // id = ServiceBookedOptions
@@ -77,7 +86,7 @@ class Page
         $BedSlots = ['1', '2', '3', '4', '5'];
         $BedSlotsError = '';
         // id = FinalValidationMessage
-        $FinalValidationMessage = 'Please fill in all the required fields.';
+        $FinalValidationMessage = 'Please fill in all the fields.';
         $FinalDuration = '1 hour and 30 minutes';
         $FinalEndTIme = '2:30 PM';
         $FinalDurationMessage = "The appointment will last for " . $FinalDuration . ".";
@@ -85,6 +94,7 @@ class Page
         // id = FinalTotal
         $FinalTotal = '2000';
         $FinalTotalMessage = '₱' . $FinalTotal;
+        
         
 ?>
         <main class="flex w-full">
@@ -159,23 +169,60 @@ class Page
                         <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
                         <div class="flex flex-col mt-[48px] gap-[16px]">
                             <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', 'Select Source of Booking', $sourceOfBookingOptions, $sourceOfBookingOptionsError, null, 'SourceOfBooking')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError, null, 'CustomerTypeOptions')?>
+                            <div class="flex items-center gap-[16px] justify-end">
+                                <p class="BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">Customer Type</p>
+                                <div class="flex gap-[16px]">
+                                    <button id="newGuestCustomerButton" class="BodyTwo flex items-center justify-center w-[122px] h-[40px] border border-primary dark:border-darkPrimary rounded-[6px] cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">New Guest</button>
+                                    <button id="existingCustomerButton" class="BodyTwo flex items-center justify-center w-[122px] h-[40px] border border-border dark:border-darkBorder rounded-[6px] cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Existing</button>
+                                </div>
+                            </div>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function() {
+                                    const newGuestButton = document.getElementById('newGuestCustomerButton');
+                                    const existingButton = document.getElementById('existingCustomerButton');
+
+                                    // Set default selected button
+                                    newGuestButton.classList.add('border-primary', 'dark:border-darkPrimary');
+
+                                    newGuestButton.addEventListener('click', function() {
+                                        newGuestButton.classList.add('border-primary', 'dark:border-darkPrimary');
+                                        existingButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+                                    });
+
+                                    existingButton.addEventListener('click', function() {
+                                        existingButton.classList.add('border-primary', 'dark:border-darkPrimary');
+                                        newGuestButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+                                    });
+                                });
+                            </script>
                         </div>
-                        <div class="flex flex-col my-[48px] gap-[16px]">
-                            <?php SecondaryInputField::render('textfield', 'Customer Name', 'Enter Customer Name', [], $customerNameError, null, 'CustomerName')?>
+                        <div id="existingCustomerSection" class="flex flex-col my-[48px] gap-[16px] items-end" style="display: none;">
+                            <div class="mb-[24px]">
+                                <?php SecondaryInputField::render('searchfield', 'Search Customer Name', 'Enter Customer Name', [], '', null, 'SearchCustomerName')?>
+                            </div>
+                            <?php TextRowContainer::render('Customer Name', $SearchedCustomerName, 'onBackground', 'darkOnBackground')?>
+                            <?php TextRowContainer::render('Gender', $SearchedGender, 'onBackground', 'darkOnBackground')?>
+                            <?php TextRowContainer::render('Email', $SearchedEmail, 'onBackground', 'darkOnBackground')?>
+                        </div>
+                        <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px]" style="display: none;">
+                            <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], $FirstNameError, null, 'FirstName')?>
+                            <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], $LastNameError, null, 'LastName')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, '', null, 'GenderOptions')?>
                             <?php SecondaryInputField::render('emailfield', 'Email (Optional)', 'Enter Email', [], $customerEmailError, null, 'CSustomerEmail')?>
-                        </div>
-                        <div class="flex flex-col gap-[16px]">
-                            <?php SecondaryInputField::render('dropdownfield', 'Service Booked', '', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Duration', '', $DurationOptions, $DurationOptionsError, null, 'DurationOptions')?>
-                            <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', '', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions)?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', '', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true)?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', '', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true)?>
                         </div>
                     </section>
                     <section class="flex flex-col gap-[16px]">
-                        <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions')?>
-                        <div class="flex flex-col my-[48px] gap-[16px]">
+                        <div class="flex flex-col gap-[16px]">
+                            <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions')?>
+                            <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions)?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true)?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true)?>
+                            <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions')?>
+                        </div>
+                    </section>
+                    <section class="flex flex-col gap-[16px]">
+                        <div class="flex flex-col mb-[48px] gap-[16px]">
                             <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date')?>
                             <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time')?>
                             <?php SecondaryInputField::render('slotpickerfield','Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots' ) ?>

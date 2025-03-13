@@ -10,7 +10,15 @@ class AppointmentForm {
         this.confirmModal = document.getElementById("ConfirmAppointmentModal");
         this.cancelAppointmentButton = document.getElementById("cancelAppointmentButton");
         this.confirmAppointmentButton = document.getElementById("confirmAppointmentButton");
+        this.newGuestCustomerButton = document.getElementById("newGuestCustomerButton");
+        this.existingCustomerButton = document.getElementById("existingCustomerButton");
+        this.existingCustomerSection = document.getElementById("existingCustomerSection");
+        this.newGuestCustomerSection = document.getElementById("newGuestCustomerSection");
         this.hasUnsavedChanges = false;
+
+        // Set default section visibility
+        this.newGuestCustomerSection.style.display = "flex";
+        this.existingCustomerSection.style.display = "none";
 
         this.initializeEventListeners();
     }
@@ -24,6 +32,17 @@ class AppointmentForm {
         this.cancelAppointmentButton.addEventListener("click", () => this.hideConfirmModal());
         this.confirmAppointmentButton.addEventListener("click", () => this.handleConfirmAppointment());
         this.trackFormChanges();
+
+        // Add event listeners for customer type buttons
+        this.newGuestCustomerButton.addEventListener("click", () => {
+            this.existingCustomerSection.style.display = "none";
+            this.newGuestCustomerSection.style.display = "flex";
+        });
+
+        this.existingCustomerButton.addEventListener("click", () => {
+            this.existingCustomerSection.style.display = "flex";
+            this.newGuestCustomerSection.style.display = "none";
+        });
     }
 
     showConfirmModal() {
