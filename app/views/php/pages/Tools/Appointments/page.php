@@ -17,8 +17,8 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\SearchField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Charts\AppointmentsChart;
-
-
+use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
+use Project\App\Views\Php\Components\Table\AppointmentsTable;
 
 class Page
 {
@@ -58,7 +58,7 @@ class Page
 
                     <table class="border border-border dark:border-darkBorder border-[1px] rounded-[6px] bg-background dark:bg-darkBackground">
                         <tr>
-                            <td>
+                            <td class="rounded-tl-[6px] border border-border dark:border-darkBorder border-[1px]">
                                 <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
                                     <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                     <div class="flex flex-col gap-[8px] pl-[24px]">
@@ -73,9 +73,15 @@ class Page
                                     </div>
                                 </section>
                             </td>
-                            <td>
-                                <section class="">
-                                
+                            <td class="rounded-tr-[6px]">
+                                <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
+                                    <?php 
+                                    SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
+                                    SecondaryInputField::render('datefield', 'Show appointments from', '');
+                                    ?>
+                                </section>
+                                <section class="max-w-[1072px]">
+                                    <?php AppointmentsTable::render('appointmentsTable', '');?>
                                 </section>
                             </td>
                         </tr>
