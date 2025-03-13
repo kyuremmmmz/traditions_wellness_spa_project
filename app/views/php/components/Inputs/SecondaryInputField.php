@@ -7,26 +7,27 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 
 class SecondaryInputField
 {
-    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null): void
+    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = ''): void
     {
 
         echo '<div class="flex gap-[16px] items-center">';
         echo '<div class="flex flex-col gap-[4px] w-full">';
-        echo '<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[240px] text-right">'. $label . '</p>';
+        echo '<p class="BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[240px] text-right">'. $label . '</p>';
         if ($error !== '')
         {
-            echo '<p class="CaptionOne text-destructive dark:text-destructive leading-none max-w-[240px] text-right">'. $error . '</p>';
+            echo '<p class="BodyTwo text-destructive dark:text-destructive leading-none max-w-[240px] text-right">'. $error . '</p>';
         }
         echo '</div>';
 
         $validationAttribute = $validationCallback ? "oninput='this.value = ($validationCallback)(this.value)'" : '';
+        $idAttribute = $id ? "id='$id'" : '';
 
         switch ($fieldChoice) {
             case 'textfield':
-                echo "<input type='text' class='border border-border dark:border-darkBorder border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[160px] max-w-[240px]' placeholder='$placeholder' $validationAttribute>";
+                echo "<input type='text' class='border border-border dark:border-darkBorder border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[160px] max-w-[240px]' placeholder='$placeholder' $validationAttribute $idAttribute>";
                 break;
             case 'numberfield':
-                echo "<input type='number' class='appearance-none border border-border dark:border-darkBorder border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[160px] max-w-[240px]' placeholder='$placeholder' style='-moz-appearance: textfield;' $validationAttribute>";
+                echo "<input type='number' class='appearance-none border border-border dark:border-darkBorder border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[160px] max-w-[240px]' placeholder='$placeholder' style='-moz-appearance: textfield;' $validationAttribute $idAttribute>";
                 echo "<style>
                         input[type=number]::-webkit-inner-spin-button, 
                         input[type=number]::-webkit-outer-spin-button { 

@@ -31,6 +31,13 @@ class Page
         $pendingCount = '2';
         $cancelledCount = '2';
         $total = $completedCount + $awaitingReviewCount + $ongoingCount + $upcomingCount + $pendingCount + $cancelledCount;
+
+        $sourceOfBookingOptions = ['Call', 'Messenger', 'Walk-in'];
+        $sourceOfBookingOptionsError = '';
+
+        $customerTypeOptions = ['New Guest Customer', 'Existing Customer'];
+        $customerTypeOptionsError = '';
+
 ?>
         <main class="flex w-full">
             <?php 
@@ -51,7 +58,7 @@ class Page
 
                     <section class="flex gap-[16px] py-[16px]">
                         <?php 
-                        ActionButton::render('calendarPlus', 'Book an appointment', 'placeOnClickHere'); 
+                        ActionButton::render('calendarPlus', 'Book an appointment', 'openBookAnAppointmentButton'); 
                         SearchField::render('Search Customer', '')
                         ?>
                     </section>
@@ -88,6 +95,31 @@ class Page
                     </table>
                 </div>
             </div>
+            <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
+                <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
+                    <button id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <div class="w-[24px] h-[24px] flex justify-center items-center">
+                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                        </div>
+                    </button>
+                </div>
+                <div class=" w-full flex sm:items-start flex-col">
+                    <section class="flex flex-col gap-[12px] min-w-[316px] w-full justify-center sm:justify-start">
+                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment');
+                        Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                    </section>
+                    <section class="flex flex-col gap-[16px]">
+                        <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', '', $sourceOfBookingOptions, $sourceOfBookingOptionsError)?>
+                        <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError)?>
+                        <?php SecondaryInputField::render('textfield', 'Customer Name', 'Enter Customer Name', [], $sourceOfBookingOptionsError)?>
+                        <?php SecondaryInputField::render('dropdownfield', 'Customer Type', '', $customerTypeOptions, $customerTypeOptionsError)?>
+                    </section>
+                </div>
+            </div>
+
+
+
+
             <div class="hidden">
                 <form class="flex flex-col gap-12" action="/appointCustomer" method="POST">
                     <div class="flex flex-col gap-2">
@@ -197,6 +229,7 @@ class Page
             </div>
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDom.js"></script>
         <?php
     }
 }
