@@ -106,10 +106,10 @@ class Page
                 <div>
                     <section class="flex h-[50px]">
                         <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
-                            <?php IconChoice::render('servicesMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
+                            <?php IconChoice::render('clockMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
                         <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[16px] gap-[4px]">
-                            <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Services');
+                            <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Appointments');
                             echo LastUpdated::render(); ?>
                         </div>
                     </section>
@@ -120,10 +120,10 @@ class Page
                         SearchField::render('Search Customer', '')
                         ?>
                     </section>
-
-                    <table class="border border-border dark:border-darkBorder border-[1px] rounded-[6px] bg-background dark:bg-darkBackground">
-                        <tr>
-                            <td class="border border-border dark:border-darkBorder border-[1px]">
+                    <div class="border border-border border-[1px] dark:border-border rounded-[6px] w-[1365px]">
+                    <table class="border border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
+                        <tr class="p-0 m-0" style="margin: 0; padding: 0;">
+                            <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
                                 <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
                                     <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                     <div class="flex flex-col gap-[8px] pl-[24px]">
@@ -138,7 +138,7 @@ class Page
                                     </div>
                                 </section>
                             </td>
-                            <td class="p-0">
+                            <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
                                 <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                     <?php 
                                     SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
@@ -151,6 +151,7 @@ class Page
                             </td>
                         </tr>
                     </table>
+                    </div>
                 </div>
             </div>
             <form action="/updateAppointment" id="modalWrapper" method="post">

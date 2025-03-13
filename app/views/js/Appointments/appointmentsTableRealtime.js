@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function(){
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center">${data.addOns || ''}</td>
                 <td class="pr-[48px] pl-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center">
                     ${data.status ? 
-                    `<span class="inline-flex items-center px-1.5 rounded-full text-xs font-medium bg-green-100 text-green-800">${data.status}</span>` :
+                    `<span class="inline-flex items-center px-1.5 rounded-full text-xs font-medium ${getStatusColor(data.status)}">${data.status}</span>` :
                     `<span class="inline-flex items-center px-1.5 rounded-full text-xs font-medium bg-red-100 text-red-800">STATUS MISSING</span>`}
                 </td>
             </tr>`;
@@ -50,3 +50,22 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     fetchData();
 });
+
+function getStatusColor(status) {
+    switch (status.toLowerCase()) {
+        case 'completed':
+            return 'bg-green-100 text-green-800';
+        case 'awaiting review':
+            return 'bg-blue-100 text-blue-800';
+        case 'ongoing':
+            return 'bg-orange-100 text-orange-800';
+        case 'upcoming':
+            return 'bg-yellow-100 text-yellow-800';
+        case 'pending':
+            return 'bg-gray-100 text-gray-800';
+        case 'cancelled':
+            return 'bg-red-100 text-red-800';
+        default:
+            return 'bg-gray-100 text-gray-800';
+    }
+}
