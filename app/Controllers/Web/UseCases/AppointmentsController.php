@@ -143,10 +143,8 @@ class AppointmentsController
     {
         ob_clean();
         $appointment = $this->controller->getAll();
-        $services = $this->controller->getAllServices();
         echo json_encode([
             $appointment,
-            $services
         ]);
         exit;
     }
