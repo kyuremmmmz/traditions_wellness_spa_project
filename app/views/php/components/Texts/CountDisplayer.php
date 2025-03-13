@@ -18,7 +18,7 @@ class CountDisplayer
 
         echo '<div class="flex items-start gap-[8px]">
                 <span class="w-[8px] h-[8px] bg-' . $color . ' rounded-full mt-[3px]"></span>
-                <div>
+                <div class="flex flex-col gap-[4px]">
                     ' . $countHtml . '
                     ' . $textHtml . '
                 </div>

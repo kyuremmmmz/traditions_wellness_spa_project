@@ -18,6 +18,7 @@ class AppointmentForm {
 
         // Set default section visibility
         this.newGuestCustomerSection.style.display = "flex";
+        this.newGuestCustomerSection.classList.add("opacity-100");
         this.existingCustomerSection.style.display = "none";
 
         this.initializeEventListeners();
@@ -35,13 +36,29 @@ class AppointmentForm {
 
         // Add event listeners for customer type buttons
         this.newGuestCustomerButton.addEventListener("click", () => {
-            this.existingCustomerSection.style.display = "none";
-            this.newGuestCustomerSection.style.display = "flex";
+            this.newGuestCustomerButton.classList.add('border-primary', 'dark:border-darkPrimary');
+            this.existingCustomerButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+            this.existingCustomerSection.classList.remove("opacity-100");
+            this.existingCustomerSection.classList.add("opacity-0");
+            setTimeout(() => {
+                this.existingCustomerSection.style.display = "none";
+                this.newGuestCustomerSection.style.display = "flex";
+                this.newGuestCustomerSection.classList.remove("opacity-0");
+                this.newGuestCustomerSection.classList.add("opacity-100");
+            }, 300);
         });
 
         this.existingCustomerButton.addEventListener("click", () => {
-            this.existingCustomerSection.style.display = "flex";
-            this.newGuestCustomerSection.style.display = "none";
+            this.existingCustomerButton.classList.add('border-primary', 'dark:border-darkPrimary');
+            this.newGuestCustomerButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+            this.newGuestCustomerSection.classList.remove("opacity-100");
+            this.newGuestCustomerSection.classList.add("opacity-0");
+            setTimeout(() => {
+                this.newGuestCustomerSection.style.display = "none";
+                this.existingCustomerSection.style.display = "flex";
+                this.existingCustomerSection.classList.remove("opacity-0");
+                this.existingCustomerSection.classList.add("opacity-100");
+            }, 300);
         });
     }
 

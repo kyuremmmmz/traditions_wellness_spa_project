@@ -14,7 +14,7 @@ class SearchField
             <input 
                 type="text" 
                 placeholder="$placeholder" 
-                class="w-full pl-10 pr-4 py-2 border border-borderTwo dark:border-darkBorderTwo rounded-lg text-onBackground dark:text-darkOnBackground focus:outline-none focus:ring-2 focus:ring-primary"
+                class="w-full pl-10 pr-4 py-2 border border-borderTwo BodyTwo dark:border-darkBorderTwo rounded-lg text-onBackground dark:text-darkOnBackground focus:outline-none focus:ring-2 focus:ring-primary"
                 oninput="$onInput"
             />
         </div>

@@ -155,16 +155,16 @@ class Page
             </div>
             
             <!-- Book an appointment -->
-            <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
-                <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
+            <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
+                <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
                     <button id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         <div class="w-[24px] h-[24px] flex justify-center items-center">
                             <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                         </div>
                     </button>
                 </div>
-                <div class="w-full flex gap-[48px]">
-                    <section class="flex flex-col gap-[16px] w-[400px]">
+                <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                         <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
                         <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
                         <div class="flex flex-col mt-[48px] gap-[16px]">
@@ -176,27 +176,8 @@ class Page
                                     <button id="existingCustomerButton" class="BodyTwo flex items-center justify-center w-[122px] h-[40px] border border-border dark:border-darkBorder rounded-[6px] cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Existing</button>
                                 </div>
                             </div>
-                            <script>
-                                document.addEventListener('DOMContentLoaded', function() {
-                                    const newGuestButton = document.getElementById('newGuestCustomerButton');
-                                    const existingButton = document.getElementById('existingCustomerButton');
-
-                                    // Set default selected button
-                                    newGuestButton.classList.add('border-primary', 'dark:border-darkPrimary');
-
-                                    newGuestButton.addEventListener('click', function() {
-                                        newGuestButton.classList.add('border-primary', 'dark:border-darkPrimary');
-                                        existingButton.classList.remove('border-primary', 'dark:border-darkPrimary');
-                                    });
-
-                                    existingButton.addEventListener('click', function() {
-                                        existingButton.classList.add('border-primary', 'dark:border-darkPrimary');
-                                        newGuestButton.classList.remove('border-primary', 'dark:border-darkPrimary');
-                                    });
-                                });
-                            </script>
                         </div>
-                        <div id="existingCustomerSection" class="flex flex-col my-[48px] gap-[16px] items-end" style="display: none;">
+                        <div id="existingCustomerSection" class="flex flex-col my-[48px] gap-[16px] items-end transition-opacity duration-300 ease-in-out" style="display: none;">
                             <div class="mb-[24px]">
                                 <?php SecondaryInputField::render('searchfield', 'Search Customer Name', 'Enter Customer Name', [], '', null, 'SearchCustomerName')?>
                             </div>
@@ -204,14 +185,14 @@ class Page
                             <?php TextRowContainer::render('Gender', $SearchedGender, 'onBackground', 'darkOnBackground')?>
                             <?php TextRowContainer::render('Email', $SearchedEmail, 'onBackground', 'darkOnBackground')?>
                         </div>
-                        <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px]" style="display: none;">
+                        <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px] transition-opacity duration-300 ease-in-out" style="display: none;">
                             <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], $FirstNameError, null, 'FirstName')?>
                             <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], $LastNameError, null, 'LastName')?>
                             <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, '', null, 'GenderOptions')?>
                             <?php SecondaryInputField::render('emailfield', 'Email (Optional)', 'Enter Email', [], $customerEmailError, null, 'CSustomerEmail')?>
                         </div>
                     </section>
-                    <section class="flex flex-col gap-[16px]">
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                         <div class="flex flex-col gap-[16px]">
                             <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions')?>
                             <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions')?>
@@ -221,19 +202,19 @@ class Page
                             <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions')?>
                         </div>
                     </section>
-                    <section class="flex flex-col gap-[16px]">
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                         <div class="flex flex-col mb-[48px] gap-[16px]">
                             <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date')?>
                             <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time')?>
                             <?php SecondaryInputField::render('slotpickerfield','Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots' ) ?>
-                            <div class="pl-[81px] flex flex-col gap-[8px]">
+                            <div class="pl-[220px] sm:pl-[140px] flex flex-col gap-[8px]">
                                 <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
                                 <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
                                 <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
                             </div>
                         </div>
                         <div class="flex gap-[16px] items-center">
-                            <?php Text::render('FinalTotal', '', 'BodyMediumTwo leading-none text-primary dark:text-darkPrimary w-[65px] text-right', $FinalTotalMessage); ?>
+                            <?php Text::render('FinalTotal', '', 'BodyMediumTwo leading-none text-primary dark:text-darkPrimary w-[204px] sm:w-[124px] text-right', $FinalTotalMessage); ?>
                             <?php NewPrimaryButton::render('Book', '', 'BookButton', '257px', null)?>
                         </div>
                     </section>
