@@ -9,10 +9,22 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function renderData(item) {
-        console.log(item.pending);
+        const itemPending = document.getElementById('pending');
+        const itemCancelled = document.getElementById('cancelled');
+        const itemReview = document.getElementById('review');
+        const itemUpcoming = document.getElementById('upcoming');
+        const itemOngoing = document.getElementById('ongoing');
+        const itemCompleted = document.getElementById('completed');
+        itemPending.innerText = `${item.pending}`
+        itemUpcoming.innerText = `${item.upcoming}`
+        itemCompleted.innerText = `${item.completed}`
+        itemOngoing.innerText = `${item.ongoing}`
+        itemCancelled.innerText = `${item.cancelled}`
+        itemReview.innerText = `${item.review}`;
+
         const series = [
             Number(item.completed || 0),
-            Number(item.confirmed || 0),
+            Number(item.review || 0),
             Number(item.ongoing || 0),
             Number(item.upcoming || 0),
             Number(item.pending || 0),

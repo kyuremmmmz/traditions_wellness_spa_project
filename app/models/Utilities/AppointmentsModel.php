@@ -24,11 +24,14 @@ class AppointmentsModel
     {
         $stmt = $this->pdo->query("SELECT 
                 SUM(status='pending' ) AS pending, 
-                SUM(status='cancelled') AS cancelled, 
-                SUM(status='confirmed') AS confirmed, 
+                SUM(status='cancelled') AS cancelled,
+                SUM(status='upcoming') AS upcoming,
+                SUM(status='review') AS review, 
                 SUM(status='completed') AS completed, 
+                SUM(status='ongoing') AS ongoing, 
                 SUM(status = 'pending') + SUM(status = 'cancelled') + 
-                SUM(status = 'confirmed') + SUM(status = 'completed') AS total
+                SUM(status = 'review') + SUM(status = 'completed') + 
+                SUM(status = 'upcoming') + SUM(status='ongoing') AS total
                 FROM appointments");
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

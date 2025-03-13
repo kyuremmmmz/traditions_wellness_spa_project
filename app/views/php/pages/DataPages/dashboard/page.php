@@ -11,9 +11,7 @@ class Page
     {
                 ?>
                 <main class="flex w-full gap-4">
-                    <?php Sidebar::render(); 
-                          DefaultContainer::render();
-                        
+                    <?php Sidebar::render();      
                     ?>
                     
                 </main>

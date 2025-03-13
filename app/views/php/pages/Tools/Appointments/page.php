@@ -128,12 +128,12 @@ class Page
                                     <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                     <div class="flex flex-col gap-[8px] pl-[24px]">
                                         <?php 
-                                            CountDisplayer::render('success', $completedCount, 'Completed', '', '');
-                                            CountDisplayer::render('blue', $awaitingReviewCount, 'Awaiting Review', '', '');
-                                            CountDisplayer::render('orange', $ongoingCount, 'Ongoing', '', ''); 
-                                            CountDisplayer::render('yellow', $upcomingCount, 'Upcoming', '', ''); 
-                                            CountDisplayer::render('onBackgroundTwo', $pendingCount, 'Pending', '', ''); 
-                                            CountDisplayer::render('destructive', $cancelledCount, 'Canceled', '', ''); 
+                                            CountDisplayer::render('success', 0, 'Completed', 'completed', '');
+                                            CountDisplayer::render('blue', 0, 'Awaiting Review', 'review', '');
+                                            CountDisplayer::render('orange', 0, 'Ongoing', 'ongoing', ''); 
+                                            CountDisplayer::render('yellow', 0, 'Upcoming', 'upcoming', ''); 
+                                            CountDisplayer::render('onBackgroundTwo', 0, 'Pending', 'pending', ''); 
+                                            CountDisplayer::render('destructive', 0, 'Canceled', 'cancelled', ''); 
                                         ?>
                                     </div>
                                 </section>
