@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const modalHTML = `
-        <div id="updateModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full transition-opacity duration-300 opacity-0">
-            <div class="relative top-20 mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white transform transition-transform duration-300 scale-95">
+        <div id="updateModal" class="fixed inset-0 bg-black bg-opacity-50 hidden overflow-y-auto h-full w-full transition-opacity duration-300 opacity-0 z-[1000]">
+            <div class="mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white transform transition-transform duration-300 translate-x-full">
                 <div class="mt-3">
                     <h3 class="text-lg font-medium text-gray-900 mb-4">Update Appointment</h3>
                     <input type="hidden" name="id" id="modalAppointmentId">

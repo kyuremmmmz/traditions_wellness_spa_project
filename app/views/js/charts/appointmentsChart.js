@@ -37,12 +37,19 @@ document.addEventListener('DOMContentLoaded', function () {
             series: series,
             chart: {
                 type: 'donut',
-                height: 140
+                height: 140,
+                background: 'transparent' // Ensure the background is transparent
             },
             plotOptions: {
                 pie: {
                     donut: {
-                        size: '90%'
+                        size: '90%',
+                        background: 'transparent'
+                    },
+                    stroke: {
+                        show: false,
+                        width: 2, // Set the stroke width
+                        colors: ['#000000'] // Set the stroke color to black
                     }
                 }
             },
@@ -53,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 show: false
             },
             labels: ['Completed', 'Awaiting Review', 'Ongoing', 'Upcoming', 'Pending', 'Canceled'],
-            colors: ['#15803D', '#32A3FF', '#FDA93C', '#FFEA06', '#71717A', '#D92626']
+            colors: ['#15803D', '#32A3FF', '#FDA93C', '#FFEA06', '#71717A', '#D92626'],
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);

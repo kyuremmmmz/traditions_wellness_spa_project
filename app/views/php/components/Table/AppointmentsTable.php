@@ -6,8 +6,8 @@ class AppointmentsTable
 {
     public static function render(string $id, ?string $className = null): void
     {
-        $tableClasses = "w-full text-sm text-gray-700 table-fixed" . ($className ?? '');
-        echo "<div class='w-full overflow-x-auto bg-white min-w-[300px] h-[400px] overflow-y-auto'>";
+        $tableClasses = "w-full table-fixed" . ($className ?? '');
+        echo "<div class='w-full overflow-x-auto bg-background dark:bg-darkBackground min-w-[300px] h-[400px] overflow-y-auto'>";
         echo "<table class='$tableClasses'>";
         echo "<thead class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo uppercase bg-[#FFEA06] bg-opacity-5 tracking-wider px-[48px] mx-[48px]'>
                 <tr>
