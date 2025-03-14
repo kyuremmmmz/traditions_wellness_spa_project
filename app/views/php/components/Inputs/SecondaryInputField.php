@@ -6,11 +6,11 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 
 class SecondaryInputField
 {
-    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = ''): void
+    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = '', int $limit = 0): void
     {
         echo '<div class="flex gap-[16px]">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
-        echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] text-right">'. $label . '</p>';
+        echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] text-right">'. $label . '</p>';
         if ($error !== '')
         {
             echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right">'. $error . '</p>';
@@ -23,6 +23,57 @@ class SecondaryInputField
         $disabledClass = $isDisabled ? 'opacity-30 cursor-not-allowed' : '';
 
         switch ($fieldChoice) {
+            case 'searchselectfield':
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
+                echo "<svg class='absolute left-3 top-2.5 w-5 h-5 text-gray-400' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M21 21l-4.35-4.35M10.5 18A7.5 7.5 0 1010.5 3a7.5 7.5 0 000 15z' />
+                      </svg>";
+                echo "<input type='search' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] pl-10 px-[12px] w-full' placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
+                echo "<div id='{$id}_selected' class='mt-2 flex flex-col gap-2'></div>";
+                
+                // Store the script to be output at the end of the page
+                $GLOBALS['footer_scripts'][] = "<script>
+                    (function() {
+                        const input = document.querySelector('input[name=\"$name\"]');
+                        const selectedContainer = document.getElementById('{$id}_selected');
+                        const limit = $limit;
+                        let selectedItems = [];
+                
+                        input.addEventListener('input', function() {
+                            // Implement search logic here
+                        });
+                    
+                        function addItem(item) {
+                            if (selectedItems.length < limit) {
+                                selectedItems.push(item);
+                                const itemElement = document.createElement('div');
+                                itemElement.className = 'flex justify-between items-center border p-2 rounded';
+                                itemElement.innerHTML = '<span>' + item + '</span><button type=\"button\" class=\"remove-btn\">×</button>';
+                                selectedContainer.appendChild(itemElement);
+                        
+                                itemElement.querySelector('.remove-btn').addEventListener('click', function() {
+                                    selectedItems = selectedItems.filter(function(i) { return i !== item; });
+                                    selectedContainer.removeChild(itemElement);
+                                    input.disabled = selectedItems.length >= limit;
+                                });
+                        
+                                input.disabled = selectedItems.length >= limit;
+                            }
+                        }
+                    
+                        // Example: Add item on Enter key press
+                        input.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter' && input.value.trim() !== '') {
+                                e.preventDefault();
+                                addItem(input.value.trim());
+                                input.value = '';
+                            }
+                        });
+                    })();
+                </script>";
+                
+                echo "</div>";
+                break;
             case 'textfield':
                 echo "<input type='text' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
                 break;

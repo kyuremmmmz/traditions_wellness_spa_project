@@ -9,63 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    let modalWrapper = document.getElementById('modalWrapper');
-    if (!modalWrapper) {
-        console.error('Modal wrapper element not found!');
-        return;
-    }
-
-    const modalHTML = `
-        <div id="updateModal" class="fixed inset-0 bg-black bg-opacity-50 hidden overflow-y-auto h-full w-full transition-opacity duration-300 opacity-0 z-[1000]">
-            <div class="mx-auto p-5 border w-2/3 shadow-lg rounded-md bg-white transform transition-transform duration-300 translate-x-full">
-                <div class="mt-3">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Update Appointment</h3>
-                    <input type="hidden" name="id" id="modalAppointmentId">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                            <input type="text" name="contactNumber" id="modalContactNumber" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Address</label>
-                            <input type="text" name="address" id="modalAddress" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Patient</label>
-                            <input type="text" name="nameOfTheUser" id="modalName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Booking Date</label>
-                            <input type="date" name="booking_date" id="modalBookingDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                       
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Total Price</label>
-                            <input type="text" name="price" id="modalTotalPrice" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Add-ons</label>
-                            <input type="text" name="addOns" id="modalAddOns" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                        </div>
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700">Status</label>
-                            <select name="status" id="modalStatus" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
-                                <option value="pending" disabled selected>Pending</option>
-                                <option value="cancelled">Cancelled</option>
-                                <option value="confirmed">Confirmed</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="flex justify-end gap-2 mt-4">
-                        <button type="button" id="closeModal" class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Cancel</button>
-                        <button type="submit" id="saveModal" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    modalWrapper.innerHTML = modalHTML;
-
     const fetchData = async () => {
         try {
             console.log('Fetching from: http://localhost:8000/fetchAppointments');
@@ -121,18 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const modal = document.getElementById('updateModal');
-    const closeModalBtn = document.getElementById('closeModal');
-
-    closeModalBtn.addEventListener('click', () => {
-        const modalContent = modal.querySelector('.transform');
-        modal.classList.remove('opacity-100');
-        modal.classList.add('opacity-0');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-        setTimeout(() => {
-            modal.classList.add('hidden');
-        }, 300);
-    });
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
