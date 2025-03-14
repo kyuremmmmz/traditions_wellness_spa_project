@@ -83,6 +83,9 @@ $router->view('/verificationforchangephonenumber', 'page', 'Utilities/Verificati
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
 $router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
+$router->view('/newtherapist', 'page', 'tools/NewTherapist', 'SessionMiddleware');
+$router->view('/newservice', 'page', 'tools/NewService', 'SessionMiddleware');
+
 try {
     $router->resolve();
 } catch (Exception $e) {
