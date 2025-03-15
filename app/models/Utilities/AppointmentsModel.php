@@ -68,9 +68,39 @@ class AppointmentsModel
 
     public function findByEmail($email)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $email]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email AND role = 'Customer'");
+        $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function createCustomer($firstName, $lastName, $gender, $email)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO users (
+            first_name,
+            last_name,
+            gender,
+            email,
+            role,
+            created_at,
+            updated_at
+        ) VALUES (
+            :first_name,
+            :last_name,
+            :gender,
+            :email,
+            'Customer',
+            NOW(),
+            NOW()
+        )");
+
+        $stmt->execute([
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'gender' => $gender,
+            'email' => $email
+        ]);
+
+        return $this->pdo->lastInsertId();
     }
 
     public function findByRole($role)
@@ -187,4 +217,17 @@ class AppointmentsModel
         $stmt = $this->pdo->prepare("DELETE FROM appointments WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+    public function searchCustomer($search)
+        {
+            $stmt = $this->pdo->prepare("
+                SELECT * FROM users 
+                WHERE (CONCAT(first_name, ' ', last_name) LIKE :search 
+                OR email LIKE :search)
+                AND role = 'Customer'
+                LIMIT 5
+            ");
+            $searchTerm = "%{$search}%";
+            $stmt->execute(['search' => $searchTerm]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 }

@@ -94,13 +94,15 @@ class SecondaryInputField
                 echo "<input type='email' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
                 break;
             case 'dropdownfield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
-                echo IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[16px] -rotate-90', '', 'onSurface', 'darkOnSurface');
-                echo "<select name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground appearance-none border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full' $disabledAttribute>";
+                echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-border dark:border-darkBorder rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
                 foreach ($options as $option) {
-                    echo "<option value='$option' class='text-onBackground dark:text-darkOnBackground'>$option</option>";
+                    if (is_array($option)) {
+                        echo '<option value="' . htmlspecialchars($option['value']) . '">' . htmlspecialchars($option['label']) . '</option>';
+                    } else {
+                        echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
+                    }
                 }
-                echo "</select></div>";
+                echo '</select>';
                 break;
             case 'datefield':
                 echo "<input type='date' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";

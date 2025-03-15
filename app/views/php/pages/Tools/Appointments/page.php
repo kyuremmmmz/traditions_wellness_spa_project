@@ -8,8 +8,6 @@ use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\CountDisplayer;
-use Project\App\Views\Php\Components\GridViewDefault\GridViewDefaultComponent;
-use Project\App\Views\Php\Components\GridViewDefault\GridViewLocation;
 use Project\App\Views\Php\Components\Inputs\DefaultInputField;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\StaticRadioButton;
@@ -35,15 +33,19 @@ class Page
         $total = $completedCount + $awaitingReviewCount + $ongoingCount + $upcomingCount + $pendingCount + $cancelledCount;
 
         // id = SourceOfBooking
-        $sourceOfBookingOptions = ['Call', 'Messenger', 'Walk-in']; // name = source_of_booking
+        $sourceOfBookingOptions = [
+            ['value' => 'call', 'label' => 'Call'],
+            ['value' => 'messenger', 'label' => 'Messenger'],
+            ['value' => 'walk_in', 'label' => 'Walk-in']
+        ]; // name = source_of_booking
         $sourceOfBookingOptionsError = '';
         // id = CustomerType
         $customerTypeOptions = ['New Guest Customer', 'Existing Customer']; // name = customer_type
         $customerTypeOptionsError = '';
         // id = SearchCustomerName
-        $SearchedCustomerName = 'John Doe'; // name = search_customer_name
-        $SearchedGender = 'Male'; // name = searched_gender
-        $SearchedEmail = 'none'; // name = searched_email
+        $SearchedCustomerName = ''; // name = search_customer_name
+        $SearchedGender = ''; // name = searched_gender
+        $SearchedEmail = ''; // name = searched_email
         // id = FirstName
         $FirstNameError = ''; // name = first_name
         // id = LastName
@@ -155,71 +157,112 @@ class Page
                 </div>
             </div>
             <!-- Book an appointment -->
-            <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
-                <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
-                    <button id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
-                        <div class="w-[24px] h-[24px] flex justify-center items-center">
-                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
-                        </div>
-                    </button>
-                </div>
-                <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
-                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
-                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
-                        <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
-                        <div class="flex flex-col mt-[48px] gap-[16px]">
-                            <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', 'Select Source of Booking', $sourceOfBookingOptions, $sourceOfBookingOptionsError, null, 'SourceOfBooking', '', '', [], false, 'source_of_booking')?>
-                            <div class="flex items-center gap-[16px] justify-end">
-                                <p class="BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">Customer Type</p>
-                                <div class="flex gap-[16px]">
-                                    <button id="newGuestCustomerButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-primary dark:border-darkPrimary rounded-[6px] cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">New Guest</button>
-                                    <button id="existingCustomerButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-border dark:border-darkBorder rounded-[6px] cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Existing</button>
+            <form id="appointmentForm" method="POST" action="/appointCustomer" novalidate>
+                <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
+                    <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
+                        <button id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                            <div class="w-[24px] h-[24px] flex justify-center items-center">
+                                <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
+                        <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                            <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
+                            <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                            <div class="flex flex-col mt-[48px] gap-[16px]">
+                                <?php SecondaryInputField::render('dropdownfield', 'Source of Booking', 'Select Source of Booking', 
+                                array_map(function($option) { 
+                                        return [
+                                            'label' => $option['label'],
+                                            'value' => $option['value']
+                                        ]; 
+                                    }, $sourceOfBookingOptions), $sourceOfBookingOptionsError, null, 'SourceOfBooking', '', '', [], false, 'source_of_booking'
+                                )?>
+                                <div class="flex items-center gap-[16px] justify-end">
+                                    <p class="BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">Customer Type</p>
+                                    <div class="flex gap-[16px]">
+                                        <div class="relative">
+                                            <input type="radio" name="customer_type" value="new_guest" class="peer hidden" id="newGuestCustomerButton" checked required>
+                                            <label for="newGuestCustomerButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">New Guest</label>
+                                        </div>
+                                        <div class="relative">
+                                            <input type="radio" name="customer_type" value="existing" class="peer hidden" id="existingCustomerButton" required>
+                                            <label for="existingCustomerButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Existing</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="existingCustomerSection" class="flex flex-col my-[48px] gap-[16px] items-end transition-opacity duration-300 ease-in-out" style="display: none;">
-                            <div class="mb-[24px]">
-                                <?php SecondaryInputField::render('searchfield', 'Search Customer Name', 'Enter Customer Name', [], '', null, 'SearchCustomerName', '', '', [], false, 'search_customer_name')?>
+                            <div id="existingCustomerSection" class="flex flex-col my-[48px] gap-[16px] items-end transition-opacity duration-300 ease-in-out" style="display: none;">
+                                <div class="mb-[24px] w-full">
+                                    <?php SecondaryInputField::render(
+                                        'searchfield', 
+                                        'Search Customer', 
+                                        'Enter Name or Email', 
+                                        [], 
+                                        $SearchCustomerError ?? '', 
+                                        null, 
+                                        'SearchCustomer', 
+                                        '', 
+                                        '', 
+                                        [], 
+                                        false, 
+                                        'search_customer',
+                                        0
+                                    )?>
+                                </div>
+                                <!-- Search Results Container -->
+                                <div id="searchResults" class="w-full max-h-[200px] overflow-y-auto hidden"></div>
+                                
+                                <!-- Selected Customer Info (initially hidden) -->
+                                <div id="selectedCustomerInfo" class="w-full hidden">
+                                    <?php TextRowContainer::render('Customer Name', $SearchedCustomerName ?? '', 'onBackground', 'darkOnBackground')?>
+                                    <?php TextRowContainer::render('Gender', $SearchedGender ?? '', 'onBackground', 'darkOnBackground')?>
+                                    <?php TextRowContainer::render('Email', $SearchedEmail ?? '', 'onBackground', 'darkOnBackground')?>
+                                    
+                                    <!-- Reset Button -->
+                                    <button type="button" id="resetCustomerSelection" class="mt-4 px-4 py-2 BodyTwo text-destructive dark:text-darkDestructive bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                                        Reset Selection
+                                    </button>
+                                </div>
+                                <input type="hidden" name="existing_customer_id" id="existingCustomerId" value="<?php echo $SearchedCustomerId ?? ''; ?>">
                             </div>
-                            <?php TextRowContainer::render('Customer Name', $SearchedCustomerName, 'onBackground', 'darkOnBackground')?>
-                            <?php TextRowContainer::render('Gender', $SearchedGender, 'onBackground', 'darkOnBackground')?>
-                            <?php TextRowContainer::render('Email', $SearchedEmail, 'onBackground', 'darkOnBackground')?>
-                        </div>
-                        <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px] transition-opacity duration-300 ease-in-out" style="display: none;">
-                            <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], $FirstNameError, null, 'FirstName', '', '', [], false, 'first_name')?>
-                            <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], $LastNameError, null, 'LastName', '', '', [], false, 'last_name')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, '', null, 'GenderOptions', '', '', [], false, 'gender')?>
-                            <?php SecondaryInputField::render('emailfield', 'Email (Optional)', 'Enter Email', [], $customerEmailError, null, 'CustomerEmail', '', '', [], false, 'customer_email')?>
-                        </div>
-                    </section>
-                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
-                        <div class="flex flex-col gap-[16px]">
-                            <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions', '', '', [], false, 'service_booked')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', [], false, 'duration')?>
-                            <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection')?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection')?>
-                            <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions', '', '', [], false, 'addons')?>
-                        </div>
-                    </section>
-                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
-                        <div class="flex flex-col mb-[48px] gap-[16px]">
-                            <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date')?>
-                            <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time')?>
-                            <?php SecondaryInputField::render('slotpickerfield','Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots', '', '', [], false, 'bed_slots'); ?>
-                            <div class="pl-[220px] sm:pl-[140px] flex flex-col gap-[8px]">
-                                <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
-                                <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
-                                <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
+                            <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px] transition-opacity duration-300 ease-in-out" style="display: none;">
+                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], $FirstNameError ?? '', null, 'FirstName', '', '', [], false, 'first_name')?>
+                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], $LastNameError ?? '', null, 'LastName', '', '', [], false, 'last_name')?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, $GenderError ?? '', null, 'GenderOptions', '', '', [], false, 'gender')?>
+                                <?php SecondaryInputField::render('emailfield', 'Email', 'Enter Email', [], $customerEmailError ?? '', null, 'CustomerEmail', '', '', [], false, 'customer_email')?>
                             </div>
-                        </div>
-                        <div class="flex gap-[16px] items-center">
-                            <?php Text::render('FinalTotal', '', 'BodyMediumTwo leading-none text-primary dark:text-darkPrimary w-[204px] sm:w-[124px] text-right', $FinalTotalMessage); ?>
-                            <?php NewPrimaryButton::render('Book', '', 'BookButton', '257px', null)?>
-                        </div>
-                    </section>
+                        </section>
+                        <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                            <div class="flex flex-col gap-[16px]">
+                                <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions', '', '', [], false, 'service_booked')?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', [], false, 'duration')?>
+                                <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size')?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection')?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection')?>
+                                <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions', '', '', [], false, 'addons')?>
+                            </div>
+                        </section>
+                        <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                            <div class="flex flex-col mb-[48px] gap-[16px]">
+                                <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date')?>
+                                <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time')?>
+                                <?php SecondaryInputField::render('slotpickerfield','Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots', '', '', [], false, 'bed_slots'); ?>
+                                <div class="pl-[220px] sm:pl-[140px] flex flex-col gap-[8px]">
+                                    <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
+                                    <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
+                                    <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
+                                </div>
+                            </div>
+                            <div class="flex gap-[16px] items-center">
+                                <?php Text::render('FinalTotal', '', 'BodyMediumTwo leading-none text-primary dark:text-darkPrimary w-[204px] sm:w-[124px] text-right', $FinalTotalMessage); ?>
+                                <?php NewPrimaryButton::render('Book', '', 'BookButton', '257px', null)?>
+                            </div>
+                        </section>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <!-- Unsaved Progress Modal -->
             <div id="UnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
@@ -461,7 +504,7 @@ class Page
                             ?>
                         </div>
                         <div class="pb-[64px]">
-                            <?php GridViewDefaultComponent::render() ?>
+                            <?php // GridViewDefaultComponent::render() ?>
                         </div>
                         <div class="flex flex-row gap-2">
                             <?php
@@ -470,7 +513,7 @@ class Page
                             ?>
                         </div>
                         <div class="">
-                            <?php GridViewLocation::render() ?>
+                            <?php // GridViewLocation::render() ?>
                         </div>
                     </div>
                     <div class="flex flex-col pb-[48px]">
@@ -556,7 +599,7 @@ class Page
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDom.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
-        
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidation.js"></script>
         <?php
         // Output all footer scripts
         if (!empty($GLOBALS['footer_scripts'])) {

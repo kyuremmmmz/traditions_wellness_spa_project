@@ -77,9 +77,7 @@ class AppointmentForm {
             });
         });
     }
-
-    // Remove all duplicate methods (showUpdateUnsavedModal, hideUpdateUnsavedModal, handleUpdateProceed, closeUpdateForm)
-    
+        
     showUpdateModal() {
         const updateModal = this.updateModal;
         const modalContent = updateModal.querySelector('div:first-child');
@@ -191,17 +189,39 @@ class AppointmentForm {
             }
         });
         this.hasUpdateChanges = false;
-    }
 
+    // Add new elements
+    this.searchInput = document.getElementById('search_customer');
+    this.searchResults = document.getElementById('searchResults');
+    this.selectedCustomerInfo = document.getElementById('selectedCustomerInfo');
+    this.resetCustomerButton = document.getElementById('resetCustomerSelection');
+    this.existingCustomerId = document.getElementById('existingCustomerId');
+    
+    this.initializeEventListeners();
+    }
+    
     initializeEventListeners() {
         this.openButton.addEventListener("click", () => this.openForm());
         this.closeButton.addEventListener("click", () => this.handleClose());
         this.cancelButton.addEventListener("click", () => this.hideModal());
         this.proceedButton.addEventListener("click", () => this.handleProceed());
-        this.bookButton.addEventListener("click", () => this.showConfirmModal());
+        this.bookButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            // Let AppointmentValidation handle the validation and modal display
+            // Do not show confirmation modal here
+        });
         this.cancelAppointmentButton.addEventListener("click", () => this.hideConfirmModal());
         this.confirmAppointmentButton.addEventListener("click", () => this.handleConfirmAppointment());
         this.trackFormChanges();
+
+        // Add customer search related listeners
+        if (this.searchInput) {
+            this.searchInput.addEventListener('input', debounce(() => this.handleCustomerSearch(), 300));
+        }
+        
+        if (this.resetCustomerButton) {
+            this.resetCustomerButton.addEventListener('click', () => this.resetCustomerSelection());
+        }
 
         // Add event listeners for customer type buttons
         this.newGuestCustomerButton.addEventListener("click", () => {
@@ -298,6 +318,7 @@ class AppointmentForm {
     }
 
     showConfirmModal() {
+        // This method should only be called after validation passes
         this.confirmModal.classList.remove("hidden");
     }
 
@@ -306,10 +327,23 @@ class AppointmentForm {
     }
 
     handleConfirmAppointment() {
-        // Here you can add the logic to submit the form or make an API call
-        this.hideConfirmModal();
-        this.resetFields();
-        this.closeForm();
+        const form = document.getElementById('appointmentForm');
+        if (form) {
+            // Get the validation instance
+            const validation = form.validation;
+            if (validation && validation.validateForm()) {
+                // Only submit if validation passes
+                const submitEvent = new Event('submit', {
+                    bubbles: true,
+                    cancelable: true
+                });
+                Object.defineProperty(submitEvent, 'submitter', {
+                    value: document.getElementById('confirmAppointmentButton'),
+                    enumerable: true
+                });
+                form.dispatchEvent(submitEvent);
+            }
+        }
     }
 
     trackFormChanges() {
@@ -400,8 +434,98 @@ class AppointmentForm {
         // Track changes in update form
         this.trackUpdateFormChanges();
     }
-} // Close the AppointmentForm class
 
+    async handleCustomerSearch() {
+        const searchTerm = this.searchInput.value.trim();
+        if (searchTerm.length < 2) {
+            this.searchResults.innerHTML = '';
+            this.searchResults.classList.add('hidden');
+            return;
+        }
+
+        try {
+            const response = await fetch('/searchCustomer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ search: searchTerm })
+            });
+
+            const customers = await response.json();
+            this.displaySearchResults(customers);
+        } catch (error) {
+            console.error('Error searching customers:', error);
+        }
+    }
+
+    displaySearchResults(customers) {
+        this.searchResults.innerHTML = '';
+        this.searchResults.classList.remove('hidden');
+        
+        if (customers.length === 0) {
+            this.searchResults.innerHTML = `
+                <div class="p-4 text-onBackgroundTwo dark:text-darkOnBackgroundTwo">
+                    No customers found
+                </div>
+            `;
+            return;
+        }
+
+        customers.forEach(customer => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'p-4 cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface border-b border-borderTwo dark:border-darkBorderTwo';
+            resultDiv.innerHTML = `
+                <div class="BodyTwo text-onBackground dark:text-darkOnBackground">
+                    ${customer.first_name} ${customer.last_name}
+                </div>
+                <div class="CaptionTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo">
+                    ${customer.email}
+                </div>
+            `;
+
+            resultDiv.addEventListener('click', () => this.selectCustomer(customer));
+            this.searchResults.appendChild(resultDiv);
+        });
+    }
+
+    selectCustomer(customer) {
+        this.searchResults.classList.add('hidden');
+        this.searchInput.value = `${customer.first_name} ${customer.last_name}`;
+        this.existingCustomerId.value = customer.id;
+        
+        // Update customer info display
+        const nameElement = this.selectedCustomerInfo.querySelector('[data-field="Customer Name"]');
+        const genderElement = this.selectedCustomerInfo.querySelector('[data-field="Gender"]');
+        const emailElement = this.selectedCustomerInfo.querySelector('[data-field="Email"]');
+        
+        if (nameElement) nameElement.textContent = `${customer.first_name} ${customer.last_name}`;
+        if (genderElement) genderElement.textContent = customer.gender;
+        if (emailElement) emailElement.textContent = customer.email;
+
+        this.selectedCustomerInfo.classList.remove('hidden');
+    }
+
+    resetCustomerSelection() {
+        this.searchInput.value = '';
+        this.existingCustomerId.value = '';
+        this.selectedCustomerInfo.classList.add('hidden');
+        this.searchResults.classList.add('hidden');
+    }
+}
+
+// Debounce utility function
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 document.addEventListener("DOMContentLoaded", () => {
     new AppointmentForm();
 });

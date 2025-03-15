@@ -5,8 +5,6 @@ namespace Project\App\Controllers\Web\UseCases;
 use DateTime;
 use Project\App\Models\Utilities\AppointmentsModel;
 
-use function Symfony\Component\Clock\now;
-
 class AppointmentsController
 {
     private $controller;
@@ -57,77 +55,107 @@ class AppointmentsController
     public function appointCustomer()
     {
         session_start();
+        header('Content-Type: application/json');
         $file = $_POST;
-        if (!isset($file['guestCustomer']) && !isset($file['SearchCustomer'])) {
-            echo json_encode([
-                'message' => 'Required fields are missing'
-            ]);
+        $errors = [];
+
+        // Validate source of booking
+        if (!isset($file['source_of_booking']) || empty($file['source_of_booking'])) {
+            $errors['source_of_booking_error'] = 'Source of booking is required';
         }
 
-        $findUsers = $this->controller->findByNumber($file['hiddenValue']);
-        $findServiceByID = $this->controller->findById($file['service_id']);
-        if ($findUsers) {
-            http_response_code(200);
-            $addOnsPrice = $file['body_massage'] + $file['body_scrub'] + $file['hotstone'] + $file['earcandling'];
+        // Validate customer type and related fields
+        if ($file['customer_type'] === 'new_guest') {
+            if (empty($file['first_name'])) {
+                $errors['FirstNameError'] = 'First name is required';
+            }
+            if (empty($file['last_name'])) {
+                $errors['LastNameError'] = 'Last name is required';
+            }
+            if (empty($file['gender'])) {
+                $errors['GenderError'] = 'Gender is required';
+            }
+            if (empty($file['customer_email'])) {
+                $errors['customerEmailError'] = 'Email is required';
+            } elseif (!filter_var($file['customer_email'], FILTER_VALIDATE_EMAIL)) {
+                $errors['customerEmailError'] = 'Invalid email format';
+            } else {
+                $existingUser = $this->controller->findByEmail($file['customer_email']);
+                if ($existingUser) {
+                    $errors['customerEmailError'] = 'Email already exists';
+                }
+            }
+        } elseif ($file['customer_type'] === 'existing') {
+            if (empty($file['existing_customer_id'])) {
+                $errors['SearchCustomerError'] = 'Please select a customer';
+            } else {
+                $existingCustomer = $this->controller->findById($file['existing_customer_id']);
+                if (!$existingCustomer) {
+                    $errors['SearchCustomerError'] = 'Selected customer not found';
+                }
+            }
+        }
+
+        // Validate service booking
+        $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
+        if ($findDateAndTime > 5) {
+            $errors['therapistError'] = 'Appointment Busy';
+        }
+
+        // If there are any errors, return them
+        if (!empty($errors)) {
+            echo json_encode(['success' => false, 'errors' => $errors]);
+            return;
+        }
+
+        try {
+            $customerId = null;
+            
+            if ($file['customer_type'] === 'new_guest') {
+                // Create new customer
+                $customerId = $this->controller->createCustomer(
+                    $file['first_name'],
+                    $file['last_name'],
+                    $file['gender'],
+                    $file['customer_email']
+                );
+            } else {
+                // Use existing customer
+                $existingCustomer = $this->controller->findById($file['existing_customer_id']);
+                $customerId = $existingCustomer['id'];
+            }
+
+            // Get service details
+            $findServiceByID = $this->controller->findById($file['service_booked']);
+            
+            // Calculate total price
+            $addOnsPrice = array_sum($file['addons'] ?? []);
             $total = $addOnsPrice + $findServiceByID['price'];
-            $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-            if ($findDateAndTime>5) {
-                http_response_code(401);
-                $_SESSION['therapistError'] = [
-                    'therapistError' => 'Appointment Busy'
-                ];
-                header('Location: /appointments');
-            }else{
-                $this->controller->create(
-                    $name,
-                    $findUsers['id'],
-                    $findUsers['address'],
-                    $findUsers['phone'],
-                    $file['time'],
-                    $file['time'],
-                    $total,
-                    'Hilot ko  HAHAHAHAHAH',
-                    $file['service_id'],
-                    $file['date'],
-                    'pending',
-                    '2',
-                );
-                $_SESSION['message'] = [
-                    'message' => 'Appointment created successfully',
-                ];
-                header('Location: /appointments');
-            }
-        } else {
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-            if ($findDateAndTime>5) {
-                http_response_code(401);
-                $_SESSION['therapistError'] = [
-                    'therapistError' => 'Appointment Busy'
-                ];
-                header('Location: /appointments');
-            }else{
-                $addOnsPrice = $file['body_massage'] + $file['body_scrub'] + $file['hotstone'] + $file['earcandling'];
-                $total = $addOnsPrice + $findServiceByID['price'];
-                $this->controller->create(
-                    $file['guestCustomer'],
-                    1,
-                    'Ayala Ave, Quezon City',
-                    '09083217645',
-                    $file['time'],
-                    $file['time'],
-                    $total,
-                    'Hilot ko HAHAHAHAHAH',
-                    $file['service'],
-                    $file['date'],
-                    'pending',
-                    '2',
-                );
-                $_SESSION['message'] = [
-                    'message' => 'Appointment created successfully',
-                ];
-                header('Location: /appointments');
-            }
+
+            // Create appointment
+            $this->controller->create(
+                $file['customer_type'] === 'new_guest' 
+                    ? $file['first_name'] . ' ' . $file['last_name']
+                    : $existingCustomer['first_name'] . ' ' . $existingCustomer['last_name'],
+                $customerId,
+                $file['customer_type'] === 'new_guest' ? 'New Customer' : $existingCustomer['address'],
+                $file['customer_type'] === 'new_guest' ? '' : $existingCustomer['phone'],
+                $file['start_time'],
+                $file['start_time'],
+                $total,
+                $file['source_of_booking'],
+                $file['service_booked'],
+                $file['date'],
+                'pending',
+                '2'
+            );
+
+            echo json_encode(['success' => true, 'message' => 'Appointment created successfully']);
+            return;
+
+        } catch (\Exception $e) {
+            echo json_encode(['success' => false, 'message' => 'Failed to create appointment']);
+            return;
         }
     }
 
