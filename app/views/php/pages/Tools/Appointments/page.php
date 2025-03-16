@@ -223,8 +223,12 @@ class Page
                                     ) ?>
                                 </div>
                                 <!-- Search Results Container -->
-                                <div id="suggestions" class="w-full max-h-[200px] overflow-y-auto hidden">
-                                    <div id="hiddenValue"></div>
+                                <div id="hiddenValue">
+                                </div>
+                                <div class=" rounded-xl bg-primary hover:bg-slate-500 cursor-pointer w-[325px]" id="wrapper">
+                                    <ul class="hover:bg-slate-400" id="suggestions">
+                                        <li id="li"></li>
+                                    </ul>
                                 </div>
 
                                 <!-- Selected Customer Info (initially hidden) -->
