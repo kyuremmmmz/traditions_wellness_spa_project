@@ -326,25 +326,7 @@ class AppointmentForm {
         this.confirmModal.classList.add("hidden");
     }
 
-    handleConfirmAppointment() {
-        const form = document.getElementById('appointmentForm');
-        if (form) {
-            // Get the validation instance
-            const validation = form.validation;
-            if (validation && validation.validateForm()) {
-                // Only submit if validation passes
-                const submitEvent = new Event('submit', {
-                    bubbles: true,
-                    cancelable: true
-                });
-                Object.defineProperty(submitEvent, 'submitter', {
-                    value: document.getElementById('confirmAppointmentButton'),
-                    enumerable: true
-                });
-                form.dispatchEvent(submitEvent);
-            }
-        }
-    }
+    
 
     trackFormChanges() {
         const inputs = this.section.querySelectorAll('input, select, textarea');
@@ -474,7 +456,7 @@ class AppointmentForm {
 
         customers.forEach(customer => {
             const resultDiv = document.createElement('div');
-            resultDiv.className = 'p-4 cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface border-b border-borderTwo dark:border-darkBorderTwo';
+            resultDiv.className = 'p-4 border-b cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface border-borderTwo dark:border-darkBorderTwo';
             resultDiv.innerHTML = `
                 <div class="BodyTwo text-onBackground dark:text-darkOnBackground">
                     ${customer.first_name} ${customer.last_name}
