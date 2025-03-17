@@ -467,7 +467,7 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDomm.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtimee.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidation.js"></script>
         <?php
         // Output all footer scripts
