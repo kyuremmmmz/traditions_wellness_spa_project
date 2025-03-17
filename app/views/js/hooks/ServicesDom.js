@@ -3,6 +3,34 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+    // Add New Service Section handlers
+    const openAddServiceButton = document.getElementById("openAddANewServiceSectionButton");
+    const openAddOnButton = document.getElementById("openAddANewAddOnSectionButton");
+    const addNewServiceSection = document.getElementById("AddANewServiceSection");
+    const closeAddNewServiceButton = document.getElementById("closeAddANewServiceButton");
+
+    if (openAddServiceButton) {
+        openAddServiceButton.addEventListener("click", function () {
+            addNewServiceSection.classList.remove("translate-x-full");
+            document.body.classList.add("overflow-hidden");
+        });
+    }
+
+    if (openAddOnButton) {
+        openAddOnButton.addEventListener("click", function () {
+            addNewServiceSection.classList.remove("translate-x-full");
+            document.body.classList.add("overflow-hidden");
+        });
+    }
+
+    if (closeAddNewServiceButton) {
+        closeAddNewServiceButton.addEventListener("click", function () {
+            addNewServiceSection.classList.add("translate-x-full");
+            document.body.classList.remove("overflow-hidden");
+        });
+    }
+    
+
     const openModalButton = document.getElementById("openAddANewCategoryModal");
     const closeModalButton = document.getElementById("closeAddANewCategoryModal");
     const categoryModal = document.getElementById("addANewCategoryModal");

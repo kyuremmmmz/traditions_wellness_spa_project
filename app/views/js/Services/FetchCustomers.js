@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const searchInput = document.querySelector('#search');
+    /*const searchInput = document.querySelector('#search');
     const searchSuggestions = document.querySelector('#suggestions');
     const wrapper = document.querySelector('#wrapper');
     const listTemplate = document.querySelector('#li');
@@ -35,5 +35,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         showRecommendedList(recommendedList);
     };
-    searchInput.addEventListener('keyup', fetchData);
+    searchInput.addEventListener('keyup', fetchData);*/
 });

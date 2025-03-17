@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const selectionBox = document.getElementById('select');
-
+/*
     async function fetchData() {
         try {
             const response = await fetch('http://localhost:8000/store', { method: 'GET' });
@@ -40,5 +40,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    fetchData();
+    fetchData();*/
 });

@@ -426,7 +426,7 @@ class Page
                                 <button type="button" id="finishappointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
                                     Finish Appointment
                                 </button>
-                            </div>                     
+                            </div>                    
 
                             
     <!-- ITO UNG DATI-->
