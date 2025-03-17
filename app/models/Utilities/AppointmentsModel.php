@@ -129,7 +129,7 @@ class AppointmentsModel
         $services_id,
         $booking_date,
         $status,
-        $hrs,
+        $duration,
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO appointments (
         nameOfTheUser, 
@@ -143,7 +143,7 @@ class AppointmentsModel
         services_id,
         booking_date,
         status,
-        hrs,
+        duration,
         created_at,
         updated_at
     ) VALUES (
@@ -158,7 +158,7 @@ class AppointmentsModel
         :services_id,
         :booking_date,
         :status,
-        :hrs,
+        :duration,
         NOW(), 
         NOW()
     )");
@@ -174,7 +174,7 @@ class AppointmentsModel
             'services_id' => $services_id,
             'booking_date' => $booking_date,
             'status'=>ucfirst(str_replace('', '', $status)),
-            'hrs' => $hrs,
+            'duration' => $duration,
         ]);
         return is_array($exe);
     }

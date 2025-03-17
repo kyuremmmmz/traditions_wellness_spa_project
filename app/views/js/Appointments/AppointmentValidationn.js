@@ -4,7 +4,7 @@ class AppointmentValidation {
         this.bookButton = document.getElementById('BookButton');
         this.confirmAppointmentButton = document.getElementById('confirmAppointmentButton');
         this.errorFields = new Map();
-        
+
         if (!this.form) {
             console.error('Appointment form not found');
             return;
@@ -15,7 +15,7 @@ class AppointmentValidation {
 
         // Prevent browser's default validation
         this.form.setAttribute('novalidate', true);
-        
+
         // Initialize error fields mapping
         const fields = {
             'source_of_booking': 'source_of_booking_error',
@@ -32,17 +32,17 @@ class AppointmentValidation {
         for (const [fieldName, errorKey] of Object.entries(fields)) {
             const field = document.querySelector(`[name="${fieldName}"]`);
             const errorElement = document.getElementById(errorKey);
-            
+
             if (field && errorElement) {
-                this.errorFields.set(fieldName, { 
-                    element: field, 
-                    errorElement, 
-                    hasError: false 
+                this.errorFields.set(fieldName, {
+                    element: field,
+                    errorElement,
+                    hasError: false
                 });
-                
+
                 // Clear error on input
                 field.addEventListener('input', () => this.clearError(fieldName));
-                
+
                 // Add blur event for immediate validation
                 field.addEventListener('blur', () => {
                     if (!field.value.trim()) {
@@ -58,7 +58,7 @@ class AppointmentValidation {
 
         // Initialize form submission handler
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        
+
         // Book button click handler
         if (this.bookButton) {
             this.bookButton.addEventListener('click', (e) => {
@@ -72,7 +72,7 @@ class AppointmentValidation {
                 }
             });
         }
-        
+
         // Confirm appointment button handler
         if (this.confirmAppointmentButton) {
             this.confirmAppointmentButton.addEventListener('click', () => {
@@ -102,12 +102,12 @@ class AppointmentValidation {
             e.stopPropagation();
         }
         let hasErrors = false;
-        
+
         // Clear all previous errors first
         for (const field of this.errorFields.values()) {
             this.clearError(field.element.name);
         }
-    
+
         // Show error messages immediately
         const showError = (fieldName, message) => {
             this.setError(fieldName, message);
@@ -128,25 +128,25 @@ class AppointmentValidation {
                 console.warn(`Error element not found for ${fieldName}`);
             }
         };
-    
+
         // Prevent default browser validation
         if (this.form) {
             this.form.setAttribute('novalidate', 'true');
         }
-    
+
         // Hide confirmation modal at the start of validation
         const confirmModal = document.getElementById('ConfirmAppointmentModal');
         if (confirmModal) {
             confirmModal.classList.add('hidden');
         }
-    
+
         // Source of Booking validation
         const sourceOfBooking = document.querySelector('[name="source_of_booking"]');
         if (!sourceOfBooking || !sourceOfBooking.value.trim()) {
             showError('source_of_booking', 'Source of booking is required');
             hasErrors = true;
         }
-    
+
         // Customer Type validation
         const customerType = document.querySelector('input[name="customer_type"]:checked');
         const customerTypeError = document.getElementById('customerTypeError');
@@ -161,7 +161,7 @@ class AppointmentValidation {
                 customerTypeError.textContent = '';
                 customerTypeError.classList.add('hidden');
             }
-    
+
             if (customerType.value === 'new_guest') {
                 // Validate required fields for new guest
                 const requiredFields = {
@@ -170,7 +170,7 @@ class AppointmentValidation {
                     'gender': 'Gender',
                     'customer_email': 'Email'
                 };
-    
+
                 for (const [fieldName, label] of Object.entries(requiredFields)) {
                     const field = this.errorFields.get(fieldName);
                     if (field && !field.element.value.trim()) {
@@ -178,7 +178,7 @@ class AppointmentValidation {
                         hasErrors = true;
                     }
                 }
-    
+
                 // Email validation
                 const emailField = this.errorFields.get('customer_email');
                 if (emailField && emailField.element.value && !this.isValidEmail(emailField.element.value)) {
@@ -201,14 +201,14 @@ class AppointmentValidation {
                 }
             }
         }
-    
+
         // Service details validation
         const requiredServiceFields = {
             'service_booked': 'Service',
             'date': 'Date',
             'start_time': 'Start time'
         };
-    
+
         for (const [fieldName, label] of Object.entries(requiredServiceFields)) {
             const field = this.errorFields.get(fieldName);
             if (field && !field.element.value) {
@@ -216,10 +216,10 @@ class AppointmentValidation {
                 hasErrors = true;
             }
         }
-    
+
         // Update the book button state
         this.updateBookButtonState();
-        
+
         // Only show confirmation modal if there are no errors and it's a book button click
         if (!hasErrors && !e && this.bookButton === document.activeElement) {
             const confirmModal = document.getElementById('ConfirmAppointmentModal');
@@ -227,11 +227,67 @@ class AppointmentValidation {
                 confirmModal.classList.remove('hidden');
             }
         }
-        
+
         return !hasErrors;
     }
 
-    
+    async handleSubmit(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Run client-side validation first
+        if (!this.validateForm()) {
+            e.stopImmediatePropagation();
+            return false;
+        }
+
+        const isConfirmButtonClick = e.submitter && e.submitter.id === 'confirmAppointmentButton';
+
+        if (isConfirmButtonClick) {
+            try {
+                const formData = new FormData(this.form);
+                const response = await fetch('/appointCustomer', {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (!result.success) {
+                    // Clear any existing errors first
+                    for (const field of this.errorFields.values()) {
+                        this.clearError(field.element.name);
+                    }
+
+                    // Handle server-side validation errors
+                    if (result.errors) {
+                        Object.entries(result.errors).forEach(([field, message]) => {
+                            this.setError(field, message);
+                        });
+
+                        // Hide confirmation modal if there are errors
+                        const confirmModal = document.getElementById('ConfirmAppointmentModal');
+                        if (confirmModal) {
+                            confirmModal.classList.add('hidden');
+                        }
+                    }
+                    return false;
+                }
+
+                // Redirect on success
+                window.location.href = '/appointments';
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('An error occurred while submitting the form. Please try again.');
+                return false;
+            }
+        }
+
+        return false;
+    }
 
     clearError(fieldName) {
         const field = this.errorFields.get(fieldName);

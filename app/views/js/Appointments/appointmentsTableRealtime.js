@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
             <tr class="transition-colors duration-200 hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface cursor-pointer h-[40px] border-b border-border dark:border-darkBorder" data-id="${data.id || ''}" data-contact="${data.contactNumber || ''}" data-address="${data.address || ''}" data-name="${data.nameOfTheUser || ''}" data-price="${data.total_price || ''}" data-hours="${data.hrs || ''}" data-addons="${data.addOns || ''}" data-status="${data.status || 'pending'}">
                 <td class="pl-[48px] leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo truncate pr-[6px] text-center border-b border-border dark:border-darkBorder">${index + 1}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.clientName || 'N/A'}</td>
+                <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.id || 'N/A'}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.contactNumber || ''}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.address || ''}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.nameOfTheUser || ''}</td>
@@ -35,17 +36,14 @@ document.addEventListener('DOMContentLoaded', function(){
         // Add event listener to each row
         document.querySelectorAll('#appointmentsTable tr').forEach(row => {
             row.addEventListener('click', function() {
-                const id = this.getAttribute('data-id');
                 const contact = this.getAttribute('data-contact');
                 const address = this.getAttribute('data-address');
                 const name = this.getAttribute('data-name');
                 const price = this.getAttribute('data-price');
                 const addons = this.getAttribute('data-addons');
                 const status = this.getAttribute('data-status');
-
                 const modal = document.getElementById('updateModal');
                 const modalContent = modal.querySelector('.transform');
-                document.getElementById('modalAppointmentId').value = id;
                 document.getElementById('modalContactNumber').value = contact;
                 document.getElementById('modalAddress').value = address;
                 document.getElementById('modalName').value = name;
