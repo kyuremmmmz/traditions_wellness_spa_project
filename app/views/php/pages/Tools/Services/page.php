@@ -2,12 +2,18 @@
 
 namespace Project\App\Views\Php\Pages\Tools\Services;
 
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
+use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
+use Project\App\Views\Php\Components\Inputs\SearchField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
+use Project\App\Views\Php\Components\Texts\TextRowContainer;
+use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
+
 
 class Page
 {
@@ -16,6 +22,157 @@ class Page
 
 ?>
         <main class="flex w-full">
+            <?php 
+            Sidebar::render();
+            WorkingBanner::render()
+            ?>
+            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
+                <div>
+                    <section class="flex h-[50px]">
+                        <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
+                            <?php IconChoice::render('servicesMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
+                        </button>
+                        <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[16px] gap-[4px]">
+                            <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Services');
+                            echo LastUpdated::render(); ?>
+                        </div>
+                    </section>
+
+                    <section class="flex gap-[16px] py-[16px]">
+                        <?php 
+                        ActionButton::render('addServiceSmall', 'Add a new service', 'openAddANewServiceSectionButton'); 
+                        ActionButton::render('plusSmall', 'Add a new add-on', 'openAddANewAddOnSectionButton'); 
+                        ?>
+                    </section>
+
+                    <section>
+                        <div class="border-b border-border flex dark:border-darkBorder h-[30px] overflow-x-auto">
+                            <div class="mx-[24px] h-[30px]">
+                                <button type="button" id="showAllServices" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">All Services</button>
+                                <button type="button" id="showMassages" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Massages</button>
+                                <button type="button" id="showBodyScrubs" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Body Scrubs</button>
+                                <button type="button" id="showPackages" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Packages</button>
+                                <button type="button" id="showAddOns" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Add-ons</button>
+                                <button type="button" id="showArchivedServices" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Archived Services</button>
+                                <button type="button" id="showArchivedAddOns" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Archived Add-on</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="sm:h-[351px] relative overflow-hidden">
+                        <section id="allServicesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                            <button type="button" class="w-[365px] h-[84px] flex p-[10px] gap-[16px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px]">
+                                <div class="w-[64px]">
+                                    <img src="" class="w-[64px] h-[64px] rounded-[6px] bg-primary dark:bg-primary">
+                                </div>
+                                <div class="flex flex-col gap-[8px]  w-[calc(100%-80px)] h-full justify-center items-center">
+                                    <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">Name</p>
+                                    <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none w-full truncate">Description</p>
+                                    <div class="flex gap-[8px] w-full">
+                                        <div class="flex gap-[4px]">
+                                            <p class="CaptionOne text-onBackground leading-none dark:text-darkOnBackground truncate">0.0</p>
+                                            <?php IconChoice::render('star', '[10px]', '[10px]', '', 'orange', 'orange')?>
+                                        </div>
+                                        <p class="CaptionMediumOne text-primary dark:text-darkPrimary leading-none w-full text-left">Price</p>
+                                    </div>
+                                </div>
+                            </button>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <form id="appointmentForm" method="POST" action="/appointCustomer" novalidate>
+            <div id="AddANewServiceSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto sm:pt-[160px] sm:pl-[10%] overflow-x-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
+                <div class="w-[2500px] flex flex-col">
+                    <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
+                        <button id="closeAddANewServiceButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <div class="w-[24px] h-[24px] flex justify-center items-center">
+                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                        </div>
+                    </button>
+                </div>
+                <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
+                        <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                        <div class="flex flex-col mt-[48px] gap-[16px]">
+                            <?php SecondaryInputField::render('dropdownfield', 'Status', '', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Category', '', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Service Name', '', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textareafield', 'Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textareafield', 'Description', 'Enter Description', [], '', null, '', '', '', [], false, '')?>
+                        </div>
+                    </section>
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                        <div class="flex flex-col gap-[16px]">
+                            <?php SecondaryInputField::render('photofield', 'Main Photo', 'Choose a photo', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('multiphotofield', 'Slideshow Photos', 'Choose a photo', [], '', null, '', '', '', [], false, '')?>
+                        </div>
+                    </section>
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                        <div class="flex flex-col mb-[48px] gap-[16px]">
+                        <?php SecondaryInputField::render('photofield', 'Showcase Photo 1', 'Choose a photo', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('photofield', 'Showcase Photo 2', 'Choose a photo', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('photofield', 'Showcase Photo 3', 'Choose a photo', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
+                            <?php SecondaryInputField::render('textfield', 'Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
+                        </div>
+                    </section>
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                        <div class="flex flex-col mb-[48px] gap-[16px]">
+                            <?php SecondaryInputField::render('choicesselectionfield', 'Massage Selection', '', ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'], '<p class="text-onBackgroundTwo leading-none CaptionOne">You may select none</p>', null, ''); ?>
+                            <?php SecondaryInputField::render('choicesselectionfield', 'Body Scrub Selection', '', ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'], '', null, ''); ?>
+                            <?php SecondaryInputField::render('choicesselectionfield', 'Supplemental Add-ons', '', ['Hot Stone', 'Ear Candling', 'Ventosa'], '', null, ''); ?>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- OLD PAGE -->
+         <!-- OLD PAGE -->
+          <!-- OLD PAGE -->
+           <!-- OLD PAGE -->
+            <!-- OLD PAGE -->
+             <!-- OLD PAGE -->
+              <!-- OLD PAGE -->
+               <!-- OLD PAGE -->
+
+               <!-- OLD PAGE --><!-- OLD PAGE -->
+                <!-- OLD PAGE -->
+                 <!-- OLD PAGE -->
+                  <!-- OLD PAGE -->
+                   <!-- OLD PAGE -->
+                    <!-- OLD PAGE -->
+                     <!-- OLD PAGE -->
+                      <!-- OLD PAGE -->
+                       <!-- OLD PAGE -->
+                        <!-- OLD PAGE -->
+
+                        <!-- OLD PAGE -->
+                         <!-- OLD PAGE -->
+                          <!-- OLD PAGE -->
+                           <!-- OLD PAGE -->
+                            <!-- OLD PAGE -->
+                             <!-- OLD PAGE -->
+                              <!-- OLD PAGE -->
+                               <!-- OLD PAGE -->
+                                <!-- OLD PAGE -->
+                                 <!-- OLD PAGE -->
+                                  <!-- OLD PAGE -->
+                                   <!-- OLD PAGE -->
+                                    <!-- OLD PAGE -->
+                                     <!-- OLD PAGE --><!-- OLD PAGE -->
+                                      <!-- OLD PAGE -->
+                                       <!-- OLD PAGE -->
+        <main class="flex hidden w-full">
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
                 <div id="topSection">
                     <section class="flex h-[50px]">
@@ -51,16 +208,16 @@ class Page
                             </div>
                             <?php IconChoice::render('chevronRightSmall', '[6px] rotate-180 mr-[12px]', '[10px]', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
-                        <button id="openAddANewCategorySection" class="flex transition-all justify-center items-center m-[16px] w-[282px] h-[32px] rounded-[6px] border-[1px] border-border border-dashed dark:border-darkBorder bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <button id="openAddANewCategoryModal" class="flex transition-all justify-center items-center m-[16px] w-[282px] h-[32px] rounded-[6px] border-[1px] border-border border-dashed dark:border-darkBorder bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <?php IconChoice::render('plusBoxVerySmall', '[16px]', '[16px]', '', 'onSurface', 'darkOnSurface');
                             Text::render('', '', 'CaptionMediumOne text-left text-onSurface dark:text-darkOnSurface leading-none pl-[12px]', 'Add a new category'); ?>
                         </button>
                         <p id="test">No there's no services yet</p>
                     </div>
                 </div>
-                <div id="addANewCategorySection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
+                <div id="addANewCategoryModal" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
                     <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
-                        <button id="closeAddANewCategorySection" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <button id="closeAddANewCategoryModal" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
                                 <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                             </div>
@@ -334,7 +491,13 @@ class Page
             </div>
             <?php Sidebar::render(); ?>
         </main>
+        
 <?php
+        if (!empty($GLOBALS['footer_scripts'])) {
+            foreach ($GLOBALS['footer_scripts'] as $script) {
+                echo $script;
+            }
+        }
     }
 }
 

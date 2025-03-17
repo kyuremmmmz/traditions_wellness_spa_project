@@ -413,6 +413,14 @@ class IconChoice
                         </svg>
                 ';
                 break;
+            case "star":
+                $icon ='
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M4.99998 1L6.28748 3.60833L9.16665 4.02917L7.08331 6.05833L7.57498 8.925L4.99998 7.57083L2.42498 8.925L2.91665 6.05833L0.833313 4.02917L3.71248 3.60833L4.99998 1Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                ';
+                break;
         };
 
         // Modify the SVG content with dynamic classes
