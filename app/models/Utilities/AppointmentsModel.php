@@ -62,7 +62,7 @@ class AppointmentsModel
             'booking_date' => $date,
             'start_time' => $time
         ]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
@@ -130,6 +130,10 @@ class AppointmentsModel
         $booking_date,
         $status,
         $duration,
+        $service_booked,
+        $partysize,
+        $gender,
+        $email,
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO appointments (
         nameOfTheUser, 
@@ -144,6 +148,10 @@ class AppointmentsModel
         booking_date,
         status,
         duration,
+        service_booked,
+        party_size,
+        gender,
+        email,
         created_at,
         updated_at
     ) VALUES (
@@ -159,9 +167,14 @@ class AppointmentsModel
         :booking_date,
         :status,
         :duration,
+        :service_booked,
+        :party_size,
+        :gender,
+        :email,
         NOW(), 
         NOW()
     )");
+
         $exe = $stmt->execute([
             'nameOfTheUser' => $nameOfTheUser,
             'user_id' => $user_id,
@@ -173,11 +186,17 @@ class AppointmentsModel
             'addOns' => $addOns,
             'services_id' => $services_id,
             'booking_date' => $booking_date,
-            'status'=>ucfirst(str_replace('', '', $status)),
+            'status' => ucfirst(str_replace('', '', $status)),
             'duration' => $duration,
+            'service_booked' => $service_booked,
+            'party_size' => $partysize,
+            'gender' => $gender,
+            'email' => $email
         ]);
-        return is_array($exe);
+
+        return $exe;
     }
+
 
 
     public function update(

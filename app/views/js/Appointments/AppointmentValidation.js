@@ -231,63 +231,7 @@ class AppointmentValidation {
         return !hasErrors;
     }
 
-    async handleSubmit(e) {
-        e.preventDefault();
-        e.stopPropagation();
 
-        // Run client-side validation first
-        if (!this.validateForm()) {
-            e.stopImmediatePropagation();
-            return false;
-        }
-
-        const isConfirmButtonClick = e.submitter && e.submitter.id === 'confirmAppointmentButton';
-
-        if (isConfirmButtonClick) {
-            try {
-                const formData = new FormData(this.form);
-                const response = await fetch('/appointCustomer', {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (!result.success) {
-                    // Clear any existing errors first
-                    for (const field of this.errorFields.values()) {
-                        this.clearError(field.element.name);
-                    }
-
-                    // Handle server-side validation errors
-                    if (result.errors) {
-                        Object.entries(result.errors).forEach(([field, message]) => {
-                            this.setError(field, message);
-                        });
-
-                        // Hide confirmation modal if there are errors
-                        const confirmModal = document.getElementById('ConfirmAppointmentModal');
-                        if (confirmModal) {
-                            confirmModal.classList.add('hidden');
-                        }
-                    }
-                    return false;
-                }
-
-                // Redirect on success
-                window.location.href = '/appointments';
-            } catch (error) {
-                console.error('Error submitting form:', error);
-                alert('An error occurred while submitting the form. Please try again.');
-                return false;
-            }
-        }
-
-        return false;
-    }
 
     clearError(fieldName) {
         const field = this.errorFields.get(fieldName);

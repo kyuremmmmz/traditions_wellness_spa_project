@@ -238,7 +238,7 @@ class Page
                                 <!-- Selected Customer Info (initially hidden) -->
                                 <div id="selectedCustomerInfo" class="hidden w-full">
                                     <?php TextRowContainer::render('Customer Name', $SearchedCustomerName ?? '', 'onBackground', 'darkOnBackground') ?>
-                                    <?php TextRowContainer::render('Gender', $SearchedGender ?? '', 'onBackground', 'darkOnBackground') ?>
+                                    <?php TextRowContainer::render('Gender', $SearchedGender ?? '', 'onBackground', 'darkOnBackground', '', 'gender') ?>
                                     <?php TextRowContainer::render('Email', $SearchedEmail ?? '', 'onBackground', 'darkOnBackground') ?>
 
                                     <!-- Reset Button -->
@@ -467,8 +467,8 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDomm.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidationn.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtimee.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidation.js"></script>
         <?php
         // Output all footer scripts
         if (!empty($GLOBALS['footer_scripts'])) {

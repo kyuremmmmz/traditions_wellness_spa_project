@@ -58,7 +58,7 @@ class AppointmentsController
     {
         session_start();
         $file = $_POST;
-        if (!isset($file['guestCustomer']) && !isset($file['SearchCustomer'])) {
+        if (!isset($file['customer_type'])) {
             echo json_encode([
                 'message' => 'Required fields are missing'
             ]);
@@ -68,11 +68,11 @@ class AppointmentsController
         if (isset($file['hiddenValue'])) {
             $findUsers = $this->controller->findByNumber($file['hiddenValue']);
             http_response_code(200);
-            $addOnsPrice = $file['addOns'][0] + $file['addOns'][1] + $file['addOns'][2];
-            $total = $addOnsPrice + $findServiceByID['price'];
+            $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+            $total = $addOnsPrice + (int)$findServiceByID['price'];
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-            if ($findDateAndTime > 5) {
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
+            if (count($findDateAndTime) < 5) {
                 http_response_code(401);
                 $_SESSION['therapistError'] = [
                     'therapistError' => 'Appointment Busy'
@@ -84,14 +84,18 @@ class AppointmentsController
                     $findUsers['id'],
                     $findUsers['address'],
                     $findUsers['phone'],
-                    $file['time'],
-                    $file['time'],
+                    $file['start_time'],
+                    $file['start_time'],
                     $total,
                     'Hilot ko  HAHAHAHAHAH',
                     $file['service_booked'],
                     $file['date'],
                     'pending',
                     '2',
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $findUsers['gender'],
+                    $findUsers['customer_email']
                 );
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
@@ -99,8 +103,9 @@ class AppointmentsController
                 header('Location: /appointments');
             }
         } else {
+            $findServiceByID = $this->controller->findById($file['service_booked']);
             $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
-            if ($findDateAndTime > 5) {
+            if (count($findDateAndTime) > 5) {
                 http_response_code(401);
                 $_SESSION['therapistError'] = [
                     'therapistError' => 'Appointment Busy'
@@ -108,9 +113,11 @@ class AppointmentsController
                 header('Location: /appointments');
             } else {
                 $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
-                $total = $addOnsPrice + (int)$findServiceByID['price'];
+                $price = 1000;
+                $pricing = $this->priceCalculation($price, $file['party_size']);
+                $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
                 $this->controller->create(
-                    $file['first_name'] .''. $file['last_name'],
+                    $file['first_name'] .' '. $file['last_name'],
                     1,
                     'Ayala Ave, Quezon City',
                     '09083217645',
@@ -122,12 +129,29 @@ class AppointmentsController
                     $file['date'],
                     'pending',
                     $file['duration'],
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $file['gender'],
+                    $file['customer_email']
                 );
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
                 ];
                 header('Location: /appointments');
             }
+        }
+    }
+
+    private function priceCalculation($price, $params){
+        switch ($params) {
+            case 'Solo':
+                return 1000;
+            case 'Duo':
+                return 1800;
+            case 'Group':
+                return 2500;
+            default:
+                return $price;
         }
     }
 
