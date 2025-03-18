@@ -68,6 +68,7 @@ class AppointmentsController
             $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
             $addOns = $this->reusables->addOns($file);
             $price = 1000;
+            $endTime = $this->reusables->durationCalculation($file['start_time'], $file);
             $pricing = $this->reusables->priceCalculation($price, $file['party_size']);
             $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
@@ -85,13 +86,13 @@ class AppointmentsController
                     $findUsers['address'],
                     $findUsers['phone'],
                     $file['start_time'],
-                    $file['start_time'],
+                    $endTime,
                     $total,
                     $addOns,
                     $file['service_booked'],
                     $file['date'],
                     'pending',
-                    '2',
+                    $file['duration'],
                     $findServiceByID['serviceName'],
                     $file['party_size'],
                     $findUsers['gender'],
@@ -124,7 +125,7 @@ class AppointmentsController
                     'Ayala Ave, Quezon City',
                     '09083217645',
                     $file['start_time'],
-                    $this->reusables->durationCalculation($file['start_time'], $file),
+                    $endTime,
                     $total,
                     $addOns,
                     $file['service_booked'],
