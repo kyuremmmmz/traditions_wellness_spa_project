@@ -12,7 +12,7 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
             return $pdo;
@@ -26,7 +26,7 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);

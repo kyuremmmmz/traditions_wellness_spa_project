@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function(){
         let appointmentsTable = document.querySelector('#appointmentsTable');
         let html = '';
         item.forEach((data, index) => {
+            const date = formatDate(data.booking_date);
+            const time = formatTime(data.end_time);
             html += `
             <tr class="transition-colors duration-200 hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface cursor-pointer h-[40px] border-b border-border dark:border-darkBorder" data-id="${data.id || ''}" data-contact="${data.contactNumber || ''}" data-address="${data.address || ''}" data-name="${data.nameOfTheUser || ''}" data-price="${data.total_price || ''}" data-hours="${data.hrs || ''}" data-addons="${data.addOns || ''}" data-status="${data.status || 'pending'}">
                 <td class="pl-[48px] leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo truncate pr-[6px] text-center border-b border-border dark:border-darkBorder">${index + 1}</td>
@@ -19,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function(){
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.contactNumber || ''}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.address || ''}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.nameOfTheUser || ''}</td>
-                <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.booking_date}</td>
-                <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.start_time}</td>
+                <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${date}</td>
+                <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${time}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.total_price || ''}</td>
                 <td class="px-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">${data.addOns || ''}</td>
                 <td class="pr-[48px] pl-[6px] leading-none BodyTwo text-onBackground dark:text-darkOnBackground truncate text-center border-b border-border dark:border-darkBorder">
@@ -66,6 +68,25 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     fetchData();
 });
+const formatDate = (dateStr) => {
+    if (!dateStr || typeof dateStr !== 'string') return '';
+    const date = new Date(dateStr.split(' ')[0]);
+    if (isNaN(date.getTime())) return '';
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+};
+
+const formatTime = (timeStr) => {
+    if (!timeStr || typeof timeStr !== 'string') return '';
+    const timePart = timeStr.split(' ')[1] || timeStr;
+    const [hours, minutes] = timePart.split(':');
+    if (!hours || !minutes) return '';
+    const hourNum = parseInt(hours);
+    if (isNaN(hourNum)) return '';
+    const modifier = hourNum >= 12 ? 'PM' : 'AM';
+    const adjustedHour = hourNum % 12 || 12;
+    return `${adjustedHour}:${minutes} ${modifier}`;
+};
 
 function getStatusColor(status) {
     switch (status.toLowerCase()) {

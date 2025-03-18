@@ -248,7 +248,7 @@ class Page
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                             <div class="flex flex-col gap-[16px]">
                                 <?php SecondaryInputField::render('dropdownServicefield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'select', '', '', [], false, 'service_booked') ?>
-                                <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', [], false, 'duration') ?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', ['1hr', '2hrs', '1hr30mins'], false, 'duration') ?>
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
