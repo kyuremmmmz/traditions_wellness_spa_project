@@ -39,22 +39,12 @@ class Page
             ['value' => 'messenger', 'label' => 'Messenger'],
             ['value' => 'walk_in', 'label' => 'Walk-in']
         ]; // name = source_of_booking
-        $sourceOfBookingOptionsError = '';
-        // id = CustomerType
-        $customerTypeOptions = ['New Guest Customer', 'Existing Customer']; // name = customer_type
-        $customerTypeOptionsError = '';
         // id = SearchCustomerName
         $SearchedCustomerName = ''; // name = search_customer_name
         $SearchedGender = ''; // name = searched_gender
         $SearchedEmail = ''; // name = searched_email
-        // id = FirstName
-        $FirstNameError = ''; // name = first_name
-        // id = LastName
-        $LastNameError = ''; // name = last_name
         // id = GenderOptions
         $GenderOption = ['Male', 'Female', 'Other']; // name = gender
-        // id = CustomerEmail
-        $customerEmailError = ''; // name = customer_email
         // id = ServiceBookedOptions
         $ServiceBookedOptions = ['Service 1', 'Service 2', 'Service 3']; // name = service_booked
         $ServiceBookedOptionsError = '';
@@ -185,9 +175,9 @@ class Page
                                             'value' => $option['value']
                                         ];
                                     }, $sourceOfBookingOptions),
-                                    $sourceOfBookingOptionsError,
+                                    'source_of_booking_error',
                                     null,
-                                    'SourceOfBooking',
+                                    'source_of_booking',
                                     '',
                                     '',
                                     [],
@@ -215,7 +205,7 @@ class Page
                                         'Search Customer',
                                         'Enter Name or Email',
                                         [],
-                                        $SearchCustomerError ?? '',
+                                        'search_customer_error'?? '',
                                         null,
                                         'search',
                                         '',
@@ -249,15 +239,15 @@ class Page
                                 <input type="hidden" name="existing_customer_id" id="existingCustomerId" value="<?php echo $SearchedCustomerId ?? ''; ?>">
                             </div>
                             <div id="newGuestCustomerSection" class="flex flex-col my-[48px] gap-[16px] transition-opacity duration-300 ease-in-out" style="display: none;">
-                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], $FirstNameError ?? '', null, 'FirstName', '', '', [], false, 'first_name') ?>
-                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], $LastNameError ?? '', null, 'LastName', '', '', [], false, 'last_name') ?>
-                                <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, $GenderError ?? '', null, 'GenderOptions', '', '', [], false, 'gender') ?>
-                                <?php SecondaryInputField::render('emailfield', 'Email', 'Enter Email', [], $customerEmailError ?? '', null, 'CustomerEmail', '', '', [], false, 'customer_email') ?>
+                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], 'first_name_error' ?? '', null, 'FirstName', '', '', [], false, 'first_name') ?>
+                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'last_name_error' ?? '', null, 'LastName', '', '', [], false, 'last_name') ?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, 'gender_error' ?? '', null, 'GenderOptions', '', '', [], false, 'gender') ?>
+                                <?php SecondaryInputField::render('emailfield', 'Email', 'Enter Email', [], 'customer_email_error' ?? '', null, 'CustomerEmail', '', '', [], false, 'customer_email') ?>
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                             <div class="flex flex-col gap-[16px]">
-                                <?php SecondaryInputField::render('dropdownServicefield', 'Service Booked', 'Select Service Booked', [], $ServiceBookedOptionsError, null, 'select', '', '', [], false, 'service_booked') ?>
+                                <?php SecondaryInputField::render('dropdownServicefield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'select', '', '', [], false, 'service_booked') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', [], false, 'duration') ?>
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
@@ -267,8 +257,8 @@ class Page
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                             <div class="flex flex-col mb-[48px] gap-[16px]">
-                                <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date') ?>
-                                <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time') ?>
+                                <?php SecondaryInputField::render('datefield', 'Date', '', [], 'date_error', null, 'Date', '', '', [], false, 'date') ?>
+                                <?php SecondaryInputField::render('timefield', 'Start Time', '', [], 'start_time_error', null, 'Time', '', '', [], false, 'start_time') ?>
                                 <div class="pl-[220px] sm:pl-[140px] flex flex-col gap-[8px]">
                                     <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
                                     <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
@@ -392,7 +382,7 @@ class Page
                                         </div>
                                         <div class="flex flex-col gap-[16px] items-end">
                                             <?php
-                                            TextRowContainer::render('Appointment ID', '', 'onBackground', 'darkOnBackground', 'fetchedAppointmentId', 'fetched_appointment_id');
+                                            TextRowContainer::render('Appointment ID', '', 'onBackground', 'darkOnBackground', 'modalAppointmentId', 'fetched_appointment_id');
                                             TextRowContainer::render('Client ID', '', 'onBackground', 'darkOnBackground', 'fetchedClientId', 'fetched_client_id');
                                             TextRowContainer::render('Creation Date', '', 'onBackground', 'darkOnBackground', 'fetchedCreationDate', 'fetched_creation_date');
                                             TextRowContainer::render('Approval Date', '', 'onBackground', 'darkOnBackground', 'fetchedApprovalDate', 'fetched_approval_date');
@@ -421,11 +411,23 @@ class Page
                                         <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
                                     </div>
                                     <div class="flex flex-col gap-[16px]">
-                                        <?php
-
-                                        
-                                        
-                                        ?>
+                                        <!-- pag wala to, hindi magbubukas ung update modal. pachange na lang ung code sa appointments table realtime. nagbabase siya dito oh. 
+                                        document.getElementById('modalAppointmentId').value = id;
+                                        document.getElementById('modalContactNumber').value = contact;
+                                        document.getElementById('modalAddress').value = address;
+                                        document.getElementById('modalName').value = name;
+                                        document.getElementById('modalBookingDate').value = this.getAttribute('data-date');
+                                        document.getElementById('modalTotalPrice').value = price;
+                                        document.getElementById('modalAddOns').value = addons;
+                                        document.getElementById('modalStatus').value = status;
+                                        -->
+                                        <p id="modalContactNumber"></p>
+                                        <p id="modalAddress"></p>
+                                        <p id="modalName"></p>
+                                        <p id="modalBookingDate"></p>
+                                        <p id="modalTotalPrice"></p>
+                                        <p id="modalAddOns"></p>
+                                        <p id="modalStatus"></p>
                                     </div>
                                 </section>
                                 <section id="assignmentSection" class="flex hidden flex-col sm:flex-row items-top justify-center gap-[48px] absolute w-full transition-all duration-300 transform">

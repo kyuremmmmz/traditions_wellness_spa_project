@@ -19,13 +19,13 @@ class AppointmentValidation {
         // Initialize error fields mapping
         const fields = {
             'source_of_booking': 'source_of_booking_error',
-            'first_name': 'FirstNameError',
-            'last_name': 'LastNameError',
-            'gender': 'GenderError',
-            'customer_email': 'customerEmailError',
-            'service_booked': 'ServiceBookedError',
-            'date': 'DateError',
-            'start_time': 'StartTimeError'
+            'first_name': 'first_name_error',
+            'last_name': 'last_name_error',
+            'gender': 'gender_error',
+            'customer_email': 'customer_email_error',
+            'service_booked': 'service_booked_error',
+            'date': 'date_error',
+            'start_time': 'start_time_error'
         };
 
         // Set up error fields and their elements

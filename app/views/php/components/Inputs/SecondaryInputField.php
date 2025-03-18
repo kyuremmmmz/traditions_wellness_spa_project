@@ -12,7 +12,7 @@ class SecondaryInputField
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
         echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] text-right">' . $label . '</p>';
         if ($error !== '') {
-            echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right">' . $error . '</p>';
+            echo '<p id="'. $error .'" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
         }
         echo '</div>';
 
