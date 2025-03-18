@@ -58,85 +58,100 @@ class AppointmentsController
     {
         session_start();
         $file = $_POST;
-        error_log('Received service_booked: ' . $file['service_booked']);
-
-        if (!isset($file['first_name']) && !isset($file['last_name'])) {
-            echo json_encode(['message' => 'Required fields are missing']);
-            return;
+        if (!isset($file['customer_type'])) {
+            echo json_encode([
+                'message' => 'Required fields are missing'
+            ]);
         }
-
-        $findUsers = $this->controller->findByNumber($file['hiddenValue']);
+        
         $findServiceByID = $this->controller->findById($file['service_booked']);
-
-        if ($findServiceByID === false) {
-            echo json_encode(['error' => 'Invalid service ID: ' . $file['service_booked']]);
-            return;
-        }
-
-        if ($findUsers) {
+        if (isset($file['hiddenValue'])) {
+            $findUsers = $this->controller->findByNumber($file['hiddenValue']);
             http_response_code(200);
-            $addOnsPrice = (float)$file['body_massage'] + (float)$file['body_scrub'] + (float)$file['hotstone'] + (float)$file['earcandling'];
-            $total = $addOnsPrice + $findServiceByID['price'];
-            $name = $file['first_name'] . ' ' . $file['last_name'];
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-
-            if ($findDateAndTime > 5) {
+            $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+            $total = $addOnsPrice + (int)$findServiceByID['price'];
+            $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
+            if (count($findDateAndTime) < 5) {
                 http_response_code(401);
-                $_SESSION['therapistError'] = ['therapistError' => 'Appointment Busy'];
+                $_SESSION['therapistError'] = [
+                    'therapistError' => 'Appointment Busy'
+                ];
                 header('Location: /appointments');
-                exit;
             } else {
-                $minute = explode(':', $file['time']);
-                $durationMinute = explode(':', $file['duration']);
-                $startTime = (int)$minute[0] * 60 + (int)$minute[1];
-                $duration = (int)$durationMinute[0] * 60 + (int)$durationMinute[1];
-                $addOns = isset($file['addOns']) ? $file['addOns'] * 3 : 0;
                 $this->controller->create(
                     $name,
                     $findUsers['id'],
                     $findUsers['address'],
                     $findUsers['phone'],
-                    $file['time'],
-                    $file['time'],
+                    $file['start_time'],
+                    $file['start_time'],
                     $total,
-                    'Hilot ko HAHAHAHAHAH',
+                    'Hilot ko  HAHAHAHAHAH',
                     $file['service_booked'],
                     $file['date'],
                     'pending',
-                    '2'
+                    '2',
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $findUsers['gender'],
+                    $findUsers['customer_email']
                 );
-                $_SESSION['message'] = ['message' => 'Appointment created successfully'];
+                $_SESSION['message'] = [
+                    'message' => 'Appointment created successfully',
+                ];
                 header('Location: /appointments');
-                exit;
             }
         } else {
+            $findServiceByID = $this->controller->findById($file['service_booked']);
             $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
-            if ($findDateAndTime > 5) {
+            if (count($findDateAndTime) > 5) {
                 http_response_code(401);
-                $_SESSION['therapistError'] = ['therapistError' => 'Appointment Busy'];
+                $_SESSION['therapistError'] = [
+                    'therapistError' => 'Appointment Busy'
+                ];
                 header('Location: /appointments');
-                exit;
             } else {
-                $addOnsPrice = $file['body_massage'] + $file['body_scrub'] + $file['hotstone'] + $file['earcandling'];
-                $total = $addOnsPrice + (int) $findServiceByID['price'];
+                $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+                $price = 1000;
+                $pricing = $this->priceCalculation($price, $file['party_size']);
+                $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
                 $this->controller->create(
-                    $file['first_name'] . ' ' . $file['last_name'],
+                    $file['first_name'] .' '. $file['last_name'],
                     1,
                     'Ayala Ave, Quezon City',
                     '09083217645',
                     $file['start_time'],
                     $file['start_time'],
                     $total,
-                    'Hilot ko HAHAHAHAHAH',
+                    $file['hot_stone'],
                     $file['service_booked'],
                     $file['date'],
                     'pending',
-                    '2'
+                    $file['duration'],
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $file['gender'],
+                    $file['customer_email']
                 );
-                $_SESSION['message'] = ['message' => 'Appointment created successfully'];
+                $_SESSION['message'] = [
+                    'message' => 'Appointment created successfully',
+                ];
                 header('Location: /appointments');
-                exit;
             }
+        }
+    }
+
+    private function priceCalculation($price, $params){
+        switch ($params) {
+            case 'Solo':
+                return 1000;
+            case 'Duo':
+                return 1800;
+            case 'Group':
+                return 2500;
+            default:
+                return $price;
         }
     }
 
@@ -152,8 +167,10 @@ class AppointmentsController
     {
         ob_clean();
         $appointment = $this->controller->getAll();
+        $services = $this->controller->getAllServices();
         echo json_encode([
             $appointment,
+            $services
         ]);
         exit;
     }

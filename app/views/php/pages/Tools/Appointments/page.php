@@ -8,6 +8,7 @@ use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Charts\AppointmentsChart;
 use Project\App\Views\Php\Components\Containers\Sidebar;
+use Project\App\Views\Php\Components\DefaultCheckBox\CheckBoxDefault;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\DefaultInputField;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
@@ -79,13 +80,16 @@ class Page
             ['label' => 'Swedish Massage', 'duration' => '60 mins', 'price' => '200'],
             ['label' => 'Deep Tissue Massage', 'duration' => '45 mins', 'price' => '180']
         ]; // name = addons
+        $addonsOptionsName = [
+            ['label' => 'Hot Stone Therapy'],
+            ['label' => 'Swedish Massage'],
+            ['label' => 'Deep Tissue Massage']
+        ]; // name = addons
         $addonsOptionsError = '';
         // id = Date
         $DateError = ''; // name = date
         // id = Time
         $TimeError = ''; // name = start_time
-        // id = BedSlots
-        $BedSlots = ['1', '2', '3', '4', '5']; // name = bed_slots
         $BedSlotsError = '';
         // id = FinalValidationMessage
         $FinalValidationMessage = 'Please fill in all the fields.'; // name = final_validation_message
@@ -107,7 +111,7 @@ class Page
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
                 <div>
                     <section class="flex h-[50px]">
-                        <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
+                        <button type="button" class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
                             <?php IconChoice::render('clockMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
                         </button>
                         <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[16px] gap-[4px]">
@@ -234,7 +238,7 @@ class Page
                                 <!-- Selected Customer Info (initially hidden) -->
                                 <div id="selectedCustomerInfo" class="hidden w-full">
                                     <?php TextRowContainer::render('Customer Name', $SearchedCustomerName ?? '', 'onBackground', 'darkOnBackground') ?>
-                                    <?php TextRowContainer::render('Gender', $SearchedGender ?? '', 'onBackground', 'darkOnBackground') ?>
+                                    <?php TextRowContainer::render('Gender', $SearchedGender ?? '', 'onBackground', 'darkOnBackground', '', 'gender') ?>
                                     <?php TextRowContainer::render('Email', $SearchedEmail ?? '', 'onBackground', 'darkOnBackground') ?>
 
                                     <!-- Reset Button -->
@@ -258,14 +262,13 @@ class Page
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
-                                <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions', '', '', [], false, 'addons') ?>
+                                <?php CheckBoxDefault::render('checkboxwithpricefield', 'Add-Ons', '', false, ); ?>
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                             <div class="flex flex-col mb-[48px] gap-[16px]">
                                 <?php SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date') ?>
                                 <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time') ?>
-                                <?php SecondaryInputField::render('slotpickerfield', 'Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots', '', '', [], false, 'bed_slots'); ?>
                                 <div class="pl-[220px] sm:pl-[140px] flex flex-col gap-[8px]">
                                     <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
                                     <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
@@ -284,7 +287,7 @@ class Page
                     <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
                         <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
                         <div class="flex gap-[16px] justify-end mt-[48px]">
-                            <button id="closeUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                            <button type="button" id="closeUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
                             <button id="proceedUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
                         </div>
                     </div>
@@ -295,8 +298,8 @@ class Page
                     <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col">
                         <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to book this appointment?</p>
                         <div class="flex gap-[16px] justify-end mt-[48px]">
-                            <button id="cancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                            <button id="confirmAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                            <button type="button" id="cancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                            <button type="submit" id="confirmAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -401,7 +404,6 @@ class Page
                                         <?php
                                         SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date');
                                         SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time');
-                                        SecondaryInputField::render('slotpickerfield', 'Bed Slot/s', '', $BedSlots, $BedSlotsError, null, 'BedSlots', '', '', [], false, 'bed_slots');
                                         ?>
                                         <div class="pl-[65px] sm:pl-[65px] flex flex-col gap-[8px]">
                                             <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
@@ -419,7 +421,11 @@ class Page
                                         <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
                                     </div>
                                     <div class="flex flex-col gap-[16px]">
-                                        <?php SecondaryInputField::render('checkboxwithpricefield', 'Add-ons', '', $addonsOptions, $addonsOptionsError, null, 'AddonsOptions', '', '', [], false, 'addons') ?>
+                                        <?php
+
+                                        
+                                        
+                                        ?>
                                     </div>
                                 </section>
                                 <section id="assignmentSection" class="flex hidden flex-col sm:flex-row items-top justify-center gap-[48px] absolute w-full transition-all duration-300 transform">
@@ -456,59 +462,13 @@ class Page
                                 <button type="button" id="finishappointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
                                     Finish Appointment
                                 </button>
-                            </div>                    
-                            
-                            <!-- ITO UNG DATI-->
-                            <div class="hidden">
-                                <input type="hidden" name="id" id="modalAppointmentId">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
-                                        <input type="text" name="contactNumber" id="modalContactNumber" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Address</label>
-                                        <input type="text" name="address" id="modalAddress" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Patient</label>
-                                        <input type="text" name="nameOfTheUser" id="modalName" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Booking Date</label>
-                                        <input type="date" name="booking_date" id="modalBookingDate" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Total Price</label>
-                                        <input type="text" name="price" id="modalTotalPrice" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Add-ons</label>
-                                        <input type="text" name="addOns" id="modalAddOns" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                                        <select name="status" id="modalStatus" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
-                                            <option value="pending" disabled selected>Pending</option>
-                                            <option value="cancelled">Cancelled</option>
-                                            <option value="confirmed">Confirmed</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-end gap-2 mt-4">
-                                    <button type="button" id="closeModal" class="px-4 py-2 text-gray-800 bg-gray-200 rounded hover:bg-gray-300">Cancel</button>
-                                </div>
                             </div>
-                        </div>
-                    </div>
             </form>
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDomm.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidationn.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidation.js"></script>
         <?php
         // Output all footer scripts
         if (!empty($GLOBALS['footer_scripts'])) {

@@ -15,8 +15,8 @@ class AppointmentsTable
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[160px] text-center'>client name</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[160px] text-center'>service booked</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px] text-center'>party size</th>
-                    <th scope='col' class='py-4 px-[8px] CaptionTwo w-[160px]'>assigned therapist</th>
-                    <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Bed No.</th>
+                    <th scope='col' class='py-4 px-[8px] CaptionTwo w-[160px]'>email</th>
+                    <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Gender</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[120px]'>Scheduled Date</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Start Time</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[80px]'>Duration</th>
