@@ -40,5 +40,29 @@ class ReusablesController
         }
     }
 
-    public function durationCalculation(){}
+    public function durationCalculation($startTime, $placeholder)
+    {
+        $minutes = [
+            '1 Hour' => 60,
+            '2 Hours' => 120,
+            '1 Hour and 30 minutes' => 90,
+            'swedish' => 60,
+            'hot_stone' => 30,
+            'deep_tissue' => 45
+        ];
+
+        $totalMinutes = ($minutes[$placeholder['duration']] ?? 0)
+            + (isset($placeholder['swedish']) ? 60 : 0)
+            + (isset($placeholder['hot_stone']) ? 30 : 0)
+            + (isset($placeholder['deep_tissue']) ? 45 : 0);
+
+        list($hr, $min) = explode(":", $startTime);
+        $endMinutes = ($hr * 60 + $min) + $totalMinutes;
+
+        $endHr = floor($endMinutes / 60) % 12 ?: 12;
+        $endMin = $endMinutes % 60;
+        $period = $endMinutes / 60 >= 12 ? "PM" : "AM";
+
+        return sprintf("%02d:%02d %s", $endHr, $endMin, $period);
+    }
 }
