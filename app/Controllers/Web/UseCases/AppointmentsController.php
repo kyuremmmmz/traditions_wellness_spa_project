@@ -10,14 +10,11 @@ use function Symfony\Component\Clock\now;
 class AppointmentsController
 {
     private $controller;
+    private $reusables;
     public function __construct()
     {
         $this->controller = new AppointmentsModel();
-    }
-    public function index()
-    {
-        // Code for listing resources
-        echo "This is the index method of AppointmentsController.";
+        $this->reusables = new ReusablesController();
     }
     /*
     TO FIX: 
@@ -69,7 +66,10 @@ class AppointmentsController
             $findUsers = $this->controller->findByNumber($file['hiddenValue']);
             http_response_code(200);
             $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
-            $total = $addOnsPrice + (int)$findServiceByID['price'];
+            $addOns = $this->reusables->addOns($file);
+            $price = 1000;
+            $pricing = $this->reusables->priceCalculation($price, $file['party_size']);
+            $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
             $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
             if (count($findDateAndTime) < 5) {
@@ -87,7 +87,7 @@ class AppointmentsController
                     $file['start_time'],
                     $file['start_time'],
                     $total,
-                    'Hilot ko  HAHAHAHAHAH',
+                    $addOns,
                     $file['service_booked'],
                     $file['date'],
                     'pending',
@@ -95,7 +95,7 @@ class AppointmentsController
                     $findServiceByID['serviceName'],
                     $file['party_size'],
                     $findUsers['gender'],
-                    $findUsers['customer_email']
+                    $findUsers['email']
                 );
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
@@ -113,8 +113,9 @@ class AppointmentsController
                 header('Location: /appointments');
             } else {
                 $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+                $addOns = $this->reusables->addOns($file);
                 $price = 1000;
-                $pricing = $this->priceCalculation($price, $file['party_size']);
+                $pricing = $this->reusables->priceCalculation($price, $file['party_size']);
                 $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
                 $this->controller->create(
                     $file['first_name'] .' '. $file['last_name'],
@@ -124,7 +125,7 @@ class AppointmentsController
                     $file['start_time'],
                     $file['start_time'],
                     $total,
-                    $file['hot_stone'],
+                    $addOns,
                     $file['service_booked'],
                     $file['date'],
                     'pending',
@@ -142,18 +143,6 @@ class AppointmentsController
         }
     }
 
-    private function priceCalculation($price, $params){
-        switch ($params) {
-            case 'Solo':
-                return 1000;
-            case 'Duo':
-                return 1800;
-            case 'Group':
-                return 2500;
-            default:
-                return $price;
-        }
-    }
 
     public function searchTherapist()
     {

@@ -167,7 +167,7 @@ class AppointmentValidation {
                 const requiredFields = {
                     'first_name': 'First name',
                     'last_name': 'Last name',
-                    'gender': 'Gender',
+                    
                     'customer_email': 'Email'
                 };
 
