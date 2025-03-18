@@ -507,4 +507,129 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initial check
     checkFormValidity();
+
+
+    // Price type toggle functionality
+    const fixedPriceButton = document.getElementById("fixedPriceButton");
+    const dynamicPriceButton = document.getElementById("dynamicPriceButton");
+    const fixedPriceSection = document.getElementById("fixedPriceSection");
+    const dynamicPriceSection = document.getElementById("dynamicPriceSection");
+
+    if (fixedPriceButton && dynamicPriceButton) {
+        // Set initial state
+        fixedPriceSection.style.display = "flex";
+        fixedPriceSection.classList.add("opacity-100");
+        dynamicPriceSection.style.display = "none";
+        fixedPriceButton.classList.add('border-primary', 'dark:border-darkPrimary');
+
+        fixedPriceButton.addEventListener("click", function() {
+            fixedPriceButton.classList.add('border-primary', 'dark:border-darkPrimary');
+            dynamicPriceButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+            dynamicPriceSection.classList.remove("opacity-100");
+            dynamicPriceSection.classList.add("opacity-0");
+            setTimeout(() => {
+                dynamicPriceSection.style.display = "none";
+                fixedPriceSection.style.display = "flex";
+                fixedPriceSection.classList.remove("opacity-0");
+                fixedPriceSection.classList.add("opacity-100");
+            }, 300);
+        });
+
+        dynamicPriceButton.addEventListener("click", function() {
+            dynamicPriceButton.classList.add('border-primary', 'dark:border-darkPrimary');
+            fixedPriceButton.classList.remove('border-primary', 'dark:border-darkPrimary');
+            fixedPriceSection.classList.remove("opacity-100");
+            fixedPriceSection.classList.add("opacity-0");
+            setTimeout(() => {
+                fixedPriceSection.style.display = "none";
+                dynamicPriceSection.style.display = "flex";
+                dynamicPriceSection.classList.remove("opacity-0");
+                dynamicPriceSection.classList.add("opacity-100");
+            }, 300);
+        });
+    }
+
+    // Services tab navigation
+    const tabButtons = {
+        allServices: document.getElementById("showAllServices"),
+        massages: document.getElementById("showMassages"),
+        bodyScrubs: document.getElementById("showBodyScrubs"),
+        packages: document.getElementById("showPackages"),
+        addOns: document.getElementById("showAddOns"),
+        archivedServices: document.getElementById("showArchivedServices"),
+        archivedAddOns: document.getElementById("showArchivedAddOns")
+    };
+
+    const tabSections = {
+        allServices: document.getElementById("allServicesSection"),
+        massages: document.getElementById("massagesSection"),
+        bodyScrubs: document.getElementById("bodyScrubsSection"),
+        packages: document.getElementById("packagesSection"),
+        addOns: document.getElementById("addOnsSection"),
+        archivedServices: document.getElementById("archivedServicesSection"),
+        archivedAddOns: document.getElementById("archivedAddOnsSection")
+    };
+
+    let activeTab = "allServices"; // Default active tab
+
+    // Function to get slide direction
+    const getSlideDirection = (currentTab, newTab) => {
+        const tabOrder = Object.keys(tabButtons);
+        const currentIndex = tabOrder.indexOf(currentTab);
+        const newIndex = tabOrder.indexOf(newTab);
+        return newIndex > currentIndex ? 'right' : 'left';
+    };
+
+    // Function to set active tab
+    const setActiveTab = (tabName) => {
+        const currentTab = activeTab;
+        const direction = getSlideDirection(currentTab, tabName);
+
+        // Remove active class from all buttons
+        Object.keys(tabButtons).forEach(name => {
+            tabButtons[name].classList.remove("text-primary", "dark:text-darkPrimary", "border-b-[5px]", "border-primary", "dark:border-darkPrimary");
+        });
+
+        // Add active class to selected button
+        tabButtons[tabName].classList.add("text-primary", "dark:text-darkPrimary", "border-b-[5px]", "border-primary", "dark:border-darkPrimary");
+
+        // Animate sections
+        Object.keys(tabSections).forEach(name => {
+            const section = tabSections[name];
+            if (name === tabName) {
+                // Prepare new section for animation
+                section.classList.remove('hidden');
+                section.style.transform = `translateX(${direction === 'right' ? '100%' : '-100%'})`;
+                section.style.opacity = '0';
+                
+                // Force reflow
+                section.offsetHeight;
+                
+                // Slide in
+                section.style.transform = 'translateX(0)';
+                section.style.opacity = '1';
+            } else if (name === currentTab) {
+                // Slide out current section
+                section.style.transform = `translateX(${direction === 'right' ? '-100%' : '100%'})`;
+                section.style.opacity = '0';
+                setTimeout(() => {
+                    section.classList.add('hidden');
+                }, 300);
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+
+        activeTab = tabName;
+    };
+
+    // Initialize tab navigation
+    Object.keys(tabButtons).forEach(tabName => {
+        if (tabButtons[tabName]) {
+            tabButtons[tabName].addEventListener("click", () => setActiveTab(tabName));
+        }
+    });
+
+    // Set initial active tab
+    setActiveTab("allServices");
 });

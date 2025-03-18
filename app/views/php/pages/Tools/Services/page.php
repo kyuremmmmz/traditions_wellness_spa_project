@@ -13,7 +13,8 @@ use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Texts\TextRowContainer;
 use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
-
+use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
+use Project\App\Views\Php\Components\Buttons\ServiceItemButton;
 
 class Page
 {
@@ -61,29 +62,33 @@ class Page
 
                     <div class="sm:h-[351px] relative overflow-hidden">
                         <section id="allServicesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
-                            <button type="button" class="w-[365px] h-[84px] flex p-[10px] gap-[16px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px]">
-                                <div class="w-[64px]">
-                                    <img src="" class="w-[64px] h-[64px] rounded-[6px] bg-primary dark:bg-primary">
-                                </div>
-                                <div class="flex flex-col gap-[8px]  w-[calc(100%-80px)] h-full justify-center items-center">
-                                    <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">Name</p>
-                                    <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none w-full truncate">Description</p>
-                                    <div class="flex gap-[8px] w-full">
-                                        <div class="flex gap-[4px]">
-                                            <p class="CaptionOne text-onBackground leading-none dark:text-darkOnBackground truncate">0.0</p>
-                                            <?php IconChoice::render('star', '[10px]', '[10px]', '', 'orange', 'orange')?>
-                                        </div>
-                                        <p class="CaptionMediumOne text-primary dark:text-darkPrimary leading-none w-full text-left">Price</p>
-                                    </div>
-                                </div>
-                            </button>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                        </section>
+                        <section id="massagesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                        </section>
+                        <section id="bodyScrubsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                        </section>
+                        <section id="packagesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                        </section>
+                        <section id="addOnsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        </section>
+                        <section id="archivedServicesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        </section>
+                        <section id="archivedAddOnsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
                         </section>
                     </div>
                 </div>
             </div>
         </main>
 
-        <form id="appointmentForm" method="POST" action="/appointCustomer" novalidate>
+        
             <div id="AddANewServiceSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto sm:pt-[160px] sm:pl-[10%] overflow-x-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
                 <div class="w-[2500px] flex flex-col">
                     <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
@@ -95,7 +100,7 @@ class Page
                 </div>
                 <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
                     <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
-                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
+                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new service'); ?>
                         <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
                         <div class="flex flex-col mt-[48px] gap-[16px]">
                             <?php SecondaryInputField::render('dropdownfield', 'Status', '', [], '', null, '', '', '', [], false, '')?>
@@ -131,9 +136,35 @@ class Page
                             <?php SecondaryInputField::render('choicesselectionfield', 'Supplemental Add-ons', '', ['Hot Stone', 'Ear Candling', 'Ventosa'], '', null, ''); ?>
                         </div>
                     </section>
+                    <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
+                        <div class="flex items-center gap-[16px] justify-end">
+                            <p class="leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo">Customer Type</p>
+                            <div class="flex gap-[16px]">
+                                <div class="relative">
+                                    <input type="radio" name="price_type" value="fixed" class="hidden peer" id="fixedPriceButton" checked required>
+                                    <label for="fixedPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Fixed Price</label>
+                                </div>
+                                <div class="relative">
+                                    <input type="radio" name="price_type" value="dynamic" class="hidden peer" id="dynamicPriceButton" required>
+                                    <label for="dynamicPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Dynamic Price</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="fixedPriceSection" class="flex justify-end opacity-100 transition transition-all">
+                            <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], '', null, ''); ?>
+                        </div>
+                        <div id="dynamicPriceSection" class="flex flex-col gap-[16px] hidden justify-end opacity-0 transition transition-all">
+                            <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], '', null, ''); ?>
+                            <?php SecondaryInputField::render('numberfield', '1 Hour & 30 Minutes', 'Enter price', [], '', null, ''); ?>
+                            <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], '', null, ''); ?>
+                        </div>
+                        <div class="flex w-full justify-end mt-[32px]">
+                            <?php NewPrimaryButton::render('Create Service', '', 'CreateServiceButton', '257px', null) ?>
+                        </div>
+                    </section> 
                 </div>
             </div>
-        </form>
+        
 
 
         <!-- OLD PAGE -->
@@ -223,7 +254,7 @@ class Page
                             </div>
                         </button>
                     </div>
-                    <form method="post" action="/createCategory">
+                    
                         <div class="w-full flex sm:items-start flex-col">
                             <section class="flex flex-col gap-[12px] min-w-[316px] w-full justify-center sm:justify-start">
                                 <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new category');
@@ -252,16 +283,16 @@ class Page
                                 </div>
                             </section>
                             <div class="flex justify-center gap-2 mt-[48px]">
-                                <?php PrimaryButton::render('Create', 'submit'); ?>
+                                 <?php NewPrimaryButton::render('Book', '', 'BookButton', '257px', null) ?>
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
                 
                 <!-- Add a new service -->
                 <div id="addANewServiceSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5 sm:pb-[320px]">
                     <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full">
-                        <button id="closeAddANewServiceButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <button type="button" id="closeAddANewServiceButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
                                 <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                             </div>
