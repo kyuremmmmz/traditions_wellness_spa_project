@@ -111,7 +111,7 @@ class SecondaryInputField
                             const fileItem = document.createElement('div');
                             fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                             fileItem.innerHTML = `
-                                <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
+                                <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
                                 <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$id}_input\")'>×</button>
                             `;
                             
@@ -181,7 +181,7 @@ class SecondaryInputField
                                 const fileItem = document.createElement('div');
                                 fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                                 fileItem.innerHTML = `
-                                    <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
+                                    <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
                                     <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
                                 `;
                                 
@@ -242,10 +242,10 @@ class SecondaryInputField
                 echo '</select>';
                 break;
             case 'datefield':
-                echo "<input type='date' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
+                echo "<input type='date' id='$id' value=".''." min=". date('Y-m-d')." name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
                 break;
             case 'timefield':
-                echo "<input type='time' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
+                echo "<input type='time' min=".'09:00'." max=".'17:00'." name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
                 break;
             case 'slotpickerfield':
                 echo "<div class='flex gap-[9px] min-w-[260px] max-w-[260px] $disabledClass'>";
@@ -299,7 +299,7 @@ class SecondaryInputField
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {
                     echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='{$name}[]' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
+                    echo "<input type='checkbox' name='{$name}[]' value='$option' class='hidden peer' id='{$id}_$option' $disabledAttribute>";
                     echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
                     echo "</div>";
                 }
