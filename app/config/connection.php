@@ -6,98 +6,33 @@ use PDO;
 
 class Connection
 {
-    public static function globalConnection() 
+    public static function globalConnection()
     {
         session_start();
-        header('Content-Type: application/json');
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
         $host = 'localhost:3307';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-            echo json_encode([
-                'message' => 'Connected successfully'
-            ]);
             return $pdo;
         } catch (\Throwable $th) {
-            echo json_encode([
-                'error' => $th->getMessage()
-            ]);
+            throw new \Exception($th->getMessage());
         }
     }
+
     public static function connection()
     {
-        header('Content-Type: application/json');
-
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
         $host = 'localhost:3307';
-        switch ($_SERVER['REQUEST_METHOD']) {
-            case 'GET':
-                try {
-                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-                    echo json_encode([
-                        'message' => 'Connected successfully'
-                    ]);
-                    return $pdo;
-                } catch (\Throwable $th) {
-                    echo json_encode([
-                        'error' => $th->getMessage()
-                    ]);
-                }
-                break;
-
-            case 'POST':
-
-                try {
-                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-                    echo json_encode([
-                        'message' => 'Connected successfully'
-                    ]);
-                    return $pdo;
-                } catch (\Throwable $th) {
-                    echo json_encode([
-                        'error' => $th->getMessage()
-                    ]);
-                }
-                break;
-
-            case 'PUT':
-                try {
-                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-                    echo json_encode([
-                        'message' => 'Connected successfully'
-                    ]);
-                    return $pdo;
-                } catch (\Throwable $th) {
-                    echo json_encode([
-                        'error' => $th->getMessage()
-                    ]);
-                }
-                break;
-
-            case 'DELETE':
-                try {
-                    $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
-                    echo json_encode([
-                        'message' => 'Connected successfully'
-                    ]);
-                    return $pdo;
-                } catch (\Throwable $th) {
-                    echo json_encode([
-                        'error' => $th->getMessage()
-                    ]);
-                }
-                break;
-
-            default:
-                http_response_code(405);
-                echo json_encode([
-                    'error' => 'Method Not Allowed'
-                ]);
-                break;
+        
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            return $pdo;
+        } catch (\Throwable $th) {
+            throw new \Exception($th->getMessage());
         }
     }
 }
