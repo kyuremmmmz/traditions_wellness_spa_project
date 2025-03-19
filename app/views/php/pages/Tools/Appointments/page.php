@@ -402,13 +402,14 @@ class Page
                                             <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
                                             <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo  w-[260px] dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
                                         </div>
+                                        <div id="hiddenVal"></div>
                                     </div>
                                 </section>
                                 <section id="serviceBookedSection" class="flex hidden flex-col sm:flex-row items-top justify-center gap-[48px] absolute w-full transition-all duration-300 transform">
                                     <div class="flex flex-col gap-[16px]">
                                         <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'select2', '', '', [], false, 'service_booked') ?>
                                         <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'durationhaha', '', 'duration', [], false, 'duration') ?>
-                                        <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
+                                        <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'party_size', '', '', $PartySizeOptions, false, 'party_size') ?>
                                         <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                         <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
                                     </div>

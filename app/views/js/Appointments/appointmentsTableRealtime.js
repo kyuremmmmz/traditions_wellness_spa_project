@@ -47,6 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const renderPartySize = (selectedParty) => {
+        const partySize = document.getElementById('party_size');
+        const partySizeOptions = [
+            { text: "Solo", value: "1000" },
+            { text: "Duo", value: "1800" },
+            { text: "Group", value: "2500" }
+        ];
+        partySize.innerHTML = partySizeOptions.map(option =>
+            `<option value="${option.text}" ${option.text === selectedParty ? 'selected' : ''}>${option.text}</option>`
+        ).join('') || '<option value="">No party size available</option>';
+
+        if (selectedParty && !partySizeOptions.some(option => option.text === selectedParty)) {
+            partySize.innerHTML = `<option value="${selectedParty}" selected>${selectedParty}</option>` + partySize.innerHTML;
+        }
+    };
+
     const renderData = (items) => {
         document.querySelector('#appointmentsTable').innerHTML = items.map((data, index) => `
             <tr class="transition-colors duration-200 hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface cursor-pointer h-[40px] border-b border-border dark:border-darkBorder"
@@ -64,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 data-hours="${data.duration || ''}" 
                 data-addons="${data.addOns || ''}"
                 data-email="${data.email || ''}"
+                data-party="${data.party_size}"
                 data-paymentstatus="${data.payment_status || 'pending'}"
                 data-source="${data.source_of_booking || 'pending'}"
                 data-status="${data.status || 'pending'}">
@@ -89,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = row.dataset;
                 const modal = document.getElementById('updateModal');
                 const modalContent = modal.querySelector('.transform');
-
+                document.getElementById('hiddenVal').innerHTML = `<input type="hidden" name="appointment_id" value="${data.id}">`
                 document.getElementById('modalAppointmentId').textContent = data.id;
                 document.getElementById('modalContactNumber').textContent = data.contact;
                 document.getElementById('modalAddress').textContent = data.address;
@@ -109,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="flex flex-col gap-[4px] w-full justify-center">
                         <p class="BodyTwo text-onBackground dark:text-darkOnBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] text-right">Date</p>
                     </div>
-                    <input type="date" id="dateInput" value="${data.appointment}" min="2025-03-18" name="date" 
+                    <input type="date" id="dateInput" value="${data.appointment}" min="2025-03-18" name="booking_date" 
                         class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground 
                         border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] 
                         w-full min-w-[260px] max-w-[260px]" placeholder="Select a date">
@@ -118,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const services = await fetchServices();
                 renderDropdown(services, data.service);
                 renderDurationDropdown(data.hours);
-
+                renderPartySize(data.party);
                 modal.classList.remove('hidden');
                 setTimeout(() => {
                     modal.classList.toggle('opacity-0', false).toggle('opacity-100', true);
