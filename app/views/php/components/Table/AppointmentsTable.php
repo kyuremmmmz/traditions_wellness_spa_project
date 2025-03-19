@@ -9,7 +9,7 @@ class AppointmentsTable
         $tableClasses = "w-full table-fixed" . ($className ?? '');
         echo "<div class='w-full overflow-x-auto bg-background dark:bg-darkBackground min-w-[300px] h-[400px] overflow-y-auto'>";
         echo "<table class='$tableClasses'>";
-        echo "<thead class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo uppercase bg-[#FFEA06] bg-opacity-5 tracking-wider px-[48px] mx-[48px]'>
+        echo "<thead class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo uppercase bg-opacity-5 tracking-wider px-[48px] mx-[48px]'>
                 <tr>
                     <th scope='col' class='pl-[48px] pr-[8px] py-4 CaptionTwo w-[72px] text-center'>No.</th>
                     <th scope='col' class='py-4 px-[8px] CaptionTwo w-[160px] text-center'>client name</th>
