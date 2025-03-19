@@ -28,20 +28,23 @@ class AppointmentsController
         session_start();
         $file = $_POST;
 
-        if (!isset($file['id']) || !isset($file['nameOfTheUser'])) {
+        if (!isset($file['booking_date']) || !isset($file['service_booked'])) {
             echo json_encode(['message' => 'Required fields are missing']);
             return;
         }
-
+        $findById = $this->controller->findByIdAppointment($file['appointment_id']);
+        $findId = $this->controller->findById($file['service_booked']);
+        $originalPrice = $this->reusables->priceCalculation(1000, $findById['party_size']);
+        $newPrice = $this->reusables->priceCalculation(1000, $file['party_size']);
+        $calculateTotal = max((int)$findById['total_price'] + ($newPrice - $originalPrice), 0);
         $response = $this->controller->update(
-            $file['nameOfTheUser'],
-            $file['address'],
-            $file['contactNumber'],
+            $file['duration'],
             $file['booking_date'],
-            $file['price'],
-            $file['addOns'],
-            $file['status'],
-            $file['id']
+            $calculateTotal,
+            $file['party_size'],
+            $findId['serviceName'],
+            $file['start_time'],
+            $file['appointment_id'],
         );
         header('Location:/Tracker');
         $_SESSION['success_message'] = [
