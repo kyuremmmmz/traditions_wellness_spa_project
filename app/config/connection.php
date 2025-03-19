@@ -6,7 +6,7 @@ use PDO;
 
 class Connection
 {
-    public static function globalConnection() 
+    public static function globalConnection()
     {
         session_start();
         $db = 'traditionswellnessspa';
@@ -21,6 +21,7 @@ class Connection
             throw $th;
         }
     }
+
     public static function connection()
     {
         $db = 'traditionswellnessspa';

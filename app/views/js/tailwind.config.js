@@ -22,11 +22,9 @@ tailwind.config = {
                 borderHighlight: '#669FFC',
                 success: '#15803D',
                 destructive: '#D92626',
-
-                // Other colors
                 yellow: '#FFEA06',
-                blue: '32A3FF',
-                orange: 'FDA93C',
+                blue: '#32A3FF',
+                orange: '#FDA93C',
 
                 // Dark theme colors
                 darkPrimary: '#006736',

@@ -18,6 +18,7 @@ $router->post('/createCategory', 'ServicesController@createCategory');
 $router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
 $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
+$router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
