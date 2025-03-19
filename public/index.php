@@ -18,6 +18,7 @@ $router->post('/createCategory', 'ServicesController@createCategory');
 $router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
 $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
+$router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
@@ -35,6 +36,7 @@ $router->post('/mobileforgot', 'AuthMobileController@forgotPasswordSend');
 $router->post('/mobileforgotPass', 'AuthMobileController@forgotPassword');
 $router->post('/mobileresetPassword', 'AuthMobileController@resetPassword');
 $router->post('/mobileLogin', 'AuthMobileController@login');
+$router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

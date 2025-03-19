@@ -12,6 +12,6 @@ class LastUpdated
 
     public static function render(?string $className = null): void
     {
-        echo Text::render('', '', 'CaptionOne text-onBackgroundTwo dark:text-onBackgroundTwo text-left leading-none', self::getLastUpdated());
+        echo Text::render('', '', 'CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none', self::getLastUpdated());
     }
 }

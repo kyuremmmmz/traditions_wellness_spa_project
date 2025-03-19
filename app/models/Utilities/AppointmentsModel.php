@@ -19,6 +19,27 @@ class AppointmentsModel
         $stmt = $this->pdo->query("SELECT * FROM appointments");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllServices()
+{
+    $stmt = $this->pdo->query("SELECT * FROM services");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+    public function getAllTotal()
+    {
+        $stmt = $this->pdo->query("SELECT 
+                SUM(status='pending' ) AS pending, 
+                SUM(status='cancelled') AS cancelled,
+                SUM(status='upcoming') AS upcoming,
+                SUM(status='review') AS review, 
+                SUM(status='completed') AS completed, 
+                SUM(status='ongoing') AS ongoing, 
+                SUM(status = 'pending') + SUM(status = 'cancelled') + 
+                SUM(status = 'review') + SUM(status = 'completed') + 
+                SUM(status = 'upcoming') + SUM(status='ongoing') AS total
+                FROM appointments");
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function findByNumber($number)
     {
@@ -41,15 +62,45 @@ class AppointmentsModel
             'booking_date' => $date,
             'start_time' => $time
         ]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
     public function findByEmail($email)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $email]);
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email AND role = 'Customer'");
+        $stmt->execute(['email' => $email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function createCustomer($firstName, $lastName, $gender, $email)
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO users (
+            first_name,
+            last_name,
+            gender,
+            email,
+            role,
+            created_at,
+            updated_at
+        ) VALUES (
+            :first_name,
+            :last_name,
+            :gender,
+            :email,
+            'Customer',
+            NOW(),
+            NOW()
+        )");
+
+        $stmt->execute([
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'gender' => $gender,
+            'email' => $email
+        ]);
+
+        return $this->pdo->lastInsertId();
     }
 
     public function findByRole($role)
@@ -78,7 +129,11 @@ class AppointmentsModel
         $services_id,
         $booking_date,
         $status,
-        $hrs,
+        $duration,
+        $service_booked,
+        $partysize,
+        $gender,
+        $email,
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO appointments (
         nameOfTheUser, 
@@ -92,7 +147,11 @@ class AppointmentsModel
         services_id,
         booking_date,
         status,
-        hrs,
+        duration,
+        service_booked,
+        party_size,
+        gender,
+        email,
         created_at,
         updated_at
     ) VALUES (
@@ -107,10 +166,15 @@ class AppointmentsModel
         :services_id,
         :booking_date,
         :status,
-        :hrs,
+        :duration,
+        :service_booked,
+        :party_size,
+        :gender,
+        :email,
         NOW(), 
         NOW()
     )");
+
         $exe = $stmt->execute([
             'nameOfTheUser' => $nameOfTheUser,
             'user_id' => $user_id,
@@ -122,11 +186,17 @@ class AppointmentsModel
             'addOns' => $addOns,
             'services_id' => $services_id,
             'booking_date' => $booking_date,
-            'status'=>ucfirst(str_replace('', '', $status)),
-            'hrs' => $hrs,
+            'status' => ucfirst(str_replace('', '', $status)),
+            'duration' => $duration,
+            'service_booked' => $service_booked,
+            'party_size' => $partysize,
+            'gender' => $gender,
+            'email' => $email
         ]);
-        return is_array($exe);
+
+        return $exe;
     }
+
 
 
     public function update(
@@ -166,4 +236,17 @@ class AppointmentsModel
         $stmt = $this->pdo->prepare("DELETE FROM appointments WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+    public function searchCustomer($search)
+        {
+            $stmt = $this->pdo->prepare("
+                SELECT * FROM users 
+                WHERE (CONCAT(first_name, ' ', last_name) LIKE :search 
+                OR email LIKE :search)
+                AND role = 'Customer'
+                LIMIT 5
+            ");
+            $searchTerm = "%{$search}%";
+            $stmt->execute(['search' => $searchTerm]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 }

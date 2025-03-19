@@ -11,6 +11,9 @@ class ServicesModel
     public function __construct()
     {
         $this->pdo = Connection::connection();
+        if ($this->pdo === null) {
+            throw new \Exception("Failed to establish a database connection.");
+        }
     }
 
     public function getAll()

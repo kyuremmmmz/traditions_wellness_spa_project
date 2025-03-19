@@ -10,14 +10,11 @@ use function Symfony\Component\Clock\now;
 class AppointmentsController
 {
     private $controller;
+    private $reusables;
     public function __construct()
     {
         $this->controller = new AppointmentsModel();
-    }
-    public function index()
-    {
-        // Code for listing resources
-        echo "This is the index method of AppointmentsController.";
+        $this->reusables = new ReusablesController();
     }
     /*
     TO FIX: 
@@ -58,38 +55,48 @@ class AppointmentsController
     {
         session_start();
         $file = $_POST;
-        if (!isset($file['guestCustomer']) && !isset($file['SearchCustomer'])) {
+        if (!isset($file['customer_type'])) {
             echo json_encode([
                 'message' => 'Required fields are missing'
             ]);
         }
-
-        $findUsers = $this->controller->findByNumber($file['hiddenValue']);
-        $findServiceByID = $this->controller->findById($file['service_id']);
-        if ($findUsers) {
+        
+        $findServiceByID = $this->controller->findById($file['service_booked']);
+        if (isset($file['hiddenValue'])) {
+            $findUsers = $this->controller->findByNumber($file['hiddenValue']);
             http_response_code(200);
+            $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+            $addOns = $this->reusables->addOns($file);
+            $price = 1000;
+            $endTime = $this->reusables->durationCalculation($file['start_time'], $file);
+            $pricing = $this->reusables->priceCalculation($price, $file['party_size']);
+            $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-            if ($findDateAndTime>5) {
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
+            if (count($findDateAndTime) < 5) {
                 http_response_code(401);
                 $_SESSION['therapistError'] = [
                     'therapistError' => 'Appointment Busy'
                 ];
                 header('Location: /appointments');
-            }else{
+            } else {
                 $this->controller->create(
                     $name,
                     $findUsers['id'],
                     $findUsers['address'],
                     $findUsers['phone'],
-                    $file['time'],
-                    $file['time'],
-                    $findServiceByID['price'],
-                    'Hilot ko  HAHAHAHAHAH',
-                    $file['service_id'],
+                    $file['start_time'],
+                    $endTime,
+                    $total,
+                    $addOns,
+                    $file['service_booked'],
                     $file['date'],
                     'pending',
-                    '2',
+                    $file['duration'],
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $findUsers['gender'],
+                    $findUsers['email']
                 );
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
@@ -97,27 +104,38 @@ class AppointmentsController
                 header('Location: /appointments');
             }
         } else {
-            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['time']);
-            if ($findDateAndTime>5) {
+            $findServiceByID = $this->controller->findById($file['service_booked']);
+            $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
+            if (count($findDateAndTime) > 5) {
                 http_response_code(401);
                 $_SESSION['therapistError'] = [
                     'therapistError' => 'Appointment Busy'
                 ];
                 header('Location: /appointments');
-            }else{
+            } else {
+                $addOnsPrice = $file['hot_stone'] + $file['swedish'] + $file['deep_tissue'];
+                $addOns = $this->reusables->addOns($file);
+                $price = 1000;
+                $endTime = $this->reusables->durationCalculation($file['start_time'], $file);
+                $pricing = $this->reusables->priceCalculation($price, $file['party_size']);
+                $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
                 $this->controller->create(
-                    $file['guestCustomer'],
+                    $file['first_name'] .' '. $file['last_name'],
                     1,
                     'Ayala Ave, Quezon City',
                     '09083217645',
-                    $file['time'],
-                    $file['time'],
-                    $findServiceByID['price'],
-                    'Hilot ko HAHAHAHAHAH',
-                    $file['service'],
+                    $file['start_time'],
+                    $endTime,
+                    $total,
+                    $addOns,
+                    $file['service_booked'],
                     $file['date'],
                     'pending',
-                    '2',
+                    $file['duration'],
+                    $findServiceByID['serviceName'],
+                    $file['party_size'],
+                    $file['gender'],
+                    $file['customer_email']
                 );
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
@@ -126,6 +144,7 @@ class AppointmentsController
             }
         }
     }
+
 
     public function searchTherapist()
     {
@@ -139,7 +158,19 @@ class AppointmentsController
     {
         ob_clean();
         $appointment = $this->controller->getAll();
-        echo json_encode($appointment);
+        $services = $this->controller->getAllServices();
+        echo json_encode([
+            $appointment,
+            $services
+        ]);
+        exit;
+    }
+
+    public function getAllTotal()
+    {
+        ob_clean();
+        $appointmentTotal = $this->controller->getAllTotal();
+        echo json_encode($appointmentTotal);
         exit;
     }
 
