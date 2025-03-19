@@ -7,36 +7,51 @@ class NotificationsTable
     public static function render(?string $className = null): void
     {
         $containerClass = "border border-border dark:border-darkBorder border-[1px] rounded-[6px] w-[1000px] bg-background dark:bg-darkBackground p-4";
-        $notificationItemClass = "flex items-center justify-between p-3 border-b last:border-b-0 hover:bg-gray-100 dark:hover:bg-gray-800 transition";
-        
+        $tableClass = "w-full border-collapse";
+        $headerClass = "border-b-2 border-gray-300 dark:border-gray-700 text-left p-3 text-gray-900 dark:text-white font-semibold";
+        $rowClass = "border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition";
+        $cellClass = "p-3 text-gray-700 dark:text-gray-300";
+
+        // Sample notifications (these should be fetched dynamically from a database)
         $notifications = [
-            ["icon" => "👤", "title" => "New User Registered", "description" => "A new user, John Doe, has signed up.", "time" => "10 minutes ago"],
-            ["icon" => "⚠️", "title" => "Reported Content", "description" => "A post has been flagged for review.", "time" => "1 hour ago"],
-            ["icon" => "🔄", "title" => "System Update", "description" => "A new security patch has been installed.", "time" => "5 hours ago"],
-            ["icon" => "🔑", "title" => "Suspicious Login Attempt", "description" => "An unsuccessful login attempt was detected.", "time" => "1 day ago"],
+            ["client_name" => "John Doe", "email" => "john@example.com", "rating" => "5 Stars", "date_posted" => "2024-07-18"],
+            ["client_name" => "Jane Smith", "email" => "jane@example.com", "rating" => "4 Stars", "date_posted" => "2024-07-17"],
+            ["client_name" => "Michael Lee", "email" => "michael@example.com", "rating" => "3 Stars", "date_posted" => "2024-07-16"],
+            ["client_name" => "Emma Brown", "email" => "emma@example.com", "rating" => "5 Stars", "date_posted" => "2024-07-15"],
         ];
 
         echo <<<HTML
         <div class="$containerClass">
-            <div class="mt-3 divide-y">
+            <div class="mt-3">
+                <table class="$tableClass">
+                    <thead>
+                        <tr>
+                            <th class="$headerClass">Client Name</th>
+                            <th class="$headerClass">Email</th>
+                            <th class="$headerClass">Rating</th>
+                            <th class="$headerClass">Date Posted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
         HTML;
 
         foreach ($notifications as $notif) {
             echo <<<HTML
-                <div class="$notificationItemClass">
-                    <div class="flex items-center space-x-3">
-                        <span class="text-gray-700 dark:text-gray-300">{$notif['icon']}</span>
-                        <div>
-                            <p class="text-sm font-medium text-gray-900 dark:text-white">{$notif['title']}</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">{$notif['description']}</p>
-                        </div>
-                    </div>
-                    <span class="text-xs text-gray-400">{$notif['time']}</span>
-                </div>
+                        <tr class="$rowClass">
+                            <td class="$cellClass">{$notif['client_name']}</td>
+                            <td class="$cellClass">{$notif['email']}</td>
+                            <td class="$cellClass">{$notif['rating']}</td>
+                            <td class="$cellClass">{$notif['date_posted']}</td>
+                        </tr>
             HTML;
         }
 
-        echo "</div></div>";
+        echo <<<HTML
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        HTML;
     }
 }
 
