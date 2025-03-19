@@ -311,8 +311,8 @@ class Page
                 <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col">
                     <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to save these changes?</p>
                     <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button id="cancelUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="confirmUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                        <button type="button" id="cancelUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button type="submit" id="confirmUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -322,8 +322,8 @@ class Page
                 <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col">
                     <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to finish this appointment?</p>
                     <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button id="cancelFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="confirmFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                        <button type="button" id="cancelFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button type="submit" id="confirmFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -462,9 +462,9 @@ class Page
                             <div class="flex flex-col w-full items-center gap-[16px]">
                                 <div class="flex gap-[16px] w-full justify-center">
                                     <button type="button" id="cancelAppointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-destructive dark:text-destructive hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Cancel Appointment</button>
-                                    <button type="submit" id="saveModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Save Changes</button>
+                                    <button type="button" id="saveModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Save Changes</button>
                                 </div>
-                                <button type="button" id="finishappointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
+                                <button type="submit" id="finishappointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
                                     Finish Appointment
                                 </button>
                             </div>
@@ -472,7 +472,7 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/charts/appointmentsChart.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentsDomm.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtime.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/appointmentsTableRealtimee.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/AppointmentValidation.js"></script>
         <?php
         // Output all footer scripts

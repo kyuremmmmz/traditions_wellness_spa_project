@@ -121,12 +121,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('fetchedClientId').textContent = data.userid;
                 document.getElementById('fetchedCreationDate').textContent = data.creation;
                 document.getElementById('fetchedLastModifiedOn').textContent = data.update;
-
+                const date = new Date('YYYY-MM-DD');
                 document.getElementById('data').innerHTML = `
                     <div class="flex flex-col gap-[4px] w-full justify-center">
                         <p class="BodyTwo text-onBackground dark:text-darkOnBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] text-right">Date</p>
                     </div>
-                    <input type="date" id="dateInput" value="${data.appointment}" min="2025-03-18" name="booking_date" 
+                    <input type="date" id="dateInput" value="${data.appointment}" min="${date}" name="booking_date" 
                         class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground 
                         border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] 
                         w-full min-w-[260px] max-w-[260px]" placeholder="Select a date">

@@ -34,9 +34,9 @@ class AppointmentsController
         }
         $findById = $this->controller->findByIdAppointment($file['appointment_id']);
         $findId = $this->controller->findById($file['service_booked']);
-        $find = $this->reusables->priceCalculation(1000, $findById['party_size']);
-        $findNew = $this->reusables->priceCalculation(1000, $file['party_size']);
-        $calculateTotal = (int)$findById['total_price'] - $findNew + $find;
+        $originalPrice = $this->reusables->priceCalculation(1000, $findById['party_size']);
+        $newPrice = $this->reusables->priceCalculation(1000, $file['party_size']);
+        $calculateTotal = max((int)$findById['total_price'] + ($newPrice - $originalPrice), 0);
         $response = $this->controller->update(
             $file['duration'],
             $file['booking_date'],
