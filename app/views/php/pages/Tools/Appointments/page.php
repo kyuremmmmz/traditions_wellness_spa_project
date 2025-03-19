@@ -205,7 +205,7 @@ class Page
                                         'Search Customer',
                                         'Enter Name or Email',
                                         [],
-                                        'search_customer_error'?? '',
+                                        'search_customer_error' ?? '',
                                         null,
                                         'search',
                                         '',
@@ -252,7 +252,7 @@ class Page
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
-                                <?php CheckBoxDefault::render('checkboxwithpricefield', 'Add-Ons', '', false, ); ?>
+                                <?php CheckBoxDefault::render('checkboxwithpricefield', 'Add-Ons', '', false,); ?>
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
@@ -391,9 +391,11 @@ class Page
                                         </div>
                                     </div>
                                     <div class="flex flex-col gap-[16px] items-end">
+                                        <div class="flex gap-[16px]" id="data">
+
+                                        </div>
                                         <?php
-                                        SecondaryInputField::render('datefield', 'Date', '', [], $DateError, null, 'Date', '', '', [], false, 'date');
-                                        SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'Time', '', '', [], false, 'start_time');
+                                        SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'timedata', '', '', [], false, 'start_time');
                                         ?>
                                         <div class="pl-[65px] sm:pl-[65px] flex flex-col gap-[8px]">
                                             <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
@@ -404,8 +406,8 @@ class Page
                                 </section>
                                 <section id="serviceBookedSection" class="flex hidden flex-col sm:flex-row items-top justify-center gap-[48px] absolute w-full transition-all duration-300 transform">
                                     <div class="flex flex-col gap-[16px]">
-                                        <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'ServiceBookedOptions', '', '', [], false, 'service_booked') ?>
-                                        <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', [], false, 'duration') ?>
+                                        <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'select2', '', '', [], false, 'service_booked') ?>
+                                        <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'durationhaha', '', 'duration', [], false, 'duration') ?>
                                         <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                         <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                         <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
