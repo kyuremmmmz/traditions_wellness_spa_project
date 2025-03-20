@@ -16,12 +16,6 @@ class AppointmentsController
         $this->controller = new AppointmentsModel();
         $this->reusables = new ReusablesController();
     }
-    /*
-    TO FIX: 
-    - addOnss
-    - duration calculation
-    */
-
     public function updateAppointment()
     {
         header('Content-Type: application/json');

@@ -77,7 +77,7 @@ class Router
         }
 
         http_response_code(404);
-        echo json_encode(['error' => 'Route not found']);
+        header('Location:/');
     }
 
     private function renderView($foldername, $viewFile)
