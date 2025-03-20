@@ -8,27 +8,27 @@ class Router
 {
     private $routes = [];
 
-    public function get($path, $controller, $middleware = null)
+    public function get($path, $controller, $middleware = [])
     {
         $this->routes['GET'][$path] = compact('controller', 'middleware');
     }
 
-    public function post($path, $controller, $middleware = null)
+    public function post($path, $controller, $middleware = [])
     {
         $this->routes['POST'][$path] = compact('controller', 'middleware');
     }
 
-    public function put($path, $controller, $middleware = null)
+    public function put($path, $controller, $middleware = [])
     {
         $this->routes['PUT'][$path] = compact('controller', 'middleware');
     }
 
-    public function delete($path, $controller, $middleware = null)
+    public function delete($path, $controller, $middleware = [])
     {
         $this->routes['DELETE'][$path] = compact('controller', 'middleware');
     }
 
-    public function view($path, $viewFile, $foldername, $middleware = null)
+    public function view($path, $viewFile, $foldername, $middleware = [])
     {
         $this->routes['GET'][$path] = compact('viewFile', 'middleware', 'foldername');
     }
@@ -77,7 +77,7 @@ class Router
         }
 
         http_response_code(404);
-        echo json_encode(['error' => 'Route not found']);
+        header('Location:/');
     }
 
     private function renderView($foldername, $viewFile)

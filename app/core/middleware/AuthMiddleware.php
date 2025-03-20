@@ -13,9 +13,7 @@ class AuthMiddleware
                 return $next($request);
             } else {
                 http_response_code(403);
-                echo json_encode([
-                    'Message' => 'Forbidden: Insufficient permissions'
-                ]);
+                header('Location:/');
                 exit;
             }
         }
