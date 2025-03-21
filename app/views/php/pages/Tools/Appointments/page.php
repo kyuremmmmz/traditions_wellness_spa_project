@@ -4,17 +4,13 @@ namespace Project\App\Views\Php\Pages\Dashboard;
 
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\ActionButton;
-use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Charts\AppointmentsChart;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\DefaultCheckBox\CheckBoxDefault;
 use Project\App\Views\Php\Components\Icons\IconChoice;
-use Project\App\Views\Php\Components\Inputs\DefaultInputField;
-use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Inputs\SearchField;
 use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
-use Project\App\Views\Php\Components\Inputs\StaticRadioButton;
 use Project\App\Views\Php\Components\Table\AppointmentsTable;
 use Project\App\Views\Php\Components\Texts\CountDisplayer;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
@@ -98,8 +94,8 @@ class Page
             Sidebar::render();
             WorkingBanner::render()
             ?>
-            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
-                <div>
+            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] px-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen  w-full">
+                <div class="max-w-full flex flex-col sm:px-[48px] items-start overflow-x-hidden">
                     <section class="flex h-[50px]">
                         <button type="button" class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
                             <?php IconChoice::render('clockMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
@@ -116,10 +112,11 @@ class Page
                         SearchField::render('Search Customer', '')
                         ?>
                     </section>
-                    <div class="border border-border border-[1px] dark:border-darkBorder rounded-[6px] w-[1365px]">
-                        <table class="border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
+
+                    <div class="border border-border border-[1px] dark:border-darkBorder rounded-[6px] max-w-full overflow-x-auto">
+                        <table class="bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
                             <tr class="p-0 m-0" style="margin: 0; padding: 0;">
-                                <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
+                                <td class="p-0 m-0 flex sm:w-full">
                                     <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
                                         <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                         <div class="flex flex-col gap-[8px] pl-[24px]">
@@ -133,17 +130,20 @@ class Page
                                             ?>
                                         </div>
                                     </section>
+                                    <div class="overflow-x-auto border-l border-border dark:border-darkBorder">
+                                        <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
+                                            <?php
+                                            SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
+                                            SecondaryInputField::render('datefield', 'Show appointments from', '');
+                                            ?>
+                                        </section>
+                                        <section class="max-w-[1120px]">
+                                            <?php AppointmentsTable::render('appointmentsTable', ''); ?>
+                                        </section>
+                                    </div>
                                 </td>
                                 <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
-                                    <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
-                                        <?php
-                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
-                                        SecondaryInputField::render('datefield', 'Show appointments from', '');
-                                        ?>
-                                    </section>
-                                    <section class="max-w-[1120px]">
-                                        <?php AppointmentsTable::render('appointmentsTable', ''); ?>
-                                    </section>
+                                    
                                 </td>
                             </tr>
                         </table>
@@ -152,15 +152,15 @@ class Page
             </div>
             <!-- Book an appointment -->
             <form id="appointmentForm" method="POST" action="/appointCustomer">
-                <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-start sm:pl-[10%] sm:pt-[160px] w-full transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-5">
-                    <div class="flex justify-start mb-[48px] min-w-[316px] max-w-[400px] w-full ml-[-8px]">
+                <div id="bookAnAppointmentSection" class="ml-[0px] sm:ml-[48px] p-[48px] sm:p-0 overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col sm:items-center sm:pt-[160px] transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-0">
+                    <div class="flex justify-start mb-[48px] ml-[-8px] w-[1296px]">
                         <button type="button" id="closeBookAnAppointmentButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                             <div class="w-[24px] h-[24px] flex justify-center items-center">
                                 <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                             </div>
                         </button>
                     </div>
-                    <div class="w-full flex flex-col 2xl:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
+                    <div class="flex flex-col sm:flex-row gap-[48px] 2xl:pb-0 pb-[150px]">
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                             <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Book an appointment'); ?>
                             <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
@@ -252,7 +252,9 @@ class Page
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Body Scrub Selection', 'Select Body Scrub', $BodyScrubOptions, $BodyScrubOptionsError, null, 'BodyScrubOptions', '', '', [], true, 'body_scrub_selection') ?>
+                                <div class="flex justify-end w-full pr-[48px]  sm:pl-[0px]">
                                 <?php CheckBoxDefault::render('checkboxwithpricefield', 'Add-Ons', '', false,); ?>
+                                </div>
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
