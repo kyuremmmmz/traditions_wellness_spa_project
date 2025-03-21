@@ -1,11 +1,45 @@
 <?php
+namespace Project\App\Controllers\Mobile;
+
+use Project\App\Models\Services\ServicesModel;
 
 class ServicesController
 {
+    private $servicesModel;
+
+    public function __construct()
+    {
+        $this->servicesModel = new ServicesModel();
+    }
     public function index()
     {
-        // Code for listing resources
-        echo "This is the index method of ServicesController.";
+        try {
+            $services = $this->servicesModel->getAllServiceName();
+            
+            // Transform the data to include all required fields
+            $formattedServices = array_map(function($service) {
+                return [
+                    'id' => $service['id'],
+                    'name' => $service['serviceName'],
+                    'description' => $service['description'],
+                    'price' => (float)$service['price'],
+                    'rating' => 0 // Default rating, implement actual rating system later
+                ];
+            }, $services);
+            
+            header('Content-Type: application/json');
+            echo json_encode([
+                'status' => 'success',
+                'data' => $formattedServices
+            ]);
+        } catch (\Exception $e) {
+            header('Content-Type: application/json');
+            http_response_code(500);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Failed to fetch services'
+            ]);
+        }
     }
 
     public function create()

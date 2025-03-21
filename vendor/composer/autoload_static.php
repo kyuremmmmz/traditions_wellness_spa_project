@@ -93,6 +93,7 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
             'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
             'Project\\App\\' => 12,
+            'Predis\\' => 7,
             'PhpOption\\' => 10,
             'ParagonIE\\ConstantTime\\' => 23,
             'PHPStan\\PhpDocParser\\' => 21,
@@ -318,6 +319,10 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
         'Project\\App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
+        ),
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
         ),
         'PhpOption\\' => 
         array (
