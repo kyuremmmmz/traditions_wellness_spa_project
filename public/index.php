@@ -39,7 +39,20 @@ $router->post('/mobileLogin', 'AuthMobileController@login');
 $router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
 $router->post('/auth/check-token', 'AuthMobileController@checkToken');
 $router->post('/auth/mobile-logout', 'AuthMobileController@logout');
+
+//  Mobile Services Routes
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
+$router->get('/mobileServices/categories', 'Mobile\ServicesController@getCategories');
+$router->get('/mobileServices/details/{id}', 'Mobile\ServicesController@getServiceDetails');
+$router->post('/mobileServices/category', 'Mobile\ServicesController@createCategory');
+
+// Mobile Appointment Routes
+$router->get('/mobile/appointments/services', 'Mobile\OnlineAppointmentMobileController@index');
+$router->get('/mobile/appointments/timeslots', 'Mobile\OnlineAppointmentMobileController@getAvailableTimeSlots');
+$router->post('/mobile/appointments', 'Mobile\OnlineAppointmentMobileController@store');
+$router->put('/mobile/appointments/{id}', 'Mobile\OnlineAppointmentMobileController@update');
+$router->delete('/mobile/appointments/{id}', 'Mobile\OnlineAppointmentMobileController@delete');
+
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

@@ -379,6 +379,7 @@ class AuthMobileController
 
     public function forgotPasswordSend()
     {
+        header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['email'])) {
             $tokenForGenerate = $this->entities->generateToken();
@@ -386,14 +387,28 @@ class AuthMobileController
             $decodedToken = base64_decode($token);
             $response = $this->webController->findByEmail($data['email']);
             if (isset($response['email'])) {
-                $this->mail->sendToken(
+                $mailStatus = $this->mail->sendToken(
                     $response['email'],
-                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                    'Good day! ' . $response['first_name'] . ', This is your password reset token below',
                     'Token: ' . $decodedToken,
                     $response['first_name']
                 );
-                $this->webController->delete($response['email']);
-                $this->webController->insertToken($token, $response['email']);
+                if ($mailStatus) {
+                    $this->webController->delete($response['email']); // Verify this is intentional
+                    $this->webController->insertToken($token, $response['email']);
+                    echo json_encode([
+                        'message' => 'Verification token sent to your email',
+                        'status' => 'success',
+                        'error' => null
+                    ]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode([
+                        'message' => 'Failed to send verification token',
+                        'status' => 'error',
+                        'error' => 'Email sending failed'
+                    ]);
+                }
             } else {
                 http_response_code(404);
                 echo json_encode([
@@ -402,7 +417,15 @@ class AuthMobileController
                     'error' => 'Email not found'
                 ]);
             }
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Email is required',
+                'status' => 'error',
+                'error' => 'Missing email'
+            ]);
         }
+        exit;
     }
 
     public function forgotPassword()
