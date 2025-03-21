@@ -22,15 +22,11 @@ class AppointmentForm {
         this.tabButtons = {
             summary: document.getElementById("showSummary"),
             serviceBooked: document.getElementById("showServiceBooked"),
-            assignment: document.getElementById("showAssignment"),
-            payment: document.getElementById("showPayment")
         };
         
         this.tabSections = {
             summary: document.getElementById("summarySection"),
             serviceBooked: document.getElementById("serviceBookedSection"),
-            assignment: document.getElementById("assignmentSection"),
-            payment: document.getElementById("paymentSection")
         };
         
         this.activeTab = "summary"; // Default active tab
@@ -311,7 +307,7 @@ class AppointmentForm {
     }
 
     getSlideDirection(currentTab, newTab) {
-        const tabOrder = ['summary', 'serviceBooked', 'assignment', 'payment'];
+        const tabOrder = ['summary', 'serviceBooked'];
         const currentIndex = tabOrder.indexOf(currentTab);
         const newIndex = tabOrder.indexOf(newTab);
         return newIndex > currentIndex ? 'right' : 'left';
