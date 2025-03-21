@@ -26,8 +26,7 @@ class UserMailer{
         $this->mailer->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     }
 
-    public function authMailer($to, $subject , $verifCode, $firstName) {
-        //TODO: implement the mailer in here after login
+    public function authMailer($to, $subject, $verifCode, $firstName) {
         try {
             $this->mailer->addAddress($to);
 
@@ -64,18 +63,15 @@ class UserMailer{
             Thank you for choosing Traditions Wellness Spa!";
 
             $this->mailer->send();
-            echo json_encode(
-                ['status' => 'success', 'message' => 'Verification email sent successfully.']
-            );
+            // Remove the echo, just return the response
             return ['status' => 'success', 'message' => 'Verification email sent successfully.'];
         } catch (Exception $e) {
-            http_response_code(500);
-            echo 'Internal Server Error';
+            // Don't set headers or echo here, just return the error
             return ['status' => 'error', 'message' => 'Error sending email: ' . $this->mailer->ErrorInfo];
         }
     }
-    public function sendToken($to, $subject, $token, $firstName)
-    {
+
+    public function sendToken($to, $subject, $token, $firstName) {
         try {
             $this->mailer->addAddress($to);
 
@@ -113,13 +109,10 @@ class UserMailer{
             Thank you for choosing Traditions Wellness Spa!";
 
             $this->mailer->send();
-            echo json_encode(
-                ['status' => 'success', 'message' => 'Verification email sent successfully.']
-            );
+            // Remove the echo, just return the response
             return ['status' => 'success', 'message' => 'Verification email sent successfully.'];
         } catch (Exception $e) {
-            http_response_code(500);
-            echo 'Internal Server Error';
+            // Don't set headers or echo here, just return the error
             return ['status' => 'error', 'message' => 'Error sending email: ' . $this->mailer->ErrorInfo];
         }
     }
