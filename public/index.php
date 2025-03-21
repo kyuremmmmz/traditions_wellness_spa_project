@@ -101,6 +101,9 @@ $router->view('/verificationforchangephonenumber', 'page', 'Utilities/Verificati
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
 $router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
+$router->view('/addnewtherapist', 'page', 'tools/AddNewTherapist', 'SessionMiddleware');
+$router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
+
 try {
     $router->resolve();
 } catch (Exception $e) {
