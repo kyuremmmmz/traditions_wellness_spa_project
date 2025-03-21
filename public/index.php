@@ -4,7 +4,7 @@ use App\Core\Router;
 
 require_once '../app/core/Router.php';
 require_once '../vendor/autoload.php';
-
+// comment for branch posting
 $router = new Router();
 // API ROUTES
 $router->get('/authCheck', 'CrudController@index');
@@ -101,6 +101,9 @@ $router->view('/verificationforchangephonenumber', 'page', 'Utilities/Verificati
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
 $router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
+$router->view('/addnewtherapist', 'page', 'tools/AddNewTherapist', 'SessionMiddleware');
+$router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
+
 try {
     $router->resolve();
 } catch (Exception $e) {

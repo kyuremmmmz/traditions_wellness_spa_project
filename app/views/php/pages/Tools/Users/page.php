@@ -1,14 +1,14 @@
 <?php
 namespace Project\App\Views\Php\Pages\Dashboard;
 
-use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
-use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Inputs\SearchField;
+use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
+use Project\App\Views\Php\Components\Table\UsersTable;
 
 class Page
 {
@@ -40,33 +40,21 @@ class Page
                         <?php SearchField::render('Search User', '') ?>
                     </section>
 
-                    <!-- Card Container -->
-                    <div class="border border-border dark:border-darkBorder rounded-lg bg-background dark:bg-darkBackground shadow-sm">
-                        <!-- Filter Section with Matching Background -->
-                        <div class="bg-highlightSurface dark:bg-darkHighlightSurface px-6 py-3 rounded-t-lg flex items-center space-x-2">
-                            <label class="text-onBackground dark:text-darkOnBackground text-sm">Filter user type by</label>
-                            <select class="border border-border dark:border-darkBorder bg-transparent rounded-md px-3 py-1 text-onBackground dark:text-darkOnBackground">
-                                <option class="bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">Therapist</option>
-                                <option class="bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">Online Customer</option>
-                                <option class="bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">Guest Customer</option>
-                            </select> ako muna
-                        </div>
 
-                        <!-- Table -->
-                        <table class="w-full border-x border-b border-border dark:border-darkBorder rounded-lg overflow-hidden">
-                            <!-- Table Header with Matching Background -->
-                            <thead class="bg-highlightSurface dark:bg-darkHighlightSurface text-onBackground dark:text-darkOnBackground font-semibold">
-                                <tr class="text-center">
-                                    <th class="py-2 pb-10 pt-10">NO.</th>
-                                    <th class="py-2 pb-10 pt-10">NAME</th>
-                                    <th class="py-2 pb-10 pt-10">USER TYPE</th>
-                                    <th class="py-2 pb-10 pt-10">GENDER</th>
-                                    <th class="py-2 pb-10 pt-10">EMAIL</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-onBackground dark:text-darkOnBackground text-sm divide-y divide-border dark:divide-darkBorder">
-                                
-                            </tbody>
+                    <div class="border border-border border-[1px] dark:border-darkBorder rounded-[6px] w-[1000px]">
+                        <table class="border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
+                            <tr class="p-0 m-0" style="margin: 0; padding: 0;">
+                                <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
+                                    <section class="p-[48px] flex gap-[16px] bg-opacity-5">
+                                        <?php
+                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Therapist', 'Option 2', 'Option 3']);
+                                        ?>
+                                    </section>
+                                    <section class="max-w-[1120px]">
+                                        <?php UsersTable::render('appointmentsTable', ''); ?>
+                                    </section>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
