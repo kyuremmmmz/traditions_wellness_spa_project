@@ -10,9 +10,9 @@ class Connection
     {
         session_start();
         $db = 'traditionswellnessspa';
-        $password = '';
+        $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -25,9 +25,9 @@ class Connection
     public static function connection()
     {
         $db = 'traditionswellnessspa';
-        $password = '';
+        $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
 
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);

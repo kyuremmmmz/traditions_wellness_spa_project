@@ -26,7 +26,8 @@ class AccountSettingsController
                 if ($update) {
                     header('Location: /account');
                     $_SESSION['user']['last_name'] = $data['lastNameInputField'];
-                    $_SESSION['user']['first_name'] = $data['lastNameInputField'];
+                    $_SESSION['user']['first_name'] = $data['firstNameInputField'];
+                    $_SESSION['user']['gender'] = $data['gender'];
                     $_SESSION['server_success'] = [
                         'success' => 'Account updated successfully.'
                     ];
