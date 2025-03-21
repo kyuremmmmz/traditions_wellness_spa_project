@@ -47,6 +47,12 @@ class AppointmentsModel
         $stmt->execute(['number' => $number]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function findByIdAppointment($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM appointments WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function findById($id)
     {
@@ -200,33 +206,30 @@ class AppointmentsModel
 
 
     public function update(
-        $nameOfTheUser,
-        $address,
-        $contactNumber,
+        $duration,
         $booking_date,
         $total_price,
-        $addOns,
-        $status,
+        $party_size,
+        $service_booked,
+        $start_time,
         $id
     ) {
         $stmt = $this->pdo->prepare("UPDATE appointments SET 
-            nameOfTheUser = :nameOfTheUser,
-            address = :address,
-            contactNumber = :contactNumber,
             total_price = :total_price,
             booking_date = :booking_date,
-            addOns = :addOns,
-            status = :status,
+            start_time = :start_time,
+            service_booked = :service_booked,
+            party_size = :party_size,
+            duration = :duration,
             updated_at = NOW()
             WHERE id = :id");
         $data = [
-            'nameOfTheUser' => $nameOfTheUser,
-            'address' => $address,
+            'start_time' => $start_time,
             'booking_date' => $booking_date,
-            'contactNumber' => $contactNumber,
+            'service_booked' => $service_booked,
             'total_price' => $total_price,
-            'addOns' => $addOns,
-            'status' => ucfirst(str_replace('', '', $status)),
+            'party_size' => $party_size,
+            'duration' => $duration,
             'id' => $id
         ];
         return $stmt->execute($data);

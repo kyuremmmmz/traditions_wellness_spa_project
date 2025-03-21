@@ -28,6 +28,7 @@ class Connection
         $password = '';
         $username = 'root';
         $host = 'localhost:3306';
+
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
