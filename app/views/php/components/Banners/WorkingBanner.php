@@ -9,6 +9,7 @@ class WorkingBanner
     public static function render(?string $className = null): void
     {
         $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
+        $errorMessageChangePassword = $_SESSION['error_message']['error'] ?? '';
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
         $success = isset($_SESSION['message']['message']);
         $messageSuccess = isset($_SESSION['success_message']['success_message']);
@@ -44,8 +45,18 @@ class WorkingBanner
         }
         if ($messageSuccess) {
             RegularBanner::render(
-                "Success",
+                "Error",
                 "{$_SESSION['success_message']['success_message']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['success_message']);
+        }
+        if ($errorMessageChangePassword) {
+            RegularBanner::render(
+                "Success",
+                "{$_SESSION['error_message']['error']}.",
                 "alertBig",
                 "destructive",
                 "darkDestructive"

@@ -75,27 +75,27 @@ class AccountSettingsController
 
         if (!password_verify($data['oldPasswordInputField'], $response['password'])) {
             http_response_code(400);
-            echo json_encode([
+            $_SESSION['error_message'] = [
                 'error' => 'Old password is incorrect.',
-                'data' => $data['oldPasswordInputField'],
-                'hashed' => password_verify($data['oldPasswordInputField'], $response['password'])
-            ]);
+            ];
+            header('Location:/changepassword');
             exit;
         }
 
         if ($data['oldPasswordInputField'] === $data['NewPasswordInputField']) {
             http_response_code(400);
-            echo json_encode([
+            $_SESSION['error_message'] = [
                 'error' => 'New password must be different from old password.'
-            ]);
+            ];
             exit;
         }
 
         if ($data['NewPasswordInputField'] !== $data['ConfirmPasswordInputField']) {
             http_response_code(400);
-            echo json_encode([
+            $_SESSION['error_message'] = [
                 'error' => 'New password and confirm password do not match.'
-            ]);
+            ];
+            header('Location:/changepassword');
             exit;
         }
         $newPasswordHash = password_hash($data['ConfirmPasswordInputField'], PASSWORD_BCRYPT);
@@ -108,6 +108,7 @@ class AccountSettingsController
             $_SESSION['server_success'] = [
                 'success' => 'Account updated successfully.'
             ];
+            $_SESSION['user']['password'] = $data['NewPasswordInputField'];
             header('Location: /account');
             exit;
         } else {
