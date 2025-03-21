@@ -4,7 +4,7 @@ use App\Core\Router;
 
 require_once '../app/core/Router.php';
 require_once '../vendor/autoload.php';
-
+// comment for branch posting
 $router = new Router();
 // API ROUTES
 $router->get('/authCheck', 'CrudController@index');
