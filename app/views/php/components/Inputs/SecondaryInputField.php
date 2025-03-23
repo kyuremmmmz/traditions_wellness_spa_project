@@ -6,11 +6,20 @@ use Project\App\Views\Php\Components\Icons\IconChoice;
 
 class SecondaryInputField
 {
-    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = '', int $limit = 0): void
+    public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = '', int $limit = 0, string $description = ''): void
     {
         echo '<div class="flex gap-[16px]">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
-        echo '<p class="BodyTwo text-onBackground dark:text-darkOnBackground text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[124px] text-right">' . $label . '</p>';
+        echo '<div class="flex items-end flex-col justify-end gap-[8px]">';
+        echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
+        if ($description !== '') {
+            echo '<button type="button" onclick="alert(\'' . htmlspecialchars($description) . '\')" class="flex items-center justify-center w-[16px] h-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo">';
+            echo '<svg class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>';
+            echo '</button>';
+        }
+        echo '</div>';
         if ($error !== '') {
             echo '<p id="'. $error .'" class="CaptionOne text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
         }
@@ -140,7 +149,7 @@ class SecondaryInputField
                 break;
             case 'multiphotofield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
-                echo "<input type='file' name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
+                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
                 echo "<div id='slideshow_{$id}_fileList' class='flex flex-col gap-[8px]'>";
                 echo "<button type='button' id='slideshow_{$id}_addButton' onclick='document.getElementById(\"slideshow_{$id}_input\").click()' class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
@@ -159,50 +168,52 @@ class SecondaryInputField
                         let files = [];
 
                         input.addEventListener('change', function(e) {
-                            const file = e.target.files[0];
+                            const newFiles = Array.from(e.target.files);
                             
-                            if (file && fileCount < maxFiles) {
-                                fileCount++;
-                                files.push(file);
-                                
-                                // Create hidden input for the file
-                                const hiddenInput = document.createElement('input');
-                                hiddenInput.type = 'file';
-                                hiddenInput.name = 'slideshow_{$name}[]';
-                                hiddenInput.className = 'hidden';
-                                hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
-                                
-                                // Create DataTransfer object to set the file
-                                const dataTransfer = new DataTransfer();
-                                dataTransfer.items.add(file);
-                                hiddenInput.files = dataTransfer.files;
-                                
-                                // Create file item element
-                                const fileItem = document.createElement('div');
-                                fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
-                                fileItem.innerHTML = `
-                                    <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
-                                    <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
-                                `;
-                                
-                                // Add remove functionality
-                                const removeButton = fileItem.querySelector('button');
-                                removeButton.onclick = function() {
-                                    fileList.removeChild(fileItem);
-                                    document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
-                                    files = files.filter(f => f !== file);
-                                    fileCount--;
+                            newFiles.forEach(file => {
+                                if (fileCount < maxFiles) {
+                                    fileCount++;
+                                    files.push(file);
+                                    
+                                    // Create hidden input for the file
+                                    const hiddenInput = document.createElement('input');
+                                    hiddenInput.type = 'file';
+                                    hiddenInput.name = 'slideshow_{$name}[]';
+                                    hiddenInput.className = 'hidden';
+                                    hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
+                                    
+                                    // Create DataTransfer object to set the file
+                                    const dataTransfer = new DataTransfer();
+                                    dataTransfer.items.add(file);
+                                    hiddenInput.files = dataTransfer.files;
+                                    
+                                    // Create file item element
+                                    const fileItem = document.createElement('div');
+                                    fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
+                                    fileItem.innerHTML = `
+                                        <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
+                                        <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
+                                    `;
+                                    
+                                    // Add remove functionality
+                                    const removeButton = fileItem.querySelector('button');
+                                    removeButton.onclick = function() {
+                                        fileList.removeChild(fileItem);
+                                        document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
+                                        files = files.filter(f => f !== file);
+                                        fileCount--;
+                                        updateAddButton();
+                                    };
+                                    
+                                    // Add elements to DOM
+                                    fileList.insertBefore(hiddenInput, addButton);
+                                    fileList.insertBefore(fileItem, addButton);
                                     updateAddButton();
-                                };
-                                
-                                // Add elements to DOM
-                                fileList.insertBefore(hiddenInput, addButton);
-                                fileList.insertBefore(fileItem, addButton);
-                                updateAddButton();
-                                
-                                // Clear input for next selection
-                                input.value = '';
-                            }
+                                }
+                            });
+                            
+                            // Clear input for next selection
+                            input.value = '';
                         });
 
                         function updateAddButton() {

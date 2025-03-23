@@ -5,12 +5,11 @@ namespace Project\App\Views\Php\Pages\Tools\Services;
 use Project\App\Controllers\Web\ServicesController;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\ActionButton;
+use Project\App\Views\Php\Components\Buttons\AddonItemButton;
 use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
-use Project\App\Views\Php\Components\Inputs\SelectField;
-use Project\App\Views\Php\Components\Inputs\SearchField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Texts\TextRowContainer;
@@ -26,59 +25,11 @@ class Page
         Sidebar::render();
         WorkingBanner::render();
         ?>
-
-        <div class="overflow-auto flex flex-col mt-[104px] sm:mt-[160px] md:justify-center items-center w-full">
-            <form class="flex flex-col gap-12" action="/createService" method="POST">
-                <div class="flex flex-col gap-2">
-                    <?php
-                    Text::render('', '', 'text-onBackground dark:text-white text-[22px] font-[600]', 'Create a Service');
-                    Text::render('', '', 'text-onBackground dark:text-white text-[14px] font-[400]', 'Details');
-                    ?>
-                </div>
-
-                <div class="flex flex-col">
-                    <?php
-                    Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[0px]', 'Category');
-                    $categories = ['Massage', 'Body Scrub', 'Stone Massage'];
-                    ?>
-                    <div class="flex flex-col gap-[24px] pb-[0px]">
-                        <?php SelectField::render($categories, 'Category', 'categoryService', 'Select a category'); ?>
-                    </div>
-
-                    <?php
-                    Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Service Name');
-                    $services = ['Bamboossage Massage', 'Body Scrub', 'Stone Massage'];
-                    ?>
-                    <div class="flex flex-col gap-[24px] pb-[0px]">
-                        <?php SelectField::render($services, 'Service Name', 'serviceName', 'Select a service'); ?>
-                    </div>
-
-                    <?php
-                    Text::render('', '', 'text-[16px] font-[500] dark:text-white pb-[24px]', 'Caption');
-                    $captions = ['Relaxing Experience', 'Deep Cleansing', 'Rejuvenating Touch'];
-                    ?>
-                    <div class="flex flex-col gap-[24px] pb-[48px]">
-                        <?php SelectField::render($captions, 'Caption', 'captionName', 'Select a caption'); ?>
-                    </div>
-
-                    <div class="flex flex-col gap-[24px] pb-[48px] w-full">
-                        <?php Text::render('', '', 'text-[16px] font-[500] dark:text-white', 'Description'); ?>
-                        <textarea name="description" placeholder="Enter your message..."
-                            class="w-full h-[150px] border border-gray-400 rounded-md px-4 py-3 
-                                   bg-transparent text-onBackground dark:text-white focus:outline-none resize-none"></textarea>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <?php
-
-?>
         <main class="flex w-full">
             <?php 
             WorkingBanner::render()
             ?>
-            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[104px] sm:mt-[160px] w-full">
+            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] px-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen  w-full">
                 <div>
                     <section class="flex h-[50px]">
                         <button class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-[6px] flex justify-center items-center">
@@ -111,28 +62,43 @@ class Page
                         </div>
                     </section>
 
-                    <div class="sm:h-[351px] relative overflow-hidden">
-                        <section id="allServicesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                    <div class="h-[640px] relative overflow-x-auto overflow-y-auto w-full">
+                        <section id="allServicesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
+                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                         </section>
-                        <section id="massagesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <section id="massagesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                         </section>
-                        <section id="bodyScrubsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <!-- Apply the same changes to other sections -->
+                        <section id="bodyScrubsSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                         </section>
-                        <section id="packagesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <section id="packagesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                             <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id');?>
                         </section>
-                        <section id="addOnsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <section id="addOnsSection" class="flex flex-col items-center items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                            <?php AddonItemButton::render('Headline', '0')?>
                         </section>
-                        <section id="archivedServicesSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <section id="archivedServicesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
                         </section>
-                        <section id="archivedAddOnsSection" class="flex flex-col sm:flex-row items-top p-[24px] absolute w-full transition-all duration-300 transform">
+                        <section id="archivedAddOnsSection" class="flex flex-col items-center items-top p-[24px] absolute w-full transition-all duration-300 transform">
                         </section>
                     </div>
                 </div>
