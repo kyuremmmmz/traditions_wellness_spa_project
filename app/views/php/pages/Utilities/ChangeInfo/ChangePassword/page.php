@@ -1,5 +1,6 @@
 <?php
 
+use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Buttons\GlobalButton;
 use Project\App\Views\Php\Components\Inputs\GlobalInputField;
@@ -38,7 +39,9 @@ class Page
                     </section>
                 </section>
             </div>
-            <?php Sidebar::render(); ?>
+            <?php
+            WorkingBanner::render();
+            Sidebar::render(); ?>
         </main>
 <?php
     }
