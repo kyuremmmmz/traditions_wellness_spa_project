@@ -24,8 +24,8 @@ class Page
         <main class="flex w-full">
             <?php
             Sidebar::render();
-            WorkingBanner::render()
             ?>
+            <?php WorkingBanner::render(); ?>
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] pl-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen w-full">
                 <div class="max-w-full flex flex-col sm:px-[48px] items-start overflow-x-auto">
                     <section class="flex h-[50px]">

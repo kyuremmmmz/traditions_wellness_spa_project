@@ -14,6 +14,7 @@ class WorkingBanner
         $success = isset($_SESSION['message']['message']);
         $messageSuccess = isset($_SESSION['success_message']['success_message']);
         $appointmentError = isset($_SESSION['therapistError']['therapistError']);
+        $sumakses = isset($_SESSION['sumakses']['sumakses']);
         if ($tooManyAttempts) {
             http_response_code(429);
             RegularBanner::render(
@@ -72,6 +73,16 @@ class WorkingBanner
                 "destructive",
                 "darkDestructive");
                 unset($_SESSION['therapistError']);
+        }
+        if ($sumakses) {
+            RegularBanner::render(
+                "Success",
+                "{$_SESSION['sumakses']['sumakses']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['sumakses']['sumakses']);
         }
     }
 }

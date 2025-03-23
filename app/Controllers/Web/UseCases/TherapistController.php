@@ -12,6 +12,7 @@ class TherapistController
 
     public function addTherapist()
     {
+        session_start();
         $data = $_POST;
         if (!isset($data['first_name']) || !isset($data['last_name']) || !isset($data['email']) || !isset($data['phone'])) {
             $_SESSION['server_error'] = [
@@ -25,8 +26,9 @@ class TherapistController
             $data['gender'], 
             $data['status'], 
             $data['email']);
+            
         if ($response) {
-            $_SESSION['success_message'] = [
+            $_SESSION['sumakses'] = [
                 'sumakses' => 'Therapist registered successfully.'
             ];
             header('Location:/employees');
