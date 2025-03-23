@@ -337,10 +337,10 @@ class Page
                     <div class="mx-auto p-[48px] border border-border dark:border-darkBorder w-4/5 rounded-[6px] bg-background dark:bg-darkBackground transform transition-all duration-300 opacity-100 scale-95">
                         <div class="flex flex-col gap-[48px]">
                             <section class="flex flex-col gap-[8px]">
-                                <div class="flex w-full justify-start pb-[24px]">
-                                    <button type="button" id="closeModal" class="relative right-2 transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                                <div class="flex w-full justify-end pb-[24px]">
+                                    <button type="button" id="closeModal" class="relative right-3 transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                                         <div class="w-[24px] h-[24px] flex justify-center items-center">
-                                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                                            <?php IconChoice::render('exitSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                                         </div>
                                     </button>
                                 </div>
