@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Views\Php\Pages\Dashboard;
+namespace Project\App\Views\Php\Pages\Tools\Users;
 
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\Text;

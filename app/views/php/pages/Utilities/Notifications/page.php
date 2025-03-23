@@ -1,14 +1,11 @@
 <?php
 namespace Project\App\Views\Php\Pages\Dashboard;
 
-use Project\App\Views\Php\Components\Containers\Header;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
-use Project\App\Views\Php\Components\Inputs\SearchField;
-use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
 use Project\App\Views\Php\Components\Table\NotificationsTable;
 
 

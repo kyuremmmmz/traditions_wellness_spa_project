@@ -1,15 +1,12 @@
 <?php
 
-namespace Project\App\Views\Php\Pages\Tools\Services;
+namespace Project\App\Views\Php\Pages\Dashboard;
 
-use Project\App\Controllers\Web\ServicesController;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\ActionButton;
 use Project\App\Views\Php\Components\Buttons\AddonItemButton;
-use Project\App\Views\Php\Components\Buttons\PrimaryButton;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
-use Project\App\Views\Php\Components\Inputs\GlobalInputField;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Texts\TextRowContainer;
@@ -187,7 +184,7 @@ class Page
                     </div>
                 </button>
             </div>
-            <div class="w-full flex flex-col sm:flex-row gap-[100px] mt-[0px] sm:mt-[48px] 2xl:pb-0 pb-[150px]">
+            <div class="w-full flex flex-col sm:flex-row gap-[100px] mt-[0px] sm:mt-[48px] 2xl:pb-0">
                 <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                     <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new service'); ?>
                     <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following. Fields labeled with * are required.'); ?>
