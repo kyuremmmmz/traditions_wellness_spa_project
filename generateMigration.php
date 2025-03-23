@@ -1,5 +1,5 @@
 <?php
-require 'C:\xampp\htdocs\Project\VanillaBackend\app\config\connection.php';
+require 'C:\xampp\htdocs\TraditionsWellnessSpa\Project\app\config\connection.php';
 use Project\App\Config\Connection;
 // File: generateMigration.php
 

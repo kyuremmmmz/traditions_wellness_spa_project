@@ -1,4 +1,5 @@
 <?php
+
 namespace Project\App\Views\Php\Pages\Dashboard;
 
 use Project\App\Views\Php\Components\Buttons\ActionButton;
@@ -19,12 +20,12 @@ class Page
 
     public static function page()
     {
-        ?>
+?>
         <main class="flex w-full">
             <?php
             Sidebar::render();
-            WorkingBanner::render()
             ?>
+            <?php WorkingBanner::render(); ?>
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] pl-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen w-full">
                 <div class="max-w-full flex flex-col sm:px-[48px] items-start overflow-x-auto">
                     <section class="flex h-[50px]">
@@ -39,18 +40,18 @@ class Page
 
                     <section class="flex gap-[16px] py-[16px]">
                         <?php
-                        ActionButton::render('plusSmall', 'Add a therapist', 'openAddANewServiceSectionButton');
+                        ActionButton::render('plusSmall', 'Add a therapist', 'openAddANewServiceSectionButton', 'button');
                         SearchField::render('Search Therapist', '')
                         ?>
                     </section>
 
                     <div class="border border-border border-[1px] w-full max-w-[1362px] dark:border-darkBorder rounded-[6px] overflow-x-auto">
                         <table class="bg-background w-full max-w-[1362px] dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
-                            <tr class="p-0 m-0 w-full" style="margin: 0; padding: 0;">
-                                <td class="p-0 m-0 flex flex-col w-full">
+                            <tr class="w-full p-0 m-0" style="margin: 0; padding: 0;">
+                                <td class="flex flex-col w-full p-0 m-0">
                                     <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                         <?php
-                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All','Active', 'Inactive']);
+                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Active', 'Inactive']);
                                         ?>
                                     </section>
                                     <section>
@@ -61,7 +62,7 @@ class Page
                             </tr>
                         </table>
                     </div>
-                    
+
                 </div>
             </div>
             <form id="addATherapistForm" method="POST" action="/addTherapist">
@@ -72,21 +73,24 @@ class Page
                                 <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                             </div>
                         </button>
-                    </div>  
+                    </div>
                     <div class="flex flex-col sm:flex-row gap-[48px] 2xl:pb-0 pb-[150px] max-w-full items-center justify-center">
                         <section class="flex flex-col gap-[16px] w-[400px] sm:w-[400px] items-end">
                             <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground w-[400px]', 'Add a therapist'); ?>
                             <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo w-[400px]', 'Please enter the following.'); ?>
                             <div class="my-[48px] flex flex-col gap-[16px]">
-                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], 'firstNameError', null, 'first_name', '', '' , [], '' , 'first_name')?>
-                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'lastNameError', null, 'last_name', '', '' , [], '' , 'last_name')?>
-                                <?php SecondaryInputField::render('textfield', 'Gender', '', ['Male', 'Female', 'Others'], '', null, 'gender', '', '' , [], '' , 'gender')?>
-                                <?php SecondaryInputField::render('textfield', 'Status', '', ['Active', 'Inactive'], '', null, 'status', '', '' , [], '' , 'status')?>
-                                <?php SecondaryInputField::render('textfield', 'Email', 'Enter Email', [], '', null, 'email', '', '' , [], '' , 'email')?>
+                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], 'firstNameError', null, 'first_name', '', '', [], '', 'first_name') ?>
+                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'lastNameError', null, 'last_name', '', '', [], '', 'last_name') ?>
+                                <?php SecondaryInputField::render('textfield', 'Gender', '', ['Male', 'Female', 'Others'], '', null, 'gender', '', '', [], '', 'gender') ?>
+                                <?php SecondaryInputField::render('textfield', 'Status', '', ['Active', 'Inactive'], '', null, 'status', '', '', [], '', 'status') ?>
+                                <?php SecondaryInputField::render('textfield', 'Email', 'Enter Email', [], '', null, 'email', '', '', [], '', 'email') ?>
                             </div>
-                            <div class="w-[400px] flex justify-center"><?php ActionButton::render('plusSmall', 'Add a therapist', 'addTherapistButton', '', 'primary', 'onPrimary');?></div>
+                            <div class="w-[400px] flex justify-center">
+                                <?php ActionButton::render('plusSmall', 'Add a therapist', 'addTherapistButton', 'submit'); ?>
+                                <button type="submit" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Submit</button>
+                            </div>
                         </section>
-                    </div> 
+                    </div>
                 </div>
                 <!-- Unsaved Progress Modal -->
                 <div id="UnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
@@ -113,7 +117,7 @@ class Page
         </main>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Therapists/TherapistsDom.js"></script>
 
-        <?php
+<?php
     }
 }
 

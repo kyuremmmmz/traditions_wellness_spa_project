@@ -16,6 +16,8 @@ class SessionMiddleware
             '/forgotpassword',
             '/register',
             '/',
+            '/users',
+            '/notifications',
             '/Tracker',
             '/dashboard',
             '/profile',
@@ -52,7 +54,8 @@ class SessionMiddleware
                 '/account',
                 '/changephonenumber',
                 '/verificationforchangephonenumber',
-                '/changepassword'
+                '/changepassword',
+                '/users'
             ])
         ) {
             header('Location: /login');
