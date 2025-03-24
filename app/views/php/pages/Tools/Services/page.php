@@ -190,42 +190,42 @@ class Page
                     <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following. Fields labeled with * are required.'); ?>
                     <div class="flex flex-col mt-[48px] gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground mb-[24px]', '1. Primary Details'); ?>
-                        <?php SecondaryInputField::render('dropdownfield', '*Status', '', [], '', null, '', '', '', [], false, '', 0, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', '*Category', '', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', '*Service Name', '', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textareafield', '*Caption', 'Enter Caption', [], '', null, '', '', '', [], false)?>
-                        <?php SecondaryInputField::render('textareafield', '*Description', 'Enter Description', [], '', null, '', '', '', [], false)?>
+                        <?php SecondaryInputField::render('dropdownfield', '*Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, '', 0, '')?>
+                        <?php SecondaryInputField::render('dropdownfield', '*Category', '', ['Massages', 'Body Scrubs', 'Packages'], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('textfield', '*Service Name', 'Enter Service Name', [], 'service_name_error', null, 'service_name', '', '', [], false, 'service_name')?>
+                        <?php SecondaryInputField::render('textareafield', '*Caption', 'Enter Caption', [], 'service_caption_error', null, 'service_caption_error', '', '', [], false, 'service_caption')?>
+                        <?php SecondaryInputField::render('textareafield', '*Description', 'Enter Description', [], 'service_description_error', null, 'service_description_error', '', '', [], false, 'service_description')?>
                     </div>
                 </section>
                 <section class="flex flex-col gap-[40px] w-[480px] sm:w-[400px]">
                     <div class="flex flex-col gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '2. Secondary Details'); ?>
-                        <?php SecondaryInputField::render('textfield', '*Duration Details', 'Enter Duration Details', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', '*Party Size Details', 'Enter Service Details', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', 'Massage Details', 'Enter Massage Details', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', 'Body Scrub Details', 'Enter Service Details', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', 'Add-On Details', 'Enter Service Details', [], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('textfield', '*Duration Details', 'Enter Duration Details', [], 'duration_details', null, 'duration_details_error', '', '', [], false, 'duration_details')?>
+                        <?php SecondaryInputField::render('textfield', '*Party Size Details', 'Enter Party Size Details', [], 'party_size_details', null, 'party_size_details_error', '', '', [], false, 'party_size_details')?>
+                        <?php SecondaryInputField::render('textfield', 'Massage Details', 'Enter Massage Details', [], 'massage_details', null, 'massage_details_error', '', '', [], false, 'massage_details')?>
+                        <?php SecondaryInputField::render('textfield', 'Body Scrub Details', 'Enter Body Scrub Details', [], 'body_scrub_details', null, 'body_scrub_details_error', '', '', [], false, 'body_scrub_details')?>
+                        <?php SecondaryInputField::render('textfield', 'Add-On Details', 'Enter Add-on Details', [], 'addon_details', null, 'addon_details_error', '', '', [], false, 'addon_details')?>
                     </div>
                 </section>
                 <section class="flex flex-col gap-[40px] w-[480px] sm:w-[400px]">
                     <div class="flex flex-col gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '3. Photos'); ?>
-                        <?php SecondaryInputField::render('photofield', '*Main Photo', 'Choose a photo', [], '', null, '', '', '', [], false, '', 0, 'Must be a photo with a 1:1 aspect ratio and a maximum file size of 5MB.')?>
-                        <?php SecondaryInputField::render('multiphotofield', '*Slideshow Photos', 'Choose a photo', [], '', null, '', '', '', [], false, '', 0, 'Upload up to 5 photos, each with a 1:1 aspect ratio and a maximum file size of 5MB.')?>
+                        <?php SecondaryInputField::render('photofield', '*Main Photo', 'Choose a photo', [], 'main_photo', null, 'main_photo_error', '', '', [], false, 'main_photo', 0, 'Must be a photo with a 1:1 aspect ratio and a maximum file size of 5MB.')?>
+                        <?php SecondaryInputField::render('multiphotofield', '*Slideshow Photos', 'Choose a photo', [], 'slideshow_photos', null, 'slideshow_photos_error', '', '', [], false, 'slideshow_photos', 0, 'Upload up to 5 photos, each with a 1:1 aspect ratio and a maximum file size of 5MB.')?>
                     </div>
                 </section>
                 <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                     <div class="flex flex-col mb-[48px] gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '4. Showcase Photos'); ?>
-                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 1', 'Choose a photo', [], '', null, '', '', '', [], false, '', 0, 'Must have 1:1 Aspect Ratio')?>
-                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 2', 'Choose a photo', [], '', null, '', '', '', [], false, '', 0, 'Must have 1:1 Aspect Ratio')?>
-                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 3', 'Choose a photo', [], '', null, '', '', '', [], false, '', 0, 'Must have 1:1 Aspect Ratio')?>
-                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 1', 'Choose a photo', [], 'showcase_photo_1', null, 'showcase_photo_1_error', '', '', [], false, 'showcase_photo_1', 0, 'Must have 1:1 Aspect Ratio')?>
+                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'showcase_headline_1', null, 'showcase_headline_1_error', '', '', [], false, 'showcase_headline_1')?>
+                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'showcase_caption_1', null, 'showcase_caption_1_error', '', '', [], false, 'showcase_caption_1')?>
+                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 2', 'Choose a photo', [], 'showcase_photo_2', null, 'showcase_photo_2_error', '', '', [], false, 'showcase_photo_2', 0, 'Must have 1:1 Aspect Ratio')?>
+                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'showcase_headline_2', null, 'showcase_headline_2_error', '', '', [], false, 'showcase_headline_2')?>
+                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'showcase_caption_2', null, 'showcase_caption_2_error', '', '', [], false, 'showcase_caption_2')?>
+                        <?php SecondaryInputField::render('photofield', '*Showcase Photo 3', 'Choose a photo', [], 'showcase_photo_3', null, 'showcase_photo_3_error', '', '', [], false, 'showcase_photo_3', 0, 'Must have 1:1 Aspect Ratio')?>
+                        <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'showcase_headline_3', null, 'showcase_headline_3_error', '', '', [], false, 'showcase_headline_3')?>
+                        <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'showcase_caption_3', null, 'showcase_caption_3_error', '', '', [], false, 'showcase_caption_3')?>
                     </div>
                 </section>
                 <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
@@ -252,12 +252,12 @@ class Page
                         </div>
                     </div>
                     <div id="fixedPriceSection" class="flex justify-start opacity-100 transition transition-all">
-                        <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], '', null, ''); ?>
+                        <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], 'fixed_price', null, 'fixed_price_error', '', '', [], '', 'fixed_price'); ?>
                     </div>
                     <div id="dynamicPriceSection" class="flex flex-col gap-[16px] hidden justify-start opacity-0 transition transition-all">
-                        <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], '', null, ''); ?>
-                        <?php SecondaryInputField::render('numberfield', '1 Hour & 30 Minutes', 'Enter price', [], '', null, ''); ?>
-                        <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], '', null, ''); ?>
+                        <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], '1_hour_price', null, '1_hour_price_error', '', '', [], '', '1_hour_price'); ?>
+                        <?php SecondaryInputField::render('numberfield', '1 Hour & 30 Minutes', 'Enter price', [], '1_hour_30_price', null, '1_hour_30_error', '', '', [], '', '1_hour_30_price'); ?>
+                        <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], '2_hours_price', null, '2_hours_price_error', '', '', [], '', '2_hours_price'); ?>
                     </div>
                     <div class="flex w-full justify-end mt-[32px]">
                         <?php NewPrimaryButton::render('Create Service', '', 'openConfirmationModal', '257px', null) ?>
