@@ -43,6 +43,8 @@ $router->post('/auth/check-token', 'AuthMobileController@checkToken');
 $router->post('/auth/mobile-logout', 'AuthMobileController@logout');
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
+$router->post('/createService', 'ServicesController@createService');
+
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {
     echo json_encode(['message' => 'Test route works']);

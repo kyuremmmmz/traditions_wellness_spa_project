@@ -26,6 +26,23 @@ class ReusablesController
         return empty($services) ? '' : implode(', ', $services);
     }
 
+    public function suplementTalAddOns($placeHolder)
+    {
+        $services = [];
+
+        if (isset($placeHolder['swedish'])) {
+            $services[] = 'Swedish Massage';
+        }
+        if (isset($placeHolder['hot_stone'])) {
+            $services[] = 'Hot Stone Therapy';
+        }
+        if (isset($placeHolder['deep_tissue'])) {
+            $services[] = 'Deep Tissue Massage';
+        }
+
+        return empty($services) ? '' : implode(', ', $services);
+    }
+
     public function priceCalculation($price, $params)
     {
         switch ($params) {
