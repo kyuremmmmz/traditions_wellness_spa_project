@@ -14,7 +14,7 @@ class Sidebar
         $userRoleOnSideBar = $_SESSION['user']['role'];
         ?>
         <aside id="sidebar" class="w-[0px] overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden bg-surface dark:bg-darkSurface p-[0px] sm:h-full sm:flex sm:flex-col sm:justify-between fixed sm:left-0 sm:top-0 sm:w-[48px] sm:hover:w-[258px] sm:p-[8px] sm:bg-surface sm:dark:bg-darkSurface group sm:hover:group duration-200 sm:ease-in-out z-10 sm:z-20 h-full">                <section> <!-- wag palitan ang id ng branch button-->
-                    <button id="sidebarButton" class="w-[0px] p-[0px] h-[48px] hidden sm:flex bg-background dark:bg-darkBackground border-border dark:border-darkBorder sm:border-none border-[1px] sm:border-[0px] sm:h-[32px] sm:w-[32px] sm:group-hover:w-[241px] sm:group-hover:h-[48px] rounded-[6px] sm:bg-surface sm:dark:bg-darkSurface hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface sm:p-[0px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
+                    <div id="sidebarButton" class="w-[0px] p-[0px] h-[48px] hidden sm:flex bg-background dark:bg-darkBackground border-border dark:border-darkBorder sm:border-none border-[1px] sm:border-[0px] sm:h-[32px] sm:w-[32px] sm:group-hover:w-[241px] sm:group-hover:h-[48px] rounded-[6px] sm:bg-surface sm:dark:bg-darkSurface sm:p-[0px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
                         <div id="sidebarContainer" class="flex w-[48px] sm:w-[48px] sm:group-hover:w-[225px] sm:h-[32px] sm:group-hover:h-[48px] sm:group-hover:p-[8px] transition-all duration-300 ease-in-out sm:group-hover:opacity-100">
                             <div class="bg-primary dark:bg-darkPrimary w-[32px] h-[32px] rounded-[6px] flex justify-center items-center">
                                 <div class="w-[24px] h-[10.45px]">
@@ -33,7 +33,7 @@ class Sidebar
                                 ?>
                             </div>
                         </div>
-                    </button>
+                    </div>
 
                     <div class="mt-[48px] sm:mt-0">
                         <div id="sidebarContainer" class="hidden sm:hidden">

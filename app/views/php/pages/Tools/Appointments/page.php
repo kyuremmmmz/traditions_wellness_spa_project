@@ -119,7 +119,7 @@ class Page
                                     <div class="overflow-x-auto border-l border-border dark:border-darkBorder">
                                         <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                             <?php
-                                            SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Option 1', 'Option 2', 'Option 3']);
+                                            SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Completed', 'Awaiting Review', 'Ongoing', 'Upcoming', 'Pending', 'Canceled']);
                                             SecondaryInputField::render('datefield', 'Show appointments from', '');
                                             ?>
                                         </section>
@@ -147,7 +147,7 @@ class Page
                             </div>
                         </button>
                     </div>
-                    <div class="max-w-full 2xl:justify-center w-full sm:p-[48px] pb-[150px] 2xl:pb-0 2xl:h-full items-center flex flex-col 2xl:flex-row gap-[100px] 2xl:pb-0">
+                    <div class="max-w-full 2xl:justify-center w-full sm:p-[48px] pb-[150px] 2xl:pb-0 2xl:h-full items-center flex flex-col 2xl:flex-row gap-[24px] 2xl:pb-0">
                         <section class="flex flex-col gap-[16px] w-[480px] justify-end">
                             <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground w-[480px] dark:text-darkOnBackground', 'Book an appointment'); ?>
                             <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo w-[480px] dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
@@ -284,28 +284,6 @@ class Page
                 </div>
             </form>
 
-            <!-- Update Appointment Unsaved Progress Modal -->
-            <div id="UpdateUnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
-                    <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button id="closeUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="proceedUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Finish Appointment Modal -->
-            <div id="FinishAppointmentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to finish this appointment?</p>
-                    <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button type="button" id="cancelFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button type="submit" id="confirmFinishButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
-
             <!-- Update Appointment Modal -->
             <form action="/updateAppointment" method="post">
                 <div id="updateModal" class="sm:pt-[80px] pt-[48px] fixed inset-0 bg-black bg-opacity-50 hidden overflow-y-auto h-full w-full transition-all duration-300 opacity-0 z-[200]">
@@ -359,7 +337,7 @@ class Page
 
                                             </div>
                                             <?php SecondaryInputField::render('timefield', 'Start Time', '', [], $TimeError, null, 'timedata', '', '', [], false, 'start_time'); ?>
-                                            <?php SecondaryInputField::render('dropdownfield', 'Payment Choice', '', [], '', null, '', '', '', [], false, '') ?>
+                                            <?php SecondaryInputField::render('dropdownfield', 'Payment Choice', '', ['Online Payment', 'On-site'], '', null, '', '', '', [], false, '') ?>
                                             <?php SecondaryInputField::render('textfield', 'Receipt Number', 'Enter Receipt Number', [], '', null, '', '', '', [], false, '') ?>
                                             <div class="pl-[65px] sm:pl-[65px] flex flex-col gap-[8px]">
                                                 <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
@@ -401,10 +379,10 @@ class Page
                             </div>
                             <div class="flex flex-col w-full items-center gap-[16px]">
                                 <div class="flex gap-[16px] w-full justify-center">
-                                    <button type="button" id="cancelAppointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-destructive dark:text-destructive hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Cancel Appointment</button>
+                                    <button type="button" id="openCancelAppointmentModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-destructive dark:text-destructive hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Cancel Appointment</button>
                                     <button type="button" id="saveModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Save Changes</button>
                                 </div>
-                                <button type="submit" id="finishappointment" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
+                                <button type="button" id="openFinishAppointmentModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-primary dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[496px] w-full border-border dark:border-darkBorder border">
                                     Finish Appointment
                                 </button>
                             </div>
@@ -430,6 +408,28 @@ class Page
                         <div class="flex gap-[16px] justify-end mt-[48px]">
                             <button type="button" id="cancelUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
                             <button type="submit" id="confirmUpdateButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cancel Appointment Modal -->
+                <div id="CancelAppointmentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[301]">
+                    <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to cancel this appointment? This cannot be undone.</p>
+                        <div class="flex gap-[16px] justify-end mt-[48px]">
+                            <button type="button" id="closeCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                            <button id="proceedCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Update Unsaved Progress Modal -->
+                <div id="UpdateUnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                    <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to cancel this appointment? This cannot be undone.</p>
+                        <div class="flex gap-[16px] justify-end mt-[48px]">
+                            <button type="button" id="closeUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                            <button id="proceedUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
                         </div>
                     </div>
                 </div>

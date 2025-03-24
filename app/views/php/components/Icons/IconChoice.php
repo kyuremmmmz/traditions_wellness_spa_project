@@ -418,7 +418,16 @@ class IconChoice
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
                             <path d="M4.99998 1L6.28748 3.60833L9.16665 4.02917L7.08331 6.05833L7.57498 8.925L4.99998 7.57083L2.42498 8.925L2.91665 6.05833L0.833313 4.02917L3.71248 3.60833L4.99998 1Z" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-
+                ';
+                break;
+            case "dashboardMedium":
+                $icon ='
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="stroke-current">
+                            <path d="M10 3H3V12H10V3Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 3H14V8H21V3Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 12H14V21H21V12Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 16H3V21H10V16Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                 ';
                 break;
         };
