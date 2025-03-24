@@ -22,8 +22,8 @@ class SelectionBehavior {
                 this.bodyScrubSelection.style.display = 'none';
                 break;
             case 'Body Scrubs':
-                this.massageSelection.style.display = 'none';
-                this.bodyScrubSelection.style.display = 'flex';
+                this.massageSelection.style.display = 'flex';
+                this.bodyScrubSelection.style.display = 'none';
                 break;
             case 'Packages':
                 this.massageSelection.style.display = 'flex';
