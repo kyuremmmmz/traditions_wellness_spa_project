@@ -9,6 +9,7 @@ use Project\App\Views\Php\Components\Table\TherapistsTable;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
+use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\SearchField;
 
@@ -115,6 +116,80 @@ class Page
                 </div>
             </form>
         </main>
+
+        <!-- Update Modal-->
+        <form action="/updateTherapist" method="post">
+            <div id="updateTherapistModal" class="sm:pt-[80px] pt-[48px] fixed inset-0 bg-black bg-opacity-50 hidden overflow-y-auto h-full w-full transition-all duration-300 opacity-0 z-[200]">
+                <div class="mx-auto p-[48px] border flex flex-col border-border dark:border-darkBorder w-full max-w-[500px] rounded-[6px] bg-background dark:bg-darkBackground transform transition-all duration-300 opacity-100 scale-95">
+                    <div class="flex flex-col gap-[48px]">
+                        <section class="flex flex-col justify-start gap-[8px]">
+                            <div class="flex justify-start pb-[24px]">
+                                <button type="button" id="closeUpdateModal" class="relative right-2 transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                                    <div class="w-[24px] h-[24px] flex justify-center items-center">
+                                        <?php IconChoice::render('exitSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                                    </div>
+                                </button>
+                            </div>
+                            <p class="leading-none HeaderTwo text-onBackground dark:text-darkOnBackground">Update Therapist</p>
+                            <p class="leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo">Modify therapist information below.</p>
+                        </section>
+                        <div class="flex justify-end items-end">
+                            <div class="flex flex-col justify-start sm:justify-center gap-[16px] w-[480px]">
+                                <input type="hidden" id="therapistId" name="id">
+                                <?php 
+                                SecondaryInputField::render('textfield', 'First Name', 'Enter first name', [], '', null, 'therapistFirstName', '', '', [], false, 'first_name');
+                                SecondaryInputField::render('textfield', 'Last Name', 'Enter last name', [], '', null, 'therapistLastName', '', '', [], false, 'last_name');
+                                SecondaryInputField::render('textfield', 'Email', 'Enter email', [], '', null, 'therapistEmail', '', '', [], false, 'email');
+                                SecondaryInputField::render('dropdownfield', 'Gender', 'Select gender', ['Male', 'Female'], '', null, 'therapistGender', '', '', [], false, 'gender');
+                                SecondaryInputField::render('dropdownfield', 'Status', 'Select status', ['Active', 'Inactive'], '', null, 'therapistStatus', '', '', [], false, 'status');
+                                ?>
+                            </div>
+                        </div>
+                        <div class="flex w-full">
+                            <div class="flex flex-col gap-[16px] w-full justify-center items-center mt-[32px]">
+                                <button type="button" id="openSaveChangesTherapistModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Save Changes</button>
+                                <button type="button" id="openDeleteTherapistModal" class="px-4 py-2 bg-background dark:bg-darkBackground text-destructive dark:text-destructive hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px] max-w-[240px] w-full border-border dark:border-darkBorder border">Delete Therapist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unsaved update therapist progress modal -->
+            <div id="DeleteTherapistModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to delete this therapist? This cannot be undone.</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button type="button" id="closeDeleteTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button id="proceedDeleteTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unsaved update therapist modal -->
+            <div id="UnsavedEditTherapistModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit? All unsaved changes will be lost.</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button type="button" id="closeUnsavedEditTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button id="proceedUnsavedEditTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirm update therapist Modal -->
+            <div id="SaveChangesTherapistModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to update the details of this therapist?</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button type="button" id="cancelSaveChangesTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button type="submit" id="confirmSaveChangesTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+         
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Therapists/TherapistsDom.js"></script>
 
 <?php

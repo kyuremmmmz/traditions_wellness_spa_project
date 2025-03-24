@@ -19,13 +19,11 @@ class Page
 {
     public static function page()
     {
-        Sidebar::render();
-        WorkingBanner::render();
         ?>
         <main class="flex w-full">
             <?php 
             Sidebar::render();
-            WorkingBanner::render()
+            WorkingBanner::render();
             ?>
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] px-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen  w-full">
                 <div>
@@ -383,7 +381,7 @@ class Page
                     </div>
                     <div class="flex w-full justify-end mt-[32px]">
                         <?php NewPrimaryButton::render('Save Changes', '', 'openConfirmEditServiceModal', '257px', null) ?>
-                        <?php NewPrimaryButton::render('Create Service', '', 'openDeleteServiceModal', '257px', null) ?>
+                        <?php NewPrimaryButton::render('Delete Service', '', 'openDeleteServiceModal', '257px', null) ?>
                     </div>
                 </section> 
             </div>
