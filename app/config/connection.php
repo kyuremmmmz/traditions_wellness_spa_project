@@ -12,12 +12,13 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
+        $host = 'localhost:3307';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (\Throwable $th) {
-            throw new \Exception($th->getMessage());
+            throw $th;
         }
     }
 
@@ -26,13 +27,14 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3306';
-        
+        $host = 'localhost:3307';
+
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (\Throwable $th) {
-            throw new \Exception($th->getMessage());
+            throw $th;
         }
     }
 }

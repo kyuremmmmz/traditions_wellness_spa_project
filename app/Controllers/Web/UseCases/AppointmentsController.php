@@ -16,12 +16,6 @@ class AppointmentsController
         $this->controller = new AppointmentsModel();
         $this->reusables = new ReusablesController();
     }
-    /*
-    TO FIX: 
-    - addOnss
-    - duration calculation
-    */
-
     public function updateAppointment()
     {
         header('Content-Type: application/json');
@@ -32,25 +26,34 @@ class AppointmentsController
             echo json_encode(['message' => 'Required fields are missing']);
             return;
         }
-        $findById = $this->controller->findByIdAppointment($file['appointment_id']);
-        $findId = $this->controller->findById($file['service_booked']);
-        $originalPrice = $this->reusables->priceCalculation(1000, $findById['party_size']);
-        $newPrice = $this->reusables->priceCalculation(1000, $file['party_size']);
-        $calculateTotal = max((int)$findById['total_price'] + ($newPrice - $originalPrice), 0);
-        $response = $this->controller->update(
-            $file['duration'],
-            $file['booking_date'],
-            $calculateTotal,
-            $file['party_size'],
-            $findId['serviceName'],
-            $file['start_time'],
-            $file['appointment_id'],
-        );
-        header('Location:/Tracker');
-        $_SESSION['success_message'] = [
-            'success_message' => 'Updated Successfully'
-        ];
-        echo json_encode(['status' => $response]);
+        $findDateAndTime = $this->controller->findByDateAndTime($file['booking_date'], $file['start_time']);
+        if (count($findDateAndTime) >= 5) {
+            $_SESSION['therapistError'] = [
+                'therapistError' => 'Appointment Busy'
+            ];
+            header('Location:/appointments');
+            exit;
+        }else{
+            $findById = $this->controller->findByIdAppointment($file['appointment_id']);
+            $findId = $this->controller->findById($file['service_booked']);
+            $originalPrice = $this->reusables->priceCalculation(1000, $findById['party_size']);
+            $newPrice = $this->reusables->priceCalculation(1000, $file['party_size']);
+            $calculateTotal = max((int)$findById['total_price'] + ($newPrice - $originalPrice), 0);
+            $response = $this->controller->update(
+                $file['duration'],
+                $file['booking_date'],
+                $calculateTotal,
+                $file['party_size'],
+                $findId['serviceName'],
+                $file['start_time'],
+                $file['appointment_id'],
+            );
+            header('Location:/appointments');
+            $_SESSION['success_message'] = [
+                'success_message' => 'Updated Successfully'
+            ];
+            echo json_encode(['status' => $response]);
+        }
     }
 
 
@@ -76,7 +79,7 @@ class AppointmentsController
             $total = $addOnsPrice + (int)$findServiceByID['price'] + $pricing;
             $name = $findUsers['first_name'] . ' ' . $findUsers['last_name'];
             $findDateAndTime = $this->controller->findByDateAndTime($file['date'], $file['start_time']);
-            if (count($findDateAndTime) < 5) {
+            if (count($findDateAndTime) > 5) {
                 http_response_code(401);
                 $_SESSION['therapistError'] = [
                     'therapistError' => 'Appointment Busy'

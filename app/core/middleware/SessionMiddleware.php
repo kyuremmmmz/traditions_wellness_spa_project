@@ -11,12 +11,35 @@ class SessionMiddleware
         $isAuthenticated = isset($_SESSION['user']);
         $hasCookie = isset($_COOKIE['user']);
         $currentRoute = $_SERVER['REQUEST_URI'];
-
-        if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register', '/'])) {
+        $allowedRoutes = [
+            '/login',
+            '/forgotpassword',
+            '/register',
+            '/',
+            '/users',
+            '/notifications',
+            '/Tracker',
+            '/dashboard',
+            '/profile',
+            '/settings',
+            '/services',
+            '/employees',
+            '/appointments',
+            '/finances',
+            '/inventory',
+            '/account',
+            '/changephonenumber',
+            '/verificationforchangephonenumber',
+            '/changepassword'
+        ];
+        if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register', '/', '/Tracker'])) {
             header('Location: /dashboard');
             exit;
         }
-
+        if (!in_array($currentRoute, $allowedRoutes)) {
+            header('Location: /');
+            exit;
+        }
         if (!$isAuthenticated && !$hasCookie  &&
             in_array($currentRoute, [
                 '/',
@@ -31,7 +54,8 @@ class SessionMiddleware
                 '/account',
                 '/changephonenumber',
                 '/verificationforchangephonenumber',
-                '/changepassword'
+                '/changepassword',
+                '/users'
             ])
         ) {
             header('Location: /login');

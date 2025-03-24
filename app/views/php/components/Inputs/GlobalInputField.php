@@ -23,37 +23,39 @@ class GlobalInputField { // TOD0: BASTA HINDI PA ITO TAPOS!
         } elseif ($name === 'phoneNumberInputField') {
             $validationClass = "validate-phone-number";
         }
-
-echo <<<HTML
-        <script src="/js/password-toggle.js"></script>
-        <div class='relative FieldContainer min-w-[316px] w-full max-w-[400px]'>
-            <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)' $extras
-                class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$extraClasses} {$errorClass} {$validationClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-borderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' />
-            <label for='{$id}' id='{$id}-label' 
-                class="transition-all ease-in-out absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
-                peer-placeholder-shown:translate-y-[10px] peer-placeholder-shown:BodyOne
-                peer-focus:-translate-y-1 peer-focus:text-onBackground dark:peer-focus:text-darkOnBackground peer-focus:MiniOne
-                peer-[&:not(:placeholder-shown)]:MiniOne peer-[&:not(:placeholder-shown)]:-translate-y-1 dark:bg-darkBackground bg-background px-[7px] pointer-events-none origin-top-left">
-                {$label}
-            </label>
+        echo '<script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/password-toggle.js"></script>';
+        echo <<<HTML
+    <div class='relative FieldContainer min-w-[316px] w-full max-w-[400px]'>
+        <input type='{$type}' id='{$id}' name='{$name}' placeholder=" " oninput='handleInput(this)' $extras
+            class='peer w-full h-[45px] px-[12px] bg-background dark:bg-darkBackground {$extraClasses} {$errorClass} {$validationClass} border-[2px] border-borderTwo dark:border-darkBorderTwo focus:border-borderHighlight dark:focus:border-borderHighlight focus:ring-borderHighlight dark:focus:ring-borderHighlight text-onBackground dark:text-darkOnBackground outline-none rounded-[6px] autofill:bg-background dark:autofill:bg-background [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none' />
+        <label for='{$id}' id='{$id}-label' 
+            class="transition-all ease-in-out absolute BodyOne left-[7px] top-0 transform -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo
+            peer-placeholder-shown:translate-y-[10px] peer-placeholder-shown:BodyOne
+            peer-focus:-translate-y-1 peer-focus:text-onBackground dark:peer-focus:text-darkOnBackground peer-focus:MiniOne
+            peer-[&:not(:placeholder-shown)]:MiniOne peer-[&:not(:placeholder-shown)]:-translate-y-1 dark:bg-darkBackground bg-background px-[7px] pointer-events-none origin-top-left">
+            {$label}
+        </label>
 HTML;
 
-            if ($type === "password") {
-                $eye = "eyeClose";
-                echo '<button type="button" id="password_toggle" onclick="togglePasswordVisibility()" class="absolute right-3 top-[22px] -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo focus:outline-none transition-colors duration-300"><div id="password_icon">';
-                IconChoice::render($eye, '[20px]', '[20px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo' );
-                echo '</div></button>';
-            }
+        if ($type === "password") {
+            $eye = "eyeClose";
+            echo <<<HTML
+        <button type="button" id="password_toggle_{$id}" onclick="togglePasswordVisibility('{$id}')" 
+            class="absolute right-3 top-[22px] -translate-y-1/2 text-onBackgroundTwo dark:text-darkOnBackgroundTwo focus:outline-none transition-colors duration-300">
+            <div id="password_icon_{$id}">
+HTML;
+            IconChoice::render($eye, '[20px]', '[20px]', '', 'onBackgroundTwo', 'darkOnBackgroundTwo');
+            echo '</div></button>';
+        }
 
-            // Error Message
-            if ($error) {
-                echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[14px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive leading-none'>{$error}</div>";
-            } elseif ($id === "new_password_field") {
-                echo '';
-            } else {
-                echo "<p class='MiniOne my-[8px] w-[316px] h-[14px] mx-[5px] text-destructive dark:text-darkDestructive'>&nbsp</p>";
-            }
- 
+        // Error Message
+        if ($error) {
+            echo "<div class='mt-[8px] mb-[8px] w-[316px] h-[14px] mx-[5px] CaptionMediumTwo text-destructive dark:text-darkDestructive leading-none'>{$error}</div>";
+        } elseif ($id === "new_password_field") {
+            echo '';
+        } else {
+            echo "<p class='MiniOne my-[8px] w-[316px] h-[14px] mx-[5px] text-destructive dark:text-darkDestructive'> </p>";
+        }
 echo <<<HTML
         </div>
 

@@ -9,10 +9,12 @@ class WorkingBanner
     public static function render(?string $className = null): void
     {
         $serviceUnavailable = $_SESSION['server_error']['error'] ?? '';
+        $errorMessageChangePassword = $_SESSION['error_message']['error_message'] ?? '';
         $tooManyAttempts = isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5;
         $success = isset($_SESSION['message']['message']);
         $messageSuccess = isset($_SESSION['success_message']['success_message']);
         $appointmentError = isset($_SESSION['therapistError']['therapistError']);
+        $sumakses = isset($_SESSION['sumakses']['sumakses']);
         if ($tooManyAttempts) {
             http_response_code(429);
             RegularBanner::render(
@@ -52,6 +54,16 @@ class WorkingBanner
             );
             unset($_SESSION['success_message']);
         }
+        if ($errorMessageChangePassword) {
+            RegularBanner::render(
+                "Error",
+                "{$_SESSION['error_message']['error_message']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['error_message']);
+        }
 
         if ($appointmentError) {
             RegularBanner::render(
@@ -61,6 +73,16 @@ class WorkingBanner
                 "destructive",
                 "darkDestructive");
                 unset($_SESSION['therapistError']);
+        }
+        if ($sumakses) {
+            RegularBanner::render(
+                "Success",
+                "{$_SESSION['sumakses']['sumakses']}.",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['sumakses']['sumakses']);
         }
     }
 }

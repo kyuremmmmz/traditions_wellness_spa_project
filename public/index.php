@@ -19,6 +19,8 @@ $router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
 $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
+$router->get('/getAllTherapist', 'TherapistController@getAllTherapist');
+$router->post('/addTherapist', 'TherapistController@addTherapist');
 $router->get('/store', 'ServicesController@store');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
@@ -37,6 +39,9 @@ $router->post('/mobileforgotPass', 'AuthMobileController@forgotPassword');
 $router->post('/mobileresetPassword', 'AuthMobileController@resetPassword');
 $router->post('/mobileLogin', 'AuthMobileController@login');
 $router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
+$router->post('/auth/check-token', 'AuthMobileController@checkToken');
+$router->post('/auth/mobile-logout', 'AuthMobileController@logout');
+$router->get('/mobileServices', 'Mobile\ServicesController@index');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

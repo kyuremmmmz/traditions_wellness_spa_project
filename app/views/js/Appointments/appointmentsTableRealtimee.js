@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('http://localhost:8000/fetchAppointments');
             if (!response.ok) throw new Error('Fetch failed');
             renderData((await response.json())[0]);
+            localStorage.setItem('appointments_data', JSON.stringify(await response.json()));
         } catch (error) {
             console.error('Error fetching appointments:', error);
         }
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error('Fetch failed');
             const json = await response.json();
             if (json.data && Array.isArray(json.data)) {
+                localStorage.setItem('services_data', json.data);
                 return json.data;
             }
             return [];

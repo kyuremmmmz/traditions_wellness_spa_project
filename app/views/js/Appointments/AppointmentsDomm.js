@@ -17,20 +17,25 @@ class AppointmentForm {
         this.hasUnsavedChanges = false;
         this.updateModal = document.getElementById("updateModal");
 
+        this.cancelAppointmentModal = document.getElementById("CancelAppointmentModal");
+        this.openCancelAppointmentButton = document.getElementById("openCancelAppointmentModal");
+        this.closeCancelAppointmentButton = document.getElementById("closeCancelAppointmentButton");
+        this.proceedCancelAppointmentButton = document.getElementById("proceedCancelAppointmentButton");
         
+        this.finishAppointmentButton = document.getElementById("openFinishAppointmentModal");
+        this.finishAppointmentModal = document.getElementById("FinishAppointmentModal");
+        this.cancelFinishButton = document.getElementById("cancelFinishButton");
+        this.confirmFinishButton = document.getElementById("confirmFinishButton");
+
         // Tab navigation elements
         this.tabButtons = {
             summary: document.getElementById("showSummary"),
             serviceBooked: document.getElementById("showServiceBooked"),
-            assignment: document.getElementById("showAssignment"),
-            payment: document.getElementById("showPayment")
         };
         
         this.tabSections = {
             summary: document.getElementById("summarySection"),
             serviceBooked: document.getElementById("serviceBookedSection"),
-            assignment: document.getElementById("assignmentSection"),
-            payment: document.getElementById("paymentSection")
         };
         
         this.activeTab = "summary"; // Default active tab
@@ -55,10 +60,7 @@ class AppointmentForm {
         
         // Update form buttons
         this.closeModalButton = document.getElementById("closeModal");
-        this.saveModalButton = document.getElementById("saveModal");
-        this.finishAppointmentButton = document.getElementById("finishappointment");
-        this.cancelAppointmentButton = document.getElementById("cancelAppointment");
-        
+        this.saveModalButton = document.getElementById("saveModal");        
         this.hasUpdateChanges = false;
 
         this.initializeEventListeners();
@@ -145,6 +147,51 @@ class AppointmentForm {
         this.hasUpdateChanges = false;
     }
 
+    showCancelModal() {
+        this.cancelAppointmentModal.classList.remove("hidden");
+    }
+
+    hideCancelModal() {
+        this.cancelAppointmentModal.classList.add("hidden");
+    }
+
+    showFinishModal() {
+        this.finishAppointmentModal.classList.remove("hidden");
+    }
+
+    hideFinishModal() {
+        this.finishAppointmentModal.classList.add("hidden");
+    }
+
+    handleFinishAppointment() {
+        // The form submission is handled by the button's type="submit"
+        this.hideFinishModal();
+    }
+
+    async handleCancelAppointment() {
+        try {
+            const appointmentId = this.updateModal.dataset.appointmentId; // Make sure to set this when opening the update modal
+            const response = await fetch('/deleteAppointment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: appointmentId })
+            });
+
+            if (response.ok) {
+                // Refresh the page or update the UI
+                window.location.reload();
+            } else {
+                console.error('Failed to cancel appointment');
+            }
+        } catch (error) {
+            console.error('Error cancelling appointment:', error);
+        }
+        
+        this.hideCancelModal();
+    }
+
     // Update form modal listeners
     initializeUpdateFormEventListeners() {
         this.closeModalButton.addEventListener("click", () => this.handleUpdateClose());
@@ -201,6 +248,14 @@ class AppointmentForm {
     }
     
     initializeEventListeners() {
+        this.openCancelAppointmentButton?.addEventListener("click", () => this.showCancelModal());
+        this.closeCancelAppointmentButton?.addEventListener("click", () => this.hideCancelModal());
+        this.proceedCancelAppointmentButton?.addEventListener("click", () => this.handleCancelAppointment());
+
+        this.finishAppointmentButton?.addEventListener("click", () => this.showFinishModal());
+        this.cancelFinishButton?.addEventListener("click", () => this.hideFinishModal());
+        this.confirmFinishButton?.addEventListener("click", () => this.handleFinishAppointment());
+
         this.openButton.addEventListener("click", () => this.openForm());
         this.closeButton.addEventListener("click", () => this.handleClose());
         this.cancelButton.addEventListener("click", () => this.hideModal());
@@ -311,7 +366,7 @@ class AppointmentForm {
     }
 
     getSlideDirection(currentTab, newTab) {
-        const tabOrder = ['summary', 'serviceBooked', 'assignment', 'payment'];
+        const tabOrder = ['summary', 'serviceBooked'];
         const currentIndex = tabOrder.indexOf(currentTab);
         const newIndex = tabOrder.indexOf(newTab);
         return newIndex > currentIndex ? 'right' : 'left';
