@@ -8,7 +8,7 @@ class SecondaryInputField
 {
     public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = '', int $limit = 0, string $description = ''): void
     {
-        echo '<div class="flex gap-[16px]">';
+        echo '<div class="flex gap-[16px]" id="'. $id .'">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
         echo '<div class="flex items-end flex-col justify-end gap-[8px]">';
         echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
@@ -100,49 +100,46 @@ class SecondaryInputField
                 break;
 
             case 'photofield':
-                // Create a unique ID for this instance
-                $uniqueId = uniqid($id . '_');
-                
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
-                echo "<input type='file' name='$name' accept='image/*' class='hidden' id='{$uniqueId}_input' $disabledAttribute>";
-                echo "<div id='{$uniqueId}_fileList' class='flex flex-col gap-[8px]'>";
-                echo "<div id='{$uniqueId}_placeholder' class='BodyTwo flex items-center gap-[8px] text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface' onclick='document.getElementById(\"{$uniqueId}_input\").click()'>";
+                echo "<input type='file' name='$name' accept='image/*' class='hidden' id='{$id}_input' $disabledAttribute>";
+                echo "<div id='{$id}_fileList' class='flex flex-col gap-[8px]'>";
+                echo "<div id='{$id}_placeholder' class='BodyTwo flex items-center gap-[8px] text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface' onclick='document.getElementById(\"{$id}_input\").click()'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
 
                 $GLOBALS['footer_scripts'][] = "<script>
-                    (function() { // IIFE to avoid global scope pollution
-                        const input = document.getElementById('{$uniqueId}_input');
-                        const fileList = document.getElementById('{$uniqueId}_fileList');
-                        const placeholder = document.getElementById('{$uniqueId}_placeholder');
+                    document.getElementById('{$id}_input').addEventListener('change', function(e) {
+                        const fileList = document.getElementById('{$id}_fileList');
+                        const placeholder = document.getElementById('{$id}_placeholder');
+                        const file = e.target.files[0];
                         
-                        if (!input || !fileList || !placeholder) return; // Guard clause
-                        
-                        input.addEventListener('change', function(e) {
-                            const file = e.target.files[0];
-                            if (file) {
-                                const fileItem = document.createElement('div');
-                                fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
-                                fileItem.innerHTML = `
-                                    <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
-                                    <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$uniqueId}_input\")'>×</button>
-                                `;
-                                
-                                placeholder.classList.add('hidden');
-                                fileList.appendChild(fileItem);
-                            }
-                        });
-                    })();
+                        if (file) {
+                            // Create file item element
+                            const fileItem = document.createElement('div');
+                            fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
+                            fileItem.innerHTML = `
+                                <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
+                                <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$id}_input\")'>×</button>
+                            `;
+                            
+                            // Replace placeholder with file item
+                            placeholder.classList.add('hidden');
+                            fileList.appendChild(fileItem);
+                        }
+                    });
 
                     function clearPhotoInput(inputId) {
                         const input = document.getElementById(inputId);
                         const fileList = document.getElementById(inputId.replace('input', 'fileList'));
                         const placeholder = document.getElementById(inputId.replace('input', 'placeholder'));
                         
+                        // Remove all file items except placeholder
                         Array.from(fileList.children).forEach(child => {
-                            if (child !== placeholder) child.remove();
+                            if (child !== placeholder) {
+                                child.remove();
+                            }
                         });
                         
                         input.value = '';
@@ -311,7 +308,7 @@ class SecondaryInputField
                 break;
 
             case 'choicesselectionfield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass' id='$id'>";
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {

@@ -189,7 +189,7 @@ class Page
                     <div class="flex flex-col mt-[48px] gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground mb-[24px]', '1. Primary Details'); ?>
                         <?php SecondaryInputField::render('dropdownfield', '*Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, '', 0, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', '*Category', '', ['Massages', 'Body Scrubs', 'Packages'], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('dropdownfield', '*Category', '', ['Massages', 'Body Scrubs', 'Packages'], '', null, 'category', '', '', [], false, 'category')?>
                         <?php SecondaryInputField::render('textfield', '*Service Name', 'Enter Service Name', [], 'service_name_error', null, 'service_name', '', '', [], false, 'service_name')?>
                         <?php SecondaryInputField::render('textareafield', '*Caption', 'Enter Caption', [], 'service_caption_error', null, 'service_caption', '', '', [], false, 'service_caption')?>
                         <?php SecondaryInputField::render('textareafield', '*Description', 'Enter Description', [], 'service_description_error', null, 'service_description', '', '', [], false, 'service_description')?>
@@ -229,9 +229,9 @@ class Page
                 <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                     <div class="flex flex-col mb-[48px] gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '5. Selections'); ?>
-                        <?php SecondaryInputField::render('choicesselectionfield', 'Massage Selection', '', ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'], '', null, '', '', '', [], false, '', 0, 'This determines the massage options included with the service. You may select one, multiple, or none. If the desired massage is not listed, you will need to create it.'); ?>
-                        <?php SecondaryInputField::render('choicesselectionfield', 'Body Scrub Selection', '', ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'], '', null, '', '', '', [], false, '', 0, 'This determines the body scrub options included with the service. You may select one, multiple, or none. If the desired body scrub is not listed, you will need to create it.'); ?>
-                        <?php SecondaryInputField::render('choicesselectionfield', 'Supplemental Add-ons', '', ['Hot Stone', 'Ear Candling', 'Ventosa'], '', null, '', '', '', [], false, '', 0, 'This determines the add-ons included with the service. You may select one, multiple, or none. If the desired add-on is not listed, you will need to create it.'); ?>
+                        <?php SecondaryInputField::render('choicesselectionfield', 'Massage Selection', '', ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'], '', null, 'massage_selection', '', '', [], false, 'massage_selection', 0, 'This determines the massage options included with the service. You may select one, multiple, or none. If the desired massage is not listed, you will need to create it.'); ?>
+                        <?php SecondaryInputField::render('choicesselectionfield', 'Body Scrub Selection', '', ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'], '', null, 'body_scrub_selection', '', '', [], false, 'body_scrub_selection', 0, 'This determines the body scrub options included with the service. You may select one, multiple, or none. If the desired body scrub is not listed, you will need to create it.'); ?>
+                        <?php SecondaryInputField::render('choicesselectionfield', 'Supplemental Add-ons', '', ['Hot Stone', 'Ear Candling', 'Ventosa'], '', null, 'addon_selection', '', '', [], false, 'addon_selection', 0, 'This determines the add-ons included with the service. You may select one, multiple, or none. If the desired add-on is not listed, you will need to create it.'); ?>
                     </div>
                 </section>
                 <section class="flex flex-col gap-[16px] items-end w-[480px] sm:w-[400px]">
@@ -351,8 +351,8 @@ class Page
                 <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
                     <div class="flex flex-col mb-[48px] gap-[16px]">
                         <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '5. Selections'); ?>
-                        <?php SecondaryInputField::render('choicesselectionfield', 'Massage Selection', '', ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'], '', null, '', '', '', [], false, '', 0, 'This determines the massage options included with the service. You may select one, multiple, or none. If the desired massage is not listed, you will need to create it.'); ?>
-                        <?php SecondaryInputField::render('choicesselectionfield', 'Body Scrub Selection', '', ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'], '', null, '', '', '', [], false, '', 0, 'This determines the body scrub options included with the service. You may select one, multiple, or none. If the desired body scrub is not listed, you will need to create it.'); ?>
+                        <?php SecondaryInputField::render('choicesselectionfield', 'Massage Selection', '', ['Bamboossage', 'Dagdagay', 'Hilot', 'Swedish'], '', null, '', '', '', [], false, '', 0, 'This determines the massage options included with the service. You may select one, multiple, or none. If the desired massage is not listed, you will need to create it.', 'disabled'); ?>
+                        <?php SecondaryInputField::render('choicesselectionfield', 'Body Scrub Selection', '', ['Coffee Scrub', 'Milk Whitening Scrub', 'Shea and Butter Scrub'], '', null, '', '', '', [], false, '', 0, 'This determines the body scrub options included with the service. You may select one, multiple, or none. If the desired body scrub is not listed, you will need to create it.', 'disabled'); ?>
                         <?php SecondaryInputField::render('choicesselectionfield', 'Supplemental Add-ons', '', ['Hot Stone', 'Ear Candling', 'Ventosa'], '', null, '', '', '', [], false, '', 0, 'This determines the add-ons included with the service. You may select one, multiple, or none. If the desired add-on is not listed, you will need to create it.'); ?>
                     </div>
                 </section>
@@ -419,7 +419,8 @@ class Page
                 </div>
             </div>
         </div>
-        
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesValidation.js"></script>
+        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectionBehavior.js"></script>
 <?php
         if (!empty($GLOBALS['footer_scripts'])) {
             foreach ($GLOBALS['footer_scripts'] as $script) {

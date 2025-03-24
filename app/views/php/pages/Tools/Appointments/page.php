@@ -340,7 +340,6 @@ class Page
                                             <?php SecondaryInputField::render('dropdownfield', 'Payment Choice', '', ['Online Payment', 'On-site'], '', null, '', '', '', [], false, '') ?>
                                             <?php SecondaryInputField::render('textfield', 'Receipt Number', 'Enter Receipt Number', [], '', null, '', '', '', [], false, '') ?>
                                             <div class="pl-[65px] sm:pl-[65px] flex flex-col gap-[8px]">
-                                                <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalValidationMessage); ?>
                                                 <?php Text::render('FinalDurationMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo w-[260px] dark:text-darkOnBackgroundTwo', $FinalDurationMessage); ?>
                                                 <?php Text::render('FinalEndTimeMessage', '', 'CaptionTwo leading-none text-onBackgroundTwo  w-[260px] dark:text-darkOnBackgroundTwo', $FinalEndTimeMessage); ?>
                                             </div>
