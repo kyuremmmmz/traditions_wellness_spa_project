@@ -79,11 +79,11 @@ class Page
                             <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground w-[400px]', 'Add a therapist'); ?>
                             <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo w-[400px]', 'Please enter the following.'); ?>
                             <div class="my-[48px] flex flex-col gap-[16px]">
-                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], 'first_name', null, 'first_name_error', '', '', '', [], '', 'first_name') ?>
-                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'lastName', null, 'last_name', '', '', [], '', 'last_name') ?>
+                                <?php SecondaryInputField::render('textfield', 'First Name', 'Enter First Name', [], 'first_name_error', null, 'first_name', '', '', [], '', 'first_name') ?>
+                                <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'last_name_error', null, 'last_name', '', '', [], '', 'last_name') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Gender', '', ['Male', 'Female', 'Others'], '', null, 'gender', '', '', [], '', 'gender') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Active', 'Inactive'], '', null, 'status', '', '', [], '', 'status') ?>
-                                <?php SecondaryInputField::render('textfield', 'Email', 'Enter Email', [], '', null, 'email', '', '', [], '', 'email') ?>
+                                <?php SecondaryInputField::render('textfield', 'Email', 'Enter Email', [], 'email_error', null, 'email', '', '', [], '', 'email') ?>
                             </div>
                             <div class="w-[400px] flex justify-center">
                                 <?php ActionButton::render('plusSmall', 'Add a therapist', 'addTherapistButton', 'submit'); ?>
