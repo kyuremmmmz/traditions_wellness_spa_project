@@ -117,9 +117,9 @@ class Page
                 </section>
                 <section class="flex flex-col gap-[16px] w-[400px]">
                     <div class="flex flex-col gap-[16px] max-w-[480px] items-end justify-end">
-                        <?php SecondaryInputField::render('Name', 'Hot Stone', '', [], '', null, '', '', '', [], false, '', 0, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', 'Price', '', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', 'Status', '', [], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], '', null, '', '', '', [], false, '', 0, '')?>
+                        <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, '')?>
                     </div>
                 </section> 
                 <section class="flex flex-col gap-[16px] w-[400px] items-end max-w-[400px]">

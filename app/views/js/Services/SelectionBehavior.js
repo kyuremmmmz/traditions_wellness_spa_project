@@ -3,7 +3,6 @@ class SelectionBehavior {
         this.categoryDropdown = document.querySelector('select[name="category"]');
         this.massageSelection = document.getElementById('massage_selection');
         this.bodyScrubSelection = document.getElementById('body_scrub_selection');
-        
         this.init();
     }
 
