@@ -136,7 +136,24 @@ class Page
                             <button id="proceedUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
                         </div>
                     </div>
-                </div>
+                </button>
+            </div>
+            <div class="w-full flex flex-col gap-[48px] items-center sm:mt-[64px] mt-[0px]">
+                <section class="flex flex-col gap-[16px] w-[400px] max-w-full">
+                    <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new add-on'); ?>
+                    <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                </section>
+                <section class="flex flex-col gap-[16px] w-[400px]">
+                    <div class="flex flex-col gap-[16px] max-w-[480px] items-end justify-end">
+                        <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], '', null, '', '', '', [], false, '', 0, '')?>
+                        <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], '', null, '', '', '', [], false, '')?>
+                        <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, '')?>
+                    </div>
+                </section> 
+                <section class="flex flex-col gap-[16px] w-[400px] items-end max-w-[400px]">
+                    <?php NewPrimaryButton::render('Create add-on', '', 'openConfirmAddANewAddOnModal', '257px', null) ?>
+                </section>
+            </div>
 
                 <!-- Confirm add a new add on Modal -->
                 <div id="ConfirmAddANewAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
