@@ -2,6 +2,8 @@
 
 namespace Project\App\Views\Php\Components\Table;
 
+use Project\App\Models\Utilities\NotificationsModel;
+
 class NotificationsTable
 {
     public static function render(?string $className = null): void
@@ -12,13 +14,9 @@ class NotificationsTable
         $rowClass = "border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition";
         $cellClass = "p-3 text-gray-700 dark:text-gray-300";
 
-        // Sample notifications (these should be fetched dynamically from a database)
-        $notifications = [
-            ["client_name" => "John Doe", "email" => "john@example.com", "rating" => "5 Stars", "date_posted" => "2024-07-18"],
-            ["client_name" => "Jane Smith", "email" => "jane@example.com", "rating" => "4 Stars", "date_posted" => "2024-07-17"],
-            ["client_name" => "Michael Lee", "email" => "michael@example.com", "rating" => "3 Stars", "date_posted" => "2024-07-16"],
-            ["client_name" => "Emma Brown", "email" => "emma@example.com", "rating" => "5 Stars", "date_posted" => "2024-07-15"],
-        ];
+        // Fetch notifications from the database
+        $notificationsModel = new NotificationsModel();
+        $notifications = $notificationsModel->getAllNotifications();
 
         echo <<<HTML
         <div class="$containerClass">
