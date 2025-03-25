@@ -2751,3 +2751,139 @@ FILES: Array
 
 )
 
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php959A.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [1] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                    [2] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                    [3] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [1] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                    [2] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                    [3] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php95AA.tmp
+                    [1] => C:\xampp\tmp\php95AB.tmp
+                    [2] => C:\xampp\tmp\php95BC.tmp
+                    [3] => C:\xampp\tmp\php95CD.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 4060021
+                    [1] => 4383076
+                    [2] => 1803235
+                    [3] => 4843000
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95DD.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95EE.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [full_path] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95FE.tmp
+            [error] => 0
+            [size] => 545950
+        )
+
+)
+

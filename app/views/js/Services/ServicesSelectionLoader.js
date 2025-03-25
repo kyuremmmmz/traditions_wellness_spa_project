@@ -83,7 +83,7 @@ class ServicesSelectionLoader {
         element.innerHTML = `
             <button class="w-[365px] h-[84px] flex p-[10px] gap-[16px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface rounded-[6px]">
                 <div class="w-[64px]">
-                    <img src='SAMPLE KAILANGAN PA TO LAGYAN' class="w-[64px] h-[64px] rounded-[6px] bg-primary dark:bg-primary">
+                    <img src='${service.main_photo}' class="w-[64px] h-[64px] rounded-[6px] bg-primary dark:bg-primary">
                 </div>
                 <div class="flex flex-col gap-[8px] w-[calc(100%-80px)] h-full justify-center items-center">
                     <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">${service.serviceName}</p>

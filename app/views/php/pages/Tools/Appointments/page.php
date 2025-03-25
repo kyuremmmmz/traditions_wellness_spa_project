@@ -102,7 +102,7 @@ class Page
                     <div class="border border-border border-[1px] dark:border-darkBorder rounded-[6px] max-w-full overflow-x-auto">
                         <table class="bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
                             <tr class="p-0 m-0" style="margin: 0; padding: 0;">
-                                <td class="p-0 m-0 flex sm:w-full">
+                                <td class="flex p-0 m-0 sm:w-full">
                                     <section class="p-[48px] w-[240px] flex flex-col gap-[16px]">
                                         <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
                                         <div class="flex flex-col gap-[8px] pl-[24px]">
@@ -232,7 +232,7 @@ class Page
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] items-end">
                             <div class="flex flex-col gap-[16px]">
-                                <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'service_booked', '', '', [], false, 'service_booked') ?>
+                                <?php SecondaryInputField::render('dropdownServicefield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'select', '', '', [], false, 'service_booked') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', ['1hr', '2hrs', '1hr30mins'], false, 'duration') ?>
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
