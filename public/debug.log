@@ -3117,3 +3117,139 @@ FILES: Array
 
 )
 
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => body-scrub-treatment-summer-exfoliation.jpg
+                    [1] => body-treatments-burlington-1300x650.jpg
+                    [2] => Facetune_27-07-2023-09-13-35.jpg
+                    [3] => Facetune_27-07-2023-09-13-35.HEIC
+                    [4] => GettyImages-1175433234-034014dc5b9c45edaeaf04c7b80ceafc.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => body-scrub-treatment-summer-exfoliation.jpg
+                    [1] => body-treatments-burlington-1300x650.jpg
+                    [2] => Facetune_27-07-2023-09-13-35.jpg
+                    [3] => Facetune_27-07-2023-09-13-35.HEIC
+                    [4] => GettyImages-1175433234-034014dc5b9c45edaeaf04c7b80ceafc.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/heic
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpsYb3mK
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phptXNoSZ
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpgrkEVE
+                    [3] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php5DdC90
+                    [4] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php5V9yFt
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 475861
+                    [1] => 132334
+                    [2] => 125860
+                    [3] => 84801
+                    [4] => 101309
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
