@@ -6,7 +6,7 @@ use Project\App\Models\Utilities\NotificationsModel;
 
 class NotificationsTable
 {
-    public static function render(int $userId, ?string $className = null): void
+    public static function render(?string $className = null): void
     {
         $containerClass = "border border-border dark:border-darkBorder border-[1px] rounded-[6px] w-[800px] bg-background dark:bg-darkBackground p-4";
         $tableClass = "w-full border-collapse";
