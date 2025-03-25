@@ -52,13 +52,9 @@ class AccountSettingsController
         session_start();
         $data = $_POST;
 
-        if (!isset($data['oldPasswordInputField']) || !isset($data['NewPasswordInputField'])) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'Invalid request. Missing password fields.',
-                'data' => $data['oldPasswordInputField'],
-                'newPasswordInputField' => $data['NewPasswordInputField']
-            ]);
+        if (!isset($data['oldPasswordInputField']) || !isset($data['NewPasswordInputField']) || !isset($data['ConfirmPasswordInputField'])) {
+            $_SESSION['error_message'] = 'Invalid request. Missing password fields.';
+            header('Location: /changepassword');
             exit;
         }
 
@@ -66,55 +62,40 @@ class AccountSettingsController
         $response = $this->accountSettingsModel->findByPhone($session['phone']);
 
         if (!is_array($response) || empty($response['password'])) {
-            http_response_code(500);
-            echo json_encode([
-                'error' => 'Unable to verify account.'
-            ]);
+            $_SESSION['error_message'] = 'Unable to verify account.';
+            header('Location: /changepassword');
             exit;
         }
 
         if (!password_verify($data['oldPasswordInputField'], $response['password'])) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'Old password is incorrect.',
-                'data' => $data['oldPasswordInputField'],
-                'hashed' => password_verify($data['oldPasswordInputField'], $response['password'])
-            ]);
+            $_SESSION['error_message'] = 'Old password is incorrect.';
+            header('Location: /changepassword');
             exit;
         }
 
         if ($data['oldPasswordInputField'] === $data['NewPasswordInputField']) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'New password must be different from old password.'
-            ]);
+            $_SESSION['error_message'] = 'New password must be different from old password.';
+            header('Location: /changepassword');
             exit;
         }
 
         if ($data['NewPasswordInputField'] !== $data['ConfirmPasswordInputField']) {
-            http_response_code(400);
-            echo json_encode([
-                'error' => 'New password and confirm password do not match.'
-            ]);
+            $_SESSION['error_message'] = 'New password and confirm password do not match.';
+            header('Location: /changepassword');
             exit;
         }
+
         $newPasswordHash = password_hash($data['ConfirmPasswordInputField'], PASSWORD_BCRYPT);
-        $update = $this->accountSettingsModel->updatePassword(
-            $response['password'],
-            $newPasswordHash
-        );
+        $update = $this->accountSettingsModel->updatePassword($response['password'], $newPasswordHash);
 
         if ($update) {
-            $_SESSION['server_success'] = [
-                'success' => 'Account updated successfully.'
-            ];
+            $_SESSION['server_success'] = 'Account updated successfully.';
+            $_SESSION['user']['password'] = $newPasswordHash;
             header('Location: /account');
             exit;
         } else {
-            http_response_code(500);
-            echo json_encode([
-                'error' => 'Account update failed. Please try again.'
-            ]);
+            $_SESSION['error_message'] = 'Account update failed. Please try again.';
+            header('Location: /changepassword');
             exit;
         }
     }

@@ -1,0 +1,3255 @@
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => pngIcon.png
+            [full_path] => pngIcon.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php85F2.tmp
+            [error] => 0
+            [size] => 9446
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/png
+                    [1] => image/svg+xml
+                    [2] => image/png
+                    [3] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php85F3.tmp
+                    [1] => C:\xampp\tmp\php85F4.tmp
+                    [2] => C:\xampp\tmp\php85F5.tmp
+                    [3] => C:\xampp\tmp\php85F6.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 165240
+                    [1] => 34399
+                    [2] => 9446
+                    [3] => 4060021
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pngIcon.png
+            [full_path] => pngIcon.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php8607.tmp
+            [error] => 0
+            [size] => 9446
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php8608.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+            [full_path] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php8628.tmp
+            [error] => 0
+            [size] => 3733541
+        )
+
+)
+
+Main Photo: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php1239
+            [extension] => jpg
+            [width] => 501
+            [height] => 483
+            [size] => 16778
+            [time] => 1742808348
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php1239.tmp
+            [is_animated] => 0
+            [id_encoded] => 3IwXPV9
+            [size_formatted] => 16.8 KB
+            [filename] => 3IwXPV9.jpg
+            [url] => https://iili.io/3IwXPV9.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php1239.3IwXPV9
+            [url_viewer] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_preview] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_thumb] => https://freeimage.host/i/3IwXPV9
+            [image] => Array
+                (
+                    [filename] => 3IwXPV9.jpg
+                    [name] => 3IwXPV9
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.jpg
+                    [size] => 16778
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3IwXPV9.th.jpg
+                    [name] => 3IwXPV9.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3IwXPV9.md.jpg
+                    [name] => 3IwXPV9.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.md.jpg
+                )
+
+            [display_url] => https://iili.io/3IwXPV9.md.jpg
+            [display_width] => 501
+            [display_height] => 483
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 23 minutes ago
+            [date_fixed_peer] => 2025-03-24 09:25:48
+            [title] => php1239
+            [title_truncated] => php1239
+            [title_truncated_html] => php1239
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 1: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+Showcase 2: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+Showcase 3: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php1FF4.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [4] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [4] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/png
+                    [1] => image/svg+xml
+                    [2] => image/png
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php1FF5.tmp
+                    [1] => C:\xampp\tmp\php1FF6.tmp
+                    [2] => C:\xampp\tmp\php1FF7.tmp
+                    [3] => C:\xampp\tmp\php1FF8.tmp
+                    [4] => C:\xampp\tmp\php2008.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 165240
+                    [1] => 34399
+                    [2] => 9446
+                    [3] => 4060021
+                    [4] => 4383076
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2028.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pngIcon.png
+            [full_path] => pngIcon.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php2039.tmp
+            [error] => 0
+            [size] => 9446
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [full_path] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php203A.tmp
+            [error] => 0
+            [size] => 545950
+        )
+
+)
+
+Main Photo: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php1FF4
+            [extension] => jpg
+            [width] => 4504
+            [height] => 3217
+            [size] => 2333178
+            [time] => 1742809860
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php1FF4.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INdzQf
+            [size_formatted] => 2.3 MB
+            [filename] => 3INdzQf.jpg
+            [url] => https://iili.io/3INdzQf.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php1ff4.3INdzQf
+            [url_viewer] => https://freeimage.host/i/3INdzQf
+            [url_viewer_preview] => https://freeimage.host/i/3INdzQf
+            [url_viewer_thumb] => https://freeimage.host/i/3INdzQf
+            [image] => Array
+                (
+                    [filename] => 3INdzQf.jpg
+                    [name] => 3INdzQf
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INdzQf.jpg
+                    [size] => 2333178
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INdzQf.th.jpg
+                    [name] => 3INdzQf.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INdzQf.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INdzQf.md.jpg
+                    [name] => 3INdzQf.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INdzQf.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INdzQf.md.jpg
+            [display_width] => 4504
+            [display_height] => 3217
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 2 seconds ago
+            [date_fixed_peer] => 2025-03-24 09:51:00
+            [title] => php1FF4
+            [title_truncated] => php1FF4
+            [title_truncated_html] => php1FF4
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 1: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+Showcase 2: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+Showcase 3: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => pngIcon.png
+            [full_path] => pngIcon.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php519D.tmp
+            [error] => 0
+            [size] => 9446
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [4] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [4] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/png
+                    [1] => image/svg+xml
+                    [2] => image/png
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php519E.tmp
+                    [1] => C:\xampp\tmp\php519F.tmp
+                    [2] => C:\xampp\tmp\php51A0.tmp
+                    [3] => C:\xampp\tmp\php51A1.tmp
+                    [4] => C:\xampp\tmp\php522F.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 165240
+                    [1] => 34399
+                    [2] => 9446
+                    [3] => 4060021
+                    [4] => 4383076
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php523F.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [full_path] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php528E.tmp
+            [error] => 0
+            [size] => 4652377
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+            [full_path] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php529F.tmp
+            [error] => 0
+            [size] => 1438805
+        )
+
+)
+
+Main Photo: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php1239
+            [extension] => jpg
+            [width] => 501
+            [height] => 483
+            [size] => 16778
+            [time] => 1742808348
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php1239.tmp
+            [is_animated] => 0
+            [id_encoded] => 3IwXPV9
+            [size_formatted] => 16.8 KB
+            [filename] => 3IwXPV9.jpg
+            [url] => https://iili.io/3IwXPV9.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php1239.3IwXPV9
+            [url_viewer] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_preview] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_thumb] => https://freeimage.host/i/3IwXPV9
+            [image] => Array
+                (
+                    [filename] => 3IwXPV9.jpg
+                    [name] => 3IwXPV9
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.jpg
+                    [size] => 16778
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3IwXPV9.th.jpg
+                    [name] => 3IwXPV9.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3IwXPV9.md.jpg
+                    [name] => 3IwXPV9.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.md.jpg
+                )
+
+            [display_url] => https://iili.io/3IwXPV9.md.jpg
+            [display_width] => 501
+            [display_height] => 483
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 28 minutes ago
+            [date_fixed_peer] => 2025-03-24 09:25:48
+            [title] => php1239
+            [title_truncated] => php1239
+            [title_truncated_html] => php1239
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 1: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php523F
+            [extension] => jpg
+            [width] => 5842
+            [height] => 3817
+            [size] => 5028009
+            [time] => 1742810072
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php523F.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INK2wX
+            [size_formatted] => 5 MB
+            [filename] => 3INK2wX.jpg
+            [url] => https://iili.io/3INK2wX.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php523f.3INK2wX
+            [url_viewer] => https://freeimage.host/i/3INK2wX
+            [url_viewer_preview] => https://freeimage.host/i/3INK2wX
+            [url_viewer_thumb] => https://freeimage.host/i/3INK2wX
+            [image] => Array
+                (
+                    [filename] => 3INK2wX.jpg
+                    [name] => 3INK2wX
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.jpg
+                    [size] => 5028009
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INK2wX.th.jpg
+                    [name] => 3INK2wX.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INK2wX.md.jpg
+                    [name] => 3INK2wX.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INK2wX.md.jpg
+            [display_width] => 5842
+            [display_height] => 3817
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 2 seconds ago
+            [date_fixed_peer] => 2025-03-24 09:54:32
+            [title] => php523F
+            [title_truncated] => php523F
+            [title_truncated_html] => php523F
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 2: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+Showcase 3: Array
+(
+    [image] => Array
+        (
+            [url] => 
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php7E8A.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/png
+                    [1] => image/svg+xml
+                    [2] => image/png
+                    [3] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php7E9B.tmp
+                    [1] => C:\xampp\tmp\php7E9C.tmp
+                    [2] => C:\xampp\tmp\php7E9D.tmp
+                    [3] => C:\xampp\tmp\php7E9E.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 165240
+                    [1] => 34399
+                    [2] => 9446
+                    [3] => 4060021
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php7EBE.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [full_path] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php7EDE.tmp
+            [error] => 0
+            [size] => 4652377
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Copy of LOGO 2.ico
+            [full_path] => Copy of LOGO 2.ico
+            [type] => image/x-icon
+            [tmp_name] => C:\xampp\tmp\php7EEF.tmp
+            [error] => 0
+            [size] => 173221
+        )
+
+)
+
+Main Photo: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php7E8A
+            [extension] => jpg
+            [width] => 4504
+            [height] => 3217
+            [size] => 2333178
+            [time] => 1742810406
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php7E8A.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INovR4
+            [size_formatted] => 2.3 MB
+            [filename] => 3INovR4.jpg
+            [url] => https://iili.io/3INovR4.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php7e8a.3INovR4
+            [url_viewer] => https://freeimage.host/i/3INovR4
+            [url_viewer_preview] => https://freeimage.host/i/3INovR4
+            [url_viewer_thumb] => https://freeimage.host/i/3INovR4
+            [image] => Array
+                (
+                    [filename] => 3INovR4.jpg
+                    [name] => 3INovR4
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INovR4.jpg
+                    [size] => 2333178
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INovR4.th.jpg
+                    [name] => 3INovR4.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INovR4.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INovR4.md.jpg
+                    [name] => 3INovR4.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INovR4.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INovR4.md.jpg
+            [display_width] => 4504
+            [display_height] => 3217
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 2 seconds ago
+            [date_fixed_peer] => 2025-03-24 10:00:06
+            [title] => php7E8A
+            [title_truncated] => php7E8A
+            [title_truncated_html] => php7E8A
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 1: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php7EBE
+            [extension] => jpg
+            [width] => 5568
+            [height] => 3712
+            [size] => 5217509
+            [time] => 1742810414
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php7EBE.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INoDbV
+            [size_formatted] => 5.2 MB
+            [filename] => 3INoDbV.jpg
+            [url] => https://iili.io/3INoDbV.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php7ebe.3INoDbV
+            [url_viewer] => https://freeimage.host/i/3INoDbV
+            [url_viewer_preview] => https://freeimage.host/i/3INoDbV
+            [url_viewer_thumb] => https://freeimage.host/i/3INoDbV
+            [image] => Array
+                (
+                    [filename] => 3INoDbV.jpg
+                    [name] => 3INoDbV
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.jpg
+                    [size] => 5217509
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INoDbV.th.jpg
+                    [name] => 3INoDbV.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INoDbV.md.jpg
+                    [name] => 3INoDbV.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INoDbV.md.jpg
+            [display_width] => 5568
+            [display_height] => 3712
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 2 seconds ago
+            [date_fixed_peer] => 2025-03-24 10:00:14
+            [title] => php7EBE
+            [title_truncated] => php7EBE
+            [title_truncated_html] => php7EBE
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 2: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php7EDE
+            [extension] => jpg
+            [width] => 3024
+            [height] => 4032
+            [size] => 5630124
+            [time] => 1742810440
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php7EDE.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INxgkv
+            [size_formatted] => 5.6 MB
+            [filename] => 3INxgkv.jpg
+            [url] => https://iili.io/3INxgkv.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php7ede.3INxgkv
+            [url_viewer] => https://freeimage.host/i/3INxgkv
+            [url_viewer_preview] => https://freeimage.host/i/3INxgkv
+            [url_viewer_thumb] => https://freeimage.host/i/3INxgkv
+            [image] => Array
+                (
+                    [filename] => 3INxgkv.jpg
+                    [name] => 3INxgkv
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INxgkv.jpg
+                    [size] => 5630124
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INxgkv.th.jpg
+                    [name] => 3INxgkv.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INxgkv.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INxgkv.md.jpg
+                    [name] => 3INxgkv.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INxgkv.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INxgkv.md.jpg
+            [display_width] => 3024
+            [display_height] => 4032
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 1 second ago
+            [date_fixed_peer] => 2025-03-24 10:00:40
+            [title] => php7EDE
+            [title_truncated] => php7EDE
+            [title_truncated_html] => php7EDE
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 3: Array
+(
+    [error] => Failed to upload image
+    [http_code] => 400
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => pngIcon.png
+            [full_path] => pngIcon.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\phpC446.tmp
+            [error] => 0
+            [size] => 9446
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 476481766_1323192245554738_7037681384513990116_n.png
+                    [1] => pngIcon.svg
+                    [2] => pngIcon.png
+                    [3] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/png
+                    [1] => image/svg+xml
+                    [2] => image/png
+                    [3] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\phpC447.tmp
+                    [1] => C:\xampp\tmp\phpC448.tmp
+                    [2] => C:\xampp\tmp\phpC459.tmp
+                    [3] => C:\xampp\tmp\phpC45A.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 165240
+                    [1] => 34399
+                    [2] => 9446
+                    [3] => 4060021
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
+            [full_path] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC45B.tmp
+            [error] => 0
+            [size] => 4843000
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC46C.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC47C.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+)
+
+Main Photo: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php1239
+            [extension] => jpg
+            [width] => 501
+            [height] => 483
+            [size] => 16778
+            [time] => 1742808348
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php1239.tmp
+            [is_animated] => 0
+            [id_encoded] => 3IwXPV9
+            [size_formatted] => 16.8 KB
+            [filename] => 3IwXPV9.jpg
+            [url] => https://iili.io/3IwXPV9.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php1239.3IwXPV9
+            [url_viewer] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_preview] => https://freeimage.host/i/3IwXPV9
+            [url_viewer_thumb] => https://freeimage.host/i/3IwXPV9
+            [image] => Array
+                (
+                    [filename] => 3IwXPV9.jpg
+                    [name] => 3IwXPV9
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.jpg
+                    [size] => 16778
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3IwXPV9.th.jpg
+                    [name] => 3IwXPV9.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3IwXPV9.md.jpg
+                    [name] => 3IwXPV9.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3IwXPV9.md.jpg
+                )
+
+            [display_url] => https://iili.io/3IwXPV9.md.jpg
+            [display_width] => 501
+            [display_height] => 483
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 48 minutes ago
+            [date_fixed_peer] => 2025-03-24 09:25:48
+            [title] => php1239
+            [title_truncated] => php1239
+            [title_truncated_html] => php1239
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 1: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => phpC45B
+            [extension] => jpg
+            [width] => 3915
+            [height] => 2936
+            [size] => 6182494
+            [time] => 1742811310
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => phpC45B.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INMc0b
+            [size_formatted] => 6.2 MB
+            [filename] => 3INMc0b.jpg
+            [url] => https://iili.io/3INMc0b.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/phpc45b.3INMc0b
+            [url_viewer] => https://freeimage.host/i/3INMc0b
+            [url_viewer_preview] => https://freeimage.host/i/3INMc0b
+            [url_viewer_thumb] => https://freeimage.host/i/3INMc0b
+            [image] => Array
+                (
+                    [filename] => 3INMc0b.jpg
+                    [name] => 3INMc0b
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INMc0b.jpg
+                    [size] => 6182494
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INMc0b.th.jpg
+                    [name] => 3INMc0b.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INMc0b.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INMc0b.md.jpg
+                    [name] => 3INMc0b.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INMc0b.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INMc0b.md.jpg
+            [display_width] => 3915
+            [display_height] => 2936
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 2 seconds ago
+            [date_fixed_peer] => 2025-03-24 10:15:10
+            [title] => phpC45B
+            [title_truncated] => phpC45B
+            [title_truncated_html] => phpC45B
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 2: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php7EBE
+            [extension] => jpg
+            [width] => 5568
+            [height] => 3712
+            [size] => 5217509
+            [time] => 1742810414
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php7EBE.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INoDbV
+            [size_formatted] => 5.2 MB
+            [filename] => 3INoDbV.jpg
+            [url] => https://iili.io/3INoDbV.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php7ebe.3INoDbV
+            [url_viewer] => https://freeimage.host/i/3INoDbV
+            [url_viewer_preview] => https://freeimage.host/i/3INoDbV
+            [url_viewer_thumb] => https://freeimage.host/i/3INoDbV
+            [image] => Array
+                (
+                    [filename] => 3INoDbV.jpg
+                    [name] => 3INoDbV
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.jpg
+                    [size] => 5217509
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INoDbV.th.jpg
+                    [name] => 3INoDbV.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INoDbV.md.jpg
+                    [name] => 3INoDbV.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INoDbV.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INoDbV.md.jpg
+            [display_width] => 5568
+            [display_height] => 3712
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 15 minutes ago
+            [date_fixed_peer] => 2025-03-24 10:00:14
+            [title] => php7EBE
+            [title_truncated] => php7EBE
+            [title_truncated_html] => php7EBE
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+Showcase 3: Array
+(
+    [status_code] => 200
+    [success] => Array
+        (
+            [message] => image uploaded
+            [code] => 200
+        )
+
+    [image] => Array
+        (
+            [name] => php523F
+            [extension] => jpg
+            [width] => 5842
+            [height] => 3817
+            [size] => 5028009
+            [time] => 1742810072
+            [expiration] => 0
+            [likes] => 0
+            [description] => 
+            [original_filename] => php523F.tmp
+            [is_animated] => 0
+            [id_encoded] => 3INK2wX
+            [size_formatted] => 5 MB
+            [filename] => 3INK2wX.jpg
+            [url] => https://iili.io/3INK2wX.jpg
+            [url_short] => https://freeimage.host/
+            [url_seo] => https://freeimage.host/i/php523f.3INK2wX
+            [url_viewer] => https://freeimage.host/i/3INK2wX
+            [url_viewer_preview] => https://freeimage.host/i/3INK2wX
+            [url_viewer_thumb] => https://freeimage.host/i/3INK2wX
+            [image] => Array
+                (
+                    [filename] => 3INK2wX.jpg
+                    [name] => 3INK2wX
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.jpg
+                    [size] => 5028009
+                )
+
+            [thumb] => Array
+                (
+                    [filename] => 3INK2wX.th.jpg
+                    [name] => 3INK2wX.th
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.th.jpg
+                )
+
+            [medium] => Array
+                (
+                    [filename] => 3INK2wX.md.jpg
+                    [name] => 3INK2wX.md
+                    [mime] => image/jpeg
+                    [extension] => jpg
+                    [url] => https://iili.io/3INK2wX.md.jpg
+                )
+
+            [display_url] => https://iili.io/3INK2wX.md.jpg
+            [display_width] => 5842
+            [display_height] => 3817
+            [views_label] => views
+            [likes_label] => likes
+            [how_long_ago] => 21 minutes ago
+            [date_fixed_peer] => 2025-03-24 09:54:32
+            [title] => php523F
+            [title_truncated] => php523F
+            [title_truncated_html] => php523F
+            [is_use_loader] => 
+        )
+
+    [status_txt] => OK
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php59F6.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php5A06.tmp
+                    [1] => C:\xampp\tmp\php5A07.tmp
+                    [2] => C:\xampp\tmp\php5A18.tmp
+                    [3] => C:\xampp\tmp\php5A19.tmp
+                    [4] => C:\xampp\tmp\php5A2A.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 1803235
+                    [1] => 2609556
+                    [2] => 545950
+                    [3] => 3733541
+                    [4] => 1438805
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php5A2B.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php5A3B.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php5A3C.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2848.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php2858.tmp
+                    [1] => C:\xampp\tmp\php2869.tmp
+                    [2] => C:\xampp\tmp\php287A.tmp
+                    [3] => C:\xampp\tmp\php287B.tmp
+                    [4] => C:\xampp\tmp\php288B.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 1803235
+                    [1] => 2609556
+                    [2] => 545950
+                    [3] => 3733541
+                    [4] => 1438805
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php289C.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+            [full_path] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php289D.tmp
+            [error] => 0
+            [size] => 1438805
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php28AE.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php27F4.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash.jpg
+                    [1] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [2] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [3] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [4] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php2805.tmp
+                    [1] => C:\xampp\tmp\php2816.tmp
+                    [2] => C:\xampp\tmp\php2817.tmp
+                    [3] => C:\xampp\tmp\php2827.tmp
+                    [4] => C:\xampp\tmp\php2828.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 1803235
+                    [1] => 2609556
+                    [2] => 545950
+                    [3] => 3733541
+                    [4] => 1438805
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2839.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php283A.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php285A.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2049.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => ecfc9028-31cd-4de1-928c-ab5dbba1f00e.mp4
+                )
+
+            [full_path] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => ecfc9028-31cd-4de1-928c-ab5dbba1f00e.mp4
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => video/mp4
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php205A.tmp
+                    [1] => C:\xampp\tmp\php205B.tmp
+                    [2] => C:\xampp\tmp\php205C.tmp
+                    [3] => C:\xampp\tmp\php205D.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 328739
+                    [1] => 430233
+                    [2] => 399840
+                    [3] => 9216106
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4A86.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => ecfc9028-31cd-4de1-928c-ab5dbba1f00e.mp4
+                )
+
+            [full_path] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => ecfc9028-31cd-4de1-928c-ab5dbba1f00e.mp4
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => video/mp4
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php4A97.tmp
+                    [1] => C:\xampp\tmp\php4A98.tmp
+                    [2] => C:\xampp\tmp\php4A99.tmp
+                    [3] => C:\xampp\tmp\php4A9A.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 328739
+                    [1] => 430233
+                    [2] => 399840
+                    [3] => 9216106
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php408B.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php409C.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 1803235
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [full_path] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php40DB.tmp
+            [error] => 0
+            [size] => 4652377
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 0ab790f5-baa3-4495-a405-6a53bdaa5d6d.jfif
+            [full_path] => 0ab790f5-baa3-4495-a405-6a53bdaa5d6d.jfif
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php40EC.tmp
+            [error] => 0
+            [size] => 111313
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php40FD.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2D2D.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => mundo.jpg
+                    [1] => a787d42d-b1c7-4115-9539-8bc9386f679e.jpg
+                    [2] => 876dbdc5-e7e5-4c0f-b986-8f85b0e2cf6c.jpg
+                    [3] => 1533bf0f-4f7f-4ad3-bbe4-377ffebcb887.jpg
+                    [4] => eb887138-718d-431e-8f0d-61adf8a2fcd9.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => mundo.jpg
+                    [1] => a787d42d-b1c7-4115-9539-8bc9386f679e.jpg
+                    [2] => 876dbdc5-e7e5-4c0f-b986-8f85b0e2cf6c.jpg
+                    [3] => 1533bf0f-4f7f-4ad3-bbe4-377ffebcb887.jpg
+                    [4] => eb887138-718d-431e-8f0d-61adf8a2fcd9.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php2D4D.tmp
+                    [1] => C:\xampp\tmp\php2D5E.tmp
+                    [2] => C:\xampp\tmp\php2D5F.tmp
+                    [3] => C:\xampp\tmp\php2D60.tmp
+                    [4] => C:\xampp\tmp\php2D61.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 192593
+                    [1] => 10209
+                    [2] => 192593
+                    [3] => 9317
+                    [4] => 14005
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2D62.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [full_path] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2D63.tmp
+            [error] => 0
+            [size] => 4652377
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php2D74.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpD1F9.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\phpD20A.tmp
+                    [1] => C:\xampp\tmp\phpD21B.tmp
+                    [2] => C:\xampp\tmp\phpD21C.tmp
+                    [3] => C:\xampp\tmp\phpD22C.tmp
+                    [4] => C:\xampp\tmp\phpD23D.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 2609556
+                    [1] => 545950
+                    [2] => 3733541
+                    [3] => 1438805
+                    [4] => 4652377
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php3B5A.tmp
+                    [1] => C:\xampp\tmp\php3B5B.tmp
+                    [2] => C:\xampp\tmp\php3B6B.tmp
+                    [3] => C:\xampp\tmp\php3B6C.tmp
+                    [4] => C:\xampp\tmp\php3B6D.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 2609556
+                    [1] => 545950
+                    [2] => 3733541
+                    [3] => 1438805
+                    [4] => 4652377
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php68C8.tmp
+                    [1] => C:\xampp\tmp\php68C9.tmp
+                    [2] => C:\xampp\tmp\php68D9.tmp
+                    [3] => C:\xampp\tmp\php68DA.tmp
+                    [4] => C:\xampp\tmp\php68EB.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 2609556
+                    [1] => 545950
+                    [2] => 3733541
+                    [3] => 1438805
+                    [4] => 4652377
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4B00.tmp
+            [error] => 0
+            [size] => 4060021
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => fb4adabf-fa51-44fa-9607-dc83a813a35a.jpg
+                    [4] => c5914c58-3c9b-4aaf-9f90-86c16a9cdd25.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => d001a2eb-173a-4f71-b796-72a72bb2cf6b.jpg
+                    [1] => efe74095-9c85-416f-9a6f-2186a2dd4344.jpg
+                    [2] => 155c58c7-02ef-40aa-afbe-880b97eda77e.jpg
+                    [3] => fb4adabf-fa51-44fa-9607-dc83a813a35a.jpg
+                    [4] => c5914c58-3c9b-4aaf-9f90-86c16a9cdd25.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => C:\xampp\tmp\php4B01.tmp
+                    [1] => C:\xampp\tmp\php4B12.tmp
+                    [2] => C:\xampp\tmp\php4B13.tmp
+                    [3] => C:\xampp\tmp\php4B14.tmp
+                    [4] => C:\xampp\tmp\php4B15.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 328739
+                    [1] => 430233
+                    [2] => 399840
+                    [3] => 77060
+                    [4] => 132670
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [full_path] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4B16.tmp
+            [error] => 0
+            [size] => 1803235
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4B26.tmp
+            [error] => 0
+            [size] => 4383076
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => fb4adabf-fa51-44fa-9607-dc83a813a35a.jpg
+            [full_path] => fb4adabf-fa51-44fa-9607-dc83a813a35a.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php4B27.tmp
+            [error] => 0
+            [size] => 77060
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+FILES: Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => body-scrub-treatment-summer-exfoliation.jpg
+                    [1] => body-treatments-burlington-1300x650.jpg
+                    [2] => Facetune_27-07-2023-09-13-35.jpg
+                    [3] => Facetune_27-07-2023-09-13-35.HEIC
+                    [4] => GettyImages-1175433234-034014dc5b9c45edaeaf04c7b80ceafc.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => body-scrub-treatment-summer-exfoliation.jpg
+                    [1] => body-treatments-burlington-1300x650.jpg
+                    [2] => Facetune_27-07-2023-09-13-35.jpg
+                    [3] => Facetune_27-07-2023-09-13-35.HEIC
+                    [4] => GettyImages-1175433234-034014dc5b9c45edaeaf04c7b80ceafc.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/heic
+                    [4] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpsYb3mK
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phptXNoSZ
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpgrkEVE
+                    [3] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php5DdC90
+                    [4] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php5V9yFt
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 475861
+                    [1] => 132334
+                    [2] => 125860
+                    [3] => 84801
+                    [4] => 101309
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+

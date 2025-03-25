@@ -37,9 +37,7 @@ class Page
                     <section class="flex flex-col gap-[24px] mt-[24px] w-full min-w-[316px] max-w-[400px] sm:items-center">
                         <div class="border-border dark:border-darkBorder rounded-[6px] border-[1px] flex flex-col w-full">
                             <?php GlobalButton::render("navigationSecondaryTop", "Personal Information", "", "userSmall", 'openPersonalInformationButton');
-                            GlobalButton::render("navigationSecondaryMiddle", "Activities", "", "activitiesSmall", 'openActivitiesButton');
-                            GlobalButton::render("navigationSecondaryMiddle", "Security", "", "securitySmall", 'openSecurityModalButton');
-                            GlobalButton::render("navigationSecondaryMiddle", "Report Tickets", "", "reportTicketSmall", "openReportTicketsButton"); ?>
+                            GlobalButton::render("navigationSecondaryBottom", "Security", "", "securitySmall", 'openSecurityModalButton');?>
                         </div>
                         <div class="border-border dark:border-darkBorder rounded-[6px] border-[1px] flex flex-col w-full">
                             <?php GlobalButton::render("navigationSecondary", "Logout", "", "logoutSmall", 'openLogoutDialogBox'); ?>

@@ -1,5 +1,5 @@
 <?php
-namespace Project\App\Views\Php\Pages\Dashboard;
+namespace Project\App\Views\Php\Pages\Tools\Users;
 
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Texts\Text;
@@ -20,13 +20,13 @@ class Page
             Sidebar::render(); 
             WorkingBanner::render();
             ?>
-            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:pl-[10%] px-[48px] flex flex-col mt-[80px] sm:mt-[120px] w-full">
+            <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] px-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen  w-full">
                 <div>
                     <!-- Header Section -->
                     <section class="flex items-center mb-4">
-                        <button type="button" class="min-w-[50px] min-h-[50px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface transition-all rounded-md flex justify-center items-center">
+                        <div type="button" class="min-w-[50px] min-h-[50px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground transition-all rounded-md flex justify-center items-center">
                             <?php IconChoice::render('clockMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
-                        </button>
+                        </div>
                         <div class="flex flex-col ml-3">
                             <?php 
                             echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left', 'Users');
@@ -47,7 +47,7 @@ class Page
                                 <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
                                     <section class="p-[48px] flex gap-[16px] bg-opacity-5">
                                         <?php
-                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Therapist', 'Option 2', 'Option 3']);
+                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Therapist', 'Customer']);
                                         ?>
                                     </section>
                                     <section class="max-w-[1120px]">
