@@ -128,9 +128,6 @@ class Page
                                         </section>
                                     </div>
                                 </td>
-                                <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
-                                    
-                                </td>
                             </tr>
                         </table>
                     </div>
@@ -230,11 +227,12 @@ class Page
                                 <?php SecondaryInputField::render('textfield', 'Last Name', 'Enter Last Name', [], 'last_name_error' ?? '', null, 'LastName', '', '', [], false, 'last_name') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Gender', 'Select Gender', $GenderOption, 'gender_error' ?? '', null, 'GenderOptions', '', '', [], false, 'gender') ?>
                                 <?php SecondaryInputField::render('emailfield', 'Email', 'Enter Email', [], 'customer_email_error' ?? '', null, 'CustomerEmail', '', '', [], false, 'customer_email') ?>
+
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] items-end">
                             <div class="flex flex-col gap-[16px]">
-                                <?php SecondaryInputField::render('dropdownServicefield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'select', '', '', [], false, 'service_booked') ?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', [], 'service_booked_error', null, 'service_booked', '', '', [], false, 'service_booked') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'DurationOptions', '', '', ['1hr', '2hrs', '1hr30mins'], false, 'duration') ?>
                                 <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'PartySizeOptions', '', '', $PartySizeOptions, false, 'party_size') ?>
                                 <?php SecondaryInputField::render('dropdownfield', 'Massage Selection', 'Select Massage', $MassageOptions, $MassageOptionsError, null, 'MassageOptions', '', '', [], true, 'massage_selection') ?>
@@ -346,8 +344,8 @@ class Page
                                             <div id="hiddenVal"></div>
                                         </div>
                                     </section>
-                                    <section id="serviceBookedSection" class="flex hidden flex-col sm:flex-row items-top justify-start md:justify-center gap-[48px] absolute w-full transition-all duration-300 transform">
-                                        <div class="flex flex-col gap-[16px] ">
+                                    <section id="serviceBookedSection" class="flex hidden flex-col sm:flex-row items-top justify-start md:justify-center gap-[48px] absolute w-full h-full transition-all duration-300 transform">
+                                        <div class="flex flex-col gap-[16px] h-full">
                                             <?php SecondaryInputField::render('dropdownfield', 'Service Booked', 'Select Service Booked', $ServiceBookedOptions, $ServiceBookedOptionsError, null, 'select2', '', '', [], false, 'service_booked') ?>
                                             <?php SecondaryInputField::render('dropdownfield', 'Duration', 'Select Duration', $DurationOptions, $DurationOptionsError, null, 'durationhaha', '', 'duration', [], false, 'duration') ?>
                                             <?php SecondaryInputField::render('dropdownwithpricefield', 'Party Size', 'Select Party Size', [], $PartySizeOptionsError, null, 'party_size', '', '', $PartySizeOptions, false, 'party_size') ?>
@@ -365,13 +363,13 @@ class Page
                                             document.getElementById('modalAddOns').value = addons;
                                             document.getElementById('modalStatus').value = status;
                                             -->
-                                            <p id="modalContactNumber"></p>
-                                            <p id="modalAddress"></p>
-                                            <p id="modalName"></p>
-                                            <p id="modalBookingDate"></p>
-                                            <p id="modalTotalPrice"></p>
-                                            <p id="modalAddOns"></p>
-                                            <p id="modalStatus"></p>
+                                            <p class="text-transparent" id="modalContactNumber"></p>
+                                            <p class="text-transparent" id="modalAddress"></p>
+                                            <p class="text-transparent" id="modalName"></p>
+                                            <p class="text-transparent" id="modalBookingDate"></p>
+                                            <p class="text-transparent" id="modalTotalPrice"></p>
+                                            <p class="text-transparent" id="modalAddOns"></p>
+                                            <p class="text-transparent" id="modalStatus"></p>
                                         </div>
                                     </section>
                                 </div>
@@ -425,7 +423,7 @@ class Page
                 <!-- Update Unsaved Progress Modal -->
                 <div id="UpdateUnsavedProgressModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
                     <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to cancel this appointment? This cannot be undone.</p>
+                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit? All unsaved changes will be lost.</p>
                         <div class="flex gap-[16px] justify-end mt-[48px]">
                             <button type="button" id="closeUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
                             <button id="proceedUpdateUnsavedProgressButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>

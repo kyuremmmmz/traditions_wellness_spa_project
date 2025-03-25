@@ -149,6 +149,7 @@ class SecondaryInputField
                 break;
             case 'multiphotofield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
+                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
                 echo "<div id='slideshow_{$id}_fileList' class='flex flex-col gap-[8px]'>";
                 echo "<button type='button' id='slideshow_{$id}_addButton' onclick='document.getElementById(\"slideshow_{$id}_input\").click()' class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
                 echo "<input type='file' multiple name='{$name}[]' accept='image/*' class=''  $disabledAttribute>";
@@ -249,10 +250,9 @@ class SecondaryInputField
                 echo '</select></div>';
                 break;
             case 'dropdownServicefield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px]'>";
                 echo IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[16px] -rotate-90', '', 'onSurface', 'darkOnSurface');
-                echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
-
+                echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">';
                 echo '</select></div>';
                 break;
             case 'datefield':
