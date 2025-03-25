@@ -47,7 +47,7 @@ class Page
                                     <div class="flex justify-between items-end w-full gap-2">
                                         <?php Text::render('', '', 'BodyOne text-onBackground dark:text-darkOnBackground leading-none', 'Today\'s Appointments');?>
                                     </div>
-                                    <div class="p-[48px] flex items-center justify-between w-[412px] rounded-[6px] border border-border dark:border-darkBorder">
+                                    <a href="/appointments" class="p-[48px] flex items-center justify-between w-[412px] rounded-[6px] border border-border dark:border-darkBorder">
                                         <div class="flex flex-col gap-[8px]">
                                             <?php
                                             CountDisplayer::render('success', 0, 'Completed', 'completed', '');
@@ -59,7 +59,7 @@ class Page
                                             ?>
                                         </div>
                                         <?php AppointmentsChart::render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total);  ?>
-                                    </div>
+                                    </a>
                                 </section>
                                 
                                 <section class="flex flex-col overflow-x-auto gap-4">
@@ -113,7 +113,7 @@ class Page
                                                 <div class='relative min-w-[100px]'>
                                                     <?php IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[9px] -rotate-90', '', 'onSurface', 'darkOnSurface'); ?>
                                                     <label for="monthlyYearSelector" class="BodyTwo leading-none text-onBackground dark:text-darkOnBackground pr-[16px]">Year</label>
-                                                    <select id="monthlyYearSelector" class="BodyTwo leading-none px-3 h-[30px] w-[80px] py-1 appearance-none rounded-[6px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">
+                                                    <select id="monthlyYearSelector" class="BodyTwo leading-none px-3 h-[30px] w-[100px] py-1 appearance-none rounded-[6px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">
                                                         <?php
                                                         for ($year = $currentYear; $year >= $currentYear - 4; $year--) {
                                                             echo "<option value='$year'>$year</option>";
@@ -156,7 +156,7 @@ class Page
                                                 <div class='relative min-w-[100px]'>
                                                     <?php IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[9px] -rotate-90', '', 'onSurface', 'darkOnSurface'); ?>
                                                     <label for="weeklyYearSelector" class="BodyTwo leading-none text-onBackground dark:text-darkOnBackground pr-[16px]">Year</label>
-                                                    <select id="weeklyYearSelector" class="BodyTwo leading-none px-3 h-[30px] w-[80px] py-1 appearance-none rounded-[6px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">
+                                                    <select id="weeklyYearSelector" class="BodyTwo leading-none px-3 h-[30px] w-[100px] py-1 appearance-none rounded-[6px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">
                                                         <?php
                                                         $currentYear = date('Y');
                                                         for ($year = $currentYear; $year >= $currentYear - 4; $year--) {
@@ -193,19 +193,19 @@ class Page
                                             <!-- Weekly Popular Service -->
                                             <div id="weekly_popular_info" class="flex flex-col gap-[4px] px-[48px]">
                                                 <?php Text::render('weekly_popular_caption', '', 'CaptionOne text-onBackground dark:text-darkOnBackground leading-none', "This week's most popular service");?>
-                                                <?php Text::render('weekly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'sample');?>
+                                                <?php Text::render('weekly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'None');?>
                                             </div>
 
                                             <!-- Monthly Popular Service -->
                                             <div id="monthly_popular_info" class="flex flex-col gap-[4px] px-[48px]" style="display: none;">
                                                 <?php Text::render('monthly_popular_caption', '', 'CaptionOne text-onBackground dark:text-darkOnBackground leading-none', "This month's most popular service");?>
-                                                <?php Text::render('monthly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'sample');?>
+                                                <?php Text::render('monthly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'None');?>
                                             </div>
 
                                             <!-- Yearly Popular Service -->
                                             <div id="yearly_popular_info" class="flex flex-col gap-[4px] px-[48px]" style="display: none;">
                                                 <?php Text::render('yearly_popular_caption', '', 'CaptionOne text-onBackground dark:text-darkOnBackground leading-none', "This year's most popular service");?>
-                                                <?php Text::render('yearly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'sample');?>
+                                                <?php Text::render('yearly_popular_service', '', 'BodyMediumOne text-primary dark:text-darkPrimary leading-none', 'None');?>
                                             </div>
 
                                         </div>

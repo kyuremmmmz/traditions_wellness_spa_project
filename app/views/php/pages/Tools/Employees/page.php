@@ -9,7 +9,6 @@ use Project\App\Views\Php\Components\Table\TherapistsTable;
 use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
-use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
 use Project\App\Views\Php\Components\Icons\IconChoice;
 use Project\App\Views\Php\Components\Inputs\SearchField;
 
@@ -179,7 +178,7 @@ class Page
 
             <!-- Confirm update therapist Modal -->
             <div id="SaveChangesTherapistModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
+                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col relative">
                     <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to update the details of this therapist?</p>
                     <div class="flex gap-[16px] justify-end mt-[48px]">
                         <button type="button" id="cancelSaveChangesTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
