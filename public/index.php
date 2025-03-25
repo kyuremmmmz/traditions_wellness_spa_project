@@ -1,9 +1,16 @@
 <?php
+// Suppress PHP errors from being displayed in output
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
 
 use App\Core\Router;
+use Project\App\Core\Middleware\CorsMiddleware;
 
 require_once '../app/core/Router.php';
 require_once '../vendor/autoload.php';
+
+// Apply CORS middleware to all requests
+CorsMiddleware::handle(null, function() {});
 
 $router = new Router();
 // API ROUTES
@@ -39,19 +46,17 @@ $router->post('/mobileLogin', 'AuthMobileController@login');
 $router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
 $router->post('/auth/check-token', 'AuthMobileController@checkToken');
 $router->post('/auth/mobile-logout', 'AuthMobileController@logout');
+$router->post('/auth/check-verification', 'AuthMobileController@checkVerificationCode');
 
 //  Mobile Services Routes
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
-$router->get('/mobileServices/categories', 'Mobile\ServicesController@getCategories');
-$router->get('/mobileServices/details/{id}', 'Mobile\ServicesController@getServiceDetails');
-$router->post('/mobileServices/category', 'Mobile\ServicesController@createCategory');
 
 // Mobile Appointment Routes
-$router->get('/mobile/appointments/services', 'Mobile\OnlineAppointmentMobileController@index');
-$router->get('/mobile/appointments/timeslots', 'Mobile\OnlineAppointmentMobileController@getAvailableTimeSlots');
-$router->post('/mobile/appointments', 'Mobile\OnlineAppointmentMobileController@store');
-$router->put('/mobile/appointments/{id}', 'Mobile\OnlineAppointmentMobileController@update');
-$router->delete('/mobile/appointments/{id}', 'Mobile\OnlineAppointmentMobileController@delete');
+$router->get('/mobileAppointments', 'Mobile\OnlineAppointmentMobileController@index');
+$router->get('/mobileAppointments/timeSlots', 'Mobile\OnlineAppointmentMobileController@getAvailableTimeSlots');
+$router->post('/mobileAppointments', 'Mobile\OnlineAppointmentMobileController@store');
+$router->put('/mobileAppointments/{id}', 'Mobile\OnlineAppointmentMobileController@update');
+
 
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
@@ -107,6 +112,29 @@ $router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
 try {
     $router->resolve();
 } catch (Exception $e) {
-    http_response_code(404);
-    echo json_encode(['error' => $e->getMessage()]);
+    // Clean any existing output buffers
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+    
+    // Check if this is an API request
+    $isApiRequest = false;
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    
+    if (strpos($path, '/mobile') === 0 || 
+        (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') ||
+        json_decode(file_get_contents('php://input'), true)) {
+        $isApiRequest = true;
+    }
+    
+    if ($isApiRequest) {
+        // For API requests, return JSON error
+        http_response_code(500);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => $e->getMessage()]);
+    } else {
+        // For regular web requests, redirect to home
+        http_response_code(404);
+        header('Location:/');
+    }
 }

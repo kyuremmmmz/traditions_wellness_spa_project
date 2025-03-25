@@ -35,49 +35,88 @@ class Router
 
     public function resolve()
     {
-        $method = $_SERVER['REQUEST_METHOD'];
-        $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        try {
+            $method = $_SERVER['REQUEST_METHOD'];
+            $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+            $isApiRequest = false;
+            
+            // Check if this is an API request (mobile or AJAX)
+            if (strpos($path, '/mobile') === 0 || 
+                (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') ||
+                json_decode(file_get_contents('php://input'), true)) {
+                $isApiRequest = true;
+            }
 
-        foreach ($this->routes[$method] ?? [] as $route => $config) {
-            if (preg_match($this->convertToRegex($route), $path, $params)) {
-                if (isset($config['viewFile'])) {
-                    if (isset($config['middleware'])) {
-                        $middlewareClass = "Project\\App\\Core\\Middleware\\{$config['middleware']}";
-                        $middleware = new $middlewareClass();
-                        $middleware::handle($_REQUEST, function () use ($config) {
-                            $this->renderView($config['foldername'], $config['viewFile']);
-                        });
+            foreach ($this->routes[$method] ?? [] as $route => $config) {
+                if (preg_match($this->convertToRegex($route), $path, $params)) {
+                    if (isset($config['viewFile'])) {
+                        if (isset($config['middleware'])) {
+                            $middlewareClass = "Project\\App\\Core\\Middleware\\{$config['middleware']}";
+                            $middleware = new $middlewareClass();
+                            $middleware::handle($_REQUEST, function () use ($config) {
+                                $this->renderView($config['foldername'], $config['viewFile']);
+                            });
+                            return;
+                        }
+                        $this->renderView($config['foldername'], $config['viewFile']);
                         return;
                     }
-                    $this->renderView($config['foldername'], $config['viewFile']);
-                    return;
-                }
 
-                $controller = $config['controller'] ?? null;
-                if ($controller) {
-                    $middleware = $config['middleware'] ?? null;
-                    list($controllerName, $action) = explode('@', $controller);
+                    $controller = $config['controller'] ?? null;
+                    if ($controller) {
+                        $middleware = $config['middleware'] ?? null;
+                        list($controllerName, $action) = explode('@', $controller);
 
-                    if (strpos($controllerName, 'Mobile\\') === 0) {
-                        $controllerName = substr($controllerName, strlen('Mobile\\'));
-                        $controllerNamespace = "Project\\App\\Controllers\\Mobile\\";
-                    } else {
-                        $controllerNamespace = json_decode(file_get_contents('php://input'), true) ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\UseCases\\";
-                    }
-                    $controllerClass = $controllerNamespace . $controllerName;
-                    $controllerInstance = new $controllerClass();
+                        if (strpos($controllerName, 'Mobile\\') === 0) {
+                            $controllerName = substr($controllerName, strlen('Mobile\\'));
+                            $controllerNamespace = "Project\\App\\Controllers\\Mobile\\";
+                            $isApiRequest = true;
+                        } else {
+                            $controllerNamespace = json_decode(file_get_contents('php://input'), true) ? "Project\\App\\Controllers\\Mobile\\" : "Project\\App\\Controllers\\Web\\UseCases\\";
+                            if (json_decode(file_get_contents('php://input'), true)) {
+                                $isApiRequest = true;
+                            }
+                        }
+                        $controllerClass = $controllerNamespace . $controllerName;
+                        $controllerInstance = new $controllerClass();
 
-                    if ($middleware) {
-                        $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
-                        $middlewareInstance = new $middlewareClass();
-                        $middlewareInstance::handle($_REQUEST, function () use ($controllerInstance, $action, $params) {
+                        if ($middleware) {
+                            $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
+                            $middlewareInstance = new $middlewareClass();
+                            $middlewareInstance::handle($_REQUEST, function () use ($controllerInstance, $action, $params) {
+                                $controllerInstance->$action(array_slice($params, 1));
+                            });
+                        } else {
                             $controllerInstance->$action(array_slice($params, 1));
-                        });
-                    } else {
-                        $controllerInstance->$action(array_slice($params, 1));
+                        }
+                        return;
                     }
-                    return;
                 }
+            }
+            
+            // If we get here, no route was matched
+            if ($isApiRequest) {
+                // For API requests, return JSON error
+                http_response_code(404);
+                header('Content-Type: application/json');
+                echo json_encode(['error' => 'Route not found']);
+                return;
+            }
+            
+            // For regular web requests, redirect to home
+            http_response_code(404);
+            header('Location:/');
+        } catch (\Exception $e) {
+            // Handle exceptions
+            if ($isApiRequest ?? false) {
+                // For API requests, return JSON error
+                http_response_code(500);
+                header('Content-Type: application/json');
+                echo json_encode(['error' => $e->getMessage()]);
+            } else {
+                // For regular web requests, redirect to home with error
+                http_response_code(500);
+                header('Location:/');
             }
         }
 

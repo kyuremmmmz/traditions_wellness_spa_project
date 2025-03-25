@@ -22,7 +22,7 @@ class ServicesController
                     'id' => $service['id'],
                     'name' => $service['serviceName'],
                     'description' => $service['description'],
-                    'price' => (float)$service['price'],
+                    'price' => (float)str_replace('₱', '', $service['price']),
                     'rating' => 0 // Default rating, implement actual rating system later
                 ];
             }, $services);

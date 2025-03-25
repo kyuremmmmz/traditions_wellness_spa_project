@@ -6,8 +6,29 @@
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     
+    # Handle CORS Pre-flight
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+    
     # Handle Front Controller Pattern
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+# Enable CORS
+<IfModule mod_headers.c>
+    SetEnvIf Origin "^http(s)?://(.+\.)?localhost:8000$" origin_is=$0
+    SetEnvIf Origin "^http(s)?://(.+\.)?0\.0\.0\.0:8000$" origin_is=$0
+    Header set Access-Control-Allow-Origin %{origin_is}e env=origin_is
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+    Header set Access-Control-Allow-Credentials "true"
+    Header set Access-Control-Max-Age "3600"
+    
+    # Always set these headers for OPTIONS requests
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS" env=origin_is
+    Header always set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With" env=origin_is
+    Header always set Access-Control-Allow-Credentials "true" env=origin_is
+    Header always set Access-Control-Max-Age "3600" env=origin_is
 </IfModule>
