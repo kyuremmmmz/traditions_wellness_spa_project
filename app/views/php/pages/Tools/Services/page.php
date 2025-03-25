@@ -424,6 +424,7 @@ class Page
                 </div>
             </div>
             <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesValidation.js"></script>
+            <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesSelectionLoader.js"></script>
             <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectionBehavior.js"></script>
     <?php
         if (!empty($GLOBALS['footer_scripts'])) {
