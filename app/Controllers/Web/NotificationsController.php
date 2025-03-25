@@ -1,38 +1,74 @@
 <?php
 
-class NotificationsController {
-    private $db;
-    
-    public function __construct($db) {
-        $this->db = $db;
+namespace Project\App\Models\Utilities;
+
+use PDO;
+use Project\App\Config\Connection;
+
+class NotificationsModel
+{
+    private $pdo;
+
+    public function __construct()
+    {
+        $this->pdo = Connection::connection();
     }
-    
-    // Create a new notification
-    public function createNotification($user_id, $type, $message, $data = null) {
-        $query = "INSERT INTO notifications (user_id, type, message, data, is_read, created_at) VALUES (?, ?, ?, ?, 0, NOW())";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$user_id, $type, $message, json_encode($data)]);
-    }
-    
-    // Get all notifications for a user
-    public function getNotifications($user_id, $limit = 10) {
-        $query = "SELECT * FROM notifications WHERE user_id = ? ORDER BY created_at DESC LIMIT ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$user_id, $limit]);
+
+    public function getAll()
+    {
+        $stmt = $this->pdo->query("SELECT * FROM notifications ORDER BY created_at DESC");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    // Mark a notification as read
-    public function markAsRead($notification_id) {
-        $query = "UPDATE notifications SET is_read = 1 WHERE id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$notification_id]);
+
+    public function findById($id)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM notifications WHERE id = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
-    // Delete a notification
-    public function deleteNotification($notification_id) {
-        $query = "DELETE FROM notifications WHERE id = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$notification_id]);
+
+    public function findByUserId($userId)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM notifications WHERE user_id = :user_id ORDER BY created_at DESC");
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function create($userId, $message, $type, $status = 'unread')
+    {
+        $stmt = $this->pdo->prepare("INSERT INTO notifications (
+            user_id,
+            message,
+            type,
+            status,
+            created_at,
+            updated_at
+        ) VALUES (
+            :user_id,
+            :message,
+            :type,
+            :status,
+            NOW(),
+            NOW()
+        )");
+
+        return $stmt->execute([
+            'user_id' => $userId,
+            'message' => $message,
+            'type' => $type,
+            'status' => $status
+        ]);
+    }
+
+    public function updateStatus($id, $status)
+    {
+        $stmt = $this->pdo->prepare("UPDATE notifications SET status = :status, updated_at = NOW() WHERE id = :id");
+        return $stmt->execute(['status' => $status, 'id' => $id]);
+    }
+
+    public function delete($id)
+    {
+        $stmt = $this->pdo->prepare("DELETE FROM notifications WHERE id = :id");
+        return $stmt->execute(['id' => $id]);
     }
 }
