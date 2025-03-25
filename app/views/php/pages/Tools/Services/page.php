@@ -262,7 +262,7 @@ class Page
                                 <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], '2_hours_price_error', null, '2_hours_price', '', '', [], '', '2_hours_price'); ?>
                             </div>
                             <div class="flex w-full justify-end mt-[32px]">
-                                <?php NewPrimaryButton::render('Create Service', '', 'openConfirmationModal', '257px', null) ?>
+                                <?php NewPrimaryButton::render('Create Service', 'button', 'openConfirmationModal', '257px', null) ?>
                             </div>
                         </section>
                     </div>

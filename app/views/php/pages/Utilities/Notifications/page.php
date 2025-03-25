@@ -34,7 +34,10 @@ class Page
                         </div>
                     </section>
 
-
+                    <!-- Notifications -->
+                    <section class="flex flex-col items-start w-full">
+                        <?php NotificationsTable::render(); ?>
+                    </section>
                 </div>
             </div>
         </main>
