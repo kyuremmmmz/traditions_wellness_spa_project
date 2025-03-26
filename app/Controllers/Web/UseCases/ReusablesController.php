@@ -13,7 +13,7 @@ class ReusablesController
     {
         $services = [];
 
-        if (isset($placeHolder['swedish'])) {
+        if (isset($placeHolder['massage_selection']['label'])) {
             $services[] = 'Swedish Massage';
         }
         if (isset($placeHolder['hot_stone'])) {
@@ -30,14 +30,14 @@ class ReusablesController
     {
         $services = [];
 
-        if (isset($placeHolder['swedish'])) {
-            $services[] = 'Swedish Massage';
-        }
         if (isset($placeHolder['hot_stone'])) {
-            $services[] = 'Hot Stone Therapy';
+            $services[] = 'Hot Stone';
         }
-        if (isset($placeHolder['deep_tissue'])) {
-            $services[] = 'Deep Tissue Massage';
+        if (isset($placeHolder['ear_candling'])) {
+            $services[] = 'Ear Candling';
+        }
+        if (isset($placeHolder['ventosa'])) {
+            $services[] = 'Ventosa';
         }
 
         return empty($services) ? '' : implode(', ', $services);
