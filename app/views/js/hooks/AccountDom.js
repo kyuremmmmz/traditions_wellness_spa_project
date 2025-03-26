@@ -29,8 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const closeLogoutDialogboxButton = document.getElementById("closeLogoutDialogBox");
 
         // Links
-        const openActivitiesButton = document.getElementById("openActivitiesButton");
-        const openReportTicketsButton = document.getElementById("openReportTicketsButton");
         
 
         let isModified = false;
@@ -55,11 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
             detectChangesToPersonalInformationFields();
 
             // Links
-            openActivitiesButton.addEventListener("click", () =>        window.location.href = "/activities");
             openChangeEmailButton.addEventListener("click", () =>       window.location.href = "/changeemail");
             openChangePhoneNumberButton.addEventListener("click", () => window.location.href = "/changephonenumber");
             openChangePasswordButton.addEventListener("click", () =>    window.location.href = "/changepassword");
-            openReportTicketsButton.addEventListener("click", () =>     window.location.href = "/reporttickets")
 
         }
 

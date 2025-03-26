@@ -108,9 +108,9 @@ class Page
                     <!-- Content -->
                     <section class="flex flex-col mb-[32px] min-w-[316px] max-w-[400px] w-full">
                         <div class="border-border dark:border-darkBorder rounded-[6px] border-[1px] flex flex-col w-full">
-                            <?php GlobalButton::render("navigationSecondaryTop", "Change Password", "", "passwordSmall", 'openChangePasswordButton');
-                            GlobalButton::render("navigationSecondaryMiddle", "Change Email", "", "emailSmall", 'openChangeEmailButton');
-                            GlobalButton::render("navigationSecondaryBottom", "Change Phone Number", "", "phoneSmall", 'openChangePhoneNumberButton'); ?>
+                            <?php GlobalButton::render("navigationSecondaryTop", "Change Password", "", "passwordSmall", 'openChangePasswordButton', 'button');
+                            GlobalButton::render("navigationSecondaryMiddle", "Change Email", "", "emailSmall", 'openChangeEmailButton', 'button');
+                            GlobalButton::render("navigationSecondaryBottom", "Change Phone Number", "", "phoneSmall", 'openChangePhoneNumberButton', 'button'); ?>
                         </div>
                     </section>
                 </section>
