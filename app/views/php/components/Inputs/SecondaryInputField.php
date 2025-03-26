@@ -149,53 +149,44 @@ class SecondaryInputField
                 break;
             case 'multiphotofield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass' data-multiphoto-container>";
-                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='multiphoto-input' $disabledAttribute>";
-                echo "<div class='multiphoto-file-list flex flex-col gap-[8px]'>";
-                echo "<button type='button' class='multiphoto-add-button BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
+                echo "<label class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
-                echo "</button>";
-                echo "</div>";
+                echo "<span class='selected-count text-onBackgroundTwo dark:text-darkOnBackgroundTwo'></span>";
+                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' $disabledAttribute>";
+                echo "</label>";
+                echo "<div class='multiphoto-file-list flex flex-col gap-[8px] mt-[8px]'></div>";
                 echo "</div>";
 
                 $GLOBALS['footer_scripts'][] = "<script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const container = document.querySelector('[data-multiphoto-container]');
-                        if (!container) {
-                            console.error('Multi-photo container not found');
-                            return;
-                        }
-                        const input = container.querySelector('.multiphoto-input');
-                        const fileList = container.querySelector('.multiphoto-file-list');
-                        const addButton = container.querySelector('.multiphoto-add-button');
+                        if (!container) return;
                         
-                        // Add click handler to trigger file input
-                        addButton.addEventListener('click', () => input.click());
+                        const input = container.querySelector('input[type=\"file\"]');
+                        const fileList = container.querySelector('.multiphoto-file-list');
+                        const countDisplay = container.querySelector('.selected-count');
                         
                         const maxFiles = 5;
                         const minFiles = 2;
                         let fileCount = 0;
                         let files = [];
-
+                        
                         input.addEventListener('change', function(e) {
+                            console.log('Selected files:', e.target.files);
+                            console.log('Input name:', input.name);
+                            console.log('Form data:', new FormData(input.form));
                             const newFiles = Array.from(e.target.files);
+                            
+                            // Clear existing file list display
+                            fileList.innerHTML = '';
+                            fileCount = 0;
+                            files = [];
                             
                             newFiles.forEach(file => {
                                 if (fileCount < maxFiles) {
                                     fileCount++;
                                     files.push(file);
                                     
-                                    // Create hidden input for the file
-                                    const hiddenInput = document.createElement('input');
-                                    hiddenInput.type = 'file';
-                                    hiddenInput.name = 'slideshow_{$name}[]';
-                                    hiddenInput.className = 'hidden';
-                                    
-                                    // Create DataTransfer object to set the file
-                                    const dataTransfer = new DataTransfer();
-                                    dataTransfer.items.add(file);
-                                    hiddenInput.files = dataTransfer.files;
-                                    
-                                    // Create file item element
                                     const fileItem = document.createElement('div');
                                     fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                                     fileItem.innerHTML = `
@@ -203,38 +194,26 @@ class SecondaryInputField
                                         <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
                                     `;
                                     
-                                    // Add remove functionality
                                     const removeButton = fileItem.querySelector('button');
                                     removeButton.onclick = function() {
                                         fileList.removeChild(fileItem);
                                         files = files.filter(f => f !== file);
                                         fileCount--;
-                                        updateAddButton();
+                                        updateCount();
                                     };
                                     
-                                    // Add elements to DOM
-                                    fileList.insertBefore(hiddenInput, addButton);
-                                    fileList.insertBefore(fileItem, addButton);
-                                    updateAddButton();
+                                    fileList.appendChild(fileItem);
                                 }
                             });
                             
-                            // Clear input for next selection
-                            input.value = '';
+                            updateCount();
                         });
 
-                        function updateAddButton() {
-                            addButton.style.display = fileCount >= maxFiles ? 'none' : 'flex';
-                            const remainingRequired = Math.max(0, minFiles - fileCount);
-                            const buttonText = remainingRequired > 0 
-                                ? `$placeholder (\${remainingRequired} more required)`
-                                : fileCount >= maxFiles 
-                                    ? ''
-                                    : '$placeholder';
-                            addButton.querySelector('span').textContent = buttonText;
+                        function updateCount() {
+                            countDisplay.textContent = fileCount > 0 ? `\${fileCount}/\${maxFiles}` : '';
+                            input.disabled = fileCount >= maxFiles;
+                            container.querySelector('label').style.opacity = fileCount >= maxFiles ? '0.5' : '1';
                         }
-
-                        updateAddButton();
                     });
                 </script>";
                 break;
