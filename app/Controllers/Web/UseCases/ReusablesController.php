@@ -43,6 +43,43 @@ class ReusablesController
         return empty($services) ? '' : implode(', ', $services);
     }
 
+    public function bodyScrubSelection($placeHolder)
+    {
+        $services = [];
+
+        if (isset($placeHolder['coffee_scrub'])) {
+            $services[] = 'Coffee Scrub';
+        }
+        if (isset($placeHolder['milk_whitening_scrub'])) {
+            $services[] = 'Milk Whitening Scrub';
+        }
+        if (isset($placeHolder['shea_and_butter_scrub'])) {
+            $services[] = 'Shea and Butter Scrub';
+        }
+
+        return empty($services) ? '' : implode(', ', $services);
+    }
+
+    public function massageSelection($placeHolder)
+    {
+        $services = [];
+
+        if (isset($placeHolder['bamboossage'])) {
+            $services[] = 'Bamboossage';
+        }
+        if (isset($placeHolder['dagdagay'])) {
+            $services[] = 'Dagdagay';
+        }
+        if (isset($placeHolder['hilot'])) {
+            $services[] = 'Hilot';
+        }
+        if (isset($placeHolder['swedish'])) {
+            $services[] = 'Swedish';
+        }
+
+        return empty($services) ? '' : implode(', ', $services);
+    }
+
     public function priceCalculation($price, $params)
     {
         switch ($params) {

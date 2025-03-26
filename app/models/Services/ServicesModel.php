@@ -47,6 +47,7 @@ class ServicesModel
     }
 
     public function createServices(
+        $category,
         $serviceName,
         $price,
         $caption,
@@ -74,12 +75,14 @@ class ServicesModel
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO 
             services (
+            category,
             serviceName, price, caption, description,status, duration_details, party_size_details,
             massage_details, body_scrub_details, add_ons_details, main_photo, slide_show_photos,
             showcase_photo1, headline1, caption1, showcase_photo2, headline2, caption2, 
             showcase_photo3, headline3, caption3, massage_selection, body_scrub_selection, 
             supplementtal_add_ons, updated_at, created_at
         ) VALUES (
+            :category,
             :serviceName, :price, :caption, :description,:status, :duration_details, :party_size_details,
             :massage_details, :body_scrub_details, :add_on_details, :main_photo, :slide_show_photos,
             :show_case_photo1, :headline1, :caption1, :show_case_photo2, :headline2, :caption2, 
@@ -88,6 +91,7 @@ class ServicesModel
         )");
 
         return $stmt->execute([
+            'category' => $category,
             'serviceName' => $serviceName,
             'price' => $price,
             'caption' => $caption,

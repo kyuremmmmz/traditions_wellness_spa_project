@@ -44,6 +44,8 @@ $router->post('/auth/mobile-logout', 'AuthMobileController@logout');
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/createService', 'ServicesController@createService');
+$router->post('/createAddOns', 'AddOnsController@createAddOns');
+
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

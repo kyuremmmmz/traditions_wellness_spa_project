@@ -9,11 +9,13 @@ class ServicesController
 {
     private $model;
     private $uploadPhoto;
+    private $reusables;
 
     public function __construct()
     {
         $this->model = new ServicesModel();
         $this->uploadPhoto = new FileUploadUseCaseController();
+        $this->reusables = new ReusablesController();
     }
 
     public function createCategory()
@@ -45,6 +47,7 @@ class ServicesController
         $uploadShowcasePhoto3 = $this->handleFileUpload('showcase_photo_3');
         $uploadMultiples = $this->handleMultipleFileUpload('slideshow_photos');
         $this->model->createServices(
+            $data['category'],
             $data['service_name'],
             $price,
             $data['service_caption'],
@@ -66,9 +69,9 @@ class ServicesController
             $uploadShowcasePhoto3['image']['url'],
             $data['showcase_headline_3'],
             $data['showcase_caption_3'],
-            $data['massage_selection']['label'],
-            $data['body_scrub_selection']['label'],
-            $data['addon_selection']['label']
+            $this->reusables->massageSelection($data),
+            $this->reusables->bodyScrubSelection($data),
+            $this->reusables->suplementTalAddOns($data),
         );
         $_SESSION['services_message'] = 'Service created successfully';
         header('Location: /services');
