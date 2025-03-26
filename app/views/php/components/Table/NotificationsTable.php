@@ -14,9 +14,7 @@ class NotificationsTable
         $rowClass = "border-b border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition";
         $cellClass = "p-3 text-gray-700 dark:text-gray-300";
 
-        // Fetch notifications
-        $notificationsModel = new NotificationsModel();
-        $notifications = $notificationsModel->getAll();
+        $notifications = [];
         echo <<<HTML
         <div class="$containerClass">
             <h2 class="text-lg font-semibold mb-3">Notifications</h2>
