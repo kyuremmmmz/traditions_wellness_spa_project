@@ -104,7 +104,7 @@ class Page
             <!-- Add a new add-on section -->
             <div id="AddANewAddOnSection" class="ml-[0px] w-full overflow-x-auto max-w-full p-[48px] overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-0 max-w-[480px]">
                 <div class="flex justify-start mb-[48px] min-w-[316px] w-full ml-[-8px] sm:ml-[40px]">
-                    <button id="closeAddANewAddOnButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                    <button type="button" id="closeAddANewAddOnButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
                         <div class="w-[24px] h-[24px] flex justify-center items-center">
                             <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
                         </div>
