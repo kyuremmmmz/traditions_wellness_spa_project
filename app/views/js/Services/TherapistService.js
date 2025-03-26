@@ -45,6 +45,17 @@ document.addEventListener('DOMContentLoaded', function () {
         rows.forEach(row => {
             row.addEventListener('click', () => openUpdateModal(row));
         });
+        document.querySelectorAll('#therapistTable tr').forEach(row => {
+            row.addEventListener('click', async () => {
+                const data = row.dataset;
+                document.getElementById('therapistFirstName').value = data.firstname;
+                document.getElementById('therapistLastName').value = data.lastname;
+                document.getElementById('therapistEmail').value = data.email;
+                document.getElementById('therapistGender').value = data.gender;
+                document.getElementById('therapistStatus').value = data.status;
+            });
+        });
+
     };
 
     // Add modal functionality

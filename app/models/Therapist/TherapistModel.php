@@ -39,11 +39,21 @@ class TherapistModel
         ]);
     }
 
-    public function update($id, $data)
+    public function update($id, $first_name, $last_name, $gender, $status, $email)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE 
+        therapist SET 
+        first_name = :first_name, last_name = :last_name, 
+        gender=:gender, status=:status, email=:email, updated_at = NOW()
+        WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'gender' => $gender,
+            'status' => $status,
+            'email' => $email
+        ]);
     }
 
     public function delete($id)

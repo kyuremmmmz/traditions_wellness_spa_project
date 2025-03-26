@@ -8,7 +8,7 @@ class SecondaryInputField
 {
     public static function render(string $fieldChoice, string $label, string $placeholder, array $options = [], string $error = '', ?callable $validationCallback = null, string $id = '', string $duration = '', string $price = '', array $priceOptions = [], bool $isDisabled = false, string $name = '', int $limit = 0, string $description = ''): void
     {
-        echo '<div class="flex gap-[16px]" id="'. $id .'">';
+        echo '<div class="flex gap-[16px]">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
         echo '<div class="flex items-end flex-col justify-end gap-[8px]">';
         echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
@@ -21,7 +21,7 @@ class SecondaryInputField
         }
         echo '</div>';
         if ($error !== '') {
-            echo '<p id="'. $error .'" class="CaptionOne text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
+            echo '<p id="' . $error . '" class="CaptionOne text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
         }
         echo '</div>';
 
@@ -96,12 +96,12 @@ class SecondaryInputField
                       </style>";
                 break;
             case 'textareafield':
-                echo "<textarea name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background resize-none dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[80px] rounded-[6px] p-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute></textarea>";
+                echo "<textarea name='$name' class='BodyTwo resize-none text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[80px] rounded-[6px] p-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute></textarea>";
                 break;
 
             case 'photofield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
-                echo "<input type='file' name='$name' accept='image/*'  class='hidden' id='{$id}_input' $disabledAttribute>";
+                echo "<input type='file' name='$name' accept='image/*' class='hidden' id='{$id}_input' $disabledAttribute>";
                 echo "<div id='{$id}_fileList' class='flex flex-col gap-[8px]'>";
                 echo "<div id='{$id}_placeholder' class='BodyTwo flex items-center gap-[8px] text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface' onclick='document.getElementById(\"{$id}_input\").click()'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
@@ -120,7 +120,7 @@ class SecondaryInputField
                             const fileItem = document.createElement('div');
                             fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                             fileItem.innerHTML = `
-                                <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
+                                <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
                                 <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$id}_input\")'>×</button>
                             `;
                             
@@ -148,73 +148,87 @@ class SecondaryInputField
                 </script>";
                 break;
             case 'multiphotofield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass' data-multiphoto-container>";
-                echo "<label class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
+                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
+                echo "<div id='slideshow_{$id}_fileList' class='flex flex-col gap-[8px]'>";
+                echo "<button type='button' id='slideshow_{$id}_addButton' onclick='document.getElementById(\"slideshow_{$id}_input\").click()' class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
-                echo "<span class='selected-count text-onBackgroundTwo dark:text-darkOnBackgroundTwo'></span>";
-                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' $disabledAttribute>";
-                echo "</label>";
-                echo "<div class='multiphoto-file-list flex flex-col gap-[8px] mt-[8px]'></div>";
+                echo "</button>";
+                echo "</div>";
                 echo "</div>";
 
                 $GLOBALS['footer_scripts'][] = "<script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const container = document.querySelector('[data-multiphoto-container]');
-                        if (!container) return;
-                        
-                        const input = container.querySelector('input[type=\"file\"]');
-                        const fileList = container.querySelector('.multiphoto-file-list');
-                        const countDisplay = container.querySelector('.selected-count');
-                        
+                    (function() {
+                        const input = document.getElementById('slideshow_{$id}_input');
+                        const fileList = document.getElementById('slideshow_{$id}_fileList');
+                        const addButton = document.getElementById('slideshow_{$id}_addButton');
                         const maxFiles = 5;
                         const minFiles = 2;
                         let fileCount = 0;
                         let files = [];
-                        
+
                         input.addEventListener('change', function(e) {
-                            console.log('Selected files:', e.target.files);
-                            console.log('Input name:', input.name);
-                            console.log('Form data:', new FormData(input.form));
                             const newFiles = Array.from(e.target.files);
-                            
-                            // Clear existing file list display
-                            fileList.innerHTML = '';
-                            fileCount = 0;
-                            files = [];
                             
                             newFiles.forEach(file => {
                                 if (fileCount < maxFiles) {
                                     fileCount++;
                                     files.push(file);
                                     
+                                    // Create hidden input for the file
+                                    const hiddenInput = document.createElement('input');
+                                    hiddenInput.type = 'file';
+                                    hiddenInput.name = 'slideshow_{$name}[]';
+                                    hiddenInput.className = 'hidden';
+                                    hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
+                                    
+                                    // Create DataTransfer object to set the file
+                                    const dataTransfer = new DataTransfer();
+                                    dataTransfer.items.add(file);
+                                    hiddenInput.files = dataTransfer.files;
+                                    
+                                    // Create file item element
                                     const fileItem = document.createElement('div');
                                     fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                                     fileItem.innerHTML = `
-                                        <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
+                                        <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
                                         <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
                                     `;
                                     
+                                    // Add remove functionality
                                     const removeButton = fileItem.querySelector('button');
                                     removeButton.onclick = function() {
                                         fileList.removeChild(fileItem);
+                                        document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
                                         files = files.filter(f => f !== file);
                                         fileCount--;
-                                        updateCount();
+                                        updateAddButton();
                                     };
                                     
-                                    fileList.appendChild(fileItem);
+                                    // Add elements to DOM
+                                    fileList.insertBefore(hiddenInput, addButton);
+                                    fileList.insertBefore(fileItem, addButton);
+                                    updateAddButton();
                                 }
                             });
                             
-                            updateCount();
+                            // Clear input for next selection
+                            input.value = '';
                         });
 
-                        function updateCount() {
-                            countDisplay.textContent = fileCount > 0 ? `\${fileCount}/\${maxFiles}` : '';
-                            input.disabled = fileCount >= maxFiles;
-                            container.querySelector('label').style.opacity = fileCount >= maxFiles ? '0.5' : '1';
+                        function updateAddButton() {
+                            addButton.style.display = fileCount >= maxFiles ? 'none' : 'flex';
+                            const remainingRequired = Math.max(0, minFiles - fileCount);
+                            const buttonText = remainingRequired > 0 
+                                ? `$placeholder (\${remainingRequired} more required)`
+                                : fileCount >= maxFiles 
+                                    ? ''
+                                    : '$placeholder';
+                            addButton.querySelector('span').textContent = buttonText;
                         }
-                    });
+
+                        updateAddButton();
+                    })();
                 </script>";
                 break;
 
@@ -227,7 +241,7 @@ class SecondaryInputField
                 echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
                 foreach ($options as $option) {
                     if (is_array($option)) {
-                        echo '<option value="' . htmlspecialchars($option['value']) . '">' . htmlspecialchars($option['label']) . '</option>';
+                        echo '<option value="' . htmlspecialchars($option['value']) . '"> selected' . htmlspecialchars($option['label']) . '</option>';
                     } else {
                         echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
                     }
@@ -235,11 +249,11 @@ class SecondaryInputField
                 echo '</select></div>';
                 break;
             case 'dropdownServicefield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px]'>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
                 echo IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[16px] -rotate-90', '', 'onSurface', 'darkOnSurface');
-                echo '<select name="' . $name . '" id="'.$id.'" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">';
-                echo '</select>
-                </div>';
+                echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
+
+                echo '</select></div>';
                 break;
             case 'datefield':
                 echo "<input type='date' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
@@ -260,10 +274,8 @@ class SecondaryInputField
             case 'checkboxwithpricefield':
                 echo "<div class='flex flex-col gap-[12px] min-w-[260px] max-w-[260px] $disabledClass'>";
                 foreach ($options as $option) {
-                    $optionReplace = str_replace(' ', '_', $option['label']);
-                    $toLower = strtolower($optionReplace);
                     echo "<div class='flex items-center gap-[12px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
-                    echo "<input type='checkbox' name='{$toLower}' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
+                    echo "<input type='checkbox' name='{$name}[]' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
                     echo "<div class='flex flex-col gap-[8px]'>";
                     echo "<p class='leading-none BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground'>{$option['label']}</p>";
                     echo "<div class='flex gap-[8px]'>";
@@ -296,14 +308,12 @@ class SecondaryInputField
                 break;
 
             case 'choicesselectionfield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass' id='$id'>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {
-                    $replace = str_replace(' ', '_', $option);
-                    $toLower = strtolower($replace);
                     echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='{$toLower}' value='$option' class='hidden peer' id='{$id}_$option' $disabledAttribute>";
+                    echo "<input type='checkbox' name='{$name}[]' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
                     echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
                     echo "</div>";
                 }
