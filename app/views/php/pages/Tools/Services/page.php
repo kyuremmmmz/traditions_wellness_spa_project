@@ -100,79 +100,79 @@ class Page
                 </div>
             </div>
         </main>
+        <form action="/createAddOns" method="post">
+            <!-- Add a new add-on section -->
+            <div id="AddANewAddOnSection" class="ml-[0px] w-full overflow-x-auto max-w-full p-[48px] overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-0 max-w-[480px]">
+                <div class="flex justify-start mb-[48px] min-w-[316px] w-full ml-[-8px] sm:ml-[40px]">
+                    <button id="closeAddANewAddOnButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
+                        <div class="w-[24px] h-[24px] flex justify-center items-center">
+                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
+                        </div>
+                    </button>
+                </div>
+                <div class="w-full flex flex-col gap-[48px] items-center sm:mt-[64px] mt-[0px]">
+                    <section class="flex flex-col gap-[16px] w-[400px] max-w-full">
+                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new add-on'); ?>
+                        <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
+                    </section>
+                    <section class="flex flex-col gap-[16px] w-[400px]">
+                        <div class="flex flex-col gap-[16px] max-w-[480px] items-end justify-end">
+                            <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], '', null, '', '', '', [], false, 'name', 0, '') ?>
+                            <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], '', null, '', '', '', [], false, 'price') ?>
+                            <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, 'status') ?>
+                        </div>
+                    </section>
+                    <section class="flex flex-col gap-[16px] w-[400px] items-end max-w-[400px]">
+                        <?php NewPrimaryButton::render('Create add-on', 'submit', 'openConfirmAddANewAddOnModal', '257px', null) ?>
+                    </section>
+                </div>
+        </form>
+        <!-- Unsaved add a new add on modal -->
+        <div id="UnsavedAddANewAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+            <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
+                <div class="flex gap-[16px] justify-end mt-[48px]">
+                    <button type="button" id="closeUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                    <button id="proceedUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
 
-        <!-- Add a new add-on section -->
-        <div id="AddANewAddOnSection" class="ml-[0px] w-full overflow-x-auto max-w-full p-[48px] overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-0 max-w-[480px]">
-            <div class="flex justify-start mb-[48px] min-w-[316px] w-full ml-[-8px] sm:ml-[40px]">
-                <button id="closeAddANewAddOnButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
-                    <div class="w-[24px] h-[24px] flex justify-center items-center">
-                        <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
-                    </div>
-                </button>
-            </div>
-            <div class="w-full flex flex-col gap-[48px] items-center sm:mt-[64px] mt-[0px]">
-                <section class="flex flex-col gap-[16px] w-[400px] max-w-full">
-                    <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new add-on'); ?>
-                    <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
-                </section>
-                <section class="flex flex-col gap-[16px] w-[400px]">
-                    <div class="flex flex-col gap-[16px] max-w-[480px] items-end justify-end">
-                        <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], '', null, '', '', '', [], false, '', 0, '')?>
-                        <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], '', null, '', '', '', [], false, '')?>
-                        <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, '')?>
-                    </div>
-                </section> 
-                <section class="flex flex-col gap-[16px] w-[400px] items-end max-w-[400px]">
-                    <?php NewPrimaryButton::render('Create add-on', '', 'openConfirmAddANewAddOnModal', '257px', null) ?>
-                </section>
+                </div>
             </div>
 
-            <!-- Unsaved add a new add on modal -->
-            <div id="UnsavedAddANewAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
+            <!-- Confirm add a new add on Modal -->
+            <div id="ConfirmAddANewAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to add this add-on?</p>
                     <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button type="button" id="closeUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="proceedUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
-
+                        <button type="button" id="cancelAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button type="submit" id="confirmAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Confirm add a new add on Modal -->
-                <div id="ConfirmAddANewAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                    <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
-                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to add this add-on?</p>
-                        <div class="flex gap-[16px] justify-end mt-[48px]">
-                            <button type="button" id="cancelAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                            <button type="submit" id="confirmAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
-                        </div>
+            <!-- Delete Add-on Modal -->
+            <div id="DeleteAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="bg-background dark:bg-darkBackground border p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to delete this add-on? This cannot be undone. It is recommended to archive the add-on instead.</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button id="cancelUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button id="proceedUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
                     </div>
                 </div>
+            </div>
 
-                <!-- Delete Add-on Modal -->
-                <div id="DeleteAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                    <div class="bg-background dark:bg-darkBackground border p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to delete this add-on? This cannot be undone. It is recommended to archive the add-on instead.</p>
-                        <div class="flex gap-[16px] justify-end mt-[48px]">
-                            <button id="cancelUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                            <button id="proceedUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Confirm Edit Add On Modal -->
-                <div id="ConfirmEditAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                    <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
-                        <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to edit this add-on?</p>
-                        <div class="flex gap-[16px] justify-end mt-[48px]">
-                            <button type="button" id="cancelEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                            <button type="submit" id="confirmEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
-                        </div>
+            <!-- Confirm Edit Add On Modal -->
+            <div id="ConfirmEditAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
+                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
+                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to edit this add-on?</p>
+                    <div class="flex gap-[16px] justify-end mt-[48px]">
+                        <button type="button" id="cancelEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
+                        <button type="submit" id="confirmEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
                     </div>
                 </div>
             </div>
         </div>
-        
+        </div>
+
 
 
         <form action="/createService" method="post" enctype="multipart/form-data">

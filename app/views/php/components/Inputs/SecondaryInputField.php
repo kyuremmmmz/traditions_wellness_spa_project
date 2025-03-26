@@ -237,8 +237,9 @@ class SecondaryInputField
             case 'dropdownServicefield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px]'>";
                 echo IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[16px] -rotate-90', '', 'onSurface', 'darkOnSurface');
-                echo '<select name="' . $name . '" ' . $idAttribute . ' class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">';
-                echo '</select></div>';
+                echo '<select name="' . $name . '" id="'.$id.'" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">';
+                echo '</select>
+                </div>';
                 break;
             case 'datefield':
                 echo "<input type='date' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
@@ -259,8 +260,10 @@ class SecondaryInputField
             case 'checkboxwithpricefield':
                 echo "<div class='flex flex-col gap-[12px] min-w-[260px] max-w-[260px] $disabledClass'>";
                 foreach ($options as $option) {
+                    $optionReplace = str_replace(' ', '_', $option['label']);
+                    $toLower = strtolower($optionReplace);
                     echo "<div class='flex items-center gap-[12px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
-                    echo "<input type='checkbox' name='{$name}[]' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
+                    echo "<input type='checkbox' name='{$toLower}' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
                     echo "<div class='flex flex-col gap-[8px]'>";
                     echo "<p class='leading-none BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground'>{$option['label']}</p>";
                     echo "<div class='flex gap-[8px]'>";
@@ -297,8 +300,10 @@ class SecondaryInputField
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {
+                    $replace = str_replace(' ', '_', $option);
+                    $toLower = strtolower($replace);
                     echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='{$name}[label]' value='$option' class='hidden peer' id='{$id}_$option' $disabledAttribute>";
+                    echo "<input type='checkbox' name='{$toLower}' value='$option' class='hidden peer' id='{$id}_$option' $disabledAttribute>";
                     echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
                     echo "</div>";
                 }
