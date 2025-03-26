@@ -148,21 +148,29 @@ class SecondaryInputField
                 </script>";
                 break;
             case 'multiphotofield':
-                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
-                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
-                echo "<div id='slideshow_{$id}_fileList' class='flex flex-col gap-[8px]'>";
-                echo "<button type='button' id='slideshow_{$id}_addButton' onclick='document.getElementById(\"slideshow_{$id}_input\").click()' class='BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
-                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class=''  $disabledAttribute>";
+                echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass' data-multiphoto-container>";
+                echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='multiphoto-input' $disabledAttribute>";
+                echo "<div class='multiphoto-file-list flex flex-col gap-[8px]'>";
+                echo "<button type='button' class='multiphoto-add-button BodyTwo flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface'>";
                 echo "<span class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo'>$placeholder</span>";
                 echo "</button>";
                 echo "</div>";
                 echo "</div>";
 
                 $GLOBALS['footer_scripts'][] = "<script>
-                    (function() {
-                        const input = document.getElementById('slideshow_{$id}_input');
-                        const fileList = document.getElementById('slideshow_{$id}_fileList');
-                        const addButton = document.getElementById('slideshow_{$id}_addButton');
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const container = document.querySelector('[data-multiphoto-container]');
+                        if (!container) {
+                            console.error('Multi-photo container not found');
+                            return;
+                        }
+                        const input = container.querySelector('.multiphoto-input');
+                        const fileList = container.querySelector('.multiphoto-file-list');
+                        const addButton = container.querySelector('.multiphoto-add-button');
+                        
+                        // Add click handler to trigger file input
+                        addButton.addEventListener('click', () => input.click());
+                        
                         const maxFiles = 5;
                         const minFiles = 2;
                         let fileCount = 0;
@@ -181,7 +189,6 @@ class SecondaryInputField
                                     hiddenInput.type = 'file';
                                     hiddenInput.name = 'slideshow_{$name}[]';
                                     hiddenInput.className = 'hidden';
-                                    hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
                                     
                                     // Create DataTransfer object to set the file
                                     const dataTransfer = new DataTransfer();
@@ -200,7 +207,6 @@ class SecondaryInputField
                                     const removeButton = fileItem.querySelector('button');
                                     removeButton.onclick = function() {
                                         fileList.removeChild(fileItem);
-                                        document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
                                         files = files.filter(f => f !== file);
                                         fileCount--;
                                         updateAddButton();
@@ -229,7 +235,7 @@ class SecondaryInputField
                         }
 
                         updateAddButton();
-                    })();
+                    });
                 </script>";
                 break;
 
