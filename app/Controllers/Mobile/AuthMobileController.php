@@ -10,7 +10,6 @@ use Project\App\Models\Auth\UserRolesModel;
 
 use Predis\Client; // Import Predis for Redis
 
-
 class AuthMobileController
 {
     private $controller;
@@ -127,12 +126,12 @@ class AuthMobileController
     public function addPassword()
     {
         $data = json_decode(file_get_contents('php://input'), true);
-
+    
         if (isset($data['verifCode']) && isset($data['password'])) {
             $password = $data['password'];
-
+    
             $passwordPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{8,}$/';
-
+    
             if (!preg_match($passwordPattern, $data['password'])) {
                 http_response_code(400);
                 echo json_encode([
@@ -142,9 +141,10 @@ class AuthMobileController
                 ]);
                 return;
             }
-
+    
+            // Fix the object reference: use $this->webController instead of $this->webAuthController
             $response = $this->webController->findByCode($data['verifCode']);
-
+    
             if (is_array($response)) {
                 $verifyEmail = $this->controller->verifyEmail($data['verifCode']);
                 
@@ -154,25 +154,37 @@ class AuthMobileController
                     if ($setPassword) {
                         $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($response['email'], null);
                         
-                        echo json_encode([
-                            'message' => 'Password applied and email verified successfully',
-                            'status' => true,
-                            'error' => null
-                        ]);
+                        if ($setVerificationCodeToNull) {
+                            echo json_encode([
+                                'message' => 'Password applied and email verified successfully',
+                                'status' => true,
+                                'error' => null
+                            ]);
+                        } else {
+                            http_response_code(500);
+                            error_log("addPassword: Failed to set verification code to null for email: " . $response['email']);
+                            echo json_encode([
+                                'message' => 'Password set but failed to clear verification code',
+                                'status' => false,
+                                'error' => 'Failed to clear verification code'
+                            ]);
+                        }
                     } else {
                         http_response_code(500);
+                        error_log("addPassword: Failed to set password for verifCode: " . $data['verifCode']);
                         echo json_encode([
-                            'message' => 'Password set but email verification failed',
+                            'message' => 'Failed to set password',
                             'status' => false,
-                            'error' => 'Email Verification Failed'
+                            'error' => 'Password Set Failed'
                         ]);
                     }
                 } else {
                     http_response_code(500);
+                    error_log("addPassword: Failed to verify email for verifCode: " . $data['verifCode']);
                     echo json_encode([
-                        'message' => 'Failed to set password',
+                        'message' => 'Failed to verify email',
                         'status' => false,
-                        'error' => 'Internal Server Error'
+                        'error' => 'Email Verification Failed'
                     ]);
                 }
             } else {
@@ -235,6 +247,38 @@ class AuthMobileController
             echo json_encode([
                 'message' => 'Verification code is required',
                 'status' => false
+            ]);
+        }
+    }
+
+    // New function to check the verification code without consuming it
+    public function checkVerificationCode()
+    {
+        $file = json_decode(file_get_contents('php://input'), true);
+        if (isset($file['verifCode'])) {
+            $findByVerif = $this->webController->findByCode($file['verifCode']);
+            if (!$findByVerif) {
+                http_response_code(404);
+                echo json_encode([
+                    'message' => 'Verification code not found',
+                    'status' => false,
+                    'error' => 'Invalid Code'
+                ]);
+                return;
+            }
+
+            // Simply return success if the code exists, without consuming it
+            echo json_encode([
+                'message' => 'Verification code is valid',
+                'status' => true,
+                'error' => null
+            ]);
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Verification code is required',
+                'status' => false,
+                'error' => 'Missing Field'
             ]);
         }
     }
@@ -379,6 +423,7 @@ class AuthMobileController
 
     public function forgotPasswordSend()
     {
+        header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
         if (isset($data['email'])) {
             $tokenForGenerate = $this->entities->generateToken();
@@ -386,14 +431,28 @@ class AuthMobileController
             $decodedToken = base64_decode($token);
             $response = $this->webController->findByEmail($data['email']);
             if (isset($response['email'])) {
-                $this->mail->sendToken(
+                $mailStatus = $this->mail->sendToken(
                     $response['email'],
-                    'Good day! ' . $response['first_name'] . ', This is your temporary username and password below',
+                    'Good day! ' . $response['first_name'] . ', This is your password reset token below',
                     'Token: ' . $decodedToken,
                     $response['first_name']
                 );
-                $this->webController->delete($response['email']);
-                $this->webController->insertToken($token, $response['email']);
+                if ($mailStatus) {
+                    $this->webController->delete($response['email']); // Verify this is intentional
+                    $this->webController->insertToken($token, $response['email']);
+                    echo json_encode([
+                        'message' => 'Verification token sent to your email',
+                        'status' => 'success',
+                        'error' => null
+                    ]);
+                } else {
+                    http_response_code(500);
+                    echo json_encode([
+                        'message' => 'Failed to send verification token',
+                        'status' => 'error',
+                        'error' => 'Email sending failed'
+                    ]);
+                }
             } else {
                 http_response_code(404);
                 echo json_encode([
@@ -402,7 +461,15 @@ class AuthMobileController
                     'error' => 'Email not found'
                 ]);
             }
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Email is required',
+                'status' => 'error',
+                'error' => 'Missing email'
+            ]);
         }
+        exit;
     }
 
     public function forgotPassword()
@@ -410,7 +477,7 @@ class AuthMobileController
         $data = json_decode(file_get_contents('php://input'), true);
         session_start();
         if (isset($data['verification'])) {
-            $response = $this->webController->findByToken(base64_encode($data['verification']));
+            $response = $this->webController->findByToken(base64_encode($data W['verification']));
             if ($response) {
                 $_SESSION['token'] = ['token' => $data['verification']];
                 echo json_encode([
@@ -472,36 +539,35 @@ class AuthMobileController
 
     public function logout()
     {
-       header('Content-Type: application/json');
+        header('Content-Type: application/json');
         $file = json_decode(file_get_contents('php://input'), true);
 
-         if (isset($file['token']) && isset($file['email'])) {
-              $storedToken = $this->redis->get("session:".$file['email']);
-             if ($storedToken && $storedToken === $file['token']) {
-            // Remove the token from Redis
-             $this->redis->del("session:".$file['email']);
-             echo json_encode([
-                'message' => 'Logged out successfully',
-                'status' => 'success',
-                'error' => null
-              ]);
-         } else {
-            http_response_code(401);
+        if (isset($file['token']) && isset($file['email'])) {
+            $storedToken = $this->redis->get("session:".$file['email']);
+            if ($storedToken && $storedToken === $file['token']) {
+                // Remove the token from Redis
+                $this->redis->del("session:".$file['email']);
+                echo json_encode([
+                    'message' => 'Logged out successfully',
+                    'status' => 'success',
+                    'error' => null
+                ]);
+            } else {
+                http_response_code(401);
+                echo json_encode([
+                    'message' => 'Invalid or missing session',
+                    'status' => 'error',
+                    'error' => 'Token invalid or not found'
+                ]);
+            }
+        } else {
+            http_response_code(400);
             echo json_encode([
-                'message' => 'Invalid or missing session',
+                'message' => 'Token and email required',
                 'status' => 'error',
-                'error' => 'Token invalid or not found'
+                'error' => 'Missing fields'
             ]);
         }
-       } else {
-        http_response_code(400);
-        echo json_encode([
-            'message' => 'Token and email required',
-            'status' => 'error',
-            'error' => 'Missing fields'
-        ]);
-     }
-      exit;
+        exit;
     }
-
 }
