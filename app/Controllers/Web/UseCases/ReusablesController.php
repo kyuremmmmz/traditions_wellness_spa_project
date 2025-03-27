@@ -13,7 +13,7 @@ class ReusablesController
     {
         $services = [];
 
-        if (isset($placeHolder['swedish'])) {
+        if (isset($placeHolder['massage_selection']['label'])) {
             $services[] = 'Swedish Massage';
         }
         if (isset($placeHolder['hot_stone'])) {
@@ -30,14 +30,51 @@ class ReusablesController
     {
         $services = [];
 
-        if (isset($placeHolder['swedish'])) {
-            $services[] = 'Swedish Massage';
-        }
         if (isset($placeHolder['hot_stone'])) {
-            $services[] = 'Hot Stone Therapy';
+            $services[] = 'Hot Stone';
         }
-        if (isset($placeHolder['deep_tissue'])) {
-            $services[] = 'Deep Tissue Massage';
+        if (isset($placeHolder['ear_candling'])) {
+            $services[] = 'Ear Candling';
+        }
+        if (isset($placeHolder['ventosa'])) {
+            $services[] = 'Ventosa';
+        }
+
+        return empty($services) ? '' : implode(', ', $services);
+    }
+
+    public function bodyScrubSelection($placeHolder)
+    {
+        $services = [];
+
+        if (isset($placeHolder['coffee_scrub'])) {
+            $services[] = 'Coffee Scrub';
+        }
+        if (isset($placeHolder['milk_whitening_scrub'])) {
+            $services[] = 'Milk Whitening Scrub';
+        }
+        if (isset($placeHolder['shea_and_butter_scrub'])) {
+            $services[] = 'Shea and Butter Scrub';
+        }
+
+        return empty($services) ? '' : implode(', ', $services);
+    }
+
+    public function massageSelection($placeHolder)
+    {
+        $services = [];
+
+        if (isset($placeHolder['bamboossage'])) {
+            $services[] = 'Bamboossage';
+        }
+        if (isset($placeHolder['dagdagay'])) {
+            $services[] = 'Dagdagay';
+        }
+        if (isset($placeHolder['hilot'])) {
+            $services[] = 'Hilot';
+        }
+        if (isset($placeHolder['swedish'])) {
+            $services[] = 'Swedish';
         }
 
         return empty($services) ? '' : implode(', ', $services);

@@ -2,6 +2,7 @@
 
 namespace Project\App\Controllers\Web\UseCases;
 
+use Exception;
 use Project\App\Models\Services\ServicesModel;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
 
@@ -9,11 +10,13 @@ class ServicesController
 {
     private $model;
     private $uploadPhoto;
+    private $reusables;
 
     public function __construct()
     {
         $this->model = new ServicesModel();
         $this->uploadPhoto = new FileUploadUseCaseController();
+        $this->reusables = new ReusablesController();
     }
 
     public function createCategory()
@@ -28,6 +31,7 @@ class ServicesController
 
     public function createService()
     {
+        session_start();
         $data = $_POST;
 
         if (!isset($data['category']) || empty($data['category'])) {
@@ -37,42 +41,40 @@ class ServicesController
 
         $price = isset($data['fixed_price']) && !empty($data['fixed_price'])
             ? (int)$data['fixed_price']
-            : (int)($data['1_hour_price'] ?? 0) + (int)($data['1_hour_30_price'] ?? 0) + (int)($data['2_hours_price'] ?? 0);
-
-        file_put_contents('debug.log', "FILES: " . print_r($_FILES, true) . "\n", FILE_APPEND);
-
+            : (int)($data['1_hour_price']) + (int)($data['1_hour_30_price']) + (int)($data['2_hours_price']);
         $uploadMainPhoto = $this->handleFileUpload('main_photo');
         $uploadShowcasePhoto1 = $this->handleFileUpload('showcase_photo_1');
         $uploadShowcasePhoto2 = $this->handleFileUpload('showcase_photo_2');
         $uploadShowcasePhoto3 = $this->handleFileUpload('showcase_photo_3');
         $uploadMultiples = $this->handleMultipleFileUpload('slideshow_photos');
         $this->model->createServices(
-            $data['service_name'] ?? '',
+            $data['category'],
+            $data['service_name'],
             $price,
-            $data['service_caption'] ?? '',
+            $data['service_caption'],
             $data['service_description'],
-            $data['status'] ?? '',
-            $data['duration_details'] ?? '',
-            $data['party_size_details'] ?? '',
-            $data['massage_details'] ?? '',
-            $data['body_scrub_details'] ?? '',
-            $data['addon_details'] ?? '',
-            $uploadMainPhoto['image']['url'] ?? '',
+            $data['status'],
+            $data['duration_details'],
+            $data['party_size_details'],
+            $data['massage_details'],
+            $data['body_scrub_details'],
+            $data['addon_details'],
+            $uploadMainPhoto['image']['url'],
             implode(',', $uploadMultiples),
-            $uploadShowcasePhoto1['image']['url'] ?? '',
-            $data['showcase_headline_1'] ?? '',
-            $data['showcase_caption_1'] ?? '',
-            $uploadShowcasePhoto2['image']['url'] ?? '',
-            $data['showcase_headline_2'] ?? '',
-            $data['showcase_caption_2'] ?? '',
-            $uploadShowcasePhoto3['image']['url'] ?? '',
-            $data['showcase_headline_3'] ?? '',
-            $data['showcase_caption_3'] ?? '',
-            $data['massage_selection']['label'] ?? '',
-            $data['body_scrub_selection']['label'] ?? '',
-            $data['addon_selection']['label'] ?? ''
+            $uploadShowcasePhoto1['image']['url'],
+            $data['showcase_headline_1'],
+            $data['showcase_caption_1'],
+            $uploadShowcasePhoto2['image']['url'],
+            $data['showcase_headline_2'],
+            $data['showcase_caption_2'],
+            $uploadShowcasePhoto3['image']['url'],
+            $data['showcase_headline_3'],
+            $data['showcase_caption_3'],
+            $this->reusables->massageSelection($data),
+            $this->reusables->bodyScrubSelection($data),
+            $this->reusables->suplementTalAddOns($data),
         );
-
+        $_SESSION['services_message'] = 'Service created successfully';
         header('Location: /services');
         exit;
     }
@@ -114,6 +116,23 @@ class ServicesController
             'message' => 'Connected successfully',
             'data' => $data2
         ]);
+        exit;
+    }
+
+    public function findCategory($category)
+    {
+        error_log("Category received: " . print_r($category, true));
+        ob_start();
+        header('Content-Type: application/json');
+        try {
+            $data2 = $this->model->findByCategory($category);
+            ob_end_clean();
+            echo json_encode($data2);
+        } catch (Exception $e) {
+            ob_end_clean();
+            http_response_code(500);
+            echo json_encode(['error' => 'Server error occurred: ' . $e->getMessage()]);
+        }
         exit;
     }
 

@@ -2653,76 +2653,100 @@ FILES: Array
 (
     [main_photo] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpBA0.tmp
+            [error] => 0
+            [size] => 4060021
         )
 
     [slideshow_photos] => Array
         (
             [name] => Array
                 (
-                    [0] => 
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
                 )
 
             [full_path] => Array
                 (
-                    [0] => 
+                    [0] => adriaan-venner-scheepers-3DxEqSlrwsg-unsplash.jpg
+                    [1] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+                    [2] => federico-de-luca-TQE2kWqyFGk-unsplash.jpg
+                    [3] => ramon-kagie-67jRTUZVqE8-unsplash.jpg
+                    [4] => kelsey-curtis--27u_GzlAFw-unsplash.jpg
                 )
 
             [type] => Array
                 (
-                    [0] => 
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
+                    [4] => image/jpeg
                 )
 
             [tmp_name] => Array
                 (
-                    [0] => 
+                    [0] => C:\xampp\tmp\phpBB0.tmp
+                    [1] => C:\xampp\tmp\phpBB1.tmp
+                    [2] => C:\xampp\tmp\phpBC2.tmp
+                    [3] => C:\xampp\tmp\phpBC3.tmp
+                    [4] => C:\xampp\tmp\phpBE3.tmp
                 )
 
             [error] => Array
                 (
-                    [0] => 4
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
+                    [4] => 0
                 )
 
             [size] => Array
                 (
-                    [0] => 0
+                    [0] => 2609556
+                    [1] => 545950
+                    [2] => 3733541
+                    [3] => 1438805
+                    [4] => 4652377
                 )
 
         )
 
     [showcase_photo_1] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpBF4.tmp
+            [error] => 0
+            [size] => 4383076
         )
 
     [showcase_photo_2] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => 1533bf0f-4f7f-4ad3-bbe4-377ffebcb887.jpg
+            [full_path] => 1533bf0f-4f7f-4ad3-bbe4-377ffebcb887.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC04.tmp
+            [error] => 0
+            [size] => 9317
         )
 
     [showcase_photo_3] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => fe7b66e7-d512-4eea-afee-990f29211f1b.jpg
+            [full_path] => fe7b66e7-d512-4eea-afee-990f29211f1b.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\phpC05.tmp
+            [error] => 0
+            [size] => 156881
         )
 
 )
@@ -2731,12 +2755,12 @@ FILES: Array
 (
     [main_photo] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [full_path] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php959A.tmp
+            [error] => 0
+            [size] => 4060021
         )
 
     [slideshow_photos] => Array
@@ -2744,375 +2768,121 @@ FILES: Array
             [name] => Array
                 (
                     [0] => 
+                    [1] => 
                 )
 
             [full_path] => Array
                 (
                     [0] => 
+                    [1] => 
                 )
 
             [type] => Array
                 (
                     [0] => 
+                    [1] => 
                 )
 
             [tmp_name] => Array
                 (
                     [0] => 
+                    [1] => 
                 )
 
             [error] => Array
                 (
                     [0] => 4
+                    [1] => 4
                 )
 
             [size] => Array
                 (
                     [0] => 0
+                    [1] => 0
                 )
 
         )
 
-    [showcase_photo_1] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_2] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_3] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-)
-
-FILES: Array
-(
-    [main_photo] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [slideshow_photos] => Array
+    [slideshow_slideshow_photos] => Array
         (
             [name] => Array
                 (
-                    [0] => 
+                    [0] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [1] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                    [2] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                    [3] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
                 )
 
             [full_path] => Array
                 (
-                    [0] => 
+                    [0] => zoshua-colah-eLIfeIRGBoE-unsplash.jpg
+                    [1] => bao-menglong-b75FBg97dU0-unsplash.jpg
+                    [2] => chris-carzoli-VC1Ifrsi9Xo-unsplash (1).jpg
+                    [3] => zoshua-colah-mMZkd17ct8Y-unsplash.jpg
                 )
 
             [type] => Array
                 (
-                    [0] => 
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                    [2] => image/jpeg
+                    [3] => image/jpeg
                 )
 
             [tmp_name] => Array
                 (
-                    [0] => 
+                    [0] => C:\xampp\tmp\php95AA.tmp
+                    [1] => C:\xampp\tmp\php95AB.tmp
+                    [2] => C:\xampp\tmp\php95BC.tmp
+                    [3] => C:\xampp\tmp\php95CD.tmp
                 )
 
             [error] => Array
                 (
-                    [0] => 4
+                    [0] => 0
+                    [1] => 0
+                    [2] => 0
+                    [3] => 0
                 )
 
             [size] => Array
                 (
-                    [0] => 0
+                    [0] => 4060021
+                    [1] => 4383076
+                    [2] => 1803235
+                    [3] => 4843000
                 )
 
         )
 
     [showcase_photo_1] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95DD.tmp
+            [error] => 0
+            [size] => 4383076
         )
 
     [showcase_photo_2] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [full_path] => bao-menglong-b75FBg97dU0-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95EE.tmp
+            [error] => 0
+            [size] => 4383076
         )
 
     [showcase_photo_3] => Array
         (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-)
-
-FILES: Array
-(
-    [main_photo] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [slideshow_photos] => Array
-        (
-            [name] => Array
-                (
-                    [0] => 
-                )
-
-            [full_path] => Array
-                (
-                    [0] => 
-                )
-
-            [type] => Array
-                (
-                    [0] => 
-                )
-
-            [tmp_name] => Array
-                (
-                    [0] => 
-                )
-
-            [error] => Array
-                (
-                    [0] => 4
-                )
-
-            [size] => Array
-                (
-                    [0] => 0
-                )
-
-        )
-
-    [showcase_photo_1] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_2] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_3] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-)
-
-FILES: Array
-(
-    [main_photo] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [slideshow_photos] => Array
-        (
-            [name] => Array
-                (
-                    [0] => 
-                )
-
-            [full_path] => Array
-                (
-                    [0] => 
-                )
-
-            [type] => Array
-                (
-                    [0] => 
-                )
-
-            [tmp_name] => Array
-                (
-                    [0] => 
-                )
-
-            [error] => Array
-                (
-                    [0] => 4
-                )
-
-            [size] => Array
-                (
-                    [0] => 0
-                )
-
-        )
-
-    [showcase_photo_1] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_2] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_3] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-)
-
-FILES: Array
-(
-    [main_photo] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [slideshow_photos] => Array
-        (
-            [name] => Array
-                (
-                    [0] => 
-                )
-
-            [full_path] => Array
-                (
-                    [0] => 
-                )
-
-            [type] => Array
-                (
-                    [0] => 
-                )
-
-            [tmp_name] => Array
-                (
-                    [0] => 
-                )
-
-            [error] => Array
-                (
-                    [0] => 4
-                )
-
-            [size] => Array
-                (
-                    [0] => 0
-                )
-
-        )
-
-    [showcase_photo_1] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_2] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
-        )
-
-    [showcase_photo_3] => Array
-        (
-            [name] => 
-            [full_path] => 
-            [type] => 
-            [tmp_name] => 
-            [error] => 4
-            [size] => 0
+            [name] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [full_path] => salah-regouane-8TvrWxWUqDE-unsplash.jpg
+            [type] => image/jpeg
+            [tmp_name] => C:\xampp\tmp\php95FE.tmp
+            [error] => 0
+            [size] => 545950
         )
 
 )

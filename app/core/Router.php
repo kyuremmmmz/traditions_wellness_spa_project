@@ -62,6 +62,7 @@ class Router
                         return;
                     }
 
+
                     $controller = $config['controller'] ?? null;
                     if ($controller) {
                         $middleware = $config['middleware'] ?? null;
@@ -90,6 +91,7 @@ class Router
                             $controllerInstance->$action(array_slice($params, 1));
                         }
                         return;
+
                     }
                 }
             }
@@ -140,7 +142,8 @@ class Router
     private function convertToRegex($route)
     {
         $escapedRoute = preg_replace('/\//', '\\/', $route);
-        return '/^' . str_replace(['{id}'], ['(\\d+)'], $escapedRoute) . '$/';
+        $pattern = preg_replace('/\{[a-zA-Z0-9]+\}/', '([^\/]+)', $escapedRoute);
+        return "/^$pattern$/";
     }
 
     private function isMobileRequest()

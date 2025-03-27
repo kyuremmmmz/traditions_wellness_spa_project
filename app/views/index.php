@@ -30,6 +30,7 @@
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/FetchAppointment.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchCustomers.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/TherapistService.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/CategorySelections.js"></script>
 </head>
 
 <!-- Content -->

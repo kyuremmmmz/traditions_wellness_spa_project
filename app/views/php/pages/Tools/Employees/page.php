@@ -135,7 +135,7 @@ class Page
                         <div class="flex justify-end items-end">
                             <div class="flex flex-col justify-start sm:justify-center gap-[16px] w-[480px]">
                                 <input type="hidden" id="therapistId" name="id">
-                                <?php 
+                                <?php
                                 SecondaryInputField::render('textfield', 'First Name', 'Enter first name', [], '', null, 'therapistFirstName', '', '', [], false, 'first_name');
                                 SecondaryInputField::render('textfield', 'Last Name', 'Enter last name', [], '', null, 'therapistLastName', '', '', [], false, 'last_name');
                                 SecondaryInputField::render('textfield', 'Email', 'Enter email', [], '', null, 'therapistEmail', '', '', [], false, 'email');
@@ -171,7 +171,7 @@ class Page
                     <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit? All unsaved changes will be lost.</p>
                     <div class="flex gap-[16px] justify-end mt-[48px]">
                         <button type="button" id="closeUnsavedEditTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="proceedUnsavedEditTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
+                        <button type="button" id="proceedUnsavedEditTherapistButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
                     </div>
                 </div>
             </div>
@@ -188,7 +188,7 @@ class Page
             </div>
 
         </form>
-         
+
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Therapists/TherapistsDom.js"></script>
 
 <?php

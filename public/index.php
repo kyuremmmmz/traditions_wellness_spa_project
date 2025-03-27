@@ -27,8 +27,10 @@ $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
 $router->get('/getAllTherapist', 'TherapistController@getAllTherapist');
+$router->post('/updateTherapist', 'TherapistController@updateTherapist');
 $router->post('/addTherapist', 'TherapistController@addTherapist');
 $router->get('/store', 'ServicesController@store');
+$router->get('/findCategory/{category}', 'ServicesController@findCategory');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
 $router->post('/deleteAppointment', 'AppointmentsController@deleteAppointment');
@@ -67,6 +69,8 @@ $router->put('/mobileAppointments/{id}', 'Mobile\OnlineAppointmentMobileControll
 
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/createService', 'ServicesController@createService');
+$router->post('/createAddOns', 'AddOnsController@createAddOns');
+
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

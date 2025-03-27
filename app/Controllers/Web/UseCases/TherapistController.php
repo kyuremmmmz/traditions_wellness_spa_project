@@ -35,6 +35,40 @@ class TherapistController
         }
     }
 
+    public function updateTherapist(){
+        session_start();
+        $data = $_POST;
+        if (!isset($data['first_name']) || 
+            !isset($data['last_name']) || 
+            !isset($data['email']) || 
+            !isset($data['gender']) || 
+            !isset($data['status'])) 
+        {
+            $_SESSION['server_error'] = [
+                'error' => 'Please fill out all fields.'
+            ];
+            header('Location:/employees');
+        }
+        $update = $this->controller->update(
+            $data['id'], 
+            $data['first_name'], 
+            $data['last_name'], 
+            $data['gender'], 
+            $data['status'], 
+            $data['email']);
+        if ($update) {
+            $_SESSION['sumakses'] = [
+                'sumakses' => 'Therapist updated successfully.'
+            ];
+            header('Location:/employees');
+        }else{
+            $_SESSION['server_error'] = [
+                'error' => 'Failed to update therapist.'
+            ];
+            header('Location:/employees');
+        }
+    }
+
     public function getAllTherapist()
     {
         ob_clean();
