@@ -31,8 +31,6 @@ class ServicesSelectionLoader {
             const response = await fetch('http://localhost:8000/store', { method: 'GET' });
             const result = await response.json();
             const services = result.data;
-
-            // Clear existing content
             Object.values(this.sections).forEach(section => {
                 section.innerHTML = '';
             });
@@ -40,36 +38,7 @@ class ServicesSelectionLoader {
             // Populate sections with services
             services.forEach(service => {
                 const serviceElement = this.createServiceElement(service);
-                
-                // Add to appropriate section based on service type
-                if (service.type === 'addon') {
-                    if (service.archived) {
-                        this.archivedAddOnsSection.appendChild(this.createAddonElement(service));
-                    } else {
-                        this.addOnsSection.appendChild(this.createAddonElement(service));
-                    }
-                } else {
-                    // Add to all services section
-                    this.allServicesSection.appendChild(serviceElement);
-
-                    // Add to specific category section
-                    switch(service.category?.toLowerCase()) {
-                        case 'massage':
-                            this.massagesSection.appendChild(serviceElement.cloneNode(true));
-                            break;
-                        case 'body scrub':
-                            this.bodyScrubsSection.appendChild(serviceElement.cloneNode(true));
-                            break;
-                        case 'package':
-                            this.packagesSection.appendChild(serviceElement.cloneNode(true));
-                            break;
-                    }
-
-                    // If archived, add to archived section
-                    if (service.archived) {
-                        this.archivedServicesSection.appendChild(serviceElement.cloneNode(true));
-                    }
-                }
+                this.allServicesSection.appendChild(serviceElement);
             });
         } catch (error) {
             console.error('Error loading services:', error);
@@ -100,19 +69,6 @@ class ServicesSelectionLoader {
         `;
         return element;
     }
-
-    createAddonElement(addon) {
-        const element = document.createElement('div');
-        element.className = 'addon-item';
-        element.innerHTML = `
-            <button class="w-full bg-white rounded-[16px] shadow flex items-center justify-between p-[24px] hover:bg-gray-50 transition-all duration-300">
-                <h3 class="text-[20px] font-semibold">${addon.serviceName}</h3>
-                <span class="text-[16px] font-semibold">₱${addon.price || '0.00'}</span>
-            </button>
-        `;
-        return element;
-    }
-
     showError(message) {
         // Implement error display logic here
         console.error(message);

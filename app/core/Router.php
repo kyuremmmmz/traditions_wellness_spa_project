@@ -71,10 +71,10 @@ class Router
                         $middlewareClass = "Project\\App\\Core\\Middleware\\$middleware";
                         $middlewareInstance = new $middlewareClass();
                         $middlewareInstance::handle($_REQUEST, function () use ($controllerInstance, $action, $params) {
-                            $controllerInstance->$action(array_slice($params, 1));
+                            $controllerInstance->$action(urldecode($params[1]));
                         });
                     } else {
-                        $controllerInstance->$action(array_slice($params, 1));
+                        $controllerInstance->$action(urldecode($params[1]));
                     }
                     return;
                 }
@@ -101,7 +101,8 @@ class Router
     private function convertToRegex($route)
     {
         $escapedRoute = preg_replace('/\//', '\\/', $route);
-        return '/^' . str_replace(['{id}'], ['(\\d+)'], $escapedRoute) . '$/';
+        $pattern = preg_replace('/\{[a-zA-Z0-9]+\}/', '([^\/]+)', $escapedRoute);
+        return "/^$pattern$/";
     }
 
     private function isMobileRequest()

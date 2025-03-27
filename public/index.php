@@ -23,6 +23,7 @@ $router->get('/getAllTherapist', 'TherapistController@getAllTherapist');
 $router->post('/updateTherapist', 'TherapistController@updateTherapist');
 $router->post('/addTherapist', 'TherapistController@addTherapist');
 $router->get('/store', 'ServicesController@store');
+$router->get('/findCategory/{category}', 'ServicesController@findCategory');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
 $router->post('/deleteAppointment', 'AppointmentsController@deleteAppointment');
