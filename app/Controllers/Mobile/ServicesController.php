@@ -163,7 +163,8 @@ class ServicesController
         try {
             // Map endpoint categories to display categories
             $categoryMap = [
-                'bodyscrub' => 'Body Scrub'
+                'bodyscrub' => 'Body Scrubs',
+                'massage' => 'Massages'
             ];
             
             // Use mapped category if available, otherwise use the original
