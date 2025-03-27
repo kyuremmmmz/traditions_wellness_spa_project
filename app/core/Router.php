@@ -74,7 +74,7 @@ class Router
                             $controllerInstance->$action(urldecode($params[1]));
                         });
                     } else {
-                        $controllerInstance->$action(urldecode($params[1]));
+                        $controllerInstance->$action(isset($params[1]) ? urldecode($params[1]) : urldecode($params[0]));
                     }
                     return;
                 }

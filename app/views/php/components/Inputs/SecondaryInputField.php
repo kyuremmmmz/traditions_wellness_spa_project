@@ -241,7 +241,7 @@ class SecondaryInputField
                 echo '<select name="' . $name . '" id="'.$id.'" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
                 foreach ($options as $option) {
                     if (is_array($option)) {
-                        echo '<option value="' . htmlspecialchars($option['value']) . '"> selected' . htmlspecialchars($option['label']) . '</option>';
+                        echo '<option value="' . htmlspecialchars($option['value']) . '">' . htmlspecialchars($option['label']) . '</option>';
                     } else {
                         echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
                     }
@@ -312,8 +312,10 @@ class SecondaryInputField
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {
+                    $replace = str_replace(' ', '_', $option);
+                    $toLower = strtolower($replace);
                     echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='{$name}[]' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
+                    echo "<input type='checkbox' name='$toLower' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
                     echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
                     echo "</div>";
                 }
