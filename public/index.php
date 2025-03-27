@@ -52,6 +52,11 @@ $router->post('/auth/check-verification', 'AuthMobileController@checkVerificatio
 
 //  Mobile Services Routes
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
+$router->get('/mobileServices/categories', 'Mobile\ServicesController@getCategories');
+$router->get('/mobileServices/massage', 'Mobile\ServicesController@getMassageServices');
+$router->get('/mobileServices/bodyscrub', 'Mobile\ServicesController@getBodyScrubServices');
+$router->get('/mobileServices/packages', 'Mobile\ServicesController@getPackageServices');
+$router->get('/mobileServices/category/:category', 'Mobile\ServicesController@getServicesByCategory');
 
 // Mobile Appointment Routes
 $router->get('/mobileAppointments', 'Mobile\OnlineAppointmentMobileController@index');
