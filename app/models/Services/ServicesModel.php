@@ -30,13 +30,14 @@ class ServicesModel
 
 
 
-    public function find($id)
+    public function findByCategory($category)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("SELECT * FROM services WHERE category = :category");
+        $stmt->execute(['category' => $category]);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        error_log("findByCategory result: " . print_r($result, true)); // Log to error log
+        return $result;
     }
-
 
     public function createCategory($category)
     {
@@ -89,7 +90,7 @@ class ServicesModel
             :show_case_photo3, :headline3, :caption3, :massage_selection, :body_scrub_selection, 
             :supplemental_add_ons, NOW(), NOW()
         )");
-
+        
         return $stmt->execute([
             'category' => $category,
             'serviceName' => $serviceName,
