@@ -34,28 +34,24 @@ class NotificationsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function create($userId, $message, $type, $status = 'unread')
+    public function create($userId, $message, $type, $status)
     {
         $stmt = $this->pdo->prepare("INSERT INTO notifications (
-            user_id,
-            message,
-            type,
-            status,
-            created_at,
-            updated_at
-        ) VALUES (
-            :user_id,
-            :message,
-            :type,
-            :status,
-            NOW(),
-            NOW()
-        )");
+        user_id,
+        description,
+        category,
+        status
+    ) VALUES (
+        :user_id,
+        :message,
+        :category,
+        :status
+    )");
 
         return $stmt->execute([
             'user_id' => $userId,
             'message' => $message,
-            'type' => $type,
+            'category' => $type,
             'status' => $status
         ]);
     }
