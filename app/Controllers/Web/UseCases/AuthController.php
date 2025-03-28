@@ -159,6 +159,7 @@ class AuthController
             if (password_verify($_POST['password'], $response['password'])) {
                 $_SESSION['login_attempts'] = 0;
                 $_SESSION['user'] = [
+                    'id' => $response['id'],
                     'role' => $response['role'],
                     'username' => $response['username'],
                     'last_name' => $response['last_name'],

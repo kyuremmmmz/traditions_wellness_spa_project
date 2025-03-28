@@ -51,8 +51,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('therapistFirstName').value = data.firstname;
                 document.getElementById('therapistLastName').value = data.lastname;
                 document.getElementById('therapistEmail').value = data.email;
-                document.getElementById('therapistGender').value = data.gender;
-                document.getElementById('therapistStatus').value = data.status;
+                document.getElementById('therapistGender').innerHTML = `
+                    <option value="${data.gender}" selected>${data.gender}</option>
+                    <option value="${data.gender === 'male' ? 'female' : 'male'}">${data.gender === 'male' ? 'female' : 'male'}</option>
+                `;
+                document.getElementById('therapistStatus').innerHTML = `
+                    <option value="${data.status}" selected>${data.status}</option>
+                    <option value="${data.status === 'active' ? 'inactive' : 'active'}">${data.status === 'active' ? 'inactive' : 'active'}</option>
+                `;
             });
         });
 

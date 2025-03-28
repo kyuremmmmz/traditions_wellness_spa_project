@@ -6,7 +6,7 @@ use Project\App\Models\Utilities\NotificationsModel;
 
 class NotificationsTable
 {
-    public static function render(?string $className = null): void
+    public static function render(?string $className = null, string $id): void
     {
         $containerClass = "border border-border dark:border-darkBorder border-[1px] rounded-[6px] w-[800px] bg-background dark:bg-darkBackground p-4";
         $tableClass = "w-full border-collapse";
@@ -17,7 +17,7 @@ class NotificationsTable
         $notifications = [];
         echo <<<HTML
         <div class="$containerClass">
-            <h2 class="text-lg font-semibold mb-3">Notifications</h2>
+            <h2 class="mb-3 text-lg font-semibold">Notifications</h2>
             <table class="$tableClass">
                 <thead>
                     <tr>
@@ -31,7 +31,7 @@ class NotificationsTable
 
         foreach ($notifications as $notif) {
             $statusBadge = $notif['status'] === 'unread' 
-                ? "<span class='text-red-500 font-semibold'>Unread</span>" 
+                ? "<span class='font-semibold text-red-500'>Unread</span>" 
                 : "<span class='text-green-500'>Read</span>";
 
             echo <<<HTML

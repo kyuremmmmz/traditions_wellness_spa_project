@@ -121,20 +121,23 @@ class ServicesController
 
     public function findCategory($category)
     {
-        error_log("Category received: " . print_r($category, true));
         ob_start();
         header('Content-Type: application/json');
-        try {
             $data2 = $this->model->findByCategory($category);
             ob_end_clean();
             echo json_encode($data2);
-        } catch (Exception $e) {
-            ob_end_clean();
-            http_response_code(500);
-            echo json_encode(['error' => 'Server error occurred: ' . $e->getMessage()]);
-        }
         exit;
     }
+
+    public function findArchives()
+    {
+        ob_start();
+        header('Content-Type: application/json');
+        $data2 = $this->model->findByArchive();
+        echo json_encode($data2);
+        exit;
+    }
+
 
     public function edit()
     {
