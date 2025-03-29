@@ -10,18 +10,32 @@ class ServicesController
     private function parseSelection($value)
     {
         if (empty($value)) return [];
-        if (is_array($value)) return array_filter($value);
+        
+        // If already an array, filter and return
+        if (is_array($value)) {
+            return array_values(array_filter($value));
+        }
         
         // Try JSON decode first
         $decoded = json_decode($value, true);
-        if (json_last_error() === JSON_ERROR_NONE && is_array($decoded)) {
-            return array_filter($decoded); // Remove empty values
+        if (json_last_error() === JSON_ERROR_NONE) {
+            // If decoded to array, filter and return
+            if (is_array($decoded)) {
+                return array_values(array_filter($decoded));
+            }
+            // If decoded to string, process as string
+            $value = $decoded;
         }
         
-        // If not JSON, split by comma and trim
-        // Handle both comma with and without space after it
-        $items = array_map('trim', preg_split('/\s*,\s*/', $value));
-        return array_filter($items); // Remove empty values
+        // Process as string - split by comma and clean up
+        if (is_string($value)) {
+            $items = array_map('trim', preg_split('/\s*,\s*/', $value));
+            return array_values(array_filter($items, function($item) {
+                return $item !== '' && $item !== null;
+            }));
+        }
+        
+        return [];
     }
 
     public function __construct()
@@ -74,25 +88,12 @@ class ServicesController
             'massage_details' => $service['massage_details'] ?? '',
             'body_scrub_details' => $service['body_scrub_details'] ?? '',
             'add_ons_details' => $service['add_ons_details'] ?? '',
-            'massage_selection' => $this->parseSelection($service['massage_selection'] ?? ''),
-            'body_scrub_selection' => $this->parseSelection($service['body_scrub_selection'] ?? ''),
-            'supplemental_add_ons' => $this->parseSelection($service['supplementtal_add_ons'] ?? '')
+            'massage_selection' => $this->parseSelection($service['massage_selection'] ?? []),
+            'body_scrub_selection' => $this->parseSelection($service['body_scrub_selection'] ?? []),
+            'supplemental_add_ons' => $this->parseSelection($service['supplemental_add_ons'] ?? [])
         ];
 
-        // Adjust selections based on category
-        switch ($normalizedCategory) {
-            case 'massage':
-                $formattedService['massage_selection'] = []; // No selection for massage
-                $formattedService['body_scrub_selection'] = [];
-                break;
-            case 'bodyscrub':
-                $formattedService['massage_selection'] = []; // No massage selection
-                break;
-            case 'packages':
-                $formattedService['add_ons_details'] = ''; // No add-ons for packages
-                $formattedService['supplemental_add_ons'] = [];
-                break;
-        }
+        // All selections are preserved regardless of category
 
         return $formattedService;
     }
