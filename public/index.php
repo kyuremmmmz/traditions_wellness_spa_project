@@ -48,6 +48,9 @@ $router->get('/mobileServices', 'Mobile\ServicesController@index');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/createService', 'ServicesController@createService');
 $router->post('/createAddOns', 'AddOnsController@createAddOns');
+$router->get('/addons', 'AddOnsController@findAddons');
+$router->post('/updateAddOn', 'AddOnsController@updateAddOns');
+$router->post('/deleteAddOn', 'AddOnsController@deleteAddOns');
 
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');

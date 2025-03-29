@@ -4,16 +4,18 @@ namespace Project\App\Views\Php\Pages\Dashboard;
 
 use Project\App\Views\Php\Components\Banners\WorkingBanner;
 use Project\App\Views\Php\Components\Buttons\ActionButton;
-use Project\App\Views\Php\Components\Buttons\AddonItemButton;
+use Project\App\Views\Php\Components\Buttons\ActionButtons;
+use Project\App\Views\Php\Components\Buttons\LazyRowButtons;
 use Project\App\Views\Php\Components\Containers\Sidebar;
 use Project\App\Views\Php\Components\Icons\IconChoice;
-use Project\App\Views\Php\Components\Texts\LastUpdated;
 use Project\App\Views\Php\Components\Texts\Text;
 use Project\App\Views\Php\Components\Texts\TextRowContainer;
 use Project\App\Views\Php\Components\Inputs\SecondaryInputField;
 use Project\App\Views\Php\Components\Buttons\NewPrimaryButton;
-use Project\App\Views\Php\Components\Buttons\ServiceItemButton;
-
+use Project\App\Views\Php\Components\Drawers\NewAddOn;
+use Project\App\Views\Php\Components\Drawers\UpdateAddOn;
+use Project\App\Views\Php\Components\Headers\PageTitle;
+use Project\App\Views\Php\Components\Sections\LazyGrid;
 
 class Page
 {
@@ -27,151 +29,26 @@ class Page
             ?>
             <div id="main" class="sm:ml-[48px] overflow-y-auto sm:px-[0px] px-[48px] flex flex-col mt-[104px] sm:mt-[0px] sm:items-center sm:justify-center sm:h-screen  w-full">
                 <div>
-                    <section class="flex h-[50px]">
-                        <div class="min-w-[50px] min-h-[50px] border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground transition-all rounded-[6px] flex justify-center items-center">
-                            <?php IconChoice::render('servicesMedium', '[24px]', '[24px]', '', 'onSurface', 'darkOnSurface'); ?>
-                        </div>
-                        <div class="h-full flex flex-col justify-center h-full w-[232px] min-w-[316px] pl-[16px] gap-[4px]">
-                            <?php echo Text::render('', '', 'SubHeaderTwo text-onBackground dark:text-darkOnBackground text-left leading-none', 'Services');
-                            echo LastUpdated::render(); ?>
-                        </div>
-                    </section>
-
+                    <?php PageTitle::render('servicesMedium', 'Services') ?>
                     <section class="flex gap-[16px] py-[16px]">
-                        <?php
-                        ActionButton::render('addServiceSmall', 'Add a new service', 'openAddANewServiceSectionButton');
-                        ActionButton::render('plusSmall', 'Add a new add-on', 'openAddANewAddOnSectionButton');
-                        ?>
+                        <?php ActionButtons::render([['id' => 'openAddANewServiceSectionButton', 'content' => '+ Add a new service'],['id' => 'openAddANewAddOnSectionButton', 'content' => '+ Add a new add-on']]); ?>
                     </section>
-
                     <section>
-                        <div class="border-b border-border flex dark:border-darkBorder h-[30px] overflow-x-auto">
-                            <div class="mx-[24px] h-[30px]">
-                                <button type="button" id="showAllServices" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">All Services</button>
-                                <button type="button" id="showMassages" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Massages</button>
-                                <button type="button" id="showBodyScrubs" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Body Scrubs</button>
-                                <button type="button" id="showPackages" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Packages</button>
-                                <button type="button" id="showAddOns" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Add-ons</button>
-                                <button type="button" id="showArchivedServices" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Archived Services</button>
-                                <button type="button" id="showArchivedAddOns" class="px-[16px] h-[30px] CaptionMediumOne leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface bg-background dark:bg-darkBackground appearance-none">Archived Add-on</button>
-                            </div>
-                        </div>
+                        <?php LazyRowButtons::render([['showAllServices', 'All Services'], ['showMassages', 'Massages'], ['showBodyScrubs', 'Body Scrubs'], ['showPackages', 'Packages'], ['showAddOns', 'Add-ons'], ['showArchivedServices', 'Archived Services'], ['showArchivedAddOns', 'Archived Add-on']]); ?>
                     </section>
-
-                    <div class="h-[640px] relative overflow-x-auto overflow-y-auto w-full">
-                        <section id="allServicesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                        </section>
-                        <section id="massagesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                        </section>
-                        <!-- Apply the same changes to other sections -->
-                        <section id="bodyScrubsSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                        </section>
-                        <section id="packagesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                            <?php ServiceItemButton::render('', 'headline', 'description', 'rating', 'price', 'id'); ?>
-                        </section>
-                        <section id="addOnsSection" class="flex flex-col items-center items-top p-[24px] absolute w-full transition-all duration-300 transform">
-                            <?php AddonItemButton::render('Headline', '0') ?>
-                        </section>
-                        <section id="archivedServicesSection" class="grid grid-flow-col grid-rows-6 auto-cols-[365px] gap-[16px] p-[24px] absolute min-w-full transition-all duration-300 transform">
-                        </section>
-                        <section id="archivedAddOnsSection" class="flex flex-col items-center items-top p-[24px] absolute w-full transition-all duration-300 transform">
-                        </section>
-                    </div>
+                    <section>
+                        <?php LazyGrid::render([['allServices', true],['massages', true], ['bodyScrubs', true], ['packages', true], ['addOns', true], ['archivedServices', true], ['archivedAddOns', true]]); ?>
+                    </section>
                 </div>
             </div>
         </main>
-        <form action="/createAddOns" method="post">
-            <!-- Add a new add-on section -->
-            <div id="AddANewAddOnSection" class="ml-[0px] w-full overflow-x-auto max-w-full p-[48px] overflow-y-auto fixed inset-0 bg-background dark:bg-darkBackground flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out z-20 sm:z-0 max-w-[480px]">
-                <div class="flex justify-start mb-[48px] min-w-[316px] w-full ml-[-8px] sm:ml-[40px]">
-                    <button type="button" id="closeAddANewAddOnButton" class="transition-all duration-200 p-[4px] flex rounded-[6px] bg-background dark:bg-darkBackground hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">
-                        <div class="w-[24px] h-[24px] flex justify-center items-center">
-                            <?php IconChoice::render('chevronRightSmall', '6px', '12px', '', 'onSurface', 'darkOnSurface', '', '', '', '', '', ''); ?>
-                        </div>
-                    </button>
-                </div>
-                <div class="w-full flex flex-col gap-[48px] items-center sm:mt-[64px] mt-[0px]">
-                    <section class="flex flex-col gap-[16px] w-[400px] max-w-full">
-                        <?php Text::render('', '', 'HeaderTwo leading-none text-onBackground dark:text-darkOnBackground', 'Add a new add-on'); ?>
-                        <?php Text::render('', '', 'BodyTwo leading-none text-onBackgroundTwo dark:text-darkOnBackgroundTwo', 'Please enter the following.'); ?>
-                    </section>
-                    <section class="flex flex-col gap-[16px] w-[400px]">
-                        <div class="flex flex-col gap-[16px] max-w-[480px] items-end justify-end">
-                            <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], '', null, '', '', '', [], false, 'name', 0, '') ?>
-                            <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], '', null, '', '', '', [], false, 'price') ?>
-                            <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, '', '', '', [], false, 'status') ?>
-                        </div>
-                    </section>
-                    <section class="flex flex-col gap-[16px] w-[400px] items-end max-w-[400px]">
-                        <?php NewPrimaryButton::render('Create add-on', 'submit', 'openConfirmAddANewAddOnModal', '257px', null) ?>
-                    </section>
-                </div>
-        </form>
+
+        <?php NewAddOn::render(); ?>
+        <?php UpdateAddOn::render(); ?>
+        
         <!-- Unsaved add a new add on modal -->
-        <div id="UnsavedAddANewAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-            <div class="bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to exit this page? All unsaved changes will be lost.</p>
-                <div class="flex gap-[16px] justify-end mt-[48px]">
-                    <button type="button" id="closeUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                    <button id="proceedUnsavedAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
-
-                </div>
-            </div>
-
-            <!-- Confirm add a new add on Modal -->
-            <div id="ConfirmAddANewAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to add this add-on?</p>
-                    <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button type="button" id="cancelAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button type="submit" id="confirmAddANewAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Delete Add-on Modal -->
-            <div id="DeleteAddOnModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="bg-background dark:bg-darkBackground border p-[48px] rounded-[6px] w-[477px] h-[284px] flex flex-col gap-[24px]">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to delete this add-on? This cannot be undone. It is recommended to archive the add-on instead.</p>
-                    <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button id="cancelUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button id="proceedUpdateCancelAppointmentButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-destructive">Proceed</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Confirm Edit Add On Modal -->
-            <div id="ConfirmEditAddOnModal" class="hidden fixed top-0 left-0 right-0 bottom-0 w-screen h-screen bg-black bg-opacity-50 flex items-center justify-center z-[300]">
-                <div class="border-border dark:border-darkBorder border bg-background dark:bg-darkBackground p-[48px] rounded-[6px] w-[477px] h-[228px] flex flex-col relative">
-                    <p class="BodyOne text-onBackground dark:text-darkOnBackground text-center my-[16px]">Are you sure you want to edit this add-on?</p>
-                    <div class="flex gap-[16px] justify-end mt-[48px]">
-                        <button type="button" id="cancelEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onBackground dark:text-darkOnBackground bg-surface dark:bg-darkSurface border-border dark:border-darkBorde border-[1px] border hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Cancel</button>
-                        <button type="submit" id="confirmEditAddOnButton" class="BodyTwo h-[40px] w-[180px] py-[8px] rounded-[6px] text-onPrimary dark:text-onPrimary bg-primary">Confirm</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
+            
+        
 
 
 
@@ -425,6 +302,7 @@ class Page
             </div>
             <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesValidation.js"></script>
             <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesSelectionLoader.js"></script>
+            <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/Addons/AddOnsSelectionLoader.js"></script>
             <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectionBehavior.js"></script>
     <?php
         if (!empty($GLOBALS['footer_scripts'])) {

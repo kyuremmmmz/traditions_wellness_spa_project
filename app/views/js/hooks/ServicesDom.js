@@ -4,10 +4,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     
 
+
+
+    
+
     // Add New Service Section handlers
     const openAddServiceButton = document.getElementById("openAddANewServiceSectionButton");
-    // Add-On Section handlers
     const openAddOnButton = document.getElementById("openAddANewAddOnSectionButton");
+    
+
+
+
+
     const addNewAddOnSection = document.getElementById("AddANewAddOnSection");
     const closeAddNewAddOnButton = document.getElementById("closeAddANewAddOnButton");
     const confirmAddOnModal = document.getElementById("ConfirmAddANewAddOnModal");

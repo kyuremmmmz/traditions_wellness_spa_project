@@ -11,7 +11,7 @@ class SecondaryInputField
         echo '<div class="flex gap-[16px]">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
         echo '<div class="flex items-end flex-col justify-end gap-[8px]">';
-        echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
+        if ($fieldChoice != "hidden") echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
         if ($description !== '') {
             echo '<button type="button" onclick="alert(\'' . htmlspecialchars($description) . '\')" class="flex items-center justify-center w-[16px] h-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo">';
             echo '<svg class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -323,7 +323,9 @@ class SecondaryInputField
                 echo "</div>";
                 echo "</div>";
                 break;
-
+            case 'hidden':
+                echo "<input type='hidden' id='$id' name='$name' value='$placeholder' $idAttribute>";
+                break;
             default:
                 echo "<input type='text' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px]' placeholder='$placeholder' $validationAttribute>";
         }

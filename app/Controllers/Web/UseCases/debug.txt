@@ -1,0 +1,1019 @@
+Received POST data:
+Array
+(
+    [status] => Archived
+    [category] => Massages
+    [service_name] => asdifbaosf
+    [service_caption] => dafoasbdbofasdf
+    [service_description] => dosafbauosdbfcasf
+    [duration_details] => asodfbosdafb
+    [party_size_details] => abdsoufbaousdf
+    [massage_details] => bfaosdubfoasd
+    [body_scrub_details] => bfaodsbfoaudfb
+    [addon_details] => bafodsbfuoasdf
+    [showcase_headline_1] => anofsdnosaidf
+    [showcase_caption_1] => ahdsoifhasipdf
+    [showcase_headline_2] => asdhf0aisdfh
+    [showcase_caption_2] => asdhifapsdfh
+    [showcase_headline_3] => adsiohfaspdf
+    [showcase_caption_3] => hapdisfhapisfd
+    [bamboossage] => Bamboossage
+    [dagdagay] => Dagdagay
+    [hilot] => Hilot
+    [swedish] => Swedish
+    [coffee_scrub] => Coffee Scrub
+    [ear_candling] => Ear Candling
+    [price_type] => fixed
+    [fixed_price] => 9999
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpssMfQ5
+            [error] => 0
+            [size] => 147342
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php2zcGbR
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phplBVaBU
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 147342
+                    [1] => 333438
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpNB0ji3
+            [error] => 0
+            [size] => 147342
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpI221aG
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpP1a5E5
+            [error] => 0
+            [size] => 147342
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdifbaosf
+    [price] => 9999
+    [service_caption] => dafoasbdbofasdf
+    [service_description] => dosafbauosdbfcasf
+    [status] => Archived
+    [duration_details] => asodfbosdafb
+    [party_size_details] => abdsoufbaousdf
+    [massage_details] => bfaosdubfoasd
+    [body_scrub_details] => bfaodsbfoaudfb
+    [addon_details] => bafodsbfuoasdf
+    [main_photo] => https://iili.io/3AKU6np.jpg
+    [slideshow_photos] => FAILED: File not found
+    [showcase_photo_1] => https://iili.io/3AKU6np.jpg
+    [showcase_headline_1] => anofsdnosaidf
+    [showcase_caption_1] => ahdsoifhasipdf
+    [showcase_photo_2] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_2] => asdhf0aisdfh
+    [showcase_caption_2] => asdhifapsdfh
+    [showcase_photo_3] => https://iili.io/3AKU6np.jpg
+    [showcase_headline_3] => adsiohfaspdf
+    [showcase_caption_3] => hapdisfhapisfd
+    [massage_selection] => Bamboossage, Dagdagay, Hilot, Swedish
+    [body_scrub_selection] => Coffee Scrub
+    [supplemental_addons] => Ear Candling
+)
+
+Exception: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Received POST data:
+Array
+(
+    [status] => Archived
+    [category] => Massages
+    [service_name] => sdojdapsfjposd
+    [service_caption] => ashfo[d[oafshdfo[ahsd[ofha
+    [service_description] => ashfo[d[oafshdfo[ahsd[ofha
+    [duration_details] => ashfo[d[oafshdfo[ahsd[ofhaashfo[d[oafshdfo[ahsd[ofhaashfo[d[oafshdfo[ahsd[ofha
+    [party_size_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [massage_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [body_scrub_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [addon_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_headline_1] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_1] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_headline_2] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_2] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_headline_3] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_3] => ashfo[d[oafshdfo[ahsd[ofha
+    [bamboossage] => Bamboossage
+    [dagdagay] => Dagdagay
+    [hilot] => Hilot
+    [swedish] => Swedish
+    [coffee_scrub] => Coffee Scrub
+    [price_type] => fixed
+    [fixed_price] => 999
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpThLMcr
+            [error] => 0
+            [size] => 333438
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php3MwSvU
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpnEoXDg
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 147342
+                    [1] => 333438
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpnVWAy8
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpmSudra
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpPYPpQP
+            [error] => 0
+            [size] => 333438
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => sdojdapsfjposd
+    [price] => 999
+    [service_caption] => ashfo[d[oafshdfo[ahsd[ofha
+    [service_description] => ashfo[d[oafshdfo[ahsd[ofha
+    [status] => Archived
+    [duration_details] => ashfo[d[oafshdfo[ahsd[ofhaashfo[d[oafshdfo[ahsd[ofhaashfo[d[oafshdfo[ahsd[ofha
+    [party_size_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [massage_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [body_scrub_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [addon_details] => ashfo[d[oafshdfo[ahsd[ofha
+    [main_photo] => https://iili.io/3AKUD9s.jpg
+    [slideshow_photos] => FAILED: File not found
+    [showcase_photo_1] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_1] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_1] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_photo_2] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_2] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_2] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_photo_3] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_3] => ashfo[d[oafshdfo[ahsd[ofha
+    [showcase_caption_3] => ashfo[d[oafshdfo[ahsd[ofha
+    [massage_selection] => Bamboossage, Dagdagay, Hilot, Swedish
+    [body_scrub_selection] => Coffee Scrub
+    [supplemental_addons] => 
+)
+
+Exception: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Received POST data:
+Array
+(
+    [service_name] => 
+    [service_caption] => 
+    [service_description] => 
+    [duration_details] => 
+    [party_size_details] => 
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => 
+    [showcase_caption_1] => 
+    [showcase_headline_2] => 
+    [showcase_caption_2] => 
+    [showcase_headline_3] => 
+    [showcase_caption_3] => 
+    [bamboossage] => 
+    [dagdagay] => 
+    [hilot] => 
+    [swedish] => 
+    [coffee_scrub] => 
+    [hot_stone] => 
+    [ear_candling] => 
+    [price_type] => 
+    [fixed_price] => 
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+Error: Category is missing
+Received POST data:
+Array
+(
+    [status] => Archived
+    [category] => Massages
+    [service_name] => hdhfoasdf
+    [service_caption] => hsadfhapdf
+    [service_description] => apsdfhpasdhfaf
+    [duration_details] => jpfjsapodfjp
+    [party_size_details] => adjpiadf
+    [massage_details] => fajdpfasdjf
+    [body_scrub_details] => asdjfpajsfdj
+    [addon_details] => apsfdjpasdfj
+    [showcase_headline_1] => asdfjapdsf
+    [showcase_caption_1] => ajsdfpajdspf
+    [showcase_headline_2] => adofbadsf
+    [showcase_caption_2] => adbfabdsf
+    [showcase_headline_3] => adfnoafd
+    [showcase_caption_3] => abodsfobdfos
+    [bamboossage] => Bamboossage
+    [dagdagay] => Dagdagay
+    [coffee_scrub] => Coffee Scrub
+    [milk_whitening_scrub] => Milk Whitening Scrub
+    [hot_stone] => Hot Stone
+    [ear_candling] => Ear Candling
+    [price_type] => fixed
+    [fixed_price] => 999
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php9BYceO
+            [error] => 0
+            [size] => 147342
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpoe2jGG
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 147342
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpkGm2Pn
+            [error] => 0
+            [size] => 147342
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpM7GD0q
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phprpYW28
+            [error] => 0
+            [size] => 333438
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => hdhfoasdf
+    [price] => 999
+    [service_caption] => hsadfhapdf
+    [service_description] => apsdfhpasdhfaf
+    [status] => Archived
+    [duration_details] => jpfjsapodfjp
+    [party_size_details] => adjpiadf
+    [massage_details] => fajdpfasdjf
+    [body_scrub_details] => asdjfpajsfdj
+    [addon_details] => apsfdjpasdfj
+    [main_photo] => https://iili.io/3AKU6np.jpg
+    [slideshow_photos] => FAILED: File not found
+    [showcase_photo_1] => https://iili.io/3AKU6np.jpg
+    [showcase_headline_1] => asdfjapdsf
+    [showcase_caption_1] => ajsdfpajdspf
+    [showcase_photo_2] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_2] => adofbadsf
+    [showcase_caption_2] => adbfabdsf
+    [showcase_photo_3] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_3] => adfnoafd
+    [showcase_caption_3] => abodsfobdfos
+    [massage_selection] => Bamboossage, Dagdagay
+    [body_scrub_selection] => Coffee Scrub, Milk Whitening Scrub
+    [supplemental_addons] => Hot Stone, Ear Candling
+)
+
+Exception: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+Received POST data:
+Array
+(
+    [status] => Archived
+    [category] => Massages
+    [service_name] => asdofaosdf
+    [service_caption] => fasdphasdfhasd
+    [service_description] => dafspdfhadsf
+    [duration_details] => adsfadsfasdf
+    [party_size_details] => dasfasdfasdf
+    [massage_details] => sadfasdfas
+    [body_scrub_details] => dfasdfads
+    [addon_details] => fasdfasdfasdfadsfasdf
+    [showcase_headline_1] => afdbkadsfa
+    [showcase_caption_1] => dasofhapsdfadsf
+    [showcase_headline_2] => asdfasdf
+    [showcase_caption_2] => asdfasdfas
+    [showcase_headline_3] => asdfa
+    [showcase_caption_3] => asdfasdf
+    [bamboossage] => Bamboossage
+    [dagdagay] => Dagdagay
+    [hilot] => Hilot
+    [swedish] => Swedish
+    [coffee_scrub] => Coffee Scrub
+    [milk_whitening_scrub] => Milk Whitening Scrub
+    [shea_and_butter_scrub] => Shea and Butter Scrub
+    [hot_stone] => Hot Stone
+    [ear_candling] => Ear Candling
+    [ventosa] => Ventosa
+    [price_type] => fixed
+    [fixed_price] => 999
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpQXoixl
+            [error] => 0
+            [size] => 333438
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => pexels-anntarazevich-6560273.jpg
+                    [1] => pexels-anntarazevich-6560295.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => pexels-anntarazevich-6560273.jpg
+                    [1] => pexels-anntarazevich-6560295.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpoulpqp
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php7otXjl
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 950716
+                    [1] => 771733
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php2tiSPd
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757657.jpg
+            [full_path] => pexels-olly-3757657.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpBCln6r
+            [error] => 0
+            [size] => 668726
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [full_path] => 1561129494-5d0cf2162a4bc-thumb.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php37REvX
+            [error] => 0
+            [size] => 147342
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdofaosdf
+    [price] => 999
+    [service_caption] => fasdphasdfhasd
+    [service_description] => dafspdfhadsf
+    [status] => Archived
+    [duration_details] => adsfadsfasdf
+    [party_size_details] => dasfasdfasdf
+    [massage_details] => sadfasdfas
+    [body_scrub_details] => dfasdfads
+    [addon_details] => fasdfasdfasdfadsfasdf
+    [main_photo] => https://iili.io/3AKUD9s.jpg
+    [slideshow_photos] => FAILED: File not found
+    [showcase_photo_1] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_1] => afdbkadsfa
+    [showcase_caption_1] => dasofhapsdfadsf
+    [showcase_photo_2] => https://iili.io/3AKpftI.jpg
+    [showcase_headline_2] => asdfasdf
+    [showcase_caption_2] => asdfasdfas
+    [showcase_photo_3] => https://iili.io/3AKU6np.jpg
+    [showcase_headline_3] => asdfa
+    [showcase_caption_3] => asdfasdf
+    [massage_selection] => Bamboossage, Dagdagay, Hilot, Swedish
+    [body_scrub_selection] => Coffee Scrub, Milk Whitening Scrub, Shea and Butter Scrub
+    [supplemental_addons] => Hot Stone, Ear Candling, Ventosa
+)
+
+Exception: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'add_on_details' in 'field list'
+Received POST data:
+Array
+(
+    [status] => Archived
+    [category] => Massages
+    [service_name] => psadpasda
+    [service_caption] => dapsndasd
+    [service_description] => psandapsdx
+    [duration_details] => jsad[ajds[oasd
+    [party_size_details] => jsda[dja[sd
+    [massage_details] => sa[jd[ajsda
+    [body_scrub_details] => jas[dja[d
+    [addon_details] => sja[dja[sd
+    [showcase_headline_1] => sadpasdna
+    [showcase_caption_1] => fajpfsaf
+    [showcase_headline_2] => adfadsfa
+    [showcase_caption_2] => asdfasdf
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfasdf
+    [bamboossage] => Bamboossage
+    [dagdagay] => Dagdagay
+    [hilot] => Hilot
+    [swedish] => Swedish
+    [milk_whitening_scrub] => Milk Whitening Scrub
+    [shea_and_butter_scrub] => Shea and Butter Scrub
+    [hot_stone] => Hot Stone
+    [price_type] => fixed
+    [fixed_price] => 999
+    [1_hour_price] => 
+    [1_hour_30_price] => 
+    [2_hours_price] => 
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.webp
+            [full_path] => Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.webp
+            [type] => image/webp
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpxmTMvI
+            [error] => 0
+            [size] => 51256
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                )
+
+        )
+
+    [slideshow_slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 1561129494-5d0cf2162a4bc-thumb.jpg
+                    [1] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => image/jpeg
+                    [1] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpdYmtya
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php9rd9Ja
+                )
+
+            [error] => Array
+                (
+                    [0] => 0
+                    [1] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 147342
+                    [1] => 333438
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.webp
+            [full_path] => Tips_for_Taking_Photos_at_the_Beach_55dd7d25-11df-4acf-844f-a5b4ebeff4df.webp
+            [type] => image/webp
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpilh3BU
+            [error] => 0
+            [size] => 51256
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpXHlP6c
+            [error] => 0
+            [size] => 333438
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [full_path] => alan-caishan-cU53ZFBr3lk-unsplash-scaled-1.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php1fWs7A
+            [error] => 0
+            [size] => 333438
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => psadpasda
+    [price] => 999
+    [service_caption] => dapsndasd
+    [service_description] => psandapsdx
+    [status] => Archived
+    [duration_details] => jsad[ajds[oasd
+    [party_size_details] => jsda[dja[sd
+    [massage_details] => sa[jd[ajsda
+    [body_scrub_details] => jas[dja[d
+    [addon_details] => sja[dja[sd
+    [main_photo] => https://iili.io/3AKUUAJ.webp
+    [slideshow_photos] => FAILED: File not found
+    [showcase_photo_1] => https://iili.io/3AKUUAJ.webp
+    [showcase_headline_1] => sadpasdna
+    [showcase_caption_1] => fajpfsaf
+    [showcase_photo_2] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_2] => adfadsfa
+    [showcase_caption_2] => asdfasdf
+    [showcase_photo_3] => https://iili.io/3AKUD9s.jpg
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfasdf
+    [massage_selection] => Bamboossage, Dagdagay, Hilot, Swedish
+    [body_scrub_selection] => Milk Whitening Scrub, Shea and Butter Scrub
+    [supplemental_addons] => Hot Stone
+)
+
+Exception: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

@@ -4,18 +4,14 @@ class ServicesSelectionLoader {
         this.massagesSection = document.getElementById('massagesSection');
         this.bodyScrubsSection = document.getElementById('bodyScrubsSection');
         this.packagesSection = document.getElementById('packagesSection');
-        this.addOnsSection = document.getElementById('addOnsSection');
         this.archivedServicesSection = document.getElementById('archivedServicesSection');
-        this.archivedAddOnsSection = document.getElementById('archivedAddOnsSection');
 
         this.sections = {
             'all': this.allServicesSection,
             'massages': this.massagesSection,
             'bodyScrubs': this.bodyScrubsSection,
             'packages': this.packagesSection,
-            'addOns': this.addOnsSection,
-            'archivedServices': this.archivedServicesSection,
-            'archivedAddOns': this.archivedAddOnsSection
+            'archivedServices': this.archivedServicesSection
         };
 
         this.init();
@@ -57,7 +53,7 @@ class ServicesSelectionLoader {
                 <div class="flex flex-col gap-[8px] w-[calc(100%-80px)] h-full justify-center items-center">
                     <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">${service.serviceName}</p>
                     <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none h-[13px] w-full truncate">${service.description || 'No description available'}</p>
-                    <div class="flex gap-[8px] w-full">
+                    <div class="flex gap-[8px] w-full items-center">
                         <div class="flex gap-[4px]">
                             <p class="CaptionOne text-onBackground lea₱ding-none dark:text-darkOnBackground truncate">${service.rating || '0.0'}</p>
                             <?php IconChoice::render('star', '[10px]', '[10px]', '', 'orange', 'orange')?>
@@ -75,7 +71,7 @@ class ServicesSelectionLoader {
     }
 
     setupEventListeners() {
-        // Add any necessary event listeners here
+        //  any necessary event listeners here
     }
 }
 

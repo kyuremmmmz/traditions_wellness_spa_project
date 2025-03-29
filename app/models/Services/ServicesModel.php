@@ -83,20 +83,21 @@ class ServicesModel
     ) {
         $stmt = $this->pdo->prepare("INSERT INTO 
             services (
-            category,
-            serviceName, price, caption, description,status, duration_details, party_size_details,
-            massage_details, body_scrub_details, add_ons_details, main_photo, slide_show_photos,
-            showcase_photo1, headline1, caption1, showcase_photo2, headline2, caption2, 
-            showcase_photo3, headline3, caption3, massage_selection, body_scrub_selection, 
-            supplementtal_add_ons, updated_at, created_at
+            category, serviceName, price, caption, description, status, duration_details, 
+            party_size_details, massage_details, body_scrub_details, add_ons_details, 
+            main_photo, slide_show_photos, showcase_photo1, headline1, caption1, 
+            showcase_photo2, headline2, caption2, showcase_photo3, headline3, caption3, 
+            massage_selection, body_scrub_selection, supplemental_add_ons, 
+            updated_at, created_at
         ) VALUES (
-            :category,
-            :serviceName, :price, :caption, :description,:status, :duration_details, :party_size_details,
-            :massage_details, :body_scrub_details, :add_on_details, :main_photo, :slide_show_photos,
-            :show_case_photo1, :headline1, :caption1, :show_case_photo2, :headline2, :caption2, 
-            :show_case_photo3, :headline3, :caption3, :massage_selection, :body_scrub_selection, 
-            :supplemental_add_ons, NOW(), NOW()
+            :category, :serviceName, :price, :caption, :description, :status, :duration_details, 
+            :party_size_details, :massage_details, :body_scrub_details, :add_ons_details, 
+            :main_photo, :slide_show_photos, :show_case_photo1, :headline1, :caption1, 
+            :show_case_photo2, :headline2, :caption2, :show_case_photo3, :headline3, :caption3, 
+            :massage_selection, :body_scrub_selection, :supplemental_add_ons, 
+            NOW(), NOW()
         )");
+
         
         return $stmt->execute([
             'category' => $category,
@@ -130,9 +131,13 @@ class ServicesModel
 
     public function update($id, $description, $price, $serviceName)
     {
-        $stmt = $this->pdo->prepare("UPDATE services SET description = :description, price = :price, serviceName = :serviceName WHERE category = :radio");
+        $stmt = $this->pdo->prepare("UPDATE services 
+                                    SET description = :description, 
+                                        price = :price, 
+                                        serviceName = :serviceName 
+                                    WHERE id = :id");
         return $stmt->execute([
-            'radio' => $id,
+            'id' => $id,
             'description' => $description,
             'price' => $price,
             'serviceName' => $serviceName
@@ -141,7 +146,7 @@ class ServicesModel
 
     public function delete($id)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
+        $stmt = $this->pdo->prepare("DELETE FROM services WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
 }

@@ -1,16 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Define base URL and DOM elements
     let baseUrl = 'http://localhost:8000';
+    
     let massagesSection = document.getElementById('massagesSection');
     let bodyScrubsSection = document.getElementById('bodyScrubsSection');
     let packagesSection = document.getElementById('packagesSection');
     let archived = document.getElementById('archivedServicesSection');
 
-    // Debug DOM elements
-    console.log('Massages section:', massagesSection);
-    console.log('Body Scrubs section:', bodyScrubsSection);
-    console.log('Packages section:', packagesSection);
-    console.log('Archived section element:', archived);
     const fetchData = async (category) => {
         try {
             const response = await fetch(`${baseUrl}/findCategory/${encodeURIComponent(category)}`, {
@@ -45,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(`Server error: ${response.status} - ${text}`);
             }
             const data = await response.json();
-            console.log('Fetched archived data:', data);
             renderServices(data);
         } catch (error) {
             console.error('Fetch error:', error);
@@ -56,16 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    // Render archived services (restored to original map design)
     const renderServices = (data) => {
         let targetSection = archived;
-        if (!targetSection) {
-            console.error('Error: #archivedServicesSection not found in the DOM.');
-            return;
-        }
         targetSection.innerHTML = '';
         if (data.length === 0) {
-            targetSection.innerHTML = '<p class="text-center">No services found.</p>';
+            targetSection.innerHTML = '<p class="text-center text-onBackgroundTwo dark:text-darkOnBackgroundTwo">No services found.</p>';
             return;
         }
         targetSection.innerHTML = data.map((item) => {
@@ -93,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
         }).join('');
     };
+    
     const renderData = (data, category) => {
         let targetSection;
         if (category === 'Massages') targetSection = massagesSection;
@@ -105,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         targetSection.innerHTML = '';
         if (data.length === 0) {
-            targetSection.innerHTML = '<p class="text-center">No services found.</p>';
+            targetSection.innerHTML = '<p class="text-center text-onBackgroundTwo dark:text-darkOnBackgroundTwo">No services found.</p>';
             return;
         }
         data.forEach(item => {
@@ -139,17 +129,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const showMassages = document.getElementById('showMassages');
         const showBodyScrubs = document.getElementById('showBodyScrubs');
         const showPackages = document.getElementById('showPackages');
-        const showAddOns = document.getElementById('showAddOns');
         const showArchivedServices = document.getElementById('showArchivedServices');
-        const showArchivedAddOns = document.getElementById('showArchivedAddOns');
 
-        console.log('Tab buttons:', { showMassages, showBodyScrubs, showPackages, showAddOns, showArchivedServices, showArchivedAddOns });
         if (showMassages) showMassages.addEventListener('click', () => fetchData('Massages'));
         if (showBodyScrubs) showBodyScrubs.addEventListener('click', () => fetchData('Body Scrubs'));
         if (showPackages) showPackages.addEventListener('click', () => fetchData('Packages'));
-        if (showAddOns) showAddOns.addEventListener('click', () => fetchData('Add Ons'));
         if (showArchivedServices) showArchivedServices.addEventListener('click', () => fetchDataAsArchived());
-        if (showArchivedAddOns) showArchivedAddOns.addEventListener('click', () => fetchData('Archived Add Ons'));
     };
 
     sectionDecisions();

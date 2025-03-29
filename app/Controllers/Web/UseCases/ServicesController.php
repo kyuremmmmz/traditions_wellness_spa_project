@@ -5,6 +5,7 @@ namespace Project\App\Controllers\Web\UseCases;
 use Exception;
 use Project\App\Models\Services\ServicesModel;
 use Project\App\Views\Php\Components\Banners\RegularBanner;
+use Project\App\Models\Utilities\AddOnsModel;
 
 class ServicesController
 {
@@ -30,54 +31,77 @@ class ServicesController
     }
 
     public function createService()
-    {
-        session_start();
-        $data = $_POST;
+{
+    session_start();
+    $data = $_POST;
+    $logFile = __DIR__ . '/debug.txt'; // Path to the debug log file
 
-        if (!isset($data['category']) || empty($data['category'])) {
-            header('Location: /services');
-            exit;
-        }
+    // Log input data
+    file_put_contents($logFile, "Received POST data:\n" . print_r($data, true) . "\n", FILE_APPEND);
+    file_put_contents($logFile, "Received FILES data:\n" . print_r($_FILES, true) . "\n", FILE_APPEND);
 
+    if (!isset($data['category']) || empty($data['category'])) {
+        file_put_contents($logFile, "Error: Category is missing\n", FILE_APPEND);
+        header('Location: /services');
+        exit;
+    }
+
+    try {
         $price = isset($data['fixed_price']) && !empty($data['fixed_price'])
             ? (int)$data['fixed_price']
             : (int)($data['1_hour_price']) + (int)($data['1_hour_30_price']) + (int)($data['2_hours_price']);
+
         $uploadMainPhoto = $this->handleFileUpload('main_photo');
         $uploadShowcasePhoto1 = $this->handleFileUpload('showcase_photo_1');
         $uploadShowcasePhoto2 = $this->handleFileUpload('showcase_photo_2');
         $uploadShowcasePhoto3 = $this->handleFileUpload('showcase_photo_3');
         $uploadMultiples = $this->handleMultipleFileUpload('slideshow_photos');
-        $this->model->createServices(
-            $data['category'],
-            $data['service_name'],
-            $price,
-            $data['service_caption'],
-            $data['service_description'],
-            $data['status'],
-            $data['duration_details'],
-            $data['party_size_details'],
-            $data['massage_details'],
-            $data['body_scrub_details'],
-            $data['addon_details'],
-            $uploadMainPhoto['image']['url'],
-            implode(',', $uploadMultiples),
-            $uploadShowcasePhoto1['image']['url'],
-            $data['showcase_headline_1'],
-            $data['showcase_caption_1'],
-            $uploadShowcasePhoto2['image']['url'],
-            $data['showcase_headline_2'],
-            $data['showcase_caption_2'],
-            $uploadShowcasePhoto3['image']['url'],
-            $data['showcase_headline_3'],
-            $data['showcase_caption_3'],
-            $this->reusables->massageSelection($data),
-            $this->reusables->bodyScrubSelection($data),
-            $this->reusables->suplementTalAddOns($data),
-        );
+
+        // Collect parameters for the query
+        $params = [
+            'category' => $data['category'],
+            'service_name' => $data['service_name'],
+            'price' => $price,
+            'service_caption' => $data['service_caption'],
+            'service_description' => $data['service_description'],
+            'status' => $data['status'],
+            'duration_details' => $data['duration_details'],
+            'party_size_details' => $data['party_size_details'],
+            'massage_details' => $data['massage_details'],
+            'body_scrub_details' => $data['body_scrub_details'],
+            'addon_details' => $data['addon_details'],
+            'main_photo' => $uploadMainPhoto['image']['url'],
+            'slideshow_photos' => implode(',', $uploadMultiples),
+            'showcase_photo_1' => $uploadShowcasePhoto1['image']['url'],
+            'showcase_headline_1' => $data['showcase_headline_1'],
+            'showcase_caption_1' => $data['showcase_caption_1'],
+            'showcase_photo_2' => $uploadShowcasePhoto2['image']['url'],
+            'showcase_headline_2' => $data['showcase_headline_2'],
+            'showcase_caption_2' => $data['showcase_caption_2'],
+            'showcase_photo_3' => $uploadShowcasePhoto3['image']['url'],
+            'showcase_headline_3' => $data['showcase_headline_3'],
+            'showcase_caption_3' => $data['showcase_caption_3'],
+            'massage_selection' => $this->reusables->massageSelection($data),
+            'body_scrub_selection' => $this->reusables->bodyScrubSelection($data),
+            'supplemental_addons' => $this->reusables->suplementTalAddOns($data),
+        ];
+
+        // Log SQL parameters
+        file_put_contents($logFile, "SQL Parameters:\n" . print_r($params, true) . "\n", FILE_APPEND);
+
+        // Call model function with these parameters
+        $this->model->createServices(...array_values($params));
+
         $_SESSION['services_message'] = 'Service created successfully';
         header('Location: /services');
         exit;
+    } catch (Exception $e) {
+        file_put_contents($logFile, "Exception: " . $e->getMessage() . "\n", FILE_APPEND);
+        header('Location: /services?error=creation_failed');
+        exit;
     }
+}
+
 
     private function handleFileUpload($fieldName)
     {
@@ -137,6 +161,7 @@ class ServicesController
         echo json_encode($data2);
         exit;
     }
+
 
 
     public function edit()
