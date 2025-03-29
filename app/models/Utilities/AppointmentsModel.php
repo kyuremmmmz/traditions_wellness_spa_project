@@ -54,6 +54,14 @@ class AppointmentsModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function findByStatus($status)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM appointments WHERE status = :status");
+        $stmt->execute(['status' => $status]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function findById($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM services WHERE id = :id");

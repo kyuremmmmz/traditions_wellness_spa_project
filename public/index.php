@@ -19,6 +19,7 @@ $router->post('/appointCustomer', 'AppointmentsController@appointCustomer');
 $router->get('/searchTherapist', 'AppointmentsController@searchTherapist');
 $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
+$router->get('/fetchAppointmentsByStatus/{status}', 'AppointmentsController@fetchAppointmentsByStatus');
 $router->get('/getAllTherapist', 'TherapistController@getAllTherapist');
 $router->post('/updateTherapist', 'TherapistController@updateTherapist');
 $router->post('/addTherapist', 'TherapistController@addTherapist');
@@ -95,7 +96,6 @@ $router->view('/verificationforchangeemail', 'page', 'Utilities/VerificationInfo
 $router->view('/editemail', 'page', 'Utilities/EditInfo/EditEmail', 'SessionMiddleware');
 $router->view('/verificationforchangephonenumber', 'page', 'Utilities/VerificationInfo/VerificationForChangePhoneNumber', 'SessionMiddleware');
 $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 'SessionMiddleware');
-$router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'SessionMiddleware');
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
 $router->view('/addnewtherapist', 'page', 'tools/AddNewTherapist', 'SessionMiddleware');
 $router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
