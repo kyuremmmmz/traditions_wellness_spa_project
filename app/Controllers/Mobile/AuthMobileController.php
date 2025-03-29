@@ -474,10 +474,11 @@ class AuthMobileController
 
     public function forgotPassword()
     {
+        header('Content-Type: application/json');
         $data = json_decode(file_get_contents('php://input'), true);
         session_start();
         if (isset($data['verification'])) {
-            $response = $this->webController->findByToken(base64_encode($data W['verification']));
+            $response = $this->webController->findByToken(base64_encode($data['verification']));
             if ($response) {
                 $_SESSION['token'] = ['token' => $data['verification']];
                 echo json_encode([
@@ -494,7 +495,15 @@ class AuthMobileController
                     'error' => 'Invalid token'
                 ]);
             }
+        } else {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Verification token is required',
+                'status' => 'error',
+                'error' => 'Missing verification token'
+            ]);
         }
+        exit;
     }
 
     public function resetPassword()

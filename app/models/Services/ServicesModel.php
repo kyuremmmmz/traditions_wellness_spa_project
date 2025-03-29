@@ -31,7 +31,7 @@ class ServicesModel
 
     public function getAllServiceName()
     {
-        $stmt = $this->pdo->query("SELECT id, serviceName, price, description, caption, main_photo, slide_show_photos, showcase_photo1, showcase_photo2, showcase_photo3 FROM services");
+        $stmt = $this->pdo->query("SELECT id, serviceName, price, description, caption, main_photo, slide_show_photos, showcase_photo1, showcase_photo2, showcase_photo3, category FROM services");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
