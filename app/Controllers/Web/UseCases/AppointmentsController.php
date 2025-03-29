@@ -192,6 +192,16 @@ class AppointmentsController
         exit;
     }
 
+    public function fetchAppointmentsByStatus($status): array
+    {
+        ob_clean();
+        $appointment = $this->controller->findByStatus($status);
+        echo json_encode([
+            $appointment,
+        ]);
+        exit;
+    }
+
     public function getAllTotal()
     {
         ob_clean();
