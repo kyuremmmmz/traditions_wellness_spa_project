@@ -76,4 +76,11 @@ class TherapistController
         echo json_encode($data);
         exit;
     }
+    public function getTherapistByStatus($status)
+    {
+        ob_clean();
+        $data = $this->controller->findByStatus($status);
+        echo json_encode($data);
+        exit;
+    }
 }
