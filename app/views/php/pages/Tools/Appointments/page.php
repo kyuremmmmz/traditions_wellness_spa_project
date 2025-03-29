@@ -121,7 +121,20 @@ class Page
                                             <?php
                                             SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Pending', 'Awaiting Review', 'Cancelled', 'Cancelled', 'Completed', 'Upcoming'], '', null, 
                                             'filter', '', '', [], false, '');
-                                            SecondaryInputField::render('datefield', 'Show appointments from', '');
+                                            SecondaryInputField::render(
+                                                'datefield',
+                                                'Filter status by',
+                                                '',
+                                                ['All', 'Pending', 'Awaiting Review', 'Cancelled', 'Cancelled', 'Completed', 'Upcoming'],
+                                                '',
+                                                null,
+                                                'showApp',
+                                                '',
+                                                '',
+                                                [],
+                                                false,
+                                                ''
+                                            );
                                             ?>
                                         </section>
                                         <section class="max-w-[1120px]">

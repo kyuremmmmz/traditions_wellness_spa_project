@@ -202,6 +202,16 @@ class AppointmentsController
         exit;
     }
 
+    public function fetchAppointmentsByDate($date): array
+    {
+        ob_clean();
+        $appointment = $this->controller->findByDate($date);
+        echo json_encode(
+            $appointment,
+        );
+        exit;
+    }
+
     public function getAllTotal()
     {
         ob_clean();

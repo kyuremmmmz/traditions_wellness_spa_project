@@ -74,7 +74,16 @@ class Router
                             $controllerInstance->$action(urldecode($params[1]));
                         });
                     } else {
-                        $controllerInstance->$action(isset($params[1]) ? urldecode($params[1]) : urldecode($params[0]));
+                        if (isset($params[1])) {
+                            $controllerInstance->$action(urldecode($params[1]));
+                        } elseif (isset($params[0])) {
+                            $controllerInstance->$action(urldecode($params[0]));
+                        }
+                        $date = isset($params[1]) ? urldecode($params[1]) : urldecode($params[0]);
+                        if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $date)) {
+                            die("Invalid date format: $date");
+                        }
+                        $controllerInstance->$action($date);
                     }
                     return;
                 }

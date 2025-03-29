@@ -61,6 +61,13 @@ class AppointmentsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function findByDate($date)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM appointments WHERE booking_date = :booking_date");
+        $stmt->execute(['booking_date' => $date]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
     public function findById($id)
     {

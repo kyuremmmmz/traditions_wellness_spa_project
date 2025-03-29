@@ -25,6 +25,7 @@ $router->post('/updateTherapist', 'TherapistController@updateTherapist');
 $router->post('/addTherapist', 'TherapistController@addTherapist');
 $router->get('/store', 'ServicesController@store');
 $router->get('/findCategory/{category}', 'ServicesController@findCategory');
+$router->get('/fetchAppointmentsByDate/{date}', 'AppointmentsController@fetchAppointmentsByDate');
 $router->get('/findArchives', 'ServicesController@findArchives');
 $router->post('/edit', 'ServicesController@edit');
 $router->post('/updateAppointment', 'AppointmentsController@updateAppointment');
