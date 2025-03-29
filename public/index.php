@@ -21,6 +21,7 @@ $router->get('/searchCustomer', 'AppointmentsController@searchCustomer');
 $router->get('/getAllTotal', 'AppointmentsController@getAllTotal');
 $router->get('/fetchAppointmentsByStatus/{status}', 'AppointmentsController@fetchAppointmentsByStatus');
 $router->get('/getAllTherapist', 'TherapistController@getAllTherapist');
+$router->get('/getTherapistByStatus/{status}', 'TherapistController@getTherapistByStatus');
 $router->post('/updateTherapist', 'TherapistController@updateTherapist');
 $router->post('/addTherapist', 'TherapistController@addTherapist');
 $router->get('/store', 'ServicesController@store');
