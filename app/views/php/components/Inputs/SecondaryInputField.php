@@ -120,7 +120,7 @@ class SecondaryInputField
                             const fileItem = document.createElement('div');
                             fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                             fileItem.innerHTML = `
-                                <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
+                                <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
                                 <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$id}_input\")'>×</button>
                             `;
                             
@@ -191,7 +191,7 @@ class SecondaryInputField
                                     const fileItem = document.createElement('div');
                                     fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                                     fileItem.innerHTML = `
-                                        <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
+                                        <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
                                         <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
                                     `;
                                     
@@ -238,10 +238,10 @@ class SecondaryInputField
             case 'dropdownfield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
                 echo IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[16px] -rotate-90', '', 'onSurface', 'darkOnSurface');
-                echo '<select name="' . $name . '" id="'.$id.'" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
+                echo '<select name="' . $name . '" ' . $idAttribute . '  class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground w-full min-w-[260px] max-w-[260px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[16px] appearance-none cursor-pointer hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface ' . $disabledClass . '" ' . $disabledAttribute . '>';
                 foreach ($options as $option) {
                     if (is_array($option)) {
-                        echo '<option value="' . htmlspecialchars($option['value']) . '"> selected' . htmlspecialchars($option['label']) . '</option>';
+                        echo '<option value="' . htmlspecialchars($option['value']) . '">' . htmlspecialchars($option['label']) . '</option>';
                     } else {
                         echo '<option value="' . htmlspecialchars($option) . '">' . htmlspecialchars($option) . '</option>';
                     }
@@ -256,7 +256,7 @@ class SecondaryInputField
                 echo '</select></div>';
                 break;
             case 'datefield':
-                echo "<input type='date' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
+                echo "<input type='date' name='$name' ".$idAttribute." class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute>";
                 break;
             case 'timefield':
                 echo "<input type='time' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
@@ -312,8 +312,10 @@ class SecondaryInputField
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
                 foreach ($options as $option) {
+                    $replace = str_replace(' ', '_', $option);
+                    $toLower = strtolower($replace);
                     echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='{$name}[]' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
+                    echo "<input type='checkbox' name='$toLower' value='$option' class='hidden peer' id='{$id}_$option' $disabledAttribute>";
                     echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
                     echo "</div>";
                 }

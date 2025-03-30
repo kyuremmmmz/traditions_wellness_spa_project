@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    let section = document.getElementById('filter');
+    let showApp = document.getElementById('showApp');
     const fetchAppointments = async () => {
         try {
             const response = await fetch('http://localhost:8000/fetchAppointments');
@@ -25,6 +27,51 @@ document.addEventListener('DOMContentLoaded', () => {
             return [];
         }
     };
+
+    const fetchAppointmentsBydate = async (date) => {
+        try {
+            const response = await fetch(`http://localhost:8000/fetchAppointmentsByDate/${date}`);
+            const data = await response.json();
+            if (response.ok) {
+                renderData(data);
+            } else {
+                console.error('Server returned an error:', data);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+        }
+    }
+
+    document.addEventListener('click', function (event) {
+        if (event.target.id === 'showApp') {
+            document.addEventListener('change', function () {
+                const show = showApp.value.toString();
+                fetchAppointmentsBydate(show);
+                return;
+            })
+        }
+
+        if (event.target.id === 'filter') {
+            const selected = section.value.toString().toLowerCase();
+            switch (selected) {
+                case 'all':
+                    fetchAppointments();
+                    break;
+                case 'completed':
+                case 'cancelled':
+                case 'ongoing':
+                case 'upcoming':
+                case 'pending':
+                    fetchStatus(selected);
+                    break;
+                case 'awaiting review':
+                    fetchStatus('review');
+                    break;
+            }
+        }
+    });
+
+
 
     const renderDropdown = (items, selectedServiceName) => {
         const selectionBox2 = document.getElementById('select2');
@@ -64,6 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
             partySize.innerHTML = `<option value="${selectedParty}" selected>${selectedParty}</option>` + partySize.innerHTML;
         }
     };
+    const baseURL = 'http://localhost:8000';
+    const fetchStatus = async (status) => {
+        const response = await fetch(`${baseURL}/fetchAppointmentsByStatus/${status}`)
+        const data = await response.json();
+        if (response.ok) {
+            console.log(data);
+            renderData(data[0]);
+        }
+    }
+    
+
+    
 
     const renderData = (items) => {
         document.querySelector('#appointmentsTable').innerHTML = items.map((data, index) => `

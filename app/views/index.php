@@ -25,12 +25,14 @@
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ContinueRegDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchApiData.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/FilteringDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/AccountDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectBoxDynamicDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/FetchAppointment.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchCustomers.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/TherapistService.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/CategorySelections.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesValidation.js"></script>
 </head>
 
 <!-- Content -->

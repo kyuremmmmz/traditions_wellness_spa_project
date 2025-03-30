@@ -42,7 +42,14 @@ class ServicesModel
         $stmt = $this->pdo->prepare("SELECT * FROM services WHERE category = :category");
         $stmt->execute(['category' => $category]);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        error_log("findByCategory result: " . print_r($result, true)); // Log to error log
+        return $result;
+    }
+
+    public function findByArchive()
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM services WHERE status = 'Archived'");
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

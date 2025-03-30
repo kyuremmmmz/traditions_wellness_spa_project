@@ -5,16 +5,19 @@ namespace Project\App\Controllers\Web\UseCases;
 use DateTime;
 use Project\App\Models\Utilities\AppointmentsModel;
 
+use Project\App\Models\Utilities\NotificationsModel;
 use function Symfony\Component\Clock\now;
 
 class AppointmentsController
 {
     private $controller;
     private $reusables;
+    private $notification;
     public function __construct()
     {
         $this->controller = new AppointmentsModel();
         $this->reusables = new ReusablesController();
+        $this->notification = new NotificationsModel();
     }
     public function updateAppointment()
     {
@@ -49,10 +52,15 @@ class AppointmentsController
                 $file['appointment_id'],
             );
             header('Location:/appointments');
+            $this->notification->create(
+                $_SESSION['user']['id'],
+                "{$_SESSION['user']['first_name']} {$_SESSION['user']['last_name']} has appointed you for a {$findById['serviceName']} service on {$file['date']} at {$file['start_time']}",
+                'Appointment',
+                'unread'
+            );
             $_SESSION['success_message'] = [
                 'success_message' => 'Updated Successfully'
             ];
-            echo json_encode(['status' => $response]);
         }
     }
 
@@ -107,6 +115,12 @@ class AppointmentsController
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
                 ];
+                $this->notification->create(
+                    $_SESSION['user']['id'],
+                    "{$_SESSION['user']['first_name']} {$_SESSION['user']['last_name']} has appointed you for a {$findServiceByID['serviceName']} service on {$file['date']} at {$file['start_time']}",
+                    'Appointment',
+                    'unread'
+                );
                 header('Location: /appointments');
             }
         } else {
@@ -146,6 +160,12 @@ class AppointmentsController
                 $_SESSION['message'] = [
                     'message' => 'Appointment created successfully',
                 ];
+                $this->notification->create(
+                    $_SESSION['user']['id'],
+                    "{$_SESSION['user']['first_name']} {$_SESSION['user']['last_name']} has appointed you for a {$findServiceByID['serviceName']} service on {$file['date']} at {$file['start_time']}",
+                    'Appointment',
+                    'unread'
+                );
                 header('Location: /appointments');
             }
         }
@@ -169,6 +189,26 @@ class AppointmentsController
             $appointment,
             $services
         ]);
+        exit;
+    }
+
+    public function fetchAppointmentsByStatus($status): array
+    {
+        ob_clean();
+        $appointment = $this->controller->findByStatus($status);
+        echo json_encode([
+            $appointment,
+        ]);
+        exit;
+    }
+
+    public function fetchAppointmentsByDate($date): array
+    {
+        ob_clean();
+        $appointment = $this->controller->findByDate($date);
+        echo json_encode(
+            $appointment,
+        );
         exit;
     }
 

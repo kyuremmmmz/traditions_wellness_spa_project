@@ -18,11 +18,13 @@ class TherapistModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function find($id)
+    
+
+    public function findByStatus($status)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $this->pdo->prepare("SELECT * FROM therapist WHERE status = :status");
+        $stmt->execute(['status' => $status]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function create($firstname, $lastname, $gender, $status, $email)

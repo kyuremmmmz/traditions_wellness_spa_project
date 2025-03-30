@@ -29,8 +29,11 @@ class SessionMiddleware
             '/inventory',
             '/account',
             '/changephonenumber',
+            '/changeemail',
             '/verificationforchangephonenumber',
-            '/changepassword'
+            '/verificationforchangeemail',
+            '/changepassword',
+            '/editemail'
         ];
         if ($isAuthenticated && $hasCookie && in_array($currentRoute, ['/login', '/forgotpassword', '/register', '/', '/Tracker'])) {
             header('Location: /dashboard');
@@ -55,7 +58,9 @@ class SessionMiddleware
                 '/changephonenumber',
                 '/verificationforchangephonenumber',
                 '/changepassword',
-                '/users'
+                '/verificationforchangeemail',
+                '/users',
+                '/editemail'
             ])
         ) {
             header('Location: /login');

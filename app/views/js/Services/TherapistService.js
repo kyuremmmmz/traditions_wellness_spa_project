@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const table = document.getElementById('therapistTable'); // Keep as DOM element
+    let filterBy = document.getElementById('filter_by');
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:8000/getAllTherapist');
@@ -14,6 +15,31 @@ document.addEventListener('DOMContentLoaded', function () {
             table.innerHTML = '<tr><td colspan="5">Failed to load data</td></tr>';
         }
     };
+
+    const fetchTherapistByStatus = async (status) => {
+        const response = await fetch(`http://localhost:8000/getTherapistByStatus/${status}`);
+        const data = await response.json();
+        if (response.ok) {
+            renderTable(data);
+        }
+    }
+
+    document.addEventListener('change', function () {
+        let filtered = filterBy.value.toString().toLowerCase();
+        switch (filtered) {
+            case 'all':
+                fetchData();
+                break;
+            case 'active':
+                fetchTherapistByStatus('active')
+                break;
+            case 'inactive':
+                fetchTherapistByStatus('inactive');
+                break;
+            default:
+                return
+        }
+    });
 
     // Javascript here
     const renderTable = (items) => {
@@ -51,8 +77,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById('therapistFirstName').value = data.firstname;
                 document.getElementById('therapistLastName').value = data.lastname;
                 document.getElementById('therapistEmail').value = data.email;
-                document.getElementById('therapistGender').value = data.gender;
-                document.getElementById('therapistStatus').value = data.status;
+                document.getElementById('therapistGender').innerHTML = `
+                    <option value="${data.gender}" selected>${data.gender}</option>
+                    <option value="${data.gender === 'male' ? 'female' : 'male'}">${data.gender === 'male' ? 'female' : 'male'}</option>
+                `;
+                document.getElementById('therapistStatus').innerHTML = `
+                    <option value="${data.status}" selected>${data.status}</option>
+                    <option value="${data.status === 'active' ? 'inactive' : 'active'}">${data.status === 'active' ? 'inactive' : 'active'}</option>
+                `;
             });
         });
 
