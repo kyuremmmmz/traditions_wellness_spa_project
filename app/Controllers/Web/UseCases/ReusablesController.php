@@ -29,15 +29,10 @@ class ReusablesController
     public function suplementTalAddOns($placeHolder)
     {
         $services = [];
-
-        if (isset($placeHolder['hot_stone'])) {
-            $services[] = 'Hot Stone';
-        }
-        if (isset($placeHolder['ear_candling'])) {
-            $services[] = 'Ear Candling';
-        }
-        if (isset($placeHolder['ventosa'])) {
-            $services[] = 'Ventosa';
+        
+        // Handle the selected_addons array from the form
+        if (isset($placeHolder['selected_addons']) && is_array($placeHolder['selected_addons'])) {
+            $services = $placeHolder['selected_addons'];
         }
 
         return empty($services) ? '' : implode(', ', $services);
@@ -46,15 +41,9 @@ class ReusablesController
     public function bodyScrubSelection($placeHolder)
     {
         $services = [];
-
-        if (isset($placeHolder['coffee_scrub'])) {
-            $services[] = 'Coffee Scrub';
-        }
-        if (isset($placeHolder['milk_whitening_scrub'])) {
-            $services[] = 'Milk Whitening Scrub';
-        }
-        if (isset($placeHolder['shea_and_butter_scrub'])) {
-            $services[] = 'Shea and Butter Scrub';
+        
+        if (isset($placeHolder['body_scrub_selection']) && is_array($placeHolder['body_scrub_selection'])) {
+            $services = $placeHolder['body_scrub_selection'];
         }
 
         return empty($services) ? '' : implode(', ', $services);
@@ -64,17 +53,8 @@ class ReusablesController
     {
         $services = [];
 
-        if (isset($placeHolder['bamboossage'])) {
-            $services[] = 'Bamboossage';
-        }
-        if (isset($placeHolder['dagdagay'])) {
-            $services[] = 'Dagdagay';
-        }
-        if (isset($placeHolder['hilot'])) {
-            $services[] = 'Hilot';
-        }
-        if (isset($placeHolder['swedish'])) {
-            $services[] = 'Swedish';
+        if (isset($placeHolder['selected_massages']) && is_array($placeHolder['selected_massages'])) {
+            return implode(', ', $placeHolder['selected_massages']);
         }
 
         return empty($services) ? '' : implode(', ', $services);

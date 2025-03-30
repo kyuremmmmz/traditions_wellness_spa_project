@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const selectionBox = document.querySelector('select[name="service_booked"]');
 
-    async function fetchData() {
+    /* async function fetchData() {
         try {
             const response = await fetch('http://localhost:8000/store', { method: 'GET' });
             const json = await response.json();
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
-    }
+    } 
 
     function renderDropdowns(items) {
         selectionBox.innerHTML = '';
@@ -28,4 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     fetchData();
+
+    */
 });

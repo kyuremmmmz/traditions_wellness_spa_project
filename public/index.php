@@ -51,7 +51,11 @@ $router->post('/createAddOns', 'AddOnsController@createAddOns');
 $router->get('/addons', 'AddOnsController@findAddons');
 $router->post('/updateAddOn', 'AddOnsController@updateAddOns');
 $router->post('/deleteAddOn', 'AddOnsController@deleteAddOns');
-
+$router->post('/fetchActiveAddons', 'AddOnsController@findActiveAddons');
+$router->post('/fetchActiveServicesByCategory', 'ServicesController@getActiveServicesByCategory');
+$router->post('/fetchActiveServices', 'ServicesController@findActiveServices');
+$router->post('/fetchActiveBodyScrubs', 'ServicesController@findActiveBodyScrubs');
+$router->post('/fetchActiveMassages', 'ServicesController@findActiveMassages');
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

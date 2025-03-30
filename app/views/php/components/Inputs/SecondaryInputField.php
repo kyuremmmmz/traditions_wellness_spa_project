@@ -10,8 +10,15 @@ class SecondaryInputField
     {
         echo '<div class="flex gap-[16px]">';
         echo '<div class="flex flex-col gap-[4px] w-full justify-center">';
-        echo '<div class="flex items-end flex-col justify-end gap-[8px]">';
-        if ($fieldChoice != "hidden") echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
+        echo '<div class="flex items-end flex-col justify-end gap-[2px]">';
+        if ($fieldChoice != "hidden") {
+            echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right pt-[5px]">' . $label . '</p>';
+        } else {
+            echo '<p class="BodyMediumTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none max-w-[260px] min-w-[160px] text-right">' . $label . '</p>';
+         }
+        if ($error !== '') {
+            echo '<p id="' . $error . '" class="CaptionOne text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
+        }
         if ($description !== '') {
             echo '<button type="button" onclick="alert(\'' . htmlspecialchars($description) . '\')" class="flex items-center justify-center w-[16px] h-[16px] text-onBackgroundTwo dark:text-darkOnBackgroundTwo">';
             echo '<svg class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,9 +27,6 @@ class SecondaryInputField
             echo '</button>';
         }
         echo '</div>';
-        if ($error !== '') {
-            echo '<p id="' . $error . '" class="CaptionOne text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground text-destructive dark:text-destructive leading-none max-w-[260px] text-right"></p>';
-        }
         echo '</div>';
 
         $validationAttribute = $validationCallback ? "oninput='this.value = ($validationCallback)(this.value)'" : '';
@@ -96,7 +100,7 @@ class SecondaryInputField
                       </style>";
                 break;
             case 'textareafield':
-                echo "<textarea name='$name' class='BodyTwo resize-none text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[80px] rounded-[6px] p-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute></textarea>";
+                echo "<textarea name='$name' id='$id' class='BodyTwo resize-none text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[80px] rounded-[6px] p-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass' placeholder='$placeholder' $validationAttribute $disabledAttribute></textarea>";
                 break;
 
             case 'photofield':
@@ -108,45 +112,80 @@ class SecondaryInputField
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";
-
+            
                 $GLOBALS['footer_scripts'][] = "<script>
                     document.getElementById('{$id}_input').addEventListener('change', function(e) {
                         const fileList = document.getElementById('{$id}_fileList');
                         const placeholder = document.getElementById('{$id}_placeholder');
                         const file = e.target.files[0];
-                        
+            
                         if (file) {
-                            // Create file item element
+                            // Create file item element with loading indicator
                             const fileItem = document.createElement('div');
                             fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
                             fileItem.innerHTML = `
                                 <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
                                 <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]' onclick='clearPhotoInput(\"{$id}_input\")'>×</button>
                             `;
-                            
+            
                             // Replace placeholder with file item
                             placeholder.classList.add('hidden');
                             fileList.appendChild(fileItem);
+
+                            const reader = new FileReader(); // Create a local reader instance
+                            reader.onloadend = function() {
+                                // Validate photo dimensions after loading
+                                validatePhotoDimensions('{$id}_input', function(errorMessage) {
+                                    if (errorMessage) {
+                                        alert(errorMessage);
+                                        clearPhotoInput('{$id}_input'); // Clear input on error
+                                    }
+                                });
+                            };
+            
+                            reader.readAsDataURL(file);
                         }
                     });
-
+            
                     function clearPhotoInput(inputId) {
                         const input = document.getElementById(inputId);
                         const fileList = document.getElementById(inputId.replace('input', 'fileList'));
                         const placeholder = document.getElementById(inputId.replace('input', 'placeholder'));
-                        
+            
                         // Remove all file items except placeholder
                         Array.from(fileList.children).forEach(child => {
                             if (child !== placeholder) {
                                 child.remove();
                             }
                         });
-                        
+            
                         input.value = '';
                         placeholder.classList.remove('hidden');
                     }
+            
+                    function validatePhotoDimensions(inputId, callback) {
+                        const fileInput = document.getElementById(inputId);
+                        if (fileInput.files && fileInput.files[0]) {
+                            const file = fileInput.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const img = new Image();
+                                img.onload = function () {
+                                    if (img.width !== 700 || img.height !== 700) {
+                                        callback('Photo must be exactly 700x700 pixels.');
+                                    } else {
+                                        callback(null); // No error
+                                    }
+                                };
+                                img.src = e.target.result;
+                            };
+                            reader.readAsDataURL(file);
+                        } else {
+                            callback(null); // No error if no file
+                        }
+                    }
                 </script>";
-                break;
+                break; 
             case 'multiphotofield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
                 echo "<input type='file' multiple name='{$name}[]' accept='image/*' class='hidden' id='slideshow_{$id}_input' $disabledAttribute>";
@@ -167,50 +206,74 @@ class SecondaryInputField
                         let fileCount = 0;
                         let files = [];
 
-                        input.addEventListener('change', function(e) {
+                        function validatePhotoDimensions(file) {
+                            return new Promise((resolve, reject) => {
+                                const reader = new FileReader();
+                                reader.onload = function(e) {
+                                    const img = new Image();
+                                    img.onload = function() {
+                                        if (img.width !== 700 || img.height !== 700) {
+                                            reject('Photo must be exactly 700x700 pixels.');
+                                        } else {
+                                            resolve();
+                                        }
+                                    };
+                                    img.src = e.target.result;
+                                };
+                                reader.readAsDataURL(file);
+                            });
+                        }
+
+                        input.addEventListener('change', async function(e) {
                             const newFiles = Array.from(e.target.files);
                             
-                            newFiles.forEach(file => {
+                            for (const file of newFiles) {
                                 if (fileCount < maxFiles) {
-                                    fileCount++;
-                                    files.push(file);
-                                    
-                                    // Create hidden input for the file
-                                    const hiddenInput = document.createElement('input');
-                                    hiddenInput.type = 'file';
-                                    hiddenInput.name = 'slideshow_{$name}[]';
-                                    hiddenInput.className = 'hidden';
-                                    hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
-                                    
-                                    // Create DataTransfer object to set the file
-                                    const dataTransfer = new DataTransfer();
-                                    dataTransfer.items.add(file);
-                                    hiddenInput.files = dataTransfer.files;
-                                    
-                                    // Create file item element
-                                    const fileItem = document.createElement('div');
-                                    fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
-                                    fileItem.innerHTML = `
-                                        <span class='BodyTwo text-onBackground dark:text-darkOnBackground truncate'>\${file.name}</span>
-                                        <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
-                                    `;
-                                    
-                                    // Add remove functionality
-                                    const removeButton = fileItem.querySelector('button');
-                                    removeButton.onclick = function() {
-                                        fileList.removeChild(fileItem);
-                                        document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
-                                        files = files.filter(f => f !== file);
-                                        fileCount--;
+                                    try {
+                                        await validatePhotoDimensions(file);
+                                        
+                                        fileCount++;
+                                        files.push(file);
+                                        
+                                        // Create hidden input for the file
+                                        const hiddenInput = document.createElement('input');
+                                        hiddenInput.type = 'file';
+                                        hiddenInput.name = '{$name}[]';
+                                        hiddenInput.className = 'hidden';
+                                        hiddenInput.id = 'slideshow_{$id}_file_' + fileCount;
+                                        
+                                        // Create DataTransfer object to set the file
+                                        const dataTransfer = new DataTransfer();
+                                        dataTransfer.items.add(file);
+                                        hiddenInput.files = dataTransfer.files;
+                                        
+                                        // Create file item element
+                                        const fileItem = document.createElement('div');
+                                        fileItem.className = 'flex items-center justify-between bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo rounded-[6px] px-[12px] h-[40px]';
+                                        fileItem.innerHTML = `
+                                            <span class='truncate BodyTwo text-onBackground dark:text-darkOnBackground'>\${file.name}</span>
+                                            <button type='button' class='text-onBackgroundTwo dark:text-darkOnBackgroundTwo hover:text-destructive dark:hover:text-destructive ml-[8px]'>×</button>
+                                        `;
+                                        
+                                        // Add remove functionality
+                                        const removeButton = fileItem.querySelector('button');
+                                        removeButton.onclick = function() {
+                                            fileList.removeChild(fileItem);
+                                            document.getElementById('slideshow_{$id}_file_' + fileCount).remove();
+                                            files = files.filter(f => f !== file);
+                                            fileCount--;
+                                            updateAddButton();
+                                        };
+                                        
+                                        // Add elements to DOM
+                                        fileList.insertBefore(hiddenInput, addButton);
+                                        fileList.insertBefore(fileItem, addButton);
                                         updateAddButton();
-                                    };
-                                    
-                                    // Add elements to DOM
-                                    fileList.insertBefore(hiddenInput, addButton);
-                                    fileList.insertBefore(fileItem, addButton);
-                                    updateAddButton();
+                                    } catch (error) {
+                                        alert(error);
+                                    }
                                 }
-                            });
+                            }
                             
                             // Clear input for next selection
                             input.value = '';
@@ -306,19 +369,12 @@ class SecondaryInputField
                 echo "<input type='search' id='$id' name='$name' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo border-[1px] h-[40px] rounded-[6px] pl-10 px-[12px] w-full min-w-[260px] max-w-[260px] $disabledClass'  placeholder='$placeholder' $validationAttribute $idAttribute $disabledAttribute>";
                 echo "</div>";
                 break;
-
             case 'choicesselectionfield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";
                 echo "<div class='border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
                 echo "<div class='flex flex-col gap-[8px]'>";
-                foreach ($options as $option) {
-                    $replace = str_replace(' ', '_', $option);
-                    $toLower = strtolower($replace);
-                    echo "<div class='relative'>";
-                    echo "<input type='checkbox' name='$toLower' value='$option' class='peer hidden' id='{$id}_$option' $disabledAttribute>";
-                    echo "<label for='{$id}_$option' class='BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full'>$option</label>";
-                    echo "</div>";
-                }
+                echo "<div class='relative flex flex-col gap-[8px]' id='$id'>";
+                echo "</div>";
                 echo "</div>";
                 echo "</div>";
                 echo "</div>";

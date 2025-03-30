@@ -107,4 +107,23 @@ class AddOnsController
         }
         exit;
     }
+
+    public function findActiveAddons()
+    {
+        header('Content-Type: application/json');
+        try {
+            $allAddons = $this->model->getAll();
+            $activeAddons = array_filter($allAddons, function ($addon) {
+                return $addon['status'] === 'Active';
+            });
+            echo json_encode([
+                'status' => 'success',
+                'data' => array_values($activeAddons)
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([]);
+        }
+        exit;
+    }
 }

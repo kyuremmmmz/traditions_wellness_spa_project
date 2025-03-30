@@ -47,9 +47,6 @@ class ServicesController
     }
 
     try {
-        $price = isset($data['fixed_price']) && !empty($data['fixed_price'])
-            ? (int)$data['fixed_price']
-            : (int)($data['1_hour_price']) + (int)($data['1_hour_30_price']) + (int)($data['2_hours_price']);
 
         $uploadMainPhoto = $this->handleFileUpload('main_photo');
         $uploadShowcasePhoto1 = $this->handleFileUpload('showcase_photo_1');
@@ -61,10 +58,10 @@ class ServicesController
         $params = [
             'category' => $data['category'],
             'service_name' => $data['service_name'],
-            'price' => $price,
+            'fixed_price' => $data['fixed_price'],
             'service_caption' => $data['service_caption'],
             'service_description' => $data['service_description'],
-            'status' => $data['status'],
+            'status' => $data['service_status'],
             'duration_details' => $data['duration_details'],
             'party_size_details' => $data['party_size_details'],
             'massage_details' => $data['massage_details'],
@@ -84,6 +81,10 @@ class ServicesController
             'massage_selection' => $this->reusables->massageSelection($data),
             'body_scrub_selection' => $this->reusables->bodyScrubSelection($data),
             'supplemental_addons' => $this->reusables->suplementTalAddOns($data),
+            'party_size' => $data['party_size'],
+            'one_hour_price' => $data['one_hour_price'],
+            'one_hour_thirty_price' => $data['one_hour_thirty_price'],
+            'two_hour_price' => $data['two_hour_price'],
         ];
 
         // Log SQL parameters
@@ -113,12 +114,14 @@ class ServicesController
 
     public function handleMultipleFileUpload($inputName)
     {
-        if (!isset($_FILES[$inputName]) || !is_array($_FILES[$inputName]['name'])) {
+        $actualInputName = 'slideshow_' . $inputName;
+        
+        if (!isset($_FILES[$actualInputName]) || !is_array($_FILES[$actualInputName]['name'])) {
             return ['error' => 'No files uploaded'];
         }
 
         $filePaths = [];
-        $files = $_FILES[$inputName];
+        $files = $_FILES[$actualInputName];
 
         for ($i = 0; $i < count($files['name']); $i++) {
             if ($files['error'][$i] === UPLOAD_ERR_OK) {
@@ -188,4 +191,35 @@ class ServicesController
     {
         echo "This is the delete method of ServicesController for ID: $id.";
     }
+    public function findActiveMassages()
+{
+    header('Content-Type: application/json');
+    try {
+        $activeMassages = $this->model->findByCategoryAndActive('Massages');
+        echo json_encode([
+            'status' => 'success',
+            'data' => $activeMassages
+        ]);
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([]);
+    }
+    exit;
+}
+
+public function findActiveBodyScrubs()
+{
+    header('Content-Type: application/json');
+    try {
+        $activeBodyScrubs = $this->model->findByCategoryAndActive('Body Scrubs');
+        echo json_encode([
+            'status' => 'success',
+            'data' => $activeBodyScrubs
+        ]);
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([]);
+    }
+    exit;
+}
 }
