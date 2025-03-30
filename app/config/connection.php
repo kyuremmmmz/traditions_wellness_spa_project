@@ -12,7 +12,7 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3307';
+        $host = 'localhost:3306';
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,7 +27,7 @@ class Connection
         $db = 'traditionswellnessspa';
         $password = 'admin';
         $username = 'root';
-        $host = 'localhost:3307';
+        $host = 'localhost:3306';
 
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$db", $username, $password);
