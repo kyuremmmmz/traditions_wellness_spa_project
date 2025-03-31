@@ -171,11 +171,24 @@ const UpdateServiceDOM = {
             console.error('Update service form not found');
             return;
         }
-        
-        console.log('Form fields:', Array.from(form.elements).map(el => el.name));
-        console.log('Service data:', serviceData);
-        console.log('Data keys:', Object.keys(serviceData));
-        
+
+        // Set category first to ensure proper sections are loaded
+        if (serviceData.category) {
+            const categoryDropdown = form.querySelector('[name="update_category"]');
+            if (categoryDropdown) {
+                // Find and set the category option
+                for (let i = 0; i < categoryDropdown.options.length; i++) {
+                    if (categoryDropdown.options[i].text === serviceData.category) {
+                        categoryDropdown.selectedIndex = i;
+                        // Trigger category change to load appropriate sections
+                        const event = new Event('change');
+                        categoryDropdown.dispatchEvent(event);
+                        break;
+                    }
+                }
+            }
+        }
+
         // Map camelCase properties to snake_case form fields
         const fieldMappings = {
             'id': 'update_service_id',
@@ -246,17 +259,16 @@ const UpdateServiceDOM = {
             { dataKey: 'supplementalAddOns', fieldName: 'update_addon_selection' }
         ];
     
-        selectionMappings.forEach(mapping => {
-            console.log(`Populating selection field ${mapping.fieldName} with data from ${mapping.dataKey}`);
-            console.log('Selection data:', serviceData[mapping.dataKey]);
-            if (serviceData[mapping.dataKey]) {
-                            console.log(`Starting population of ${mapping.fieldName} field`);
-            this.populateSelectionField(mapping.fieldName, serviceData[mapping.dataKey]);
-            console.log(`Completed population of ${mapping.fieldName} field`);
-            }
-        });
-    
-        if (window.PhotoHandler) {
+        // Use setTimeout to ensure DOM updates are complete
+        setTimeout(() => {
+            selectionMappings.forEach(mapping => {
+                if (serviceData[mapping.dataKey]) {
+                    this.populateSelectionField(mapping.fieldName, serviceData[mapping.dataKey]);
+                }
+            });
+        }, 100);
+
+    if (window.PhotoHandler) {
             // Clean up slideshow data
             if (serviceData.slideShowPhotos === 'No files uploaded') {
                 serviceData.slideShowPhotos = null;
@@ -307,7 +319,7 @@ const UpdateServiceDOM = {
     populateSelectionField(fieldName, value) {
         if (!value) return;
         
-        console.log(`Attempting to populate selection field ${fieldName} with value ${value}`);
+        console.log(`Attempting to populate selection field ${fieldName} with value`, value);
         
         try {
             const form = this.elements.form();
@@ -324,42 +336,43 @@ const UpdateServiceDOM = {
             
             // Ensure container is visible before populating
             container.style.display = 'block';
-    
-            // Parse the value string or array into an array
-            console.log('Raw selection value:', value);
-            const selectedValues = Array.isArray(value) ? value : typeof value === 'string' ? value.split(',').map(v => v.trim()) : [];
-            console.log('Selected values:', selectedValues);
-            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-            console.log('Processed selection values:', selectedValues);
-            console.log('Checkbox values:', Array.from(checkboxes).map(cb => cb.value));
-            
-            // Initialize checkboxes before accessing them
-            if (checkboxes.length === 0) {
-                console.warn(`No checkboxes found in ${fieldName}_wrapper`);
-                return;
-            }
 
-            // Handle checkboxes
+            // Parse the value into an array if it isn't already
+            let selectedValues = [];
+            if (Array.isArray(value)) {
+                selectedValues = value;
+            } else if (typeof value === 'string') {
+                // Handle comma-separated strings
+                selectedValues = value.split(',').map(v => v.trim());
+            }
+            
+            console.log('Processed selected values:', selectedValues);
+            
+            // Get all checkboxes in the container
+            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+            console.log(`Found ${checkboxes.length} checkboxes for ${fieldName}`);
+            
+            // First uncheck all checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+
+            // Then check only the matching ones
             checkboxes.forEach(checkbox => {
                 const checkboxValue = checkbox.value.trim();
-                // Check if the checkbox value is in the selected values array
-                console.log('Selected value type:', typeof selectedValue, 'Value:', selectedValue);
-                const isChecked = selectedValues.some((selectedValue) => {
-                console.log('Comparing:', selectedValue, 'with:', checkboxValue);
-                    // Handle both string and object values
-                    let selectedVal = selectedValue;
-                    if (typeof selectedValue === 'object') {
-                        selectedVal = selectedValue.id || selectedValue.value || selectedValue.name || selectedValue.title;
-                    }
-                    const match = selectedVal.toString().toLowerCase().trim() === checkboxValue.toLowerCase().trim();
-                    console.log('Match result:', match);
-                    return match;
+                console.log(`Checking checkbox with value: "${checkboxValue}"`);
+                
+                const isChecked = selectedValues.some(selectedValue => {
+                    // Direct comparison of trimmed values
+                    return selectedValue.trim() === checkboxValue;
                 });
+                
                 if (isChecked) {
+                    console.log(`MATCH FOUND - Selecting checkbox with value: "${checkboxValue}"`);
                     checkbox.checked = true;
-                    checkbox.dispatchEvent(new Event('change'));
-                } else {
-                    checkbox.checked = false;
+                    // Trigger change event to update UI
+                    const event = new Event('change', { bubbles: true });
+                    checkbox.dispatchEvent(event);
                 }
             });
         } catch (error) {
@@ -522,31 +535,41 @@ const UpdateServiceDOM = {
                 return;
             }
             
+            // Clear existing checkboxes first
+            section.innerHTML = '';
+            
             items.forEach(item => {
                 let itemName = item.serviceName;
                 if (namePrefix === 'update_addon_selection' && item.name) {
                     itemName = item.name;
                 }
-
+        
                 if (item && itemName) {
                     const replace = itemName.replace(/ /g, '_').toLowerCase();
-
+                    const checkboxId = `${namePrefix}_${replace}`;
+        
+                    // Skip if checkbox already exists
+                    if (document.getElementById(checkboxId)) {
+                        console.log(`Skipping duplicate checkbox for ${itemName}`);
+                        return;
+                    }
+        
                     const itemDiv = document.createElement('div');
                     itemDiv.className = 'relative';
                     itemDiv.id = namePrefix;
-
+        
                     const input = document.createElement('input');
                     input.type = 'checkbox';
                     input.name = `${namePrefix}[]`;
                     input.value = itemName;
                     input.className = 'peer hidden';
-                    input.id = `${namePrefix}_${replace}`;
-
+                    input.id = checkboxId;
+        
                     const label = document.createElement('label');
-                    label.htmlFor = `${namePrefix}_${replace}`;
+                    label.htmlFor = checkboxId;
                     label.className = 'BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center px-[12px] h-[36px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface w-full';
                     label.textContent = itemName;
-
+        
                     itemDiv.appendChild(input);
                     itemDiv.appendChild(label);
                     section.appendChild(itemDiv);

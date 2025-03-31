@@ -118,10 +118,7 @@ class UpdateService
         </form>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/UpdateService/UpdateServicePhotoHandler.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/UpdateService/UpdateServiceValidation.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/UpdateService/UpdateServiceCategoryListener.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/UpdateService/UpdateServiceDOM.js"></script>
-        <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/UpdateService/UpdateServiceSelectionDOM.js"></script>
-
         <?php
     }
 }
