@@ -35,11 +35,15 @@ class AddNewServiceSelectionDOM {
         try {
             const response = await fetch('/fetchActiveAddons', { method: 'POST' });
             const result = await response.json();
-            const activeAddOns = result.data;
-
-            this.createCheckboxes(activeAddOns, this.addOnSection, 'addon_selection');
+    
+            console.log("Addons results:", result);
+    
+            if (result && result.status === 'success' && result.data && result.data.length > 0) {
+                this.createCheckboxes(result.data, this.addOnSection, 'addon_selection'); // Access result.data
+            } else {
+                this.showEmptyMessage(this.addOnSection, 'No add-ons available.');
+            }
         } catch (error) {
-            console.error('Error loading active add-ons:', error);
             this.showError('Failed to load active add-ons.', this.addOnSection);
         }
     }
@@ -48,12 +52,15 @@ class AddNewServiceSelectionDOM {
         try {
             const response = await fetch('/fetchActiveMassages', { method: 'POST' });
             const result = await response.json();
-            const activeMassages = result.data;
 
-            console.log("Active massages:", activeMassages);
-            this.createCheckboxes(activeMassages, this.massageSection, 'massage_selection');
+            if (result && result.length > 0) {
+                this.createCheckboxes(result, this.massageSection, 'massage_selection');
+            } else {
+                this.showEmptyMessage(this.massageSection, 'No massages available.');
+            }
+
         } catch (error) {
-            // ...
+            this.showError('Failed to load active massages.', this.massageSection);
         }
     }
 
@@ -61,20 +68,30 @@ class AddNewServiceSelectionDOM {
         try {
             const response = await fetch('/fetchActiveBodyScrubs', { method: 'POST' });
             const result = await response.json();
-            const activeBodyScrubs = result.data;
+            
+            console.log(result);
 
-            console.log("Active body scrubs:", activeBodyScrubs);
-            this.createCheckboxes(activeBodyScrubs, this.bodyScrubSection, 'body_scrub_selection');
+            if (result && result.length > 0) {
+                this.createCheckboxes(result, this.bodyScrubSection, 'body_scrub_selection');
+            } else {
+                this.showEmptyMessage(this.bodyScrubSection, 'No body scrubs available yet.');
+            }
         } catch (error) {
-            // ...
+            console.error(error);
+            this.showError('Failed to load active body scrubs.', this.bodyScrubSection);
         }
     }
 
     createCheckboxes(items, section, namePrefix) {
+        console.log("createCheckboxes called with:", items, section, namePrefix);
+        if(!section){
+            console.error("section is null");
+        }
         items.forEach(item => {
-            let itemName = item.serviceName; // Default
+            console.log("Processing item:", item);
+            let itemName = item.serviceName;
             if (namePrefix === 'addon_selection' && item.name) {
-                itemName = item.name; // Use name for addons
+                itemName = item.name;
             }
 
             if (item && itemName) {
@@ -111,6 +128,13 @@ class AddNewServiceSelectionDOM {
         errorDiv.textContent = message;
         section.innerHTML = '';
         section.appendChild(errorDiv);
+    }
+    showEmptyMessage(section, message) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'p-4 text-sm text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-400';
+        emptyDiv.textContent = message;
+        section.innerHTML = '';
+        section.appendChild(emptyDiv);
     }
 }
 

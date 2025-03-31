@@ -19,7 +19,7 @@ class UpdateAddOn
                 <div class="w-full flex flex-col gap-[48px] items-center justify-center sm:mt-[64px] mt-[0px]">
                     <?php DrawerTitle::render('Update add-on', 'You may modify the following details'); ?>
                     <section class="flex flex-col gap-[16px] min-w-[300px] max-w-[300px] items-end justify-end">
-                        <?php SecondaryInputField::render('hidden', 'ID', '', [], '', null, 'update_addon_id', '', '', [], false, 'update_addon_id') ?>
+                        <?php SecondaryInputField::render('hidden', '', '', [], '', null, 'update_addon_id', '', '', [], false, 'update_addon_id') ?>
                         <?php SecondaryInputField::render('textfield', 'Name', 'Enter Name', [], 'update_name_error', null, 'update_name', '', 'required minlength="3" maxlength="50"', [], false, 'update_name', 0, '') ?>
                         <?php SecondaryInputField::render('numberfield', 'Price', 'Enter Price', [], 'update_price_error', null, 'update_price', '', 'required min="0" step="0.01"', [], false, 'update_price') ?>
                         <?php SecondaryInputField::render('dropdownfield', 'Status', '', ['Archived', 'Active'], '', null, 'update_status', '', 'required', [], false, 'update_status', 0) ?>

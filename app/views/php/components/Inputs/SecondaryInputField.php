@@ -32,7 +32,7 @@ class SecondaryInputField
         $validationAttribute = $validationCallback ? "oninput='this.value = ($validationCallback)(this.value)'" : '';
         $idAttribute = $id ? "id='$id'" : '';
         $disabledAttribute = $isDisabled ? 'disabled' : '';
-        $disabledClass = $isDisabled ? 'opacity-30 cursor-not-allowed' : '';
+        $disabledClass = $isDisabled ? 'opacity-70 cursor-not-allowed' : '';
 
         switch ($fieldChoice) {
             case 'searchselectfield':

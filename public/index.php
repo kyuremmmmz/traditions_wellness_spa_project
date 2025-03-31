@@ -56,6 +56,9 @@ $router->post('/fetchActiveServicesByCategory', 'ServicesController@getActiveSer
 $router->post('/fetchActiveServices', 'ServicesController@findActiveServices');
 $router->post('/fetchActiveBodyScrubs', 'ServicesController@findActiveBodyScrubs');
 $router->post('/fetchActiveMassages', 'ServicesController@findActiveMassages');
+$router->post('/fetchActivePackages', 'ServicesController@findActivePackages');
+$router->post('/fetchArchivedServices', 'ServicesController@findArchivedServices');
+$router->post('/fetchAllActiveServices', 'ServicesController@findAllActiveServices');
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
 $router->get('/test', function () {

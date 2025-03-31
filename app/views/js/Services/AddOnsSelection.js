@@ -26,15 +26,25 @@ class AddOnsSelectionLoader {
                 section.innerHTML = '';
             });
     
-            // Populate sections with add-ons
+            let activeAddOnsCount = 0;
+            let archivedAddOnsCount = 0;
             addOns.forEach(addOn => {
                 const addOnElement = this.createAddOnElement(addOn);
                 if (addOn.status === 'Archived' || addOn.is_archived) {
                     this.archivedAddOnsSection.appendChild(addOnElement);
+                    archivedAddOnsCount++;
                 } else {
                     this.addOnsSection.appendChild(addOnElement);
+                    activeAddOnsCount++;
                 }
             });
+            if (activeAddOnsCount === 0) {
+                this.addOnsSection.innerHTML = '<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No active add-ons available.</p>';
+            }
+            if (archivedAddOnsCount === 0) {
+                this.archivedAddOnsSection.innerHTML = '<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No archived add-ons available.</p>';
+            }
+
         } catch (error) {
             console.error('Error loading add-ons:', error);
             console.error('Error details:', {
