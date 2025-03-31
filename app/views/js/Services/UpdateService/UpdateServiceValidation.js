@@ -235,11 +235,24 @@ document.addEventListener("DOMContentLoaded", function () {
         const value = validElements[field].element.value;
         const trimmedValue = value.trim();
     
-        if (validElements[field].interacted && trimmedValue === "") {
+        // Skip required validation for add-on details
+        if (field === 'serviceAddOnDetails') {
+            if (trimmedValue !== "") {
+                const validationMessage = validElements[field].handler(value);
+                if (validationMessage !== true) {
+                    errors[field] = validationMessage;
+                } else {
+                    delete errors[field];
+                }
+            } else {
+                delete errors[field];
+            }
+        }
+        // Apply normal validation for other fields
+        else if (validElements[field].interacted && trimmedValue === "") {
             errors[field] = "This field is required.";
         } else if (trimmedValue !== "") {
             const validationMessage = validElements[field].handler(value);
-    
             if (validationMessage !== true) {
                 errors[field] = validationMessage;
             } else {
@@ -403,10 +416,28 @@ document.addEventListener("DOMContentLoaded", function () {
         validateForm();
     }
 
-    fixedPriceRadio.addEventListener("change", updatePriceVisibility);
-    dynamicPriceRadio.addEventListener("change", updatePriceVisibility);
-
-    updatePriceVisibility();
+    // Initialize price visibility on load
+    document.addEventListener('DOMContentLoaded', function() {
+        if (fixedPriceRadio && dynamicPriceRadio && fixedPriceSection && dynamicPriceSection) {
+            fixedPriceRadio.addEventListener("change", updatePriceVisibility);
+            dynamicPriceRadio.addEventListener("change", updatePriceVisibility);
+            
+            // Force initial state based on checked radio button
+            if (fixedPriceRadio.checked) {
+                fixedPriceSection.style.display = "flex";
+                dynamicPriceSection.style.display = "none";
+                elements.serviceFixedPrice.element.disabled = false;
+            } else {
+                fixedPriceSection.style.display = "none";
+                dynamicPriceSection.style.display = "flex";
+                elements.serviceFixedPrice.element.disabled = true;
+            }
+            
+            updatePriceVisibility();
+        } else {
+            console.error('Price visibility elements not found');
+        }
+    });
 
     function validateForm() {
         let isValid = true;

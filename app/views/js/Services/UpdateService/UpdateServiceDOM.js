@@ -21,8 +21,10 @@ const UpdateServiceDOM = {
         // Close button
         closeButton: () => document.getElementById('exitUpdateService'),
         drawer: () => document.getElementById('UpdateServiceSection')
+        
     },
 
+    
     isDirty: false,
 
     handlers: {
@@ -108,13 +110,44 @@ const UpdateServiceDOM = {
         openUnsavedChanges()?.addEventListener('click', this.handlers.openUnsavedChanges);
         openDelete()?.addEventListener('click', this.handlers.openDelete);
 
-        const fixedPriceButton = form().querySelector('#updateFixedPriceButton');
-        const dynamicPriceButton = form().querySelector('#updateDynamicPriceButton');
+        const fixedPriceButton = document.getElementById('updateFixedPriceButton');
+        const dynamicPriceButton = document.getElementById('updateDynamicPriceButton');
         if (fixedPriceButton && dynamicPriceButton) {
-            fixedPriceButton.addEventListener('change', () => this.updatePriceSectionVisibility());
-            dynamicPriceButton.addEventListener('change', () => this.updatePriceSectionVisibility());
-            // Initialize visibility
+            fixedPriceButton.addEventListener('change', (e) => {
+                console.log('Fixed price button changed, checked:', e.target.checked, 'Event:', e);
+                this.updatePriceSectionVisibility();
+                this.isDirty = true;
+            }, { capture: true });
+            dynamicPriceButton.addEventListener('change', (e) => {
+                console.log('Dynamic price button changed, checked:', e.target.checked, 'Event:', e);
+                this.updatePriceSectionVisibility();
+                this.isDirty = true;
+            }, { capture: true });
+            
+            // Check for dynamic pricing values
+            const formElement = this.elements.form();
+        const hasDynamicPricing = formElement?.querySelector('[name="update_one_hour_price"]')?.value || 
+                                 formElement?.querySelector('[name="update_one_hour_thirty_price"]')?.value || 
+                                 formElement?.querySelector('[name="update_two_hour_price"]')?.value;
+            
+            // Set initial price type based on dynamic pricing values
+            if (hasDynamicPricing) {
+                dynamicPriceButton.checked = true;
+                fixedPriceButton.checked = false;
+            } else {
+                fixedPriceButton.checked = true;
+                dynamicPriceButton.checked = false;
+            }
+            
+            // Initialize visibility immediately
             this.updatePriceSectionVisibility();
+            
+            // Then trigger change events to ensure proper UI state
+            setTimeout(() => {
+                const event = new Event('change', { bubbles: true });
+                fixedPriceButton.dispatchEvent(event);
+                dynamicPriceButton.dispatchEvent(event);
+            }, 50);
         }
         
         this.attachInputChangeListeners();
@@ -154,6 +187,37 @@ const UpdateServiceDOM = {
 
     hasUnsavedChanges() {
         return this.isDirty;
+    },
+
+    updatePriceSectionVisibility() {
+        const form = this.elements.form();
+        const fixedPriceButton = form.querySelector('#updateFixedPriceButton');
+        const dynamicPriceButton = form.querySelector('#updateDynamicPriceButton');
+        const fixedPriceSection = form.querySelector('#updateFixedPriceSection');
+        const dynamicPriceSection = form.querySelector('#updateDynamicPriceSection');
+        
+        if (!fixedPriceButton || !dynamicPriceButton || !fixedPriceSection || !dynamicPriceSection) {
+            console.error('Missing price UI elements');
+            return;
+        }
+        
+        if (fixedPriceButton && fixedPriceSection && dynamicPriceSection) {
+            if (fixedPriceButton.checked) {
+                fixedPriceSection.classList.remove('hidden');
+                fixedPriceSection.classList.add('flex');
+                dynamicPriceSection.classList.add('hidden');
+                dynamicPriceSection.classList.remove('flex');
+            } else if (dynamicPriceButton.checked) {
+                fixedPriceSection.classList.add('hidden');
+                fixedPriceSection.classList.remove('flex');
+                dynamicPriceSection.classList.remove('hidden');
+                dynamicPriceSection.classList.add('flex');
+            }
+        }
+        
+        // Force a reflow to ensure transitions work
+        void fixedPriceSection.offsetWidth;
+        void dynamicPriceSection.offsetWidth;
     },
 
     attachInputChangeListeners() {
@@ -222,20 +286,24 @@ const UpdateServiceDOM = {
         });
         
         // Handle price type radio buttons
-        if (serviceData.oneHourPrice || serviceData.oneHourThirtyPrice || serviceData.twoHourPrice) {
-            // Use dynamic pricing
-            const dynamicPriceButton = form.querySelector('#updateDynamicPriceButton');
-            if (dynamicPriceButton) {
+        const fixedPriceButton = form.querySelector('#updateFixedPriceButton');
+        const dynamicPriceButton = form.querySelector('#updateDynamicPriceButton');
+        
+        if (fixedPriceButton && dynamicPriceButton) {
+            if (serviceData.oneHourPrice > 0 || serviceData.oneHourThirtyPrice > 0 || serviceData.twoHourPrice > 0) {
+                // Use dynamic pricing
                 dynamicPriceButton.checked = true;
-                this.updatePriceSectionVisibility();
-            }
-        } else {
-            // Use fixed pricing
-            const fixedPriceButton = form.querySelector('#updateFixedPriceButton');
-            if (fixedPriceButton) {
+                fixedPriceButton.checked = false;
+            } else {
+                // Use fixed pricing
                 fixedPriceButton.checked = true;
-                this.updatePriceSectionVisibility();
+                dynamicPriceButton.checked = false;
             }
+            // Trigger change event to update UI
+            const event = new Event('change', { bubbles: true });
+            fixedPriceButton.dispatchEvent(event);
+            dynamicPriceButton.dispatchEvent(event);
+            this.updatePriceSectionVisibility();
         }
         
         // Handle category selection
@@ -394,15 +462,23 @@ const UpdateServiceDOM = {
         
         if (fixedPriceButton.checked) {
             fixedPriceSection.classList.remove('hidden');
+            fixedPriceSection.classList.add('flex');
             fixedPriceSection.style.opacity = '1';
             dynamicPriceSection.classList.add('hidden');
+            dynamicPriceSection.classList.remove('flex');
             dynamicPriceSection.style.opacity = '0';
         } else if (dynamicPriceButton.checked) {
             fixedPriceSection.classList.add('hidden');
+            fixedPriceSection.classList.remove('flex');
             fixedPriceSection.style.opacity = '0';
             dynamicPriceSection.classList.remove('hidden');
+            dynamicPriceSection.classList.add('flex');
             dynamicPriceSection.style.opacity = '1';
         }
+        
+        // Force a reflow to ensure transitions work
+        void fixedPriceSection.offsetWidth;
+        void dynamicPriceSection.offsetWidth;
     },
 
     // Category Selection Handler
@@ -410,6 +486,7 @@ const UpdateServiceDOM = {
         addOnSection: null,
         massageSectionWrapper: null,
         bodyScrubSectionWrapper: null,
+        addOnSectionWrapper: null,
         categoryDropdown: null,
         massageSection: null,
         bodyScrubSection: null,
@@ -437,9 +514,8 @@ const UpdateServiceDOM = {
         },
 
         setupCategoryVisibility(selectedCategory) {
-            // Reset all sections first
-            this.addOnSectionWrapper.classList.add('hidden');
-            this.massageSectionWrapper.classList.add('hidden');
+            if (this.addOnSectionWrapper) this.addOnSectionWrapper.classList.add('hidden');
+            if (this.massageSectionWrapper) this.massageSectionWrapper.classList.add('hidden');
             this.bodyScrubSectionWrapper.classList.add('hidden');
 
             // Reset section contents

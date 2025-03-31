@@ -87,17 +87,18 @@ class UpdateService
                                 <p class="leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo">Price Type</p>
                                 <div class="flex gap-[16px]">
                                     <div class="relative">
-                                        <input type="radio" name="price_type" value="fixed" class="hidden peer" id="updateFixedPriceButton" checked required>
-                                        <label for="fixedPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Fixed Price</label>
+                                        <input type="radio" name="update_price_type" value="fixed" class="hidden peer" id="updateFixedPriceButton" disabled checked required>
+                                        <label for="updateFixedPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Fixed Price</label>
                                     </div>
                                     <div class="relative">
-                                        <input type="radio" name="price_type" value="dynamic" class="hidden peer" id="updateDynamicPriceButton" required>
-                                        <label for="dynamicPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface">Dynamic Price</label>
+                                        <input type="radio" name="update_price_type" value="dynamic" class="hidden peer" id="updateDynamicPriceButton" disabled required>
+                                        <label for="updateDynamicPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Dynamic Price</label>
                                     </div>
                                 </div>
                             </div>
-                            <div id="updateFixedPriceSection" class="flex transition-all transition justify-startopacity-100">
+                            <div id="updateFixedPriceSection" class="flex flex-col gap-[16px] transition-all transition justify-startopacity-100">
                                 <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], 'update_fixed_price_error', null, 'update_fixed_price', '', '', [], '', 'update_fixed_price' ); ?>
+                                <?php SecondaryInputField::render('dropdownfield', 'Duration', '', ['1 hour', '1 hour and 30 minutes', '2 hours', '2 hours and 30 minutes', '3 hours', '3 hours and 30 minutes', '4 hours', '4 hours and 30 minutes', '5 hours'], '', null, 'update_duration', '', '', [], '', 'update_duration', 0, 'This dictates the estimated duration of the entire service.'); ?>
                             </div>
                             <div id="updateDynamicPriceSection" class="flex flex-col gap-[16px] hidden justify-start opacity-0 transition transition-all">
                                 <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], 'update_one_hour_price_error', null, 'update_one_hour_price', '', '', [], '', 'update_one_hour_price'); ?>
