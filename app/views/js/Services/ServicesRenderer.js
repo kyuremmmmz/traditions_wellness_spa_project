@@ -9,7 +9,7 @@ class ServiceRenderer {
         
         targetSection.innerHTML = '';
         if (data.length === 0) {
-            targetSection.innerHTML = '<p class="text-center text-onBackgroundTwo dark:text-darkOnBackgroundTwo">No services found.</p>';
+            targetSection.innerHTML = '<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No archived services found.</p>';
             return;
         }
         
@@ -23,7 +23,7 @@ class ServiceRenderer {
         
         targetSection.innerHTML = '';
         if (data.length === 0) {
-            targetSection.innerHTML = '<p class="text-center text-onBackgroundTwo dark:text-darkOnBackgroundTwo">No services found.</p>';
+            targetSection.innerHTML = '<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No active services found.</p>';
             return;
         }
         
@@ -46,7 +46,7 @@ class ServiceRenderer {
         targetSection.innerHTML = '';
         if (data.length === 0) {
             category = category.toLowerCase();
-            targetSection.innerHTML = `<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No active ${category} services found.</p>`;
+            targetSection.innerHTML = `<p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo leading-none">No active ${category} found.</p>`;
             return;
         }
         
@@ -80,6 +80,7 @@ class ServiceRenderer {
                 setTimeout(() => {
                     drawer.classList.remove('translate-x-full');
                     drawer.classList.add('translate-x-0');
+                    document.dispatchEvent(new Event('serviceDrawerOpened'));
                 }, 100);
             });
         });
@@ -119,7 +120,8 @@ class ServiceRenderer {
                         data-service-party-size="${item.party_size || ''}"
                         data-service-one-hour-price="${item.one_hour_price || '0.00'}"
                         data-service-one-hour-thirty-price="${item.one_hour_thirty_price || '0.00'}"
-                        data-service-two-hour-price="${item.two_hour_price || '0.00'}">
+                        data-service-two-hour-price="${item.two_hour_price || '0.00'}"
+                        data-service-duration="${item.duration}">
                     <div class="w-[64px]">
                         <img src="${item.main_photo || 'default-image.jpg'}" class="w-[64px] h-[64px] rounded-[6px] bg-primary dark:bg-primary" alt="${item.serviceName}">
                     </div>
@@ -127,7 +129,7 @@ class ServiceRenderer {
                         <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">${item.serviceName}</p>
                         <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none h-[13px] w-full truncate">${item.description || 'No description available'}</p>
                         <div class="flex gap-[8px] w-full">
-                            <p class="CaptionMediumOne text-primary dark:text-darkPrimary leading-none w-full text-left">₱${item.fixed_price || '0.00'}</p>
+                            <p class="CaptionMediumOne text-primary dark:text-darkPrimary leading-none w-full text-left">${item.one_hour_price ? `Starting from ₱${item.one_hour_price}` : `₱${item.fixed_price || '0.00'}`}</p>
                         </div>
                     </div>
                 </button>

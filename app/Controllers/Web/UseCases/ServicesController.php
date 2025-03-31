@@ -203,15 +203,91 @@ class ServicesController
         }
     }
 
-    public function update($id)
+    public function updateService()
     {
-        echo "This is the update method of ServicesController for ID: $id.";
+        session_start();
+        $data = $_POST;
+        $logFile = __DIR__ . '/debug.txt';
+
+        try {
+            // Convert array selections to strings
+            if (isset($data['update_massage_selection']) && is_array($data['update_massage_selection'])) {
+                $data['update_massage_selection'] = implode(', ', $data['update_massage_selection']);
+            }
+            
+            if (isset($data['update_body_scrub_selection']) && is_array($data['update_body_scrub_selection'])) {
+                $data['update_body_scrub_selection'] = implode(', ', $data['update_body_scrub_selection']);
+            }
+            
+            if (isset($data['update_addon_selection']) && is_array($data['update_addon_selection'])) {
+                $data['update_addon_selection'] = implode(', ', $data['update_addon_selection']);
+            }
+
+            // Log the processed data
+            file_put_contents($logFile, "Update Service - Processed data:\n" . print_r($data, true) . "\n", FILE_APPEND);
+            
+            $updateService = $this->model->update(
+                $data['update_service_id'], 
+                $data
+            );
+
+            if ($updateService) {
+                $_SESSION['success'] = 'Service successfully updated.';
+            } else {
+                $_SESSION['error'] = 'Failed to update service.';
+            }
+        } catch (Exception $e) {
+            file_put_contents($logFile, "Update Service Exception: " . $e->getMessage() . "\n", FILE_APPEND);
+            $_SESSION['error'] = 'An error occurred while updating the service.';
+        }
+
+        header('Location: /services');
+        exit;
     }
 
-    public function delete($id)
+
+    public function deleteService()
     {
-        echo "This is the delete method of ServicesController for ID: $id.";
+        session_start();
+        $logFile = __DIR__ . '/debug.txt';
+
+        // Log input data
+        file_put_contents($logFile, "Delete Service POST data:\n" . print_r($_POST, true) . "\n", FILE_APPEND);
+
+        // Ensure request is POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            $_SESSION['error'] = 'Invalid request method.';
+            file_put_contents($logFile, "Error: Invalid request method\n", FILE_APPEND);
+            header('Location: /services');
+            exit;
+        }
+
+        // Get data from request
+        $data = $_POST;
+
+        // Check if service_id is provided
+        if (!isset($data['id']) || empty($data['id'])) {
+            $_SESSION['error'] = 'Missing service ID.';
+            file_put_contents($logFile, "Error: Missing service ID\n", FILE_APPEND);
+            header('Location: /services');
+            exit;
+        }
+
+        // Attempt to delete the add-on
+        $deleteService = $this->model->delete($data['id']);
+
+        if ($deleteService) {
+            $_SESSION['success'] = 'Service successfully deleted.';
+            file_put_contents($logFile, "Success: Service ID {$data['service_id']} deleted\n", FILE_APPEND);
+        } else {
+            $_SESSION['error'] = 'Failed to delete service.';
+            file_put_contents($logFile, "Error: Failed to delete service ID {$data['service_id']}\n", FILE_APPEND);
+        }
+
+        header('Location: /services');
+        exit;
     }
+
     public function findActiveMassages()
     {
         header('Content-Type: application/json');

@@ -36,7 +36,6 @@ class AddNewServiceSelectionDOM {
             const response = await fetch('/fetchActiveAddons', { method: 'POST' });
             const result = await response.json();
     
-            console.log("Addons results:", result);
     
             if (result && result.status === 'success' && result.data && result.data.length > 0) {
                 this.createCheckboxes(result.data, this.addOnSection, 'addon_selection'); // Access result.data
@@ -69,7 +68,6 @@ class AddNewServiceSelectionDOM {
             const response = await fetch('/fetchActiveBodyScrubs', { method: 'POST' });
             const result = await response.json();
             
-            console.log(result);
 
             if (result && result.length > 0) {
                 this.createCheckboxes(result, this.bodyScrubSection, 'body_scrub_selection');
@@ -83,12 +81,7 @@ class AddNewServiceSelectionDOM {
     }
 
     createCheckboxes(items, section, namePrefix) {
-        console.log("createCheckboxes called with:", items, section, namePrefix);
-        if(!section){
-            console.error("section is null");
-        }
         items.forEach(item => {
-            console.log("Processing item:", item);
             let itemName = item.serviceName;
             if (namePrefix === 'addon_selection' && item.name) {
                 itemName = item.name;

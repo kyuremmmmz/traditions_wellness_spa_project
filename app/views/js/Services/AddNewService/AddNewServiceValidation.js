@@ -272,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
             validElements[field] = elements[field];
             return true;
         } else {
-            console.error(`Element or error element not found for field: ${field}`);
             return false;
         }
     }

@@ -3,7 +3,6 @@ const UpdateServiceDOM = {
         form: () => document.getElementById('UpdateServiceForm'),
         // Openers
         openConfirmUpdate: () => document.getElementById('openConfirmUpdateServiceModal'),
-        openUnsavedChanges: () => document.getElementById('openUnsavedUpdateServiceModal'),
         openDelete: () => document.getElementById('openDeleteUpdateServiceModal'),
         // Modals
         confirmModal: () => document.getElementById('ConfirmUpdateServiceModal'),
@@ -30,17 +29,58 @@ const UpdateServiceDOM = {
     handlers: {
         submit(e) {
             e.preventDefault();
-            if (window.UpdateServiceValidation.validateForm()) {
-                UpdateServiceDOM.openConfirmationDialog();
+            
+            // Show loading animation
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+            submitBtn.disabled = true;
+            
+            // Collect checkbox selections
+            const form = this.elements.form();
+            
+            // First remove any existing hidden inputs for checkboxes
+            form.querySelectorAll('input[type="hidden"][name$="[]"]').forEach(el => el.remove());
+            
+            // Process all checkboxes in the form
+            this.collectAndProcessSelections();
+            
+            // Handle photo data if PhotoHandler exists
+            if (window.PhotoHandler) {
+                window.PhotoHandler.prepareFormData(form);
             }
-        },
+            
+            if (window.UpdateServiceValidation.validateForm()) {
+                UpdateServiceDOM.openConfirmUpdateModal();
+            } else {
+                console.log("Form is not valid");
+                // Restore button state if validation fails
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }, 
 
         cancel() {
             UpdateServiceDOM.closeConfirmationDialog();
         },
 
         proceed() {
-            UpdateServiceDOM.elements.form().submit();
+            const form = UpdateServiceDOM.elements.form();
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Show loading animation during submission
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...';
+            submitBtn.disabled = true;
+            
+            // Submit form
+            form.submit();
+            
+            // Restore button state after submission completes
+            setTimeout(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }, 3000);
         },
 
         close() {
@@ -74,10 +114,13 @@ const UpdateServiceDOM = {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: new URLSearchParams({ Service_id: ServiceId })
+                body: new URLSearchParams({ id: ServiceId })
             })
             .then(() => location.reload())
-            .catch(error => console.error("Error deleting add-on:", error));
+            .catch(error => console.error("Error deleting service:", error));
+        },
+        openConfirmUpdate() {
+            UpdateServiceDOM.openConfirmUpdateModal();
         },
         
         openUnsavedChanges() {
@@ -93,7 +136,7 @@ const UpdateServiceDOM = {
         const { 
             form, cancelConfirm, proceedConfirm, closeButton, 
             cancelUnsaved, proceedUnsaved, cancelDelete, proceedDelete,
-            openConfirmUpdate, openUnsavedChanges, openDelete
+            openConfirmUpdate, openDelete
         } = this.elements;
 
         form()?.addEventListener('submit', this.handlers.submit);
@@ -107,19 +150,16 @@ const UpdateServiceDOM = {
 
         // Modal openers
         openConfirmUpdate()?.addEventListener('click', this.handlers.openConfirmUpdate);
-        openUnsavedChanges()?.addEventListener('click', this.handlers.openUnsavedChanges);
         openDelete()?.addEventListener('click', this.handlers.openDelete);
 
         const fixedPriceButton = document.getElementById('updateFixedPriceButton');
         const dynamicPriceButton = document.getElementById('updateDynamicPriceButton');
         if (fixedPriceButton && dynamicPriceButton) {
             fixedPriceButton.addEventListener('change', (e) => {
-                console.log('Fixed price button changed, checked:', e.target.checked, 'Event:', e);
                 this.updatePriceSectionVisibility();
                 this.isDirty = true;
             }, { capture: true });
             dynamicPriceButton.addEventListener('change', (e) => {
-                console.log('Dynamic price button changed, checked:', e.target.checked, 'Event:', e);
                 this.updatePriceSectionVisibility();
                 this.isDirty = true;
             }, { capture: true });
@@ -168,7 +208,12 @@ const UpdateServiceDOM = {
         this.elements.drawer()?.classList.add("translate-x-full");
         this.elements.drawer()?.classList.remove("translate-x-0");
     },
-
+    openConfirmUpdate() {
+        this.elements.confirmModal()?.classList.remove('hidden');
+    },
+    closeConfirmUpdate() {
+        this.elements.confirmModal()?.classList.add('hidden');
+    },
     openUnsavedChangesModal() {
         this.elements.unsavedModal()?.classList.remove('hidden');
     },
@@ -176,10 +221,16 @@ const UpdateServiceDOM = {
     closeUnsavedChangesModal() {
         this.elements.unsavedModal()?.classList.add('hidden');
     },
-
+    openConfirmUpdateModal() {
+        this.elements.confirmModal()?.classList.remove('hidden');
+    },
+    closeConfirmUpdateModal() {
+        this.elements.confirmModal()?.classList.add('hidden');
+    },
     openDeleteModal() {
         this.elements.deleteModal()?.classList.remove('hidden');
     },
+    
 
     closeDeleteModal() {
         this.elements.deleteModal()?.classList.add('hidden');
@@ -275,7 +326,8 @@ const UpdateServiceDOM = {
             'partySize': 'update_party_size',
             'oneHourPrice': 'update_one_hour_price',
             'oneHourThirtyPrice': 'update_one_hour_thirty_price',
-            'twoHourPrice': 'update_two_hour_price'
+            'twoHourPrice': 'update_two_hour_price',
+            'duration': 'update_duration',
         };
         
         // Set form values based on mapping
@@ -378,7 +430,6 @@ const UpdateServiceDOM = {
                 return;
             }
             element.value = value || '';
-            console.log(`Set ${fieldName} to ${value}`);
         } else {
             console.warn(`Form field ${fieldName} not found`);
         }
@@ -386,9 +437,7 @@ const UpdateServiceDOM = {
 
     populateSelectionField(fieldName, value) {
         if (!value) return;
-        
-        console.log(`Attempting to populate selection field ${fieldName} with value`, value);
-        
+                
         try {
             const form = this.elements.form();
             if (!form) {
@@ -402,9 +451,10 @@ const UpdateServiceDOM = {
                 return;
             }
             
-            // Ensure container is visible before populating
+            // Make sure container is visible for DOM operations
+            const originalDisplay = container.style.display;
             container.style.display = 'block';
-
+    
             // Parse the value into an array if it isn't already
             let selectedValues = [];
             if (Array.isArray(value)) {
@@ -412,9 +462,12 @@ const UpdateServiceDOM = {
             } else if (typeof value === 'string') {
                 // Handle comma-separated strings
                 selectedValues = value.split(',').map(v => v.trim());
+            } else if (value && typeof value === 'object') {
+                // Handle object format that might come from API
+                selectedValues = Object.values(value).map(v => String(v).trim());
             }
             
-            console.log('Processed selected values:', selectedValues);
+            console.log(`Populating ${fieldName} with values:`, selectedValues);
             
             // Get all checkboxes in the container
             const checkboxes = container.querySelectorAll('input[type="checkbox"]');
@@ -424,25 +477,33 @@ const UpdateServiceDOM = {
             checkboxes.forEach(checkbox => {
                 checkbox.checked = false;
             });
-
+    
             // Then check only the matching ones
+            let matchesFound = 0;
             checkboxes.forEach(checkbox => {
                 const checkboxValue = checkbox.value.trim();
-                console.log(`Checking checkbox with value: "${checkboxValue}"`);
                 
                 const isChecked = selectedValues.some(selectedValue => {
-                    // Direct comparison of trimmed values
-                    return selectedValue.trim() === checkboxValue;
+                    const trimmedValue = String(selectedValue).trim();
+                    return trimmedValue === checkboxValue || 
+                           trimmedValue.toLowerCase() === checkboxValue.toLowerCase();
                 });
                 
                 if (isChecked) {
-                    console.log(`MATCH FOUND - Selecting checkbox with value: "${checkboxValue}"`);
                     checkbox.checked = true;
+                    matchesFound++;
                     // Trigger change event to update UI
                     const event = new Event('change', { bubbles: true });
                     checkbox.dispatchEvent(event);
                 }
             });
+            
+            console.log(`Found ${matchesFound} matches for ${fieldName}`);
+            
+            // Restore original display setting if needed
+            if (originalDisplay !== 'block') {
+                container.style.display = originalDisplay;
+            }
         } catch (error) {
             console.error(`Error populating selection field ${fieldName}:`, error);
         }

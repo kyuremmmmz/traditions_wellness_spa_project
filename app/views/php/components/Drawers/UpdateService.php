@@ -51,8 +51,8 @@ class UpdateService
                         <section class="flex flex-col gap-[40px] w-[480px] sm:w-[400px]">
                             <div class="flex flex-col gap-[16px] items-end">
                                 <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground sm:mt-[115px] mb-[24px] w-[480px] sm:w-[400px]', '3. Photos'); ?>
-                                <?php SecondaryInputField::render('photofield', '*Main Photo', 'Choose a photo', [], 'update_main_photo_error', null, 'update_main_photo', '', '', [], false, 'update_main_photo', 0, 'Must be a photo with a 1:1 aspect ratio and a maximum file size of 5MB.') ?>
-                                <?php SecondaryInputField::render('multiphotofield', '*Slideshow Photos', 'Choose a photo', [], 'update_slideshow_photos_error', null, 'update_slideshow_photos', '', '', [], false, 'update_slideshow_photos', 0, 'Upload up to 5 photos, each with a 1:1 aspect ratio and a maximum file size of 5MB.') ?>
+                                <?php SecondaryInputField::render('photofield', '*Main Photo', 'Choose a photo', [], 'update_main_photo_error', null, 'update_main_photo', '', '', [], true, 'update_main_photo', 0, 'Must be a photo with a 1:1 aspect ratio and a maximum file size of 5MB.') ?>
+                                <?php SecondaryInputField::render('multiphotofield', '*Slideshow Photos', 'Choose a photo', [], 'update_slideshow_photos_error', null, 'update_slideshow_photos', '', '', [], true, 'update_slideshow_photos', 0, 'Upload up to 5 photos, each with a 1:1 aspect ratio and a maximum file size of 5MB.') ?>
                             </div>
                         </section>
                         <section class="flex flex-col gap-[16px] w-[480px] sm:w-[400px]">
@@ -61,13 +61,13 @@ class UpdateService
                                     <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground mb-[24px]', '4. Showcase Photos'); ?>
                                     <?php Helper::render('The details provided must showcase the service process and/or benefits.') ?>
                                 </div>                                
-                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 1', 'Choose a photo', [], 'update_showcase_photo1_error', null, 'update_showcase_photo1', '', '', [], false, 'update_showcase_photo1', 0, 'Must have 1:1 Aspect Ratio') ?>
+                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 1', 'Choose a photo', [], 'update_showcase_photo1_error', null, 'update_showcase_photo1', '', '', [], true, 'update_showcase_photo1', 0, 'Must have 1:1 Aspect Ratio') ?>
                                 <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'update_headline1_error', null, 'update_headline1', '', '', [], false, 'update_headline1', 0, 'update_headline1') ?>
                                 <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'update_caption1_error', null, 'update_caption1', '', '', [], false, 'update_caption1', 0, 'update_caption1') ?>
-                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 2', 'Choose a photo', [], 'update_showcase_photo2_error', null, 'update_showcase_photo2', '', '', [], false, 'update_showcase_photo2', 0, 'Must have 1:1 Aspect Ratio') ?>
+                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 2', 'Choose a photo', [], 'update_showcase_photo2_error', null, 'update_showcase_photo2', '', '', [], true, 'update_showcase_photo2', 0, 'Must have 1:1 Aspect Ratio') ?>
                                 <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'update_headline2_error', null, 'update_headline2', '', '', [], false, 'update_headline2', 0, 'update_headline2') ?>
                                 <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'update_caption2_error', null, 'update_caption2', '', '', [], false, 'update_caption2', 0, 'update_caption2') ?>
-                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 3', 'Choose a photo', [], 'update_showcase_photo3_error', null, 'update_showcase_photo3', '', '', [], false, 'update_showcase_photo3', 0, 'Must have 1:1 Aspect Ratio') ?>
+                                <?php SecondaryInputField::render('photofield', '*Showcase Photo 3', 'Choose a photo', [], 'update_showcase_photo3_error', null, 'update_showcase_photo3', '', '', [], true, 'update_showcase_photo3', 0, 'Must have 1:1 Aspect Ratio') ?>
                                 <?php SecondaryInputField::render('textfield', '*Headline', 'Enter Headline', [], 'update_headline3_error', null, 'update_headline3', '', '', [], false, 'update_headline3', 0, 'update_headline3') ?>
                                 <?php SecondaryInputField::render('textfield', '*Caption', 'Enter Caption', [], 'update_caption3_error', null, 'update_caption3', '', '', [], false, 'update_caption3', 0, 'update_caption3') ?>
                             </div>
@@ -81,34 +81,39 @@ class UpdateService
                                 <?php SecondaryInputField::render('dropdownfield', 'Party Size', '', ['All choices', 'Solo only', 'Duo only', 'Trio only'], '', null, 'update_party_size', '', '', [], false, 'update_party_size', 0, 'This locks the party size selection in the chosen setting.') ?>
                             </div>
                         </section>
-                        <section class="flex flex-col gap-[16px] items-end w-[480px] sm:w-[400px]">
-                            <?php Text::render('', '', 'BodyOne leading-none text-onBackground w-[480px] sm:w-[400px] dark:text-darkOnBackground sm:mt-[115px] mb-[24px]', '5. Price'); ?>
-                            <div class="flex items-center gap-[16px] justify-end">
-                                <p class="leading-none BodyTwo text-onBackgroundTwo dark:text-darkOnBackgroundTwo">Price Type</p>
-                                <div class="flex gap-[16px]">
-                                    <div class="relative">
-                                        <input type="radio" name="update_price_type" value="fixed" class="hidden peer" id="updateFixedPriceButton" disabled checked required>
-                                        <label for="updateFixedPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Fixed Price</label>
-                                    </div>
-                                    <div class="relative">
-                                        <input type="radio" name="update_price_type" value="dynamic" class="hidden peer" id="updateDynamicPriceButton" disabled required>
-                                        <label for="updateDynamicPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Dynamic Price</label>
+                        <section class="flex">
+                            <div class="flex flex-col gap-[16px] items-start w-[400px] sm:w-[400px] pr-[48px]">
+                                <div class="flex flex-row gap-[8px] w-full sm:mt-[115px]">
+                                    <?php Text::render('', '', 'BodyOne leading-none text-onBackground dark:text-darkOnBackground mb-[24px]', '6. Price & Duration'); ?>
+                                </div>   
+                                <div class="flex w-full items-center gap-[16px] justify-start">
+                                    <p class="leading-none BodyTwo text-onBackgroundTwo min-w-[160px] text-right dark:text-darkOnBackgroundTwo">Price Type</p>
+                                    <div class="flex gap-[16px]">
+                                        <div class="relative">
+                                            <input type="radio" name="update_price_type" value="fixed" class="hidden peer" id="updateFixedPriceButton" disabled checked required>
+                                            <label for="updateFixedPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Fixed Price</label>
+                                        </div>
+                                        <div class="relative">
+                                            <input type="radio" name="update_price_type" value="dynamic" class="hidden peer" id="updateDynamicPriceButton" disabled required>
+                                            <label for="updateDynamicPriceButton" class="BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground flex items-center justify-center w-[122px] h-[40px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] cursor-pointer peer-checked:border-primary peer-checked:dark:border-darkPrimary peer-checked:text-primary peer-checked:dark:text-darkPrimary hover:bg-highlightSurface dark:hover:bg-darkHighlightSurface opacity-70 cursor-not-allowed">Dynamic Price</label>
+                                        </div>
                                     </div>
                                 </div>
+                                <div id="updateFixedPriceSection" class="flex flex-col gap-[16px] transition-all transition justify-start opacity-100">
+                                    <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], 'update_fixed_price_error', null, 'update_fixed_price', '', '', [], '', 'update_fixed_price' ); ?>
+                                    <?php SecondaryInputField::render('dropdownfield', 'Duration', '', ['1 hour', '1 hour and 30 minutes', '2 hours', '2 hours and 30 minutes', '3 hours', '3 hours and 30 minutes', '4 hours', '4 hours and 30 minutes', '5 hours'], '', null, 'update_duration', '', '', [], '', 'update_duration', 0, 'This dictates the estimated duration of the entire service.'); ?>
+                                </div>
+                                <div id="updateDynamicPriceSection" class="flex flex-col gap-[16px] hidden justify-start opacity-0 transition transition-all">
+                                    <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], 'update_one_hour_price_error', null, 'update_one_hour_price', '', '', [], '', 'update_one_hour_price'); ?>
+                                    <?php SecondaryInputField::render('numberfield', '1 Hour & 30 Minutes', 'Enter price', [], 'update_one_hour_thirty_price_error', null, 'update_one_hour_thirty_price', '', '', [], '', 'update_one_hour_thirty_price'); ?>
+                                    <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], 'update_two_hour_price_error', null, 'update_two_hour_price', '', '', [], '', 'update_two_hour_price'); ?>
+                                </div>
+                                <div class="flex flex-col w-full justify-end items-end gap-[16px] mt-[32px] ml-[84px]">
+                                    <?php NewPrimaryButton::render('Save Changes', 'submit', 'openConfirmUpdateServiceModal', '260px', null, '') ?>
+                                    <?php NewPrimaryButton::render('Delete', 'button', 'openDeleteUpdateServiceModal', '260px', null, 'destructive') ?>
+                                </div>
                             </div>
-                            <div id="updateFixedPriceSection" class="flex flex-col gap-[16px] transition-all transition justify-startopacity-100">
-                                <?php SecondaryInputField::render('numberfield', 'Fixed Price', 'Enter price', [], 'update_fixed_price_error', null, 'update_fixed_price', '', '', [], '', 'update_fixed_price' ); ?>
-                                <?php SecondaryInputField::render('dropdownfield', 'Duration', '', ['1 hour', '1 hour and 30 minutes', '2 hours', '2 hours and 30 minutes', '3 hours', '3 hours and 30 minutes', '4 hours', '4 hours and 30 minutes', '5 hours'], '', null, 'update_duration', '', '', [], '', 'update_duration', 0, 'This dictates the estimated duration of the entire service.'); ?>
-                            </div>
-                            <div id="updateDynamicPriceSection" class="flex flex-col gap-[16px] hidden justify-start opacity-0 transition transition-all">
-                                <?php SecondaryInputField::render('numberfield', '1 Hour', 'Enter price', [], 'update_one_hour_price_error', null, 'update_one_hour_price', '', '', [], '', 'update_one_hour_price'); ?>
-                                <?php SecondaryInputField::render('numberfield', '1 Hour & 30 Minutes', 'Enter price', [], 'update_one_hour_thirty_price_error', null, 'update_one_hour_thirty_price', '', '', [], '', 'update_one_hour_thirty_price'); ?>
-                                <?php SecondaryInputField::render('numberfield', '2 Hours', 'Enter price', [], 'update_two_hour_price_error', null, 'update_two_hour_price', '', '', [], '', 'update_two_hour_price'); ?>
-                            </div>
-                            <div class="flex w-full justify-end mt-[32px]">
-                                <?php NewPrimaryButton::render('Save Changes', '', 'openConfirmEditServiceModal', '257px', null) ?>
-                                <?php NewPrimaryButton::render('Delete Service', '', 'openDeleteServiceModal', '257px', null) ?>
-                            </div>
+                            <div class="sm:w-[80px] text-background dark:text-darkBackground">Spacer</div>
                         </section>
                     </div>
                 </div>

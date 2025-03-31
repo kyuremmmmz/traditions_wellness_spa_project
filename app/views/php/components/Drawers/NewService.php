@@ -112,7 +112,7 @@ class NewService
                                     <?php NewPrimaryButton::render('Create Service', 'button', 'openConfirmationModal', '260px', null) ?>
                                 </div>
                             </div>
-                            <div class="sm:w-[150px] text-background dark:text-darkBackground">Spacer</div>
+                            <div class="sm:w-[80px] text-background dark:text-darkBackground">Spacer</div>
                         </section>
                     </div>
                 </div>

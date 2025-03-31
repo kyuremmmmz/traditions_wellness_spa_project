@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Add this array definition
+    // Input IDs that require validation - explicitly removing update_duration
     const inputIds = [
         'update_status',
         'update_category',
@@ -17,17 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
         'update_caption2',
         'update_showcase_photo3',
         'update_headline3',
-        'update_caption3',
-        'update_price_type'
+        'update_caption3'
+        // Removed: update_duration
     ];
 
     const form = document.getElementById("UpdateServiceForm");
-    const submitButton = document.getElementById('openConfirmEditServiceModal');
+    const submitButton = document.getElementById('openConfirmUpdateServiceModal');
     const categorySelect = document.getElementById("update_category");
     const fixedPriceRadio = document.getElementById("updateFixedPriceButton");
     const dynamicPriceRadio = document.getElementById("updateDynamicPriceButton");
     const fixedPriceSection = document.getElementById("updateFixedPriceSection");
     const dynamicPriceSection = document.getElementById("updateDynamicPriceSection");
+    
+    // Remove the duration field from the elements object
     const elements = {
         serviceName: {
             element: document.getElementById("update_service_name"),
@@ -225,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function validateField(field) {
         if (!validElements[field]) return;
+        
+        // Skip validation for hidden parent elements
         const parentElement = validElements[field].element.parentElement;
         if (parentElement.style.display === "none") {
             delete errors[field];
@@ -295,55 +299,149 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Update the form submit handler
-    form.addEventListener("submit", function (event) {
+    // Function to validate all fields and display errors
+    function validateAllFields() {
+        console.log("Starting validation...");
+        
+        // Force all fields to be "interacted with" to show all errors
+        Object.keys(validElements).forEach(field => {
+            validElements[field].interacted = true;
+            validateField(field);
+        });
+        
+        displayErrors();
+
+        // Validate price fields based on selected price type
+        let priceError = false;
+        if (fixedPriceRadio.checked) {
+            if (!elements.serviceFixedPrice.element.value.trim()) {
+                console.log('Error: Fixed price is required');
+                errors['serviceFixedPrice'] = "Fixed price is required";
+                priceError = true;
+            }
+        } else if (dynamicPriceRadio.checked) {
+            const oneHourPrice = elements.serviceOneHourPrice.element.value.trim();
+            const oneHourThirtyPrice = elements.serviceOneHourThirtyPrice.element.value.trim();
+            const twoHourPrice = elements.serviceTwoHourPrice.element.value.trim();
+            
+            if (!oneHourPrice) {
+                console.log('Error: 1 Hour price is required');
+                errors['serviceOneHourPrice'] = "1 Hour price is required";
+                priceError = true;
+            }
+            if (!oneHourThirtyPrice) {
+                console.log('Error: 1 Hour & 30 Minutes price is required');
+                errors['serviceOneHourThirtyPrice'] = "1 Hour & 30 Minutes price is required";
+                priceError = true;
+            }
+            if (!twoHourPrice) {
+                console.log('Error: 2 Hours price is required');
+                errors['serviceTwoHourPrice'] = "2 Hours price is required";
+                priceError = true;
+            }
+        }
+        
+        displayErrors();
+        
+        const hasErrors = Object.keys(errors).length > 0 || priceError;
+        console.log("Validation complete. Errors found:", hasErrors);
+        if (hasErrors) {
+            console.log("Error fields:", Object.keys(errors));
+        }
+        
+        return !hasErrors;
+    }
+
+    // Add a click handler to the submit button
+    submitButton.addEventListener("click", function(event) {
+        console.log("Submit button clicked - validating form");
         event.preventDefault();
         
-        // Perform validation
-        const isValid = validateForm();
+        // Run validation - this will mark all fields as interacted with
+        const isValid = validateAllFields();
+        console.log(`Form validation result: ${isValid ? 'VALID' : 'INVALID'}`);
         
         if (isValid) {
-            const massageSelections = document.querySelectorAll('input[name="update_massage_selection[]"]');
-            const bodyScrubSelections = document.querySelectorAll('input[name="update_body_scrub_selection[]"]');
-            const addonSelections = document.querySelectorAll('input[name="update_addon_selection[]"]');
-
-            const selectedMassages = Array.from(massageSelections).filter(cb => cb.checked).map(cb => cb.value);
-            const selectedBodyScrubs = Array.from(bodyScrubSelections).filter(cb => cb.checked).map(cb => cb.value);
-            const selectedAddons = Array.from(addonSelections).filter(cb => cb.checked).map(cb => cb.value);
-            const statusValue = document.querySelector('select[name="update_status"]').value;
-
-            const createHiddenInput = (name, value) => {
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = name;
-                input.value = value;
-                return input;
-            };
-
-            form.appendChild(createHiddenInput('status', statusValue));
-            
-            if (fixedPriceRadio.checked) {
-                form.appendChild(createHiddenInput('duration', elements.serviceDurationDetails.element.value));
+            console.log("Validation passed - opening confirmation modal");
+            // Open the confirmation modal if validation passes
+            if (typeof UpdateServiceDOM !== 'undefined' && UpdateServiceDOM.openConfirmUpdateModal) {
+                UpdateServiceDOM.openConfirmUpdateModal();
             } else {
-                const durationInput = form.querySelector('input[name="duration"]');
-                if (durationInput) {
-                    durationInput.remove();
+                console.error("UpdateServiceDOM is not defined or doesn't have openConfirmUpdateModal method");
+                // Fallback - try to show modal directly
+                const modal = document.getElementById('ConfirmUpdateServiceModal');
+                if (modal) {
+                    modal.classList.remove('hidden');
+                } else {
+                    console.error("Could not find confirmation modal element");
                 }
             }
-            
-            selectedMassages.forEach(value => {
-                form.appendChild(createHiddenInput('selected_massages[]', value));
-            });
-            selectedBodyScrubs.forEach(value => {
-                form.appendChild(createHiddenInput('selected_body_scrubs[]', value));
-            });
-            selectedAddons.forEach(value => {
-                form.appendChild(createHiddenInput('selected_addons[]', value));
-            });
-
-            form.submit();
+        } else {
+            console.log("Validation failed - not showing confirmation modal");
         }
     });
+
+    // Update the submit handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const confirmButton = document.getElementById('proceedUpdateService');
+        if (confirmButton) {
+            confirmButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const form = document.getElementById('UpdateServiceForm');
+                if (!form) {
+                    console.error('Could not find form');
+                    return;
+                }
+                
+                // Get category value
+                const category = form.querySelector('[name="update_category"]').value;
+                
+                // Clear any existing selection inputs
+                form.querySelectorAll('input[name^="selected_"]').forEach(el => el.remove());
+                
+                // Add selections based on category
+                if (category === 'Packages') {
+                    addSelectedValues(form, 'update_massage_selection', 'selected_massages[]');
+                    addSelectedValues(form, 'update_body_scrub_selection', 'selected_body_scrubs[]');
+                } else if (category === 'Body Scrubs') {
+                    addSelectedValues(form, 'update_massage_selection', 'selected_massages[]');
+                    addSelectedValues(form, 'update_addon_selection', 'selected_addons[]');
+                } else if (category === 'Massages') {
+                    addSelectedValues(form, 'update_addon_selection', 'selected_addons[]');
+                }
+                
+                // Log form data before submission
+                console.log('Form data before submission:', new FormData(form));
+                
+                // Submit the form after a brief delay to ensure all inputs are added
+                setTimeout(() => {
+                    form.submit();
+                }, 100);
+            });
+        }
+    });
+    
+    // Add this new helper function
+    function addSelectedValues(form, checkboxName, hiddenInputName) {
+        const wrapper = document.getElementById(`${checkboxName}_wrapper`);
+        if (!wrapper || wrapper.classList.contains('hidden')) {
+            return;
+        }
+        
+        const checkboxes = wrapper.querySelectorAll(`input[name="${checkboxName}[]"]:checked`);
+        console.log(`Found ${checkboxes.length} checked checkboxes for ${checkboxName}`);
+        
+        checkboxes.forEach(checkbox => {
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = hiddenInputName;
+            hiddenInput.value = checkbox.value;
+            form.appendChild(hiddenInput);
+            console.log(`Added hidden input: ${hiddenInputName} = ${checkbox.value}`);
+        });
+    }
 
     categorySelect.addEventListener("change", function () {
         const selectedCategory = categorySelect.value;
@@ -373,88 +471,149 @@ document.addEventListener("DOMContentLoaded", function () {
     categorySelect.dispatchEvent(new Event("change"));
 
     function updatePriceVisibility() {
-        const durationField = elements.serviceDurationDetails.element;
-        const durationParent = durationField.parentElement;
+        // Find the duration field directly without relying on elements object
+        const durationField = document.getElementById("update_duration");
         
         if (fixedPriceRadio.checked) {
+            // Show fixed price section, hide dynamic
             fixedPriceSection.style.display = "flex";
             dynamicPriceSection.style.display = "none";
             fixedPriceSection.style.opacity = 1;
             dynamicPriceSection.style.opacity = 0;
-            durationParent.style.display = "";
             
-            if (durationField.dataset.originalValue) {
-                durationField.value = durationField.dataset.originalValue;
-            }
-            
+            // Enable fixed price field
             elements.serviceFixedPrice.element.disabled = false;
+            
+            // Clear any existing errors
+            delete errors.serviceOneHourPrice;
+            delete errors.serviceOneHourThirtyPrice;
+            delete errors.serviceTwoHourPrice;
+            elements.serviceOneHourPrice.errorElement.textContent = "";
+            elements.serviceOneHourThirtyPrice.errorElement.textContent = "";
+            elements.serviceTwoHourPrice.errorElement.textContent = "";
         } else {
+            // Show dynamic price section, hide fixed
             fixedPriceSection.style.display = "none";
             dynamicPriceSection.style.display = "flex";
             fixedPriceSection.style.opacity = 0;
             dynamicPriceSection.style.opacity = 1;
-            durationParent.style.display = "none";
             
-            durationField.dataset.originalValue = durationField.value;
-            durationField.value = "";
-            
+            // Disable fixed price field
             elements.serviceFixedPrice.element.disabled = true;
+            elements.serviceFixedPrice.element.value = "";
+            
+            // Clear any existing errors
             delete errors.serviceFixedPrice;
             elements.serviceFixedPrice.errorElement.textContent = "";
         }
-    
-        elements.serviceFixedPrice.element.value = "";
+        
+        // Reset interacted state for price fields
         elements.serviceFixedPrice.interacted = false;
-    
+        elements.serviceOneHourPrice.interacted = false;
+        elements.serviceOneHourThirtyPrice.interacted = false;
+        elements.serviceTwoHourPrice.interacted = false;
+        
+        // Trigger input event on all service fields to update validation
         Object.keys(elements).filter(key => key.startsWith('service')).forEach(key => {
             if(elements[key].element) {
                 elements[key].element.dispatchEvent(new Event('input'));
             }
         });
-    
-        // Instead of calling validateForm(), use:
-        validateForm();
     }
 
-    // Initialize price visibility on load
-    document.addEventListener('DOMContentLoaded', function() {
-        if (fixedPriceRadio && dynamicPriceRadio && fixedPriceSection && dynamicPriceSection) {
-            fixedPriceRadio.addEventListener("change", updatePriceVisibility);
-            dynamicPriceRadio.addEventListener("change", updatePriceVisibility);
-            
-            // Force initial state based on checked radio button
-            if (fixedPriceRadio.checked) {
-                fixedPriceSection.style.display = "flex";
-                dynamicPriceSection.style.display = "none";
-                elements.serviceFixedPrice.element.disabled = false;
-            } else {
-                fixedPriceSection.style.display = "none";
-                dynamicPriceSection.style.display = "flex";
-                elements.serviceFixedPrice.element.disabled = true;
-            }
-            
-            updatePriceVisibility();
-        } else {
-            console.error('Price visibility elements not found');
-        }
-    });
+    // Initialize price visibility on page load
+    if (fixedPriceRadio && dynamicPriceRadio && fixedPriceSection && dynamicPriceSection) {
+        fixedPriceRadio.addEventListener("change", updatePriceVisibility);
+        dynamicPriceRadio.addEventListener("change", updatePriceVisibility);
+        
+        // Set initial state without validation
+        updatePriceVisibility();
+    } else {
+        console.error('Price visibility elements not found');
+    }
 
     function validateForm() {
         let isValid = true;
+        
+        // First check standard input fields
         inputIds.forEach(id => {
             const input = document.getElementById(id);
             if (input) {
+                // Skip validation for hidden fields
+                if (input.type === 'hidden') return;
+                
+                // Skip validation for input elements whose parent is hidden
+                const parent = input.parentElement;
+                if (parent && parent.style.display === 'none') return;
+                
                 if (input.type === 'file') {
                     if (!input.files || input.files.length === 0) {
+                        console.log(`Validation failed - Missing file: ${id}`);
                         isValid = false;
                     }
                 } else if (typeof input.value === 'string' && !input.value.trim()) {
+                    console.log(`Validation failed - Empty field: ${id}`);
                     isValid = false;
                 }
             }
         });
-        submitButton.disabled = !isValid;
+
+        // Handle price validation based on price type
+        if (fixedPriceRadio.checked) {
+            // Fixed price is required
+            const fixedPriceField = document.getElementById('update_fixed_price');
+            if (fixedPriceField && !fixedPriceField.value.trim()) {
+                console.log('Validation failed - Fixed price is required');
+                isValid = false;
+            }
+        } else if (dynamicPriceRadio.checked) {
+            // In dynamic price mode, all three price fields are required
+            const oneHourPrice = document.getElementById('update_one_hour_price');
+            const oneHourThirtyPrice = document.getElementById('update_one_hour_thirty_price');
+            const twoHourPrice = document.getElementById('update_two_hour_price');
+            
+            if (oneHourPrice && !oneHourPrice.value.trim()) {
+                console.log('Validation failed - 1 Hour price is required');
+                isValid = false;
+            }
+            if (oneHourThirtyPrice && !oneHourThirtyPrice.value.trim()) {
+                console.log('Validation failed - 1 Hour & 30 Minutes price is required');
+                isValid = false;
+            }
+            if (twoHourPrice && !twoHourPrice.value.trim()) {
+                console.log('Validation failed - 2 Hours price is required');
+                isValid = false;
+            }
+        }
+
+        console.log(`Form validation result: ${isValid ? 'VALID' : 'INVALID'}`);
+        
+        // Update submit button state
+        if (submitButton) {
+            submitButton.disabled = !isValid;
+        }
+        
+        return isValid;
     }
 
-    validateForm();
+    // Reset validation state - useful when reopening the drawer
+    function resetValidation() {
+        Object.keys(validElements).forEach(field => {
+            validElements[field].interacted = false;
+            delete errors[field];
+            validElements[field].errorElement.textContent = "";
+        });
+    }
+
+    // Add event listener for drawer opened event
+    document.addEventListener('serviceDrawerOpened', function() {
+        resetValidation();
+        setTimeout(updatePriceVisibility, 50);
+    });
+    
+    // Make the validation function globally accessible
+    window.UpdateServiceValidation = {
+        validateForm: validateAllFields,
+        resetValidation: resetValidation
+    };
 });
