@@ -6,7 +6,6 @@ require_once '../app/core/Router.php';
 require_once '../vendor/autoload.php';
 
 $router = new Router();
-// API ROUTES
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store');
 $router->post('/logout', 'AuthController@logout');
@@ -61,6 +60,9 @@ $router->post('/fetchArchivedServices', 'ServicesController@findArchivedServices
 $router->post('/deleteService', 'ServicesController@deleteService');
 $router->post('/fetchAllActiveServices', 'ServicesController@findAllActiveServices');
 $router->post('/updateService', 'ServicesController@updateService');
+$router->post('/checkAppointment', 'AppointmentsController@checkAppointment');
+
+
 
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
@@ -112,6 +114,7 @@ $router->view('/Utilities/Appointments', 'page', 'Utilities/Appointments', 'Sess
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
 $router->view('/addnewtherapist', 'page', 'tools/AddNewTherapist', 'SessionMiddleware');
 $router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
+// add route here
 
 try {
     $router->resolve();

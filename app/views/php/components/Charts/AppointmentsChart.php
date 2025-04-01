@@ -4,7 +4,7 @@ namespace Project\App\Views\Php\Components\Charts;
 
 class AppointmentsChart
 {
-    public static function render($completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount, $total): void
+    public static function render($completedCount = '', $awaitingReviewCount = '', $ongoingCount = '', $upcomingCount = '', $pendingCount = '', $cancelledCount = '', $total = ''): void
     {
         $dataSeries = json_encode([$completedCount, $awaitingReviewCount, $ongoingCount, $upcomingCount, $pendingCount, $cancelledCount]);
 

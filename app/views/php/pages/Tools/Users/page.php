@@ -45,10 +45,7 @@ class Page
                         <table class="border-border dark:border-darkBorder border-[1px] bg-background dark:bg-darkBackground" style="border-radius: 6px; overflow: hidden; border-collapse: collapse; margin: 0; padding: 0;">
                             <tr class="p-0 m-0" style="margin: 0; padding: 0;">
                                 <td class="p-0 m-0 border border-border dark:border-darkBorder border-[1px]">
-                                    <section class="p-[48px] flex gap-[16px] bg-opacity-5">
-                                        <?php
-                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['Therapist', 'Customer']);
-                                        ?>
+                                    <section class="p-[24px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5 ">
                                     </section>
                                     <section class="max-w-[1120px]">
                                         <?php UsersTable::render('appointmentsTable', ''); ?>

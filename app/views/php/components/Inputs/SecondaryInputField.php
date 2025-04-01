@@ -335,10 +335,11 @@ class SecondaryInputField
                 echo "</div>";
                 break;
             case 'checkboxwithpricefield':
-                echo "<div class='flex flex-col gap-[12px] min-w-[260px] max-w-[260px] $disabledClass'>";
-                foreach ($options as $option) {
+                echo "<div id='{$id}_container' class='flex flex-col gap-[12px] min-w-[260px] max-w-[260px] $disabledClass'>";
+                foreach ($options as $index => $option) {
+                    $optionId = $id . '_' . $index;
                     echo "<div class='flex items-center gap-[12px] border border-borderTwo dark:border-darkBorderTwo rounded-[6px] p-[12px]'>";
-                    echo "<input type='checkbox' name='{$name}[]' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
+                    echo "<input type='checkbox' id='$optionId' name='{$name}[]' value='{$option['label']}' class='w-[16px] h-[16px] bg-background dark:bg-darkBackground border border-borderTwo dark:border-darkBorderTwo accent-primary dark:accent-darkPrimary rounded-[4px]' $disabledAttribute>";
                     echo "<div class='flex flex-col gap-[8px]'>";
                     echo "<p class='leading-none BodyTwo text-onBackground dark:text-darkOnBackground bg-background dark:bg-darkBackground'>{$option['label']}</p>";
                     echo "<div class='flex gap-[8px]'>";
@@ -349,6 +350,24 @@ class SecondaryInputField
                     echo "</div>";
                 }
                 echo "</div>";
+                
+                // Add event listeners and initialization JavaScript if needed
+                $GLOBALS['footer_scripts'][] = "<script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const checkboxContainer = document.getElementById('{$id}_container');
+                        if (checkboxContainer) {
+                            const checkboxes = checkboxContainer.querySelectorAll('input[type=\"checkbox\"]');
+                            
+                            // Example: Add event listener for each checkbox
+                            checkboxes.forEach(checkbox => {
+                                checkbox.addEventListener('change', function() {
+                                    console.log('Checkbox changed:', this.value, 'Checked:', this.checked);
+                                    // You can add custom logic here
+                                });
+                            });
+                        }
+                    });
+                </script>";
                 break;
             case 'dropdownwithpricefield':
                 echo "<div class='relative w-full min-w-[260px] max-w-[260px] $disabledClass'>";

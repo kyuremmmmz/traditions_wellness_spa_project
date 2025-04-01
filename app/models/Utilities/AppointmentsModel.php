@@ -19,11 +19,12 @@ class AppointmentsModel
         $stmt = $this->pdo->query("SELECT * FROM appointments");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     public function getAllServices()
-{
-    $stmt = $this->pdo->query("SELECT * FROM services");
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    {
+        $stmt = $this->pdo->query("SELECT * FROM services");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getAllTotal()
     {
@@ -38,7 +39,7 @@ class AppointmentsModel
                 SUM(status = 'review') + SUM(status = 'completed') + 
                 SUM(status = 'upcoming') + SUM(status='ongoing') AS total
                 FROM appointments");
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function findByNumber($number)
@@ -47,6 +48,7 @@ class AppointmentsModel
         $stmt->execute(['number' => $number]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
     public function findByIdAppointment($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM appointments WHERE id = :id");
@@ -70,7 +72,6 @@ class AppointmentsModel
         ]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function findByEmail($email)
     {
@@ -111,7 +112,7 @@ class AppointmentsModel
 
     public function findByRole($role)
     {
-        $stmt = $this->pdo->prepare("SELECT *  FROM users WHERE role = :role ");
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE role = :role");
         $stmt->execute(['role' => $role]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -121,8 +122,8 @@ class AppointmentsModel
         $stmt = $this->pdo->prepare("SELECT * FROM therapist");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
+    
+    // Updated create method to include massage_selection and body_scrub_selection
     public function create(
         $nameOfTheUser,
         $user_id,
@@ -140,48 +141,22 @@ class AppointmentsModel
         $partysize,
         $gender,
         $email,
+        $massage_selection = '',
+        $body_scrub_selection = ''
     ) {
-        $stmt = $this->pdo->prepare("INSERT INTO appointments (
-        nameOfTheUser, 
-        user_id,
-        address,
-        contactNumber,
-        start_time,
-        end_time,
-        total_price,
-        addOns,
-        services_id,
-        booking_date,
-        status,
-        duration,
-        service_booked,
-        party_size,
-        gender,
-        email,
-        created_at,
-        updated_at
-    ) VALUES (
-        :nameOfTheUser, 
-        :user_id,
-        :address,
-        :contactNumber,
-        :start_time,
-        :end_time,
-        :total_price,
-        :addOns,
-        :services_id,
-        :booking_date,
-        :status,
-        :duration,
-        :service_booked,
-        :party_size,
-        :gender,
-        :email,
-        NOW(), 
-        NOW()
-    )");
-
-        $exe = $stmt->execute([
+        // Check if massage_selection and body_scrub_selection columns exist
+        $columnsExist = $this->checkColumnsExist(['massage_selection', 'body_scrub_selection']);
+        
+        // Build the SQL query dynamically based on column existence
+        $columns = "nameOfTheUser, user_id, address, contactNumber, start_time, end_time, 
+                    total_price, addOns, services_id, booking_date, status, duration, 
+                    service_booked, party_size, gender, email, created_at, updated_at";
+        
+        $values = ":nameOfTheUser, :user_id, :address, :contactNumber, :start_time, :end_time, 
+                  :total_price, :addOns, :services_id, :booking_date, :status, :duration, 
+                  :service_booked, :party_size, :gender, :email, NOW(), NOW()";
+                  
+        $params = [
             'nameOfTheUser' => $nameOfTheUser,
             'user_id' => $user_id,
             'address' => $address,
@@ -198,12 +173,41 @@ class AppointmentsModel
             'party_size' => $partysize,
             'gender' => $gender,
             'email' => $email
-        ]);
-
-        return $exe;
+        ];
+        
+        // Add massage_selection and body_scrub_selection if columns exist
+        if ($columnsExist['massage_selection']) {
+            $columns .= ", massage_selection";
+            $values .= ", :massage_selection";
+            $params['massage_selection'] = $massage_selection;
+        }
+        
+        if ($columnsExist['body_scrub_selection']) {
+            $columns .= ", body_scrub_selection";
+            $values .= ", :body_scrub_selection";
+            $params['body_scrub_selection'] = $body_scrub_selection;
+        }
+        
+        $sql = "INSERT INTO appointments ($columns) VALUES ($values)";
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute($params);
     }
-
-
+    
+    // Helper method to check if columns exist in a table
+    private function checkColumnsExist($columnNames)
+    {
+        $result = [];
+        foreach ($columnNames as $columnName) {
+            try {
+                $sql = "SHOW COLUMNS FROM appointments LIKE '$columnName'";
+                $stmt = $this->pdo->query($sql);
+                $result[$columnName] = $stmt->rowCount() > 0;
+            } catch (\Exception $e) {
+                $result[$columnName] = false;
+            }
+        }
+        return $result;
+    }
 
     public function update(
         $duration,
@@ -234,22 +238,24 @@ class AppointmentsModel
         ];
         return $stmt->execute($data);
     }
+    
     public function delete($id)
     {
         $stmt = $this->pdo->prepare("DELETE FROM appointments WHERE id = :id");
         return $stmt->execute(['id' => $id]);
     }
+    
     public function searchCustomer($search)
-        {
-            $stmt = $this->pdo->prepare("
-                SELECT * FROM users 
-                WHERE (CONCAT(first_name, ' ', last_name) LIKE :search 
-                OR email LIKE :search)
-                AND role = 'Customer'
-                LIMIT 5
-            ");
-            $searchTerm = "%{$search}%";
-            $stmt->execute(['search' => $searchTerm]);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        }
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT * FROM users 
+            WHERE (CONCAT(first_name, ' ', last_name) LIKE :search 
+            OR email LIKE :search)
+            AND role = 'Customer'
+            LIMIT 5
+        ");
+        $searchTerm = "%{$search}%";
+        $stmt->execute(['search' => $searchTerm]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

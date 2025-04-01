@@ -127,7 +127,7 @@ class ServiceRenderer {
                     </div>
                     <div class="flex flex-col gap-[8px] w-[calc(100%-80px)] h-full justify-center items-center">
                         <p class="BodyTwo text-onBackground dark:text-darkOnBackground leading-none text-left w-full truncate">${item.serviceName}</p>
-                        <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none h-[13px] w-full truncate">${item.description || 'No description available'}</p>
+                        <p class="CaptionOne text-onBackgroundTwo dark:text-darkOnBackgroundTwo text-left leading-none h-[13px] w-full truncate">${item.caption || 'No description available'}</p>
                         <div class="flex gap-[8px] w-full">
                             <p class="CaptionMediumOne text-primary dark:text-darkPrimary leading-none w-full text-left">${item.one_hour_price ? `Starting from ₱${item.one_hour_price}` : `₱${item.fixed_price || '0.00'}`}</p>
                         </div>

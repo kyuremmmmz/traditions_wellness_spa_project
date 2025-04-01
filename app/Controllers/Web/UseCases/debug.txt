@@ -2324,3 +2324,207 @@ Array
 )
 
 Success: Service ID  deleted
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Test
+    [service_caption] => Test
+    [service_description] => Test
+    [duration_details] => Test
+    [party_size_details] => Test
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => Test
+    [showcase_headline_1] => Test
+    [showcase_caption_1] => Test
+    [showcase_headline_2] => Test
+    [showcase_caption_2] => Test
+    [showcase_headline_3] => Test
+    [showcase_caption_3] => Test
+    [addon_selection] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+        )
+
+    [party_size] => Duo only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpzEbP92
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php3CvN36
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpNY7WVo
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSBVz9c
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSfqJmk
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpK564RP
+            [error] => 0
+            [size] => 769850
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Test
+    [fixed_price] => 999
+    [service_caption] => Test
+    [service_description] => Test
+    [status] => Archived
+    [party_size_details] => Test
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => Test
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3AkdlDX.jpg
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Test
+    [showcase_caption_1] => Test
+    [showcase_photo_2] => https://iili.io/3A6obcv.png
+    [showcase_headline_2] => Test
+    [showcase_caption_2] => Test
+    [showcase_photo_3] => https://iili.io/3A6obcv.png
+    [showcase_headline_3] => Test
+    [showcase_caption_3] => Test
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => Hot Stone, Ear Candling
+    [party_size] => Duo only
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => Test
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Dagdagay Massage
+    [update_caption] => Foot Focus, Total Wellness
+    [update_description] => Traditional Dagdagay foot massage, stimulating reflex points for overall balance and relaxation.
+    [update_service_id] => 125
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Foot Focus, Body Balance
+    [update_caption1] => Traditional foot massage, stimulating reflex points for total wellness.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Revitalize From the Ground Up
+    [update_caption2] => Experience the healing power of Dagdagay foot therapy.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Discover Foot Reflexology
+    [update_caption3] => Targeted pressure points for relaxation and overall well-being.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 450
+    [update_one_hour_thirty_price] => 630
+    [update_two_hour_price] => 810
+)
+

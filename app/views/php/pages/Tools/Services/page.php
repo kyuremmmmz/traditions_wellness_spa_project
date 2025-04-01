@@ -38,9 +38,9 @@ class Page
         <?php UpdateAddOn::render(); ?>   
         <?php NewService::render(); ?>
         <?php UpdateService::render(); ?>
-
         <?php Sidebar::render(); ?>
-        <?php WorkingBanner::render(); ?>            
+        <?php WorkingBanner::render(); ?> 
+
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesManager.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/ServicesRenderer.js"></script>
         <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/AddOnsSelection.js"></script>
