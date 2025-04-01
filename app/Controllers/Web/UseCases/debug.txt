@@ -3000,3 +3000,41 @@ Array
     [duration] => 1 hour
 )
 
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Test
+    [update_caption] => Test
+    [update_description] => Test
+    [update_service_id] => 131
+    [update_duration_details] => Test
+    [update_party_size_details] => Test
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => Test
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3A6obcv.png
+            [1] => https://iili.io/3AkdlDX.jpg
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Test
+    [update_caption1] => Test
+    [update_showcase_photo2_current] => https://iili.io/3A6obcv.png
+    [update_headline2] => Test
+    [update_caption2] => Test
+    [update_showcase_photo3_current] => https://iili.io/3A6obcv.png
+    [update_headline3] => Test
+    [update_caption3] => Test
+    [update_addon_selection] => Hot Stone, Ear Candling
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
