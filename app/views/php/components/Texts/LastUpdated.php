@@ -7,6 +7,7 @@ use Project\App\Views\Php\Components\Texts\Text;
 class LastUpdated
 {
     public static function getLastUpdated() {
+        date_default_timezone_set('Asia/Manila');
         return "Last updated on " . date("F j, g:i A");
     }
 

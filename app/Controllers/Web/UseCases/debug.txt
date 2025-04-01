@@ -1,0 +1,3002 @@
+Update Service - Received POST data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Service update successful for ID: 118
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Array
+        (
+            [0] => Ear Candling
+        )
+
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Hot Stone
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Hot Stone,Ear Candling,Shower,Express Massage,Champissage
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Hot Stone,Ear Candling,Shower,Express Massage,Champissage
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Hot Stone, Ear Candling, Express Massage, Champissage
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => if the sun
+    [update_caption] => asdfjapdsjfpasdf
+    [update_description] => faspdjfpasjdfasdf
+    [update_service_id] => 118
+    [update_duration_details] => spaidfjpasdjf
+    [update_party_size_details] => fjapsdjfipasdjf
+    [update_massage_details] => fapsdjfpasdf
+    [update_body_scrub_details] => fjadspfjapisdf
+    [update_addon_details] => odfjpiasjfpiajsfpi
+    [update_main_photo] => 
+    [update_main_photo_current] => default-image.jpg
+    [update_slideshow_photos] => Array
+        (
+            [0] => 
+        )
+
+    [update_showcase_photo1] => 
+    [update_headline1] => aosdjfajsdf
+    [update_caption1] => jdfapsjfpasdf
+    [update_showcase_photo2] => 
+    [update_headline2] => fjasdpifjapsdf
+    [update_caption2] => adjspifjpasf
+    [update_showcase_photo3] => 
+    [update_headline3] => jiopjpiajfpdjf
+    [update_caption3] => jdspaifjipsdafj
+    [update_addon_selection] => Hot Stone, Ear Candling
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Delete Service POST data:
+Array
+(
+    [id] => 118
+)
+
+Success: Service ID  deleted
+Delete Service POST data:
+Array
+(
+    [id] => 119
+)
+
+Success: Service ID  deleted
+Delete Service POST data:
+Array
+(
+    [id] => 120
+)
+
+Success: Service ID  deleted
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Swedish Massage
+    [service_caption] =>  Relax & Rejuvenate
+    [service_description] => Gentle strokes to ease tension, improve circulation, and promote deep relaxation.
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Melt Away Stress
+    [showcase_caption_1] => Gentle, flowing strokes for deep relaxation and improved circulation.
+    [showcase_headline_2] => Soothe Tired Muscles
+    [showcase_caption_2] => Relieve tension with classic Swedish techniques, promoting muscle recovery.
+    [showcase_headline_3] => Restore Your Balance
+    [showcase_caption_3] => Enhance your well-being with a calming Swedish massage experience.
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 
+    [duration] => 1 hour
+    [one_hour_price] => 350
+    [one_hour_thirty_price] => 480
+    [two_hour_price] => 610
+    [status] => Archived
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpMutGmL
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => slideshow_massage_1.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => slideshow_massage_1.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSaK0I3
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpLe75gg
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 399306
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php41rTV7
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => 
+            [full_path] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Swedish Massage
+    [fixed_price] => 
+    [service_caption] =>  Relax & Rejuvenate
+    [service_description] => Gentle strokes to ease tension, improve circulation, and promote deep relaxation.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3ALLpKF.png
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Melt Away Stress
+    [showcase_caption_1] => Gentle, flowing strokes for deep relaxation and improved circulation.
+    [showcase_photo_2] => 
+    [showcase_headline_2] => Soothe Tired Muscles
+    [showcase_caption_2] => Relieve tension with classic Swedish techniques, promoting muscle recovery.
+    [showcase_photo_3] => 
+    [showcase_headline_3] => Restore Your Balance
+    [showcase_caption_3] => Enhance your well-being with a calming Swedish massage experience.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 350
+    [one_hour_thirty_price] => 480
+    [two_hour_price] => 610
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Delete Service POST data:
+Array
+(
+    [id] => 121
+)
+
+Success: Service ID  deleted
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Swedish Massage
+    [service_caption] => Relax & Rejuvenate
+    [service_description] => Gentle strokes to ease tension, improve circulation, and promote deep relaxation.
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Melt Away Stress
+    [showcase_caption_1] => Gentle, flowing strokes for deep relaxation and improved circulation.
+    [showcase_headline_2] => Soothe Tired Muscles
+    [showcase_caption_2] => Relieve tension with classic Swedish techniques, promoting muscle recovery.
+    [showcase_headline_3] => Restore Your Balance
+    [showcase_caption_3] => Enhance your well-being with a calming Swedish massage experience.
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 
+    [duration] => 1 hour
+    [one_hour_price] => 350
+    [one_hour_thirty_price] => 480
+    [two_hour_price] => 610
+    [status] => Archived
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpo4CNcx
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => main_massage.png
+                    [2] => slideshow_massage_1.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => main_massage.png
+                    [2] => slideshow_massage_1.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpBak0wh
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phprJfVcM
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 388401
+                    [2] => 399306
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phppmmiJu
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpjihesK
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpbkkP2o
+            [error] => 0
+            [size] => 769850
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Swedish Massage
+    [fixed_price] => 
+    [service_caption] => Relax & Rejuvenate
+    [service_description] => Gentle strokes to ease tension, improve circulation, and promote deep relaxation.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3A6obcv.png
+    [slideshow_photos] => https://iili.io/3ALLrFe.png,https://iili.io/3ALLpKF.png
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Melt Away Stress
+    [showcase_caption_1] => Gentle, flowing strokes for deep relaxation and improved circulation.
+    [showcase_photo_2] => https://iili.io/3A6obcv.png
+    [showcase_headline_2] => Soothe Tired Muscles
+    [showcase_caption_2] => Relieve tension with classic Swedish techniques, promoting muscle recovery.
+    [showcase_photo_3] => https://iili.io/3A6obcv.png
+    [showcase_headline_3] => Restore Your Balance
+    [showcase_caption_3] => Enhance your well-being with a calming Swedish massage experience.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 350
+    [one_hour_thirty_price] => 480
+    [two_hour_price] => 610
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Swedish Massage
+    [update_caption] => Relax & Rejuvenate
+    [update_description] => Gentle strokes to ease tension, improve circulation, and promote deep relaxation.
+    [update_service_id] => 122
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3A6obcv.png
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3ALLrFe.png
+            [1] => https://iili.io/3ALLpKF.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Melt Away Stress
+    [update_caption1] => Gentle, flowing strokes for deep relaxation and improved circulation.
+    [update_showcase_photo2_current] => https://iili.io/3A6obcv.png
+    [update_headline2] => Soothe Tired Muscles
+    [update_caption2] => Relieve tension with classic Swedish techniques, promoting muscle recovery.
+    [update_showcase_photo3_current] => https://iili.io/3A6obcv.png
+    [update_headline3] => Restore Your Balance
+    [update_caption3] => Enhance your well-being with a calming Swedish massage experience.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 350
+    [update_one_hour_thirty_price] => 480
+    [update_two_hour_price] => 610
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Hilot Massage
+    [service_caption] => Traditional Healing Touch
+    [service_description] => Filipino technique focusing on muscle knots and energy flow for natural relief.
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Rooted in Tradition
+    [showcase_caption_1] => Experience the healing art of Hilot, balancing your body's energy.
+    [showcase_headline_2] => Natural Pain Relief
+    [showcase_caption_2] => Targeted muscle work to ease discomfort and promote well-being.
+    [showcase_headline_3] => Restore Your Harmony
+    [showcase_caption_3] => Ancient Filipino techniques for deep relaxation and inner balance.
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 
+    [duration] => 1 hour
+    [one_hour_price] => 400
+    [one_hour_thirty_price] => 555
+    [two_hour_price] => 710
+    [status] => Archived
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpkLdbEh
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpw9vXe6
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpsZpwFD
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpEECeIE
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phph4CqeM
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpavfqEC
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Hilot Massage
+    [fixed_price] => 
+    [service_caption] => Traditional Healing Touch
+    [service_description] => Filipino technique focusing on muscle knots and energy flow for natural relief.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3AkdlDX.jpg
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Rooted in Tradition
+    [showcase_caption_1] => Experience the healing art of Hilot, balancing your body's energy.
+    [showcase_photo_2] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_2] => Natural Pain Relief
+    [showcase_caption_2] => Targeted muscle work to ease discomfort and promote well-being.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Restore Your Harmony
+    [showcase_caption_3] => Ancient Filipino techniques for deep relaxation and inner balance.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 400
+    [one_hour_thirty_price] => 555
+    [two_hour_price] => 710
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Hilot Massage
+    [update_caption] => Traditional Healing Touch
+    [update_description] => Filipino technique focusing on muscle knots and energy flow for natural relief.
+    [update_service_id] => 123
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3A6obcv.png
+            [1] => https://iili.io/3AkdlDX.jpg
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Rooted in Tradition
+    [update_caption1] => Experience the healing art of Hilot, balancing your body's energy.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Natural Pain Relief
+    [update_caption2] => Targeted muscle work to ease discomfort and promote well-being.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Restore Your Harmony
+    [update_caption3] => Ancient Filipino techniques for deep relaxation and inner balance.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 400
+    [update_one_hour_thirty_price] => 555
+    [update_two_hour_price] => 710
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Bamboossage
+    [service_caption] => Unwind with Bamboo's Touch
+    [service_description] => Deep tissue massage using warm bamboo, releasing tension and revitalizing your body.
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Deep Release, Intense Relief
+    [showcase_caption_1] => Warm bamboo glides, melting away stubborn muscle tension.
+    [showcase_headline_2] => Energize Your Body
+    [showcase_caption_2] => Unique bamboo techniques to invigorate and revitalize your muscles.
+    [showcase_headline_3] => Experience Bamboo's Power
+    [showcase_caption_3] => A transformative massage for profound relaxation and muscle recovery.
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 
+    [duration] => 1 hour
+    [one_hour_price] => 420
+    [one_hour_thirty_price] => 585
+    [two_hour_price] => 750
+    [status] => Archived
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpkGKRJe
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpEKiDpN
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpTpdZQK
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpcc0hOK
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpTBIKEE
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpxmYIqJ
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Bamboossage
+    [fixed_price] => 
+    [service_caption] => Unwind with Bamboo's Touch
+    [service_description] => Deep tissue massage using warm bamboo, releasing tension and revitalizing your body.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3AkdlDX.jpg
+    [showcase_photo_1] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_1] => Deep Release, Intense Relief
+    [showcase_caption_1] => Warm bamboo glides, melting away stubborn muscle tension.
+    [showcase_photo_2] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_2] => Energize Your Body
+    [showcase_caption_2] => Unique bamboo techniques to invigorate and revitalize your muscles.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Experience Bamboo's Power
+    [showcase_caption_3] => A transformative massage for profound relaxation and muscle recovery.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 420
+    [one_hour_thirty_price] => 585
+    [two_hour_price] => 750
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Bamboossage
+    [update_caption] => Unwind with Bamboo's Touch
+    [update_description] => Deep tissue massage using warm bamboo, releasing tension and revitalizing your body.
+    [update_service_id] => 124
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3A6obcv.png
+            [1] => https://iili.io/3AkdlDX.jpg
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline1] => Deep Release, Intense Relief
+    [update_caption1] => Warm bamboo glides, melting away stubborn muscle tension.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Energize Your Body
+    [update_caption2] => Unique bamboo techniques to invigorate and revitalize your muscles.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Experience Bamboo's Power
+    [update_caption3] => A transformative massage for profound relaxation and muscle recovery.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 420
+    [update_one_hour_thirty_price] => 585
+    [update_two_hour_price] => 750
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Dagdagay
+    [service_caption] => Foot Focus, Total Wellness
+    [service_description] => Traditional Dagdagay foot massage, stimulating reflex points for overall balance and relaxation.
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Foot Focus, Body Balance
+    [showcase_caption_1] => Traditional foot massage, stimulating reflex points for total wellness.
+    [showcase_headline_2] => Revitalize From the Ground Up
+    [showcase_caption_2] => Experience the healing power of Dagdagay foot therapy.
+    [showcase_headline_3] => Discover Foot Reflexology
+    [showcase_caption_3] => Targeted pressure points for relaxation and overall well-being.
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 
+    [duration] => 1 hour
+    [one_hour_price] => 450
+    [one_hour_thirty_price] => 630
+    [two_hour_price] => 810
+    [status] => Archived
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpR9PjLB
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/jpeg
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phphE2cFh
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpZU4ewl
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 404336
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpdPfTt9
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php7Pwb10
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpzZBBjC
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Dagdagay
+    [fixed_price] => 
+    [service_caption] => Foot Focus, Total Wellness
+    [service_description] => Traditional Dagdagay foot massage, stimulating reflex points for overall balance and relaxation.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3AkdlDX.jpg,https://iili.io/3A6obcv.png
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Foot Focus, Body Balance
+    [showcase_caption_1] => Traditional foot massage, stimulating reflex points for total wellness.
+    [showcase_photo_2] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_2] => Revitalize From the Ground Up
+    [showcase_caption_2] => Experience the healing power of Dagdagay foot therapy.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Discover Foot Reflexology
+    [showcase_caption_3] => Targeted pressure points for relaxation and overall well-being.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 450
+    [one_hour_thirty_price] => 630
+    [two_hour_price] => 810
+    [duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Dagdagay
+    [update_caption] => Foot Focus, Total Wellness
+    [update_description] => Traditional Dagdagay foot massage, stimulating reflex points for overall balance and relaxation.
+    [update_service_id] => 125
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Foot Focus, Body Balance
+    [update_caption1] => Traditional foot massage, stimulating reflex points for total wellness.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Revitalize From the Ground Up
+    [update_caption2] => Experience the healing power of Dagdagay foot therapy.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Discover Foot Reflexology
+    [update_caption3] => Targeted pressure points for relaxation and overall well-being.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 450
+    [update_one_hour_thirty_price] => 630
+    [update_two_hour_price] => 810
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Active
+    [category] => Body Scrubs
+    [service_name] => Coffee Scrub
+    [service_caption] => Energize & Exfoliate
+    [service_description] => Invigorating coffee grounds remove dead skin, leaving you smooth and refreshed.
+    [duration_details] => 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Wake Up Your Skin
+    [showcase_caption_1] => Coffee's natural caffeine stimulates circulation for a radiant glow.
+    [showcase_headline_2] => Smooth, Revitalized Skin
+    [showcase_caption_2] => Exfoliate and nourish with the rich aroma of fresh coffee.
+    [showcase_headline_3] => Natural Exfoliation Boost
+    [showcase_caption_3] => Coffee grounds gently buff away dullness, revealing softer skin.
+    [massage_selection] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 550
+    [duration] => 1 hour
+    [one_hour_price] => 59
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Active
+    [selected_massages] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php6S5xWP
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => slideshow_massage_1.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => slideshow_massage_1.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/jpeg
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpUjrGTG
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpUIAfUV
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 404336
+                    [2] => 399306
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpfOiywD
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSgTXku
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpJFspeR
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Body Scrubs
+    [service_name] => Coffee Scrub
+    [fixed_price] => 550
+    [service_caption] => Energize & Exfoliate
+    [service_description] => Invigorating coffee grounds remove dead skin, leaving you smooth and refreshed.
+    [status] => Active
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3A6obcv.png
+    [slideshow_photos] => https://iili.io/3AkdlDX.jpg,https://iili.io/3ALLpKF.png
+    [showcase_photo_1] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_1] => Wake Up Your Skin
+    [showcase_caption_1] => Coffee's natural caffeine stimulates circulation for a radiant glow.
+    [showcase_photo_2] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_2] => Smooth, Revitalized Skin
+    [showcase_caption_2] => Exfoliate and nourish with the rich aroma of fresh coffee.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Natural Exfoliation Boost
+    [showcase_caption_3] => Coffee grounds gently buff away dullness, revealing softer skin.
+    [massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 59
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Active
+    [category] => Body Scrubs
+    [service_name] => Shea and Butter Scrub
+    [service_caption] => Deeply Nourish & Soften
+    [service_description] => Rich shea and butter blend hydrates, leaving skin silky and supple.
+    [duration_details] => 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Indulge in Rich Hydration
+    [showcase_caption_1] => Shea and butter deeply penetrate, providing lasting moisture.
+    [showcase_headline_2] => Silky Smooth Results
+    [showcase_caption_2] => Experience the luxurious feel of soft, nourished skin.
+    [showcase_headline_3] => Natural Skin Comfort
+    [showcase_caption_3] => Soothe and soften with the gentle, creamy blend of shea and butter.
+    [massage_selection] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 650
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Active
+    [selected_massages] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpEkD4FS
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/jpeg
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpQex8lf
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpcFNaJ3
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 404336
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpbsNIhx
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpc5B3ln
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phplpcqPI
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Body Scrubs
+    [service_name] => Shea and Butter Scrub
+    [fixed_price] => 650
+    [service_caption] => Deeply Nourish & Soften
+    [service_description] => Rich shea and butter blend hydrates, leaving skin silky and supple.
+    [status] => Active
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3A6obcv.png
+    [slideshow_photos] => https://iili.io/3AkdlDX.jpg,https://iili.io/3A6obcv.png
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Indulge in Rich Hydration
+    [showcase_caption_1] => Shea and butter deeply penetrate, providing lasting moisture.
+    [showcase_photo_2] => https://iili.io/3A6obcv.png
+    [showcase_headline_2] => Silky Smooth Results
+    [showcase_caption_2] => Experience the luxurious feel of soft, nourished skin.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Natural Skin Comfort
+    [showcase_caption_3] => Soothe and soften with the gentle, creamy blend of shea and butter.
+    [massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Active
+    [category] => Body Scrubs
+    [service_name] => Milk & Whitening Scrub
+    [service_caption] => Brighten & Soften Skin
+    [service_description] => Milk proteins and whitening agents gently even skin tone and smooth texture.
+    [duration_details] => 2 hours
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Reveal Your Radiant Glow
+    [showcase_caption_1] => Milk and whitening extracts work to brighten and even skin tone.
+    [showcase_headline_2] => Gentle Whitening, Soft Touch
+    [showcase_caption_2] => Experience the delicate balance of whitening and skin-softening benefits.
+    [showcase_headline_3] => Achieve Luminous Skin
+    [showcase_caption_3] => Milk's natural properties combined with whitening agents for a brighter complexion.
+    [massage_selection] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 750
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Active
+    [selected_massages] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpAulj4O
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/jpeg
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpXoSDUx
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpyzeupz
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 404336
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpvQ8hwC
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php6rSIxI
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpZ9jHtn
+            [error] => 0
+            [size] => 769850
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Body Scrubs
+    [service_name] => Milk & Whitening Scrub
+    [fixed_price] => 750
+    [service_caption] => Brighten & Soften Skin
+    [service_description] => Milk proteins and whitening agents gently even skin tone and smooth texture.
+    [status] => Active
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3AkdlDX.jpg,https://iili.io/3A6obcv.png
+    [showcase_photo_1] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_1] => Reveal Your Radiant Glow
+    [showcase_caption_1] => Milk and whitening extracts work to brighten and even skin tone.
+    [showcase_photo_2] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_2] => Gentle Whitening, Soft Touch
+    [showcase_caption_2] => Experience the delicate balance of whitening and skin-softening benefits.
+    [showcase_photo_3] => https://iili.io/3A6obcv.png
+    [showcase_headline_3] => Achieve Luminous Skin
+    [showcase_caption_3] => Milk's natural properties combined with whitening agents for a brighter complexion.
+    [massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => 2 hours
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Packages
+    [service_name] => Traditional Package
+    [service_caption] => Ultimate Traditional Sanctuary
+    [service_description] => Indulge in premium massage, scrub, and therapies for an unparalleled wellness experience.
+    [duration_details] => 3 hours and 30 minutes
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => With 1 hour body scrub of any choice
+    [addon_details] => 
+    [showcase_headline_1] => A Relaxing Journey
+    [showcase_caption_1] => A curated selection of premium treatments for ultimate pampering.
+    [showcase_headline_2] => Transcend with Wisdom
+    [showcase_caption_2] => Experience the deep relaxation and rejuvenation of specialized traditional techniques.
+    [showcase_headline_3] => Your Royal Wellness Journey
+    [showcase_caption_3] => Immerse yourself in the finest traditional therapies for complete restoration.
+    [massage_selection] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+    [body_scrub_selection] => Array
+        (
+            [0] => Coffee Scrub
+            [1] => Shea and Butter Scrub
+            [2] => Milk & Whitening Scrub
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 899
+    [duration] => 3 hours and 30 minutes
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_massages] => Array
+        (
+            [0] => Swedish Massage
+            [1] => Hilot Massage
+            [2] => Bamboossage
+            [3] => Dagdagay
+        )
+
+    [selected_body_scrubs] => Array
+        (
+            [0] => Coffee Scrub
+            [1] => Shea and Butter Scrub
+            [2] => Milk & Whitening Scrub
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phphhQ0zM
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => main_massage.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.jpg
+                    [2] => main_massage.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/jpeg
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php2Jg890
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpdFD5TI
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 404336
+                    [2] => 388401
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpf5WcgQ
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpM1xRjk
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpeC4G3p
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Packages
+    [service_name] => Traditional Package
+    [fixed_price] => 899
+    [service_caption] => Ultimate Traditional Sanctuary
+    [service_description] => Indulge in premium massage, scrub, and therapies for an unparalleled wellness experience.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => With 1 hour massage of any choice
+    [body_scrub_details] => With 1 hour body scrub of any choice
+    [addon_details] => 
+    [main_photo] => https://iili.io/3A6obcv.png
+    [slideshow_photos] => https://iili.io/3AkdlDX.jpg,https://iili.io/3ALLrFe.png
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => A Relaxing Journey
+    [showcase_caption_1] => A curated selection of premium treatments for ultimate pampering.
+    [showcase_photo_2] => https://iili.io/3A6obcv.png
+    [showcase_headline_2] => Transcend with Wisdom
+    [showcase_caption_2] => Experience the deep relaxation and rejuvenation of specialized traditional techniques.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Your Royal Wellness Journey
+    [showcase_caption_3] => Immerse yourself in the finest traditional therapies for complete restoration.
+    [massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [body_scrub_selection] => Coffee Scrub, Shea and Butter Scrub, Milk & Whitening Scrub
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => 3 hours and 30 minutes
+    [rating] => 
+    [duration] => 3 hours and 30 minutes
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Coffee Scrub
+    [update_caption] => Energize & Exfoliate
+    [update_description] => Invigorating coffee grounds remove dead skin, leaving you smooth and refreshed.
+    [update_service_id] => 126
+    [update_duration_details] => 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => With 1 hour massage of any choice
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3A6obcv.png
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3ALLpKF.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline1] => Wake Up Your Skin
+    [update_caption1] => Coffee's natural caffeine stimulates circulation for a radiant glow.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Smooth, Revitalized Skin
+    [update_caption2] => Exfoliate and nourish with the rich aroma of fresh coffee.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Natural Exfoliation Boost
+    [update_caption3] => Coffee grounds gently buff away dullness, revealing softer skin.
+    [update_massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [update_party_size] => All choices
+    [update_fixed_price] => 550
+    [update_duration] => 2 hours
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Shea and Butter Scrub
+    [update_caption] => Deeply Nourish & Soften
+    [update_description] => Rich shea and butter blend hydrates, leaving skin silky and supple.
+    [update_service_id] => 127
+    [update_duration_details] => 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => With 1 hour massage of any choice
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3A6obcv.png
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Indulge in Rich Hydration
+    [update_caption1] => Shea and butter deeply penetrate, providing lasting moisture.
+    [update_showcase_photo2_current] => https://iili.io/3A6obcv.png
+    [update_headline2] => Silky Smooth Results
+    [update_caption2] => Experience the luxurious feel of soft, nourished skin.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Natural Skin Comfort
+    [update_caption3] => Soothe and soften with the gentle, creamy blend of shea and butter.
+    [update_massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [update_party_size] => All choices
+    [update_fixed_price] => 650
+    [update_duration] => 2 hours
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Milk & Whitening Scrub
+    [update_caption] => Brighten & Soften Skin
+    [update_description] => Milk proteins and whitening agents gently even skin tone and smooth texture.
+    [update_service_id] => 128
+    [update_duration_details] => 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => With 1 hour massage of any choice
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline1] => Reveal Your Radiant Glow
+    [update_caption1] => Milk and whitening extracts work to brighten and even skin tone.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Gentle Whitening, Soft Touch
+    [update_caption2] => Experience the delicate balance of whitening and skin-softening benefits.
+    [update_showcase_photo3_current] => https://iili.io/3A6obcv.png
+    [update_headline3] => Achieve Luminous Skin
+    [update_caption3] => Milk's natural properties combined with whitening agents for a brighter complexion.
+    [update_massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [update_party_size] => All choices
+    [update_fixed_price] => 750
+    [update_duration] => 2 hours
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Milk & Whitening Scrub
+    [update_caption] => Brighten & Soften Skin
+    [update_description] => Milk proteins and whitening agents gently even skin tone and smooth texture.
+    [update_service_id] => 128
+    [update_duration_details] => 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => With 1 hour massage of any choice
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline1] => Reveal Your Radiant Glow
+    [update_caption1] => Milk and whitening extracts work to brighten and even skin tone.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Gentle Whitening, Soft Touch
+    [update_caption2] => Experience the delicate balance of whitening and skin-softening benefits.
+    [update_showcase_photo3_current] => https://iili.io/3A6obcv.png
+    [update_headline3] => Achieve Luminous Skin
+    [update_caption3] => Milk's natural properties combined with whitening agents for a brighter complexion.
+    [update_massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [update_party_size] => All choices
+    [update_fixed_price] => 750
+    [update_duration] => 2 hours
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Traditional Package
+    [update_caption] => Ultimate Traditional Sanctuary
+    [update_description] => Indulge in premium massage, scrub, and therapies for an unparalleled wellness experience.
+    [update_service_id] => 129
+    [update_duration_details] => 3 hours and 30 minutes
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => With 1 hour massage of any choice
+    [update_body_scrub_details] => With 1 hour body scrub of any choice
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3A6obcv.png
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3ALLrFe.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => A Relaxing Journey
+    [update_caption1] => A curated selection of premium treatments for ultimate pampering.
+    [update_showcase_photo2_current] => https://iili.io/3A6obcv.png
+    [update_headline2] => Transcend with Wisdom
+    [update_caption2] => Experience the deep relaxation and rejuvenation of specialized traditional techniques.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Your Royal Wellness Journey
+    [update_caption3] => Immerse yourself in the finest traditional therapies for complete restoration.
+    [update_massage_selection] => Swedish Massage, Hilot Massage, Bamboossage, Dagdagay
+    [update_body_scrub_selection] => Coffee Scrub, Shea and Butter Scrub, Milk & Whitening Scrub
+    [update_party_size] => All choices
+    [update_fixed_price] => 899
+    [update_duration] => 3 hours and 30 minutes
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Christmas Package
+    [service_caption] => Holiday Healing Touch
+    [service_description] => Relax this season with a 1-hour massage combined with the therapeutic benefits of Ventosa.
+    [duration_details] => 1 hour
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [showcase_headline_1] => Enjoy Wellness This Christmas
+    [showcase_caption_1] => Melt away holiday stress with a soothing massage and Ventosa treatment.
+    [showcase_headline_2] => Celebrate with Rejuvenation
+    [showcase_caption_2] => Treat yourself to a relaxing massage and Ventosa to revitalize your body and spirit.
+    [showcase_headline_3] => Festive Relaxation Awaits
+    [showcase_caption_3] => Enjoy a calming massage and Ventosa session to unwind during the holiday season.
+    [addon_selection] => Array
+        (
+            [0] => Champissage
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 349
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Champissage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpG1yHgG
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpEAwbGg
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpUcZCSC
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpYyUsKN
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => main_massage.png
+            [full_path] => main_massage.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpUEBvZo
+            [error] => 0
+            [size] => 388401
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php1OpbsO
+            [error] => 0
+            [size] => 404336
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Christmas Package
+    [fixed_price] => 349
+    [service_caption] => Holiday Healing Touch
+    [service_description] => Relax this season with a 1-hour massage combined with the therapeutic benefits of Ventosa.
+    [status] => Archived
+    [party_size_details] => Solo, Duo, or Trio
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => 
+    [main_photo] => https://iili.io/3A6obcv.png
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3AkdlDX.jpg
+    [showcase_photo_1] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_1] => Enjoy Wellness This Christmas
+    [showcase_caption_1] => Melt away holiday stress with a soothing massage and Ventosa treatment.
+    [showcase_photo_2] => https://iili.io/3ALLrFe.png
+    [showcase_headline_2] => Celebrate with Rejuvenation
+    [showcase_caption_2] => Treat yourself to a relaxing massage and Ventosa to revitalize your body and spirit.
+    [showcase_photo_3] => https://iili.io/3AkdlDX.jpg
+    [showcase_headline_3] => Festive Relaxation Awaits
+    [showcase_caption_3] => Enjoy a calming massage and Ventosa session to unwind during the holiday season.
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => Champissage
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => 1 hour
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Christmas Package
+    [update_caption] => Holiday Healing Touch
+    [update_description] => Relax this season with a 1-hour massage combined with the therapeutic benefits of Ventosa.
+    [update_service_id] => 130
+    [update_duration_details] => 1 hour
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3A6obcv.png
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3A6obcv.png
+            [1] => https://iili.io/3AkdlDX.jpg
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline1] => Enjoy Wellness This Christmas
+    [update_caption1] => Melt away holiday stress with a soothing massage and Ventosa treatment.
+    [update_showcase_photo2_current] => https://iili.io/3ALLrFe.png
+    [update_headline2] => Celebrate with Rejuvenation
+    [update_caption2] => Treat yourself to a relaxing massage and Ventosa to revitalize your body and spirit.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Festive Relaxation Awaits
+    [update_caption3] => Enjoy a calming massage and Ventosa session to unwind during the holiday season.
+    [update_addon_selection] => Champissage
+    [update_party_size] => All choices
+    [update_fixed_price] => 349
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Delete Service POST data:
+Array
+(
+    [id] => 130
+)
+
+Success: Service ID  deleted
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => Test
+    [service_caption] => Test
+    [service_description] => Test
+    [duration_details] => Test
+    [party_size_details] => Test
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => Test
+    [showcase_headline_1] => Test
+    [showcase_caption_1] => Test
+    [showcase_headline_2] => Test
+    [showcase_caption_2] => Test
+    [showcase_headline_3] => Test
+    [showcase_caption_3] => Test
+    [addon_selection] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+        )
+
+    [party_size] => Duo only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpzEbP92
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/php3CvN36
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpNY7WVo
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSBVz9c
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpSfqJmk
+            [error] => 0
+            [size] => 769850
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpK564RP
+            [error] => 0
+            [size] => 769850
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => Test
+    [fixed_price] => 999
+    [service_caption] => Test
+    [service_description] => Test
+    [status] => Archived
+    [party_size_details] => Test
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => Test
+    [main_photo] => https://iili.io/3AkdlDX.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3AkdlDX.jpg
+    [showcase_photo_1] => https://iili.io/3A6obcv.png
+    [showcase_headline_1] => Test
+    [showcase_caption_1] => Test
+    [showcase_photo_2] => https://iili.io/3A6obcv.png
+    [showcase_headline_2] => Test
+    [showcase_caption_2] => Test
+    [showcase_photo_3] => https://iili.io/3A6obcv.png
+    [showcase_headline_3] => Test
+    [showcase_caption_3] => Test
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => Hot Stone, Ear Candling
+    [party_size] => Duo only
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => Test
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => Dagdagay Massage
+    [update_caption] => Foot Focus, Total Wellness
+    [update_description] => Traditional Dagdagay foot massage, stimulating reflex points for overall balance and relaxation.
+    [update_service_id] => 125
+    [update_duration_details] => 1 hour, 1 hour and 30 minutes, or 2 hours
+    [update_party_size_details] => Solo, Duo, or Trio
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => 
+    [update_main_photo_current] => https://iili.io/3AkdlDX.jpg
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://iili.io/3AkdlDX.jpg
+            [1] => https://iili.io/3A6obcv.png
+        )
+
+    [update_showcase_photo1_current] => https://iili.io/3A6obcv.png
+    [update_headline1] => Foot Focus, Body Balance
+    [update_caption1] => Traditional foot massage, stimulating reflex points for total wellness.
+    [update_showcase_photo2_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline2] => Revitalize From the Ground Up
+    [update_caption2] => Experience the healing power of Dagdagay foot therapy.
+    [update_showcase_photo3_current] => https://iili.io/3AkdlDX.jpg
+    [update_headline3] => Discover Foot Reflexology
+    [update_caption3] => Targeted pressure points for relaxation and overall well-being.
+    [update_party_size] => All choices
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 450
+    [update_one_hour_thirty_price] => 630
+    [update_two_hour_price] => 810
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => testtest
+    [service_caption] => test
+    [service_description] => tse
+    [duration_details] => tes
+    [party_size_details] => tes
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => est
+    [showcase_headline_1] => sre
+    [showcase_caption_1] => esr
+    [showcase_headline_2] => ser
+    [showcase_caption_2] => ser
+    [showcase_headline_3] => ser
+    [showcase_caption_3] => ser
+    [addon_selection] => Array
+        (
+            [0] => Ear Candling
+            [1] => Express Massage
+        )
+
+    [party_size] => Solo only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Ear Candling
+            [1] => Express Massage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpm2w988
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => slideshow_massage_1.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => slideshow_massage_1.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpJKDHLI
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpIOzIXh
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 399306
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpa0tbP3
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpdK8qMY
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpVerJho
+            [error] => 0
+            [size] => 399306
+        )
+
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => asdfasfd
+    [service_caption] => sdfasafdsad
+    [service_description] => fasdfasdfasdf
+    [duration_details] => sdafdsfasd
+    [party_size_details] => fadsfasdf
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => asdfdsafas
+    [showcase_headline_1] => asdfasdf
+    [showcase_caption_1] => dsafasdfasdf
+    [showcase_headline_2] => asdfsdafadsf
+    [showcase_caption_2] => sdafadsfads
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfadfdsaf
+    [addon_selection] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+            [4] => Ventosa
+        )
+
+    [party_size] => Trio only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+            [4] => Ventosa
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpgAJX5m
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpe1iVqZ
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpL27ssn
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpKtjlDh
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpMxserJ
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => main_massage.png
+            [full_path] => main_massage.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpkpsuJX
+            [error] => 0
+            [size] => 388401
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdfasfd
+    [fixed_price] => 999
+    [service_caption] => sdfasafdsad
+    [service_description] => fasdfasdfasdf
+    [status] => Archived
+    [party_size_details] => fadsfasdf
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => asdfdsafas
+    [main_photo] => https://iili.io/3RxSMua.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3RxSMua.jpg
+    [showcase_photo_1] => https://iili.io/3ALLpKF.png
+    [showcase_headline_1] => asdfasdf
+    [showcase_caption_1] => dsafasdfasdf
+    [showcase_photo_2] => https://iili.io/3RxSMua.jpg
+    [showcase_headline_2] => asdfsdafadsf
+    [showcase_caption_2] => sdafadsfads
+    [showcase_photo_3] => https://iili.io/3ALLrFe.png
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfadfdsaf
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => Trio only
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => sdafdsfasd
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => asdfasdf
+    [service_caption] => adsfasdf
+    [service_description] => dsafasdfsa
+    [duration_details] => sadfasdf
+    [party_size_details] => sdafadsfasd
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => sadfadsfadfs
+    [showcase_headline_1] => adfadsf
+    [showcase_caption_1] => asdfadsfsdf
+    [showcase_headline_2] => asdfadsf
+    [showcase_caption_2] => asdfasdfafds
+    [showcase_headline_3] => adsfadsf
+    [showcase_caption_3] => asdfasdfadfs
+    [addon_selection] => Array
+        (
+            [0] => Express Massage
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Express Massage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpCFaoXl
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpQXpQw0
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpxm2v6K
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => main_massage.png
+            [full_path] => main_massage.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpnmhhBt
+            [error] => 0
+            [size] => 388401
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpA1Oi0v
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpb1csLS
+            [error] => 0
+            [size] => 399306
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdfasdf
+    [fixed_price] => 999
+    [service_caption] => adsfasdf
+    [service_description] => dsafasdfsa
+    [status] => Archived
+    [party_size_details] => sdafadsfasd
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => sadfadsfadfs
+    [main_photo] => https://penpenniepennie.sirv.com/images/phpCFaoXl
+    [slideshow_photos] => https://penpenniepennie.sirv.com/images/phpQXpQw0,https://penpenniepennie.sirv.com/images/phpxm2v6K
+    [showcase_photo_1] => https://penpenniepennie.sirv.com/images/phpnmhhBt
+    [showcase_headline_1] => adfadsf
+    [showcase_caption_1] => asdfadsfsdf
+    [showcase_photo_2] => https://penpenniepennie.sirv.com/images/phpA1Oi0v
+    [showcase_headline_2] => asdfadsf
+    [showcase_caption_2] => asdfasdfafds
+    [showcase_photo_3] => https://penpenniepennie.sirv.com/images/phpb1csLS
+    [showcase_headline_3] => adsfadsf
+    [showcase_caption_3] => asdfasdfadfs
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => sadfasdf
+    [rating] => 
+    [duration] => 1 hour
+)
+
