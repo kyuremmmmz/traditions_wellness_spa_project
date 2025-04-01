@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    if (window.location.pathname !== '/services') {
+    /*if (window.location.pathname !== '/services') {
         return;
     }
     const listData = document.getElementById('test');
@@ -58,5 +58,5 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
 
-    fetchData();
+    fetchData(); */
 });

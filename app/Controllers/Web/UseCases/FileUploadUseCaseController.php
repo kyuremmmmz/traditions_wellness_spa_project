@@ -69,7 +69,17 @@ class FileUploadUseCaseController
         }
 
         foreach ($filePaths as $index => $filePath) {
-            if (empty($filePath) || !file_exists($filePath)) {
+            if (empty($filePath)) {
+                $results[$index] = 'FAILED: Empty file path';
+                continue;
+            }
+
+            if (!is_uploaded_file($filePath)) {
+                $results[$index] = 'FAILED: Invalid upload';
+                continue;
+            }
+
+            if (!file_exists($filePath)) {
                 $results[$index] = 'FAILED: File not found';
                 continue;
             }

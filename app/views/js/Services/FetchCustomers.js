@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.pathname !== '/appointments') {
+        return;
+    }
     const searchInput = document.querySelector('#search');
     const searchSuggestions = document.querySelector('#suggestions');
     const wrapper = document.querySelector('#wrapper');
