@@ -51,7 +51,20 @@ class Page
                                 <td class="flex flex-col w-full p-0 m-0">
                                     <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                         <?php
-                                        SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Active', 'Inactive']);
+                                        SecondaryInputField::render(
+                                            'dropdownfield',
+                                            'Filter status by',
+                                            '',
+                                            ['All', 'Active', 'Inactive'],
+                                            '',
+                                            null,
+                                            'filter_by',
+                                            '',
+                                            '',
+                                            [],
+                                            false,
+                                            ''
+                                        );
                                         ?>
                                     </section>
                                     <section>

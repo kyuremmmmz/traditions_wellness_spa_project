@@ -119,8 +119,22 @@ class Page
                                     <div class="overflow-x-auto border-l border-border dark:border-darkBorder">
                                         <section class="p-[48px] flex gap-[16px] bg-[#FFEA06] bg-opacity-5">
                                             <?php
-                                            SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Completed', 'Awaiting Review', 'Ongoing', 'Upcoming', 'Pending', 'Canceled']);
-                                            SecondaryInputField::render('datefield', 'Show appointments from', '');
+                                            SecondaryInputField::render('dropdownfield', 'Filter status by', '', ['All', 'Pending', 'Awaiting Review', 'Cancelled', 'Cancelled', 'Completed', 'Upcoming'], '', null, 
+                                            'filter', '', '', [], false, '');
+                                            SecondaryInputField::render(
+                                                'datefield',
+                                                'Filter status by',
+                                                '',
+                                                ['All', 'Pending', 'Awaiting Review', 'Cancelled', 'Cancelled', 'Completed', 'Upcoming'],
+                                                '',
+                                                null,
+                                                'showApp',
+                                                '',
+                                                '',
+                                                [],
+                                                false,
+                                                ''
+                                            );
                                             ?>
                                         </section>
                                         <section class="max-w-[1120px]">
