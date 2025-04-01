@@ -15,13 +15,13 @@ class AddOnsModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT *, CASE WHEN status = 'Archived' THEN true ELSE false END as is_archived FROM addontable");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function find($id)
     {
-        $stmt = $this->pdo->prepare("SELECT * FROM your_table_name WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT * FROM addontable WHERE id = :id");
         $stmt->execute(['id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -36,16 +36,21 @@ class AddOnsModel
         ]);
     }
 
-    public function update($id, $data)
+    public function update($id, $name, $price, $status)
     {
-        $stmt = $this->pdo->prepare("UPDATE your_table_name SET column1 = :value1, column2 = :value2 WHERE id = :id");
-        $data['id'] = $id;
-        return $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE addontable SET name = :name, price = :price, status = :status WHERE id = :id");
+        return $stmt->execute([
+            'id' => $id,
+            'name' => $name,
+            'price' => $price,
+            'status' => $status
+        ]);
     }
 
-    public function delete($id)
+    public function delete($addon_id)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
-        return $stmt->execute(['id' => $id]);
+        $query = "DELETE FROM addontable WHERE id = ?";
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([$addon_id]);
     }
 }

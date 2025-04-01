@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    if (window.location.pathname !== '/employees') {
+        return;
+    }
+
     const table = document.getElementById('therapistTable'); // Keep as DOM element
     let filterBy = document.getElementById('filter_by');
     const fetchData = async () => {

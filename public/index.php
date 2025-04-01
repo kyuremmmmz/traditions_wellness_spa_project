@@ -6,7 +6,6 @@ require_once '../app/core/Router.php';
 require_once '../vendor/autoload.php';
 
 $router = new Router();
-// API ROUTES
 $router->get('/authCheck', 'CrudController@index');
 $router->post('/login', 'AuthController@store');
 $router->post('/logout', 'AuthController@logout');
@@ -51,6 +50,22 @@ $router->get('/mobileServices', 'Mobile\ServicesController@index');
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/createService', 'ServicesController@createService');
 $router->post('/createAddOns', 'AddOnsController@createAddOns');
+$router->get('/addons', 'AddOnsController@findAddons');
+$router->post('/updateAddOn', 'AddOnsController@updateAddOns');
+$router->post('/deleteAddOn', 'AddOnsController@deleteAddOns');
+$router->post('/fetchActiveAddons', 'AddOnsController@findActiveAddons');
+$router->post('/fetchActiveServicesByCategory', 'ServicesController@getActiveServicesByCategory');
+$router->post('/fetchActiveServices', 'ServicesController@findActiveServices');
+$router->post('/fetchActiveBodyScrubs', 'ServicesController@findActiveBodyScrubs');
+$router->post('/fetchActiveMassages', 'ServicesController@findActiveMassages');
+$router->post('/fetchActivePackages', 'ServicesController@findActivePackages');
+$router->post('/fetchArchivedServices', 'ServicesController@findArchivedServices');
+$router->post('/deleteService', 'ServicesController@deleteService');
+$router->post('/fetchAllActiveServices', 'ServicesController@findAllActiveServices');
+$router->post('/updateService', 'ServicesController@updateService');
+$router->post('/checkAppointment', 'AppointmentsController@checkAppointment');
+
+
 
 
 $router->post('/uploadProfile', 'ContinueRegistrationController@uploadProfile');
@@ -101,6 +116,7 @@ $router->view('/editphonenumber', 'page', 'Utilities/EditInfo/EditPhoneNumber', 
 $router->view('/Tracker', 'page', 'Tools/Appointments/Tracker', 'SessionMiddleware');
 $router->view('/addnewtherapist', 'page', 'tools/AddNewTherapist', 'SessionMiddleware');
 $router->view('/ReviewsAndReports', 'page', 'ReviewsAndReports');
+// add route here
 
 try {
     $router->resolve();
