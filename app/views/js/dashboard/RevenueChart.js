@@ -72,7 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 packages: getMassagesByMonthPackage,
             },
             yearly:{
-                
+                massages: monthlyMassages,
+                body_scrubs: getMassagesByBodyScrub,
+                packages: getMassagesByMonthPackage,
             }
         };
 
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
     });
     charts.monthly = new ApexCharts(document.querySelector("#monthlyChart"), {
-        ...baseOptions, xaxis: { categories: Array(31).fill(0).map((_, i) => i + 1) }
+        ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
     });
     charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), {
         ...baseOptions, xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             updateChart(currentViewType);
         });
         yearSelector.addEventListener('change', () => updateChart('yearly'));
-        monthSelector.addEventListener('change', () => updateChart('monthly'));
+        monthSelector.addEventListener('change', () => updateChart('daily'));
         monthlyYearSelector.addEventListener('change', () => updateChart('monthly'));
         weekSelector.addEventListener('change', () => updateChart('weekly'));
         weeklyMonthSelector.addEventListener('change', () => updateChart('weekly'));
