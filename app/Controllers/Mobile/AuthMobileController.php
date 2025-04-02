@@ -124,86 +124,104 @@ class AuthMobileController
     }
 
     public function addPassword()
-    {
-        $data = json_decode(file_get_contents('php://input'), true);
-    
-        if (isset($data['verifCode']) && isset($data['password'])) {
-            $password = $data['password'];
-    
-            $passwordPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{8,}$/';
-    
-            if (!preg_match($passwordPattern, $data['password'])) {
-                http_response_code(400);
-                echo json_encode([
-                    'message' => 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.',
-                    'status' => false,
-                    'error' => 'Invalid password format'
-                ]);
-                return;
-            }
-    
-            // Fix the object reference: use $this->webController instead of $this->webAuthController
-            $response = $this->webController->findByCode($data['verifCode']);
-    
-            if (is_array($response)) {
-                $verifyEmail = $this->controller->verifyEmail($data['verifCode']);
+{
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (isset($data['verifCode']) && isset($data['password'])) {
+        $password = $data['password'];
+
+        $passwordPattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_-])[A-Za-z\d@$!%*?&_-]{8,}$/';
+
+        if (!preg_match($passwordPattern, $data['password'])) {
+            http_response_code(400);
+            echo json_encode([
+                'message' => 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+                'status' => false,
+                'error' => 'Invalid password format'
+            ]);
+            return;
+        }
+
+        // Fetch user data by verification code
+        $response = $this->webController->findByCode($data['verifCode']);
+
+        if (is_array($response)) {
+            $verifyEmail = $this->controller->verifyEmail($data['verifCode']);
+            
+            if ($verifyEmail) {
+                $setPassword = $this->controller->setPassword(password_hash($password, PASSWORD_BCRYPT), $data['verifCode']);
                 
-                if ($verifyEmail) {
-                    $setPassword = $this->controller->setPassword(password_hash($password, PASSWORD_BCRYPT), $data['verifCode']);
+                if ($setPassword) {
+                    $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($response['email'], null);
                     
-                    if ($setPassword) {
-                        $setVerificationCodeToNull = $this->controller->updateVerifCodeTonull($response['email'], null);
-                        
-                        if ($setVerificationCodeToNull) {
+                    if ($setVerificationCodeToNull) {
+                        // Fetch user data to get userId
+                        $userData = $this->webController->findByEmail($response['email']);
+                        if (is_array($userData) && isset($userData['id'])) {
                             echo json_encode([
                                 'message' => 'Password applied and email verified successfully',
                                 'status' => true,
-                                'error' => null
+                                'error' => null,
+                                'user' => [
+                                    'id' => $userData['id'],
+                                    'email' => $userData['email'],
+                                    'firstName' => $userData['first_name'],
+                                    'lastName' => $userData['last_name']
+                                ]
                             ]);
                         } else {
                             http_response_code(500);
-                            error_log("addPassword: Failed to set verification code to null for email: " . $response['email']);
+                            error_log("addPassword: Failed to fetch user data for email: " . $response['email']);
                             echo json_encode([
-                                'message' => 'Password set but failed to clear verification code',
+                                'message' => 'Password set but failed to retrieve user data',
                                 'status' => false,
-                                'error' => 'Failed to clear verification code'
+                                'error' => 'User data retrieval failed'
                             ]);
                         }
                     } else {
                         http_response_code(500);
-                        error_log("addPassword: Failed to set password for verifCode: " . $data['verifCode']);
+                        error_log("addPassword: Failed to set verification code to null for email: " . $response['email']);
                         echo json_encode([
-                            'message' => 'Failed to set password',
+                            'message' => 'Password set but failed to clear verification code',
                             'status' => false,
-                            'error' => 'Password Set Failed'
+                            'error' => 'Failed to clear verification code'
                         ]);
                     }
                 } else {
                     http_response_code(500);
-                    error_log("addPassword: Failed to verify email for verifCode: " . $data['verifCode']);
+                    error_log("addPassword: Failed to set password for verifCode: " . $data['verifCode']);
                     echo json_encode([
-                        'message' => 'Failed to verify email',
+                        'message' => 'Failed to set password',
                         'status' => false,
-                        'error' => 'Email Verification Failed'
+                        'error' => 'Password Set Failed'
                     ]);
                 }
             } else {
-                http_response_code(400);
+                http_response_code(500);
+                error_log("addPassword: Failed to verify email for verifCode: " . $data['verifCode']);
                 echo json_encode([
-                    'message' => 'Invalid verification code',
+                    'message' => 'Failed to verify email',
                     'status' => false,
-                    'error' => 'Invalid Code'
+                    'error' => 'Email Verification Failed'
                 ]);
             }
         } else {
             http_response_code(400);
             echo json_encode([
-                'message' => 'Missing required fields',
+                'message' => 'Invalid verification code',
                 'status' => false,
-                'error' => 'Missing Fields'
+                'error' => 'Invalid Code'
             ]);
         }
+    } else {
+        http_response_code(400);
+        echo json_encode([
+            'message' => 'Missing required fields',
+            'status' => false,
+            'error' => 'Missing Fields'
+        ]);
     }
+}
 
     public function verifyEmailAndPhone()
     {

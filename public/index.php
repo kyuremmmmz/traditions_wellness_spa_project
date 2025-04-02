@@ -55,6 +55,8 @@ $router->post('/mobileAddPassword', 'AuthMobileController@addPassword');
 $router->post('/auth/check-token', 'AuthMobileController@checkToken');
 $router->post('/auth/mobile-logout', 'AuthMobileController@logout');
 $router->post('/auth/check-verification', 'AuthMobileController@checkVerificationCode');
+$router->post('/api/mobile/change-password', 'Mobile\ChangePasswordMobileController@update');
+$router->post('/api/mobile/change-email', 'Mobile\AuthMobileController@changeEmail');
 
 //  Mobile Services Routes
 $router->get('/mobileServices', 'Mobile\ServicesController@index');
