@@ -51,7 +51,66 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
     };
 
+    const getAll = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
+
+    const getAllBodyScrubs = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Body_Scrubs, 10)) : [];
+    };
+
+    const getAllPackages = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
+    };
+
+
+
+
     let data = {};
+    const renderCharts = async (weekNum) => {
+        const weeklyMassages = await getAll(weekNum);
+        const weeklyBodyScrub = await getAllBodyScrubs(weekNum);
+        const weeklyPackages = await getAllPackages(weekNum);
+        data = {
+            weekly: {
+                massages: weeklyMassages,
+                body_scrubs: weeklyBodyScrub,
+                packages: weeklyPackages
+            },
+            monthly: {
+                massages: [],
+                body_scrubs: [],
+                packages: [],
+            },
+            yearly: {
+                massages: [],
+                body_scrubs: [],
+                packages: [],
+            }
+        };
+
+        charts.weekly.updateSeries([
+            { name: 'Massages', data: data.weekly.massages },
+            { name: 'Body Scrubs', data: data.weekly.body_scrubs },
+            { name: 'Packages', data: data.weekly.packages }
+        ]);
+
+        await charts.weekly.render();
+    };
+    weekSelector.addEventListener('change', () => {
+        const selectedWeek = weekSelector.value;
+        renderCharts(selectedWeek);
+        
+    });
 
     const initializeData = async () => {
         const weeklyPackages = await fetchByPackages();
@@ -84,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         await charts.render();
         setupEvents();
-        updateChart('weekly');
     };
 
 
@@ -97,7 +155,12 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltip: { y: { formatter: (val) => `₱${val.toLocaleString('en-PH')}` } },
         legend: { position: 'right' },
         dataLabels: { enabled: false },
-        series: [{ name: 'Massages', data: [] }, { name: 'Body Scrubs', data: [] }, { name: 'Packages', data: [] }]
+        series: [{ name: 'Massages', data: [] }, { name: 'Body Scrubs', data: [] }, { name: 'Packages', data: [] }],
+        xaxis: {
+            labels: {
+                enabled:false
+            }
+        }
     };
 
     charts.yearly = new ApexCharts(document.querySelector("#stackedColumnChart"), {
@@ -107,7 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
         ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
     });
     charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), {
-        ...baseOptions, xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
+        ...baseOptions, xaxis: {
+            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            labels: { enabled: false }
+        }
     });
 
     Object.values(charts).forEach(chart => chart.render());
@@ -132,19 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let chartData;
 
         try {
-            let url = '';
-            switch (viewType) {
-                case 'weekly':
-                    url = `/api/revenue/weekly/${weeklyYearSelector.value}/${weeklyMonthSelector.value}/${weekSelector.value}`;
-                    break;
-                case 'monthly':
-                    url = `/api/revenue/monthly/${monthlyYearSelector.value}/${monthSelector.value}`;
-                    break;
-                case 'yearly':
-                    url = `/api/revenue/yearly/${yearSelector.value}`;
-                    break;
-            }
-
             chartData = await new Promise((resolve) => {
                 setTimeout(() => resolve(data[viewType]), 500);
             });

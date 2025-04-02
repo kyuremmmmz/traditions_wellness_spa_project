@@ -183,9 +183,34 @@ class RevenueModel
 
 
 
-    public function delete($id)
+    public function getAllCategories($weekNum)
     {
-        $stmt = $this->pdo->prepare("DELETE FROM your_table_name WHERE id = :id");
-        return $stmt->execute(['id' => $id]);
+        $stmt = $this->pdo->prepare("WITH all_days AS (
+        SELECT 'Monday' AS day_name UNION ALL
+        SELECT 'Tuesday' UNION ALL
+        SELECT 'Wednesday' UNION ALL
+        SELECT 'Thursday' UNION ALL
+        SELECT 'Friday' UNION ALL
+        SELECT 'Saturday' UNION ALL
+        SELECT 'Sunday'
+    )
+    SELECT 
+        CONCAT('Week ', :weekNum) AS week_number,
+        d.day_name,
+        COALESCE(SUM(CASE WHEN a.category = 'Massages' THEN a.total_price END), 0) AS Massages,
+        COALESCE(SUM(CASE WHEN a.category = 'Body Scrubs' THEN a.total_price END), 0) AS Body_Scrubs,
+        COALESCE(SUM(CASE WHEN a.category = 'Packages' THEN a.total_price END), 0) AS Packages,
+        COALESCE(SUM(a.total_price), 0) AS total_revenue
+    FROM all_days d
+    LEFT JOIN appointments a 
+        ON DAYNAME(a.booking_date) = d.day_name
+        AND MONTH(a.booking_date) = MONTH(CURDATE())  
+        AND YEAR(a.booking_date) = YEAR(CURDATE())  
+        AND WEEK(a.booking_date, 1) - WEEK(DATE_FORMAT(a.booking_date, '%Y-%m-01'), 1) + 1 = :weekNum
+    GROUP BY week_number, d.day_name
+    ORDER BY FIELD(d.day_name, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')");
+
+        $stmt->execute(['weekNum' => $weekNum]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
