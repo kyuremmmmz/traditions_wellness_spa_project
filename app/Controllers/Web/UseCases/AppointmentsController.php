@@ -152,7 +152,8 @@ class AppointmentsController
                     $findUsers['gender'],
                     $findUsers['email'],
                     $massageSelection,
-                    $bodyScrubSelection
+                    $bodyScrubSelection,
+                    $findServiceByID['category']
                 );
             }
         } else {
@@ -185,7 +186,8 @@ class AppointmentsController
                     $file['gender'],
                     $file['customer_email'],
                     $massageSelection,
-                    $bodyScrubSelection
+                    $bodyScrubSelection,
+                    $findServiceByID['category']
                 );
             }
         }
@@ -210,7 +212,8 @@ class AppointmentsController
         $gender,
         $email,
         $massageSelection = '',
-        $bodyScrubSelection = ''
+        $bodyScrubSelection = '',
+        $category
     ) {
         // Create the appointment record
         $this->controller->create(
@@ -231,7 +234,8 @@ class AppointmentsController
             $gender,
             $email,
             $massageSelection,
-            $bodyScrubSelection
+            $bodyScrubSelection,
+            $category
         );
         
         // Create notification

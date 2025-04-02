@@ -157,7 +157,8 @@ class AppointmentsModel
         $gender,
         $email,
         $massage_selection = '',
-        $body_scrub_selection = ''
+        $body_scrub_selection = '',
+        $category
     ) {
         // Check if massage_selection and body_scrub_selection columns exist
         $columnsExist = $this->checkColumnsExist(['massage_selection', 'body_scrub_selection']);
@@ -165,11 +166,11 @@ class AppointmentsModel
         // Build the SQL query dynamically based on column existence
         $columns = "nameOfTheUser, user_id, address, contactNumber, start_time, end_time, 
                     total_price, addOns, services_id, booking_date, status, duration, 
-                    service_booked, party_size, gender, email, created_at, updated_at";
+                    service_booked, party_size, gender, email, category,created_at, updated_at";
         
         $values = ":nameOfTheUser, :user_id, :address, :contactNumber, :start_time, :end_time, 
                   :total_price, :addOns, :services_id, :booking_date, :status, :duration, 
-                  :service_booked, :party_size, :gender, :email, NOW(), NOW()";
+                  :service_booked, :party_size, :gender, :email, :category,NOW(), NOW()";
                   
         $params = [
             'nameOfTheUser' => $nameOfTheUser,
@@ -187,7 +188,8 @@ class AppointmentsModel
             'service_booked' => $service_booked,
             'party_size' => $partysize,
             'gender' => $gender,
-            'email' => $email
+            'email' => $email,
+            'category' => $category
         ];
         
         // Add massage_selection and body_scrub_selection if columns exist
