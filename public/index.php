@@ -65,6 +65,15 @@ $router->post('/deleteService', 'ServicesController@deleteService');
 $router->post('/fetchAllActiveServices', 'ServicesController@findAllActiveServices');
 $router->post('/updateService', 'ServicesController@updateService');
 $router->post('/checkAppointment', 'AppointmentsController@checkAppointment');
+$router->get('/getTotalRevenueAsWeek', 'RevenueController@getTotalRevenueAsWeek');
+$router->get('/getAllWeeks', 'RevenueController@getAllWeeks');
+$router->get('/getAllBodyScrubs', 'RevenueController@getAllBodyScrubs');
+$router->get('/getAllPackages', 'RevenueController@getAllPackages');
+$router->get('/getMassagesByMonthMassages', 'RevenueController@getMassagesByMonthMassages');
+$router->get('/getMassagesByMonthBodyScrub', 'RevenueController@getMassagesByMonthBodyScrub');
+$router->get('/getMassagesByMonthPackages', 'RevenueController@getMassagesByMonthPackages');
+
+
 
 
 
