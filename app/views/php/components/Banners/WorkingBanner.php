@@ -35,6 +35,7 @@ class WorkingBanner
                 "destructive",
                 "darkDestructive"
             );
+            unset($_SESSION['service_message']);
         }
         if ($serviceUnavailable) {
             RegularBanner::render(
