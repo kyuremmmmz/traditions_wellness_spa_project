@@ -11,7 +11,6 @@ class RevenueController {
     public function __construct() {
         $this->db = new RevenueModel();
     }
-
     public function getTotalRevenueAsWeek(){
         header('Content-Type: application/json');
         ob_clean();
@@ -19,6 +18,16 @@ class RevenueController {
         echo json_encode([$revenue]);
         exit;
     }
+
+    public function getAllCategories($week)
+    {
+        header('Content-Type: application/json');
+        ob_clean();
+        $revenue = $this->db->getAllCategories($week);
+        echo json_encode([$revenue]);
+        exit;
+    }
+
 
     public function getAllBodyScrubs()
     {
@@ -69,6 +78,15 @@ class RevenueController {
         header('Content-Type: application/json');
         ob_clean();
         $revenue = $this->db->getAllWeeks();
+        echo json_encode([$revenue]);
+        exit;
+    }
+
+    public function getAllCategoriesByMonth($year)
+    {
+        header('Content-Type: application/json');
+        ob_clean();
+        $revenue = $this->db->getAllCategoriesByMonth($year);
         echo json_encode([$revenue]);
         exit;
     }
