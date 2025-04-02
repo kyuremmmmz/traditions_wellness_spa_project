@@ -2528,3 +2528,475 @@ Array
     [update_two_hour_price] => 810
 )
 
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => testtest
+    [service_caption] => test
+    [service_description] => tse
+    [duration_details] => tes
+    [party_size_details] => tes
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => est
+    [showcase_headline_1] => sre
+    [showcase_caption_1] => esr
+    [showcase_headline_2] => ser
+    [showcase_caption_2] => ser
+    [showcase_headline_3] => ser
+    [showcase_caption_3] => ser
+    [addon_selection] => Array
+        (
+            [0] => Ear Candling
+            [1] => Express Massage
+        )
+
+    [party_size] => Solo only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Ear Candling
+            [1] => Express Massage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => pexels-olly-3757951.png
+            [full_path] => pexels-olly-3757951.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpm2w988
+            [error] => 0
+            [size] => 769850
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => slideshow_massage_1.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => slideshow_massage_1.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpJKDHLI
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpIOzIXh
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 399306
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpa0tbP3
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpdK8qMY
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpVerJho
+            [error] => 0
+            [size] => 399306
+        )
+
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => asdfasfd
+    [service_caption] => sdfasafdsad
+    [service_description] => fasdfasdfasdf
+    [duration_details] => sdafdsfasd
+    [party_size_details] => fadsfasdf
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => asdfdsafas
+    [showcase_headline_1] => asdfasdf
+    [showcase_caption_1] => dsafasdfasdf
+    [showcase_headline_2] => asdfsdafadsf
+    [showcase_caption_2] => sdafadsfads
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfadfdsaf
+    [addon_selection] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+            [4] => Ventosa
+        )
+
+    [party_size] => Trio only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+            [4] => Ventosa
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpgAJX5m
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => Mask group.jpg
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/jpeg
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpe1iVqZ
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpL27ssn
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 404336
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpKtjlDh
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpMxserJ
+            [error] => 0
+            [size] => 404336
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => main_massage.png
+            [full_path] => main_massage.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpkpsuJX
+            [error] => 0
+            [size] => 388401
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdfasfd
+    [fixed_price] => 999
+    [service_caption] => sdfasafdsad
+    [service_description] => fasdfasdfasdf
+    [status] => Archived
+    [party_size_details] => fadsfasdf
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => asdfdsafas
+    [main_photo] => https://iili.io/3RxSMua.jpg
+    [slideshow_photos] => https://iili.io/3A6obcv.png,https://iili.io/3RxSMua.jpg
+    [showcase_photo_1] => https://iili.io/3ALLpKF.png
+    [showcase_headline_1] => asdfasdf
+    [showcase_caption_1] => dsafasdfasdf
+    [showcase_photo_2] => https://iili.io/3RxSMua.jpg
+    [showcase_headline_2] => asdfsdafadsf
+    [showcase_caption_2] => sdafadsfads
+    [showcase_photo_3] => https://iili.io/3ALLrFe.png
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => asdfadfdsaf
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => Trio only
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => sdafdsfasd
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => asdfasdf
+    [service_caption] => adsfasdf
+    [service_description] => dsafasdfsa
+    [duration_details] => sadfasdf
+    [party_size_details] => sdafadsfasd
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => sadfadsfadfs
+    [showcase_headline_1] => adfadsf
+    [showcase_caption_1] => asdfadsfsdf
+    [showcase_headline_2] => asdfadsf
+    [showcase_caption_2] => asdfasdfafds
+    [showcase_headline_3] => adsfadsf
+    [showcase_caption_3] => asdfasdfadfs
+    [addon_selection] => Array
+        (
+            [0] => Express Massage
+        )
+
+    [party_size] => All choices
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Express Massage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.jpg
+            [full_path] => Mask group.jpg
+            [type] => image/jpeg
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpCFaoXl
+            [error] => 0
+            [size] => 404336
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => pexels-olly-3757951.png
+                    [2] => pexels-olly-3757951.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpQXpQw0
+                    [2] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpxm2v6K
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 769850
+                    [2] => 769850
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => main_massage.png
+            [full_path] => main_massage.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpnmhhBt
+            [error] => 0
+            [size] => 388401
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpA1Oi0v
+            [error] => 0
+            [size] => 399306
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => slideshow_massage_1.png
+            [full_path] => slideshow_massage_1.png
+            [type] => image/png
+            [tmp_name] => /private/var/folders/6h/w3c0p3yd51qg_cpz1g7x8f880000gn/T/phpb1csLS
+            [error] => 0
+            [size] => 399306
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdfasdf
+    [fixed_price] => 999
+    [service_caption] => adsfasdf
+    [service_description] => dsafasdfsa
+    [status] => Archived
+    [party_size_details] => sdafadsfasd
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => sadfadsfadfs
+    [main_photo] => https://penpenniepennie.sirv.com/images/phpCFaoXl
+    [slideshow_photos] => https://penpenniepennie.sirv.com/images/phpQXpQw0,https://penpenniepennie.sirv.com/images/phpxm2v6K
+    [showcase_photo_1] => https://penpenniepennie.sirv.com/images/phpnmhhBt
+    [showcase_headline_1] => adfadsf
+    [showcase_caption_1] => asdfadsfsdf
+    [showcase_photo_2] => https://penpenniepennie.sirv.com/images/phpA1Oi0v
+    [showcase_headline_2] => asdfadsf
+    [showcase_caption_2] => asdfasdfafds
+    [showcase_photo_3] => https://penpenniepennie.sirv.com/images/phpb1csLS
+    [showcase_headline_3] => adsfadsf
+    [showcase_caption_3] => asdfasdfadfs
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => All choices
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => sadfasdf
+    [rating] => 
+    [duration] => 1 hour
+)
+
