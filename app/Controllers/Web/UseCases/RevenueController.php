@@ -82,6 +82,15 @@ class RevenueController {
         exit;
     }
 
+    public function getAllCategoriesByMonth($year)
+    {
+        header('Content-Type: application/json');
+        ob_clean();
+        $revenue = $this->db->getAllCategoriesByMonth($year);
+        echo json_encode([$revenue]);
+        exit;
+    }
+
     public function getTotalRevenueAsMonth()
     {
         header('Content-Type: application/json');

@@ -112,12 +112,18 @@ class Page
                                             <?php IconChoice::render('chevronRightSmall', '[12px]', '[12px] absolute right-[16px] top-[9px] -rotate-90', '', 'onSurface', 'darkOnSurface'); ?>
                                             <label for="monthSelector" class="BodyTwo leading-none text-onBackground dark:text-darkOnBackground pr-[16px]">Month</label>
                                             <select id="monthSelector" class="BodyTwo leading-none h-[30px] px-3 w-[100px] py-1 appearance-none rounded-[6px] border border-border dark:border-darkBorder bg-background dark:bg-darkBackground text-onBackground dark:text-darkOnBackground">
-                                                <?php
-                                                foreach ($months as $num => $name) {
-                                                    $selected = $num === (int)date('m') ? 'selected' : '';
-                                                    echo "<option value='$num' $selected class='BodyTwo leading-none'>$name</option>";
-                                                }
-                                                ?>
+                                                <option value="1" class="BodyTwo leading-none">January</option>
+                                                <option value="2" class="BodyTwo leading-none">February</option>
+                                                <option value="3" class="BodyTwo leading-none">March</option>
+                                                <option value="4" class="BodyTwo leading-none">April</option>
+                                                <option value="5" class="BodyTwo leading-none">May</option>
+                                                <option value="6" class="BodyTwo leading-none">June</option>
+                                                <option value="7" class="BodyTwo leading-none">July</option>
+                                                <option value="8" class="BodyTwo leading-none">August</option>
+                                                <option value="9" class="BodyTwo leading-none">September</option>
+                                                <option value="10" class="BodyTwo leading-none">October</option>
+                                                <option value="11" class="BodyTwo leading-none">November</option>
+                                                <option value="12" class="BodyTwo leading-none">December</option>
                                             </select>
                                         </div>
                                         <div class='relative min-w-[100px]'>

@@ -71,6 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(jsonData);
         return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
     };
+    const getAllMassagesByMonths = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategoriesByMonth/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
+
 
 
 
@@ -86,16 +93,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 body_scrubs: weeklyBodyScrub,
                 packages: weeklyPackages
             },
-            monthly: {
-                massages: [],
-                body_scrubs: [],
-                packages: [],
-            },
-            yearly: {
-                massages: [],
-                body_scrubs: [],
-                packages: [],
-            }
         };
 
         charts.weekly.updateSeries([
@@ -106,11 +103,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         await charts.weekly.render();
     };
+
+    const renderChartmonths = async (selectedMonth) => {
+        const chartData = await getAllMassagesByMonths(selectedMonth);
+
+        if (chartData) {
+            if (charts && charts.monthly) {
+                charts.monthly.updateSeries([
+                    { name: 'Massages', data: chartData.massages },
+                    { name: 'Body Scrubs', data: chartData.body_scrubs },
+                    { name: 'Packages', data: chartData.packages }
+                ]);
+                charts.monthly.render();
+            } else {
+                console.error('Chart not initialized!');
+            }
+        }
+    };
+
+    monthSelector.addEventListener('change', () => {
+        const selectedMonth = monthSelector.value;
+        console.log(selectedMonth);
+        renderChartmonths(selectedMonth);
+    });
+
     weekSelector.addEventListener('change', () => {
         const selectedWeek = weekSelector.value;
         renderCharts(selectedWeek);
-        
     });
+
 
     const initializeData = async () => {
         const weeklyPackages = await fetchByPackages();
@@ -145,13 +166,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setupEvents();
     };
 
+    
+
 
 
 
     const baseOptions = {
         chart: { type: 'bar', height: 350, stacked: true },
         colors: ['#006837', '#009444', '#88C540'],
-        yaxis: { labels: { formatter: (val) => `₱${val.toLocaleString('en-PH')}` } },
+        yaxis: { labels: { enabled:false } },
         tooltip: { y: { formatter: (val) => `₱${val.toLocaleString('en-PH')}` } },
         legend: { position: 'right' },
         dataLabels: { enabled: false },
@@ -163,15 +186,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: currentYear - 2020 }, (_, i) => 2021 + i);
+
     charts.yearly = new ApexCharts(document.querySelector("#stackedColumnChart"), {
-        ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
+        ...baseOptions,
+        xaxis: { categories: years }
     });
+
     charts.monthly = new ApexCharts(document.querySelector("#monthlyChart"), {
         ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
     });
     charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), {
         ...baseOptions, xaxis: {
-            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            categories: ['Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             labels: { enabled: false }
         }
     });
@@ -186,7 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
             updateChart(currentViewType);
         });
         yearSelector.addEventListener('change', () => updateChart('yearly'));
-        monthSelector.addEventListener('change', () => updateChart('daily'));
         monthlyYearSelector.addEventListener('change', () => updateChart('monthly'));
         weekSelector.addEventListener('change', () => updateChart('weekly'));
         weeklyMonthSelector.addEventListener('change', () => updateChart('weekly'));
@@ -203,6 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (viewType === 'monthly') {
+                const days = new Date(monthlyYearSelector.value || 2025, monthSelector.value || 1, 0).getDate();
+                chart.updateOptions({ xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] } });
+            }
+
+            if (viewType === 'daily') {
                 const days = new Date(monthlyYearSelector.value || 2025, monthSelector.value || 1, 0).getDate();
                 chart.updateOptions({ xaxis: { categories: Array(days).fill(0).map((_, i) => i + 1) } });
             }

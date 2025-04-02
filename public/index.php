@@ -73,6 +73,8 @@ $router->get('/getMassagesByMonthMassages', 'RevenueController@getMassagesByMont
 $router->get('/getMassagesByMonthBodyScrub', 'RevenueController@getMassagesByMonthBodyScrub');
 $router->get('/getMassagesByMonthPackages', 'RevenueController@getMassagesByMonthPackages');
 $router->get('/getAllCategories/{week}', 'RevenueController@getAllCategories');
+$router->get('/getAllCategoriesByMonth/{month}', 'RevenueController@getAllCategoriesByMonth');
+
 
 
 
