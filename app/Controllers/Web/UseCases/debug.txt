@@ -3038,3 +3038,226 @@ Array
     [update_two_hour_price] => 0.00
 )
 
+Received POST data:
+Array
+(
+    [service_status] => Archived
+    [category] => Massages
+    [service_name] => asdas
+    [service_caption] => dasdasdas
+    [service_description] => dasdas
+    [duration_details] => dasdasd
+    [party_size_details] => asdas
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => dasdas
+    [showcase_headline_1] => efsadf
+    [showcase_caption_1] => asdfasdfa
+    [showcase_headline_2] => asdfasdf
+    [showcase_caption_2] => adsfasdfs
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => adsfasdfa
+    [addon_selection] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+        )
+
+    [party_size] => Duo only
+    [price_type] => fixed
+    [fixed_price] => 999
+    [duration] => 1 hour
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [status] => Archived
+    [selected_addons] => Array
+        (
+            [0] => Hot Stone
+            [1] => Ear Candling
+            [2] => Express Massage
+            [3] => Champissage
+        )
+
+)
+
+Received FILES data:
+Array
+(
+    [main_photo] => Array
+        (
+            [name] => Mask group.png
+            [full_path] => Mask group.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php61C2.tmp
+            [error] => 0
+            [size] => 631517
+        )
+
+    [slideshow_photos] => Array
+        (
+            [name] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.png
+                    [2] => Mask group.png
+                )
+
+            [full_path] => Array
+                (
+                    [0] => 
+                    [1] => Mask group.png
+                    [2] => Mask group.png
+                )
+
+            [type] => Array
+                (
+                    [0] => 
+                    [1] => image/png
+                    [2] => image/png
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => 
+                    [1] => C:\xampp\tmp\php61C3.tmp
+                    [2] => C:\xampp\tmp\php61C4.tmp
+                )
+
+            [error] => Array
+                (
+                    [0] => 4
+                    [1] => 0
+                    [2] => 0
+                )
+
+            [size] => Array
+                (
+                    [0] => 0
+                    [1] => 631517
+                    [2] => 631517
+                )
+
+        )
+
+    [showcase_photo_1] => Array
+        (
+            [name] => Mask group.png
+            [full_path] => Mask group.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php61C5.tmp
+            [error] => 0
+            [size] => 631517
+        )
+
+    [showcase_photo_2] => Array
+        (
+            [name] => Mask group.png
+            [full_path] => Mask group.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php61D6.tmp
+            [error] => 0
+            [size] => 631517
+        )
+
+    [showcase_photo_3] => Array
+        (
+            [name] => Mask group.png
+            [full_path] => Mask group.png
+            [type] => image/png
+            [tmp_name] => C:\xampp\tmp\php61D7.tmp
+            [error] => 0
+            [size] => 631517
+        )
+
+)
+
+SQL Parameters:
+Array
+(
+    [category] => Massages
+    [service_name] => asdas
+    [fixed_price] => 999
+    [service_caption] => dasdasdas
+    [service_description] => dasdas
+    [status] => Archived
+    [party_size_details] => asdas
+    [massage_details] => 
+    [body_scrub_details] => 
+    [addon_details] => dasdas
+    [main_photo] => https://penpenniepennie.sirv.com/images/php61C2.tmp
+    [slideshow_photos] => https://penpenniepennie.sirv.com/images/php61C3.tmp,https://penpenniepennie.sirv.com/images/php61C4.tmp
+    [showcase_photo_1] => https://penpenniepennie.sirv.com/images/php61C5.tmp
+    [showcase_headline_1] => efsadf
+    [showcase_caption_1] => asdfasdfa
+    [showcase_photo_2] => https://penpenniepennie.sirv.com/images/php61D6.tmp
+    [showcase_headline_2] => asdfasdf
+    [showcase_caption_2] => adsfasdfs
+    [showcase_photo_3] => https://penpenniepennie.sirv.com/images/php61D7.tmp
+    [showcase_headline_3] => asdfasdf
+    [showcase_caption_3] => adsfasdfa
+    [massage_selection] => 
+    [body_scrub_selection] => 
+    [supplemental_addons] => 
+    [party_size] => Duo only
+    [one_hour_price] => 
+    [one_hour_thirty_price] => 
+    [two_hour_price] => 
+    [duration_details] => dasdasd
+    [rating] => 
+    [duration] => 1 hour
+)
+
+Update Service - Processed data:
+Array
+(
+    [update_status] => Active
+    [update_service_name] => asdas
+    [update_caption] => dasdasdas
+    [update_description] => dasdas
+    [update_service_id] => 132
+    [update_duration_details] => dasdasd
+    [update_party_size_details] => asdas
+    [update_massage_details] => 
+    [update_body_scrub_details] => 
+    [update_addon_details] => dasdas
+    [update_main_photo_current] => https://penpenniepennie.sirv.com/images/php61C2.tmp
+    [existing_slideshow_photos] => Array
+        (
+            [0] => https://penpenniepennie.sirv.com/images/php61C3.tmp
+            [1] => https://penpenniepennie.sirv.com/images/php61C4.tmp
+        )
+
+    [update_showcase_photo1_current] => https://penpenniepennie.sirv.com/images/php61C5.tmp
+    [update_headline1] => efsadf
+    [update_caption1] => asdfasdfa
+    [update_showcase_photo2_current] => https://penpenniepennie.sirv.com/images/php61D6.tmp
+    [update_headline2] => asdfasdf
+    [update_caption2] => adsfasdfs
+    [update_showcase_photo3_current] => https://penpenniepennie.sirv.com/images/php61D7.tmp
+    [update_headline3] => asdfasdf
+    [update_caption3] => adsfasdfa
+    [update_party_size] => Duo only
+    [update_fixed_price] => 999
+    [update_duration] => 1 hour
+    [update_one_hour_price] => 0.00
+    [update_one_hour_thirty_price] => 0.00
+    [update_two_hour_price] => 0.00
+)
+
+Delete Service POST data:
+Array
+(
+    [id] => 132
+)
+
+Success: Service ID  deleted
+Delete Service POST data:
+Array
+(
+    [id] => 131
+)
+
+Success: Service ID  deleted

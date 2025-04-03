@@ -63,12 +63,21 @@ $router->get('/mobileServices/bodyscrub', 'Mobile\ServicesController@getBodyScru
 $router->get('/mobileServices/packages', 'Mobile\ServicesController@getPackageServices');
 $router->get('/mobileServices/category/:category', 'Mobile\ServicesController@getServicesByCategory');
 
+// Mobile AddOns Routes
+$router->get('/mobileAddOns', 'Mobile\AddOnsController@index');
+$router->get('/mobileAddOns/active', 'Mobile\AddOnsController@getActiveAddOns');
+$router->get('/mobileAddOns/:id', 'Mobile\AddOnsController@getAddOnById');
+
 // Mobile Appointment Routes
 $router->get('/mobileAppointments', 'Mobile\OnlineAppointmentMobileController@index');
 $router->get('/mobileAppointments/timeSlots', 'Mobile\OnlineAppointmentMobileController@getAvailableTimeSlots');
 $router->post('/mobileAppointments', 'Mobile\OnlineAppointmentMobileController@store');
 $router->put('/mobileAppointments/{id}', 'Mobile\OnlineAppointmentMobileController@update');
+$router->get('/mobileServices/addons/:serviceId', 'Mobile\ServicesController@getServiceAddons');
+$router->post('/mobileAppointments/book', 'Mobile\AppointmentController@bookAppointment');
 
+$router->post('/mobileAppointments/book', 'Mobile\AppointmentController@bookAppointment');
+$router->get('/mobileAppointments/user/{userId}', 'Mobile\AppointmentController@getUserAppointments');
 
 $router->post('/continueRegistrationFunction', 'ContinueRegistrationController@continueRegistrationFunction');
 $router->post('/createService', 'ServicesController@createService');
@@ -87,6 +96,7 @@ $router->post('/deleteService', 'ServicesController@deleteService');
 $router->post('/fetchAllActiveServices', 'ServicesController@findAllActiveServices');
 $router->post('/updateService', 'ServicesController@updateService');
 $router->post('/checkAppointment', 'AppointmentsController@checkAppointment');
+
 
 
 

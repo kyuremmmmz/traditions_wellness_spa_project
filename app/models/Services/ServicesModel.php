@@ -256,4 +256,21 @@ class ServicesModel
             return null;
         }
     }
+    public function getServiceDetails($serviceId)
+    {
+        try {
+            $stmt = $this->pdo->prepare("SELECT 
+                id, serviceName, category, fixed_price, duration, status
+                FROM services 
+                WHERE id = :serviceId");
+            $stmt->execute(['serviceId' => $serviceId]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            // Log the database error
+            error_log('Get service details error: ' . $e->getMessage());
+            
+            // Return null if service not found
+            return null;
+        }
+    }
 }

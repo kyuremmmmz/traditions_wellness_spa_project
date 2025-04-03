@@ -14,6 +14,11 @@ class AppointmentsModel
         $this->pdo = Connection::connection();
     }
 
+    public function getPdo()
+    {
+        return $this->pdo;
+    }
+
     public function getAll()
     {
         $stmt = $this->pdo->query("SELECT * FROM appointments");
@@ -138,74 +143,39 @@ class AppointmentsModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
-    // Updated create method to include massage_selection and body_scrub_selection
-    public function create(
-        $nameOfTheUser,
-        $user_id,
-        $address,
-        $contactNumber,
-        $start_time,
-        $end_time,
-        $total_price,
-        $addOns,
-        $services_id,
-        $booking_date,
-        $status,
-        $duration,
-        $service_booked,
-        $partysize,
-        $gender,
-        $email,
-        $massage_selection = '',
-        $body_scrub_selection = ''
-    ) {
-        // Check if massage_selection and body_scrub_selection columns exist
-        $columnsExist = $this->checkColumnsExist(['massage_selection', 'body_scrub_selection']);
-        
-        // Build the SQL query dynamically based on column existence
-        $columns = "nameOfTheUser, user_id, address, contactNumber, start_time, end_time, 
-                    total_price, addOns, services_id, booking_date, status, duration, 
-                    service_booked, party_size, gender, email, created_at, updated_at";
-        
-        $values = ":nameOfTheUser, :user_id, :address, :contactNumber, :start_time, :end_time, 
-                  :total_price, :addOns, :services_id, :booking_date, :status, :duration, 
-                  :service_booked, :party_size, :gender, :email, NOW(), NOW()";
-                  
-        $params = [
-            'nameOfTheUser' => $nameOfTheUser,
-            'user_id' => $user_id,
-            'address' => $address,
-            'contactNumber' => $contactNumber,
-            'start_time' => $start_time,
-            'end_time' => $end_time,
-            'total_price' => $total_price,
-            'addOns' => $addOns,
-            'services_id' => $services_id,
-            'booking_date' => $booking_date,
-            'status' => ucfirst(str_replace('', '', $status)),
-            'duration' => $duration,
-            'service_booked' => $service_booked,
-            'party_size' => $partysize,
-            'gender' => $gender,
-            'email' => $email
-        ];
-        
-        // Add massage_selection and body_scrub_selection if columns exist
-        if ($columnsExist['massage_selection']) {
-            $columns .= ", massage_selection";
-            $values .= ", :massage_selection";
-            $params['massage_selection'] = $massage_selection;
+    public function create($data)
+    {
+        // If an array is passed, directly insert the data
+        if (is_array($data)) {
+            // Prepare columns and values
+            $columns = [];
+            $placeholders = [];
+            $params = [];
+
+            // Add automatic timestamps if not provided
+            $data['created_at'] = $data['created_at'] ?? date('Y-m-d H:i:s');
+            $data['updated_at'] = $data['updated_at'] ?? date('Y-m-d H:i:s');
+
+            // Build columns, placeholders, and params
+            foreach ($data as $column => $value) {
+                $columns[] = $column;
+                $placeholders[] = ":$column";
+                $params[$column] = $value;
+            }
+
+            // Construct the SQL query
+            $sql = "INSERT INTO appointments (" . implode(', ', $columns) . ") 
+                    VALUES (" . implode(', ', $placeholders) . ")";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+
+            // Return the last inserted ID
+            return $this->pdo->lastInsertId();
         }
         
-        if ($columnsExist['body_scrub_selection']) {
-            $columns .= ", body_scrub_selection";
-            $values .= ", :body_scrub_selection";
-            $params['body_scrub_selection'] = $body_scrub_selection;
-        }
-        
-        $sql = "INSERT INTO appointments ($columns) VALUES ($values)";
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute($params);
+        // If not an array, throw an exception
+        throw new \InvalidArgumentException("Create method requires an array of data");
     }
     
     // Helper method to check if columns exist in a table
@@ -273,4 +243,35 @@ class AppointmentsModel
         $stmt->execute(['search' => $searchTerm]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function checkAvailability($appointmentDate, $appointmentTime)
+{
+    try {
+        // Convert time to the correct format if needed
+        $startTime = date('H:i:s', strtotime($appointmentTime));
+        
+        // Prepare SQL query to count appointments on the specific date and time
+        $sql = "SELECT COUNT(*) as appointment_count 
+                FROM appointments 
+                WHERE booking_date = :date 
+                AND start_time = :time";
+        
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':date', $appointmentDate);
+        $stmt->bindParam(':time', $startTime);
+        $stmt->execute();
+        
+        // Fetch the count of appointments
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        // Return true if fewer than 5 appointments exist
+        return $result['appointment_count'] < 5;
+    } catch (\Exception $e) {
+        // Log the error
+        error_log('Availability check error: ' . $e->getMessage());
+        
+        // In case of any error, consider the slot unavailable
+        return false;
+    }
+}
 }
