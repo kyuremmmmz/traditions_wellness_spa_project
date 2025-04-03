@@ -14,6 +14,7 @@ class WorkingBanner
         $success = isset($_SESSION['message']['message']);
         $messageSuccess = isset($_SESSION['success_message']['success_message']);
         $appointmentError = isset($_SESSION['therapistError']['therapistError']);
+        $serviceMessage = isset($_SESSION['service_message']);
         $sumakses = isset($_SESSION['sumakses']['sumakses']);
         if ($tooManyAttempts) {
             http_response_code(429);
@@ -23,6 +24,18 @@ class WorkingBanner
             "alertBig", 
             "destructive",
             "darkDestructive");
+        }
+
+        if ($serviceMessage) {
+            http_response_code(200);
+            RegularBanner::render(
+                "Success",
+                "{$_SESSION['service_message']}",
+                "alertBig",
+                "destructive",
+                "darkDestructive"
+            );
+            unset($_SESSION['service_message']);
         }
         if ($serviceUnavailable) {
             RegularBanner::render(

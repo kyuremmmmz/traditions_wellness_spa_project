@@ -1,450 +1,273 @@
-class RevenueChart {
-    constructor() {
-        this.yearSelector = document.getElementById('yearSelector');
-        this.monthSelector = document.getElementById('monthSelector');
-        this.monthlyYearSelector = document.getElementById('monthlyYearSelector');
-        this.weekSelector = document.getElementById('weekSelector');
-        this.weeklyMonthSelector = document.getElementById('weeklyMonthSelector');
-        this.weeklyYearSelector = document.getElementById('weeklyYearSelector');
-        this.viewTypeSelector = document.getElementById('viewTypeSelector');
-        
-        this.currentViewType = 'weekly';  // Changed from 'yearly' to 'weekly'
-        this.charts = {};
-        
-        this.checkSystemTheme();
-        this.initializeOptions();
-        this.setupEventListeners();
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    const yearSelector = document.getElementById('yearSelector');
+    const monthSelector = document.getElementById('monthSelector');
+    const monthlyYearSelector = document.getElementById('monthlyYearSelector');
+    const weekSelector = document.getElementById('weekSelector');
+    const weeklyMonthSelector = document.getElementById('weeklyMonthSelector');
+    const weeklyYearSelector = document.getElementById('weeklyYearSelector');
+    const viewTypeSelector = document.getElementById('viewTypeSelector');
+    const weekly_caption = document.getElementById('weekly_caption');
+    let currentViewType = 'weekly';
+    const charts = {};
+    const fetchByCateg = async () => {
+        const response = await fetch('http://localhost:8000/getAllWeeks');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
 
-    checkSystemTheme() {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const hasThemeClass = document.documentElement.classList.contains('dark');
-        
-        // Only set theme if it hasn't been manually set
-        if (!hasThemeClass && prefersDark) {
-            document.documentElement.classList.add('dark');
+    const fetchByBodyScrub = async () => {
+        const response = await fetch('http://localhost:8000/getAllBodyScrubs');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.BodyScrub, 10)) : [];
+    };
+
+    const fetchByPackages = async () => {
+        const response = await fetch('http://localhost:8000/getAllPackages');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
+    };
+
+    const fetchByMassages = async () => {
+        const response = await fetch('http://localhost:8000/getMassagesByMonthMassages');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
+
+    const getMassagesByMonthBodyScrub = async () => {
+        const response = await fetch('http://localhost:8000/getMassagesByMonthBodyScrub');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.BodyScrub, 10)) : [];
+    };
+
+    const getMassagesByMonthPackages = async () => {
+        const response = await fetch('http://localhost:8000/getMassagesByMonthPackages');
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
+    };
+
+    const getAll = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
+
+    const getAllBodyScrubs = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Body_Scrubs, 10)) : [];
+    };
+
+    const getAllPackages = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategories/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Packages, 10)) : [];
+    };
+    const getAllMassagesByMonths = async (params) => {
+        const response = await fetch(`http://localhost:8000/getAllCategoriesByMonth/${params}`);
+        const jsonData = await response.json();
+        console.log(jsonData);
+        return response.ok ? jsonData[0].map(item => parseInt(item.Massages, 10)) : [];
+    };
+
+
+
+
+
+    let data = {};
+    const renderCharts = async (weekNum) => {
+        const weeklyMassages = await getAll(weekNum);
+        const weeklyBodyScrub = await getAllBodyScrubs(weekNum);
+        const weeklyPackages = await getAllPackages(weekNum);
+        data = {
+            weekly: {
+                massages: weeklyMassages,
+                body_scrubs: weeklyBodyScrub,
+                packages: weeklyPackages
+            },
+        };
+
+        charts.weekly.updateSeries([
+            { name: 'Massages', data: data.weekly.massages },
+            { name: 'Body Scrubs', data: data.weekly.body_scrubs },
+            { name: 'Packages', data: data.weekly.packages }
+        ]);
+
+        await charts.weekly.render();
+    };
+
+    const renderChartmonths = async (selectedMonth) => {
+        const chartData = await getAllMassagesByMonths(selectedMonth);
+
+        if (chartData) {
+            if (charts && charts.monthly) {
+                charts.monthly.updateSeries([
+                    { name: 'Massages', data: chartData.massages },
+                    { name: 'Body Scrubs', data: chartData.body_scrubs },
+                    { name: 'Packages', data: chartData.packages }
+                ]);
+                charts.monthly.render();
+            } else {
+                console.error('Chart not initialized!');
+            }
         }
-    }
+    };
 
-    initializeOptions() {
-        const isDark = document.documentElement.classList.contains('dark');
-        const textColor = isDark ? '#ffffff' : '#000000';
+    monthSelector.addEventListener('change', () => {
+        const selectedMonth = monthSelector.value;
+        console.log(selectedMonth);
+        renderChartmonths(selectedMonth);
+    });
 
-        // Base options for all charts
-        this.baseOptions = {
-            chart: {
-                height: 350,
-                stacked: true,
-                foreColor: textColor,
-                toolbar: { 
-                    show: true,
-                    tools: {
-                        download: false,
-                        selection: true,
-                        zoom: true,
-                        zoomin: true,
-                        zoomout: true,
-                        pan: true,
-                        reset: true
-                    }
-                },
-                zoom: { enabled: true },
-                background: 'transparent'
+    weekSelector.addEventListener('change', () => {
+        const selectedWeek = weekSelector.value;
+        renderCharts(selectedWeek);
+    });
+
+
+    const initializeData = async () => {
+        const weeklyPackages = await fetchByPackages();
+        const weeklyMassages = await fetchByCateg();
+        const weeklyBodyScrub = await fetchByBodyScrub();
+        const monthlyMassages = await fetchByMassages();
+        const getMassagesByBodyScrub = await getMassagesByMonthBodyScrub()
+        const getMassagesByMonthPackage = await getMassagesByMonthPackages();
+        data = {
+            weekly: {
+                massages: weeklyMassages,
+                body_scrubs: weeklyBodyScrub,
+                packages: weeklyPackages
             },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                }
+            monthly: {
+                massages: monthlyMassages,
+                body_scrubs: getMassagesByBodyScrub,
+                packages: getMassagesByMonthPackage,
             },
-            yaxis: {
-                title: { 
-                    text: 'Revenue (PHP)',
-                    style: {
-                        color: textColor
-                    }
-                },
-                labels: {
-                    formatter: (value) => `₱${value.toLocaleString('en-PH')}`,
-                    style: {
-                        colors: textColor
-                    }
-                }
-            },
-            tooltip: {
-                theme: isDark ? 'dark' : 'light',
-                y: {
-                    formatter: (value) => `₱${value.toLocaleString('en-PH')}`
-                }
-            },
-            colors: ['#006837', '#009444', '#88C540'],
-            legend: {
-                position: 'right',
-                offsetY: 40,
-                labels: {
-                    colors: textColor
-                }
-            },
-            fill: { opacity: 1 },
-            dataLabels: { enabled: false },
-            theme: {
-                mode: isDark ? 'dark' : 'light'
+            yearly:{
+                massages: monthlyMassages,
+                body_scrubs: getMassagesByBodyScrub,
+                packages: getMassagesByMonthPackage,
             }
         };
 
-        // Yearly chart options
-        this.yearlyOptions = {
-            ...this.baseOptions,
-            series: [{
-                name: 'Massages',
-                data: Array(12).fill(0)
-            }, {
-                name: 'Body Scrubs',
-                data: Array(12).fill(0)
-            }, {
-                name: 'Packages',
-                data: Array(12).fill(0)
-            }],
-            chart: {
-                ...this.baseOptions.chart,
-                type: 'bar'
-            },
-            xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                labels: {
-                    style: {
-                        colors: Array(12).fill(textColor)
-                    }
-                }
-            }
-        };
-
-        // Monthly chart options
-        this.monthlyOptions = {
-            ...this.baseOptions,
-            series: [{
-                name: 'Massages',
-                data: Array(31).fill(0)
-            }, {
-                name: 'Body Scrubs',
-                data: Array(31).fill(0)
-            }, {
-                name: 'Packages',
-                data: Array(31).fill(0)
-            }],
-            chart: {
-                ...this.baseOptions.chart,
-                type: 'bar'
-            },
-            xaxis: {
-                categories: Array.from({length: 31}, (_, i) => (i + 1).toString()),
-                labels: {
-                    style: {
-                        colors: Array(31).fill(textColor)
-                    }
-                }
-            }
-        };
-
-        // Weekly chart options
-        this.weeklyOptions = {
-            ...this.baseOptions,
-            series: [{
-                name: 'Massages',
-                data: Array(7).fill(0)
-            }, {
-                name: 'Body Scrubs',
-                data: Array(7).fill(0)
-            }, {
-                name: 'Packages',
-                data: Array(7).fill(0)
-            }],
-            chart: {
-                ...this.baseOptions.chart,
-                type: 'bar'
-            },
-            xaxis: {
-                categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                labels: {
-                    style: {
-                        colors: Array(7).fill(textColor)
-                    }
-                }
-            }
-        };
-    }
-
-    setupEventListeners() {
-        // Year selector for yearly view
-        this.yearSelector.addEventListener('change', () => this.fetchAndUpdateData('yearly'));
-        
-        // Month and year selectors for monthly view
-        this.monthSelector.addEventListener('change', () => this.fetchAndUpdateData('monthly'));
-        this.monthlyYearSelector.addEventListener('change', () => this.fetchAndUpdateData('monthly'));
-        
-        // Week, month, and year selectors for weekly view
-        this.weekSelector.addEventListener('change', () => this.fetchAndUpdateData('weekly'));
-        this.weeklyMonthSelector.addEventListener('change', () => this.fetchAndUpdateData('weekly'));
-        this.weeklyYearSelector.addEventListener('change', () => this.fetchAndUpdateData('weekly'));
-        
-        // Listen for view type changes
-        this.viewTypeSelector.addEventListener('change', () => {
-            this.currentViewType = this.viewTypeSelector.value;
-            this.updateChartVisibility(this.currentViewType);
-            this.fetchAndUpdateData(this.currentViewType);
+        charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), {
+            ...baseOptions, xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] }
         });
-        
-        document.addEventListener('DOMContentLoaded', () => this.init());
-    }
 
-    // Add this new method to handle chart visibility
-    updateChartVisibility(viewType) {
-        // Hide all charts first
-        document.querySelector("#weeklyChart").style.display = 'none';
-        document.querySelector("#monthlyChart").style.display = 'none';
-        document.querySelector("#stackedColumnChart").style.display = 'none';
-        
-        // Hide all revenue and popular service info
-        document.querySelector("#weekly_revenue_info").style.display = 'none';
-        document.querySelector("#monthly_revenue_info").style.display = 'none';
-        document.querySelector("#yearly_revenue_info").style.display = 'none';
-        document.querySelector("#weekly_popular_info").style.display = 'none';
-        document.querySelector("#monthly_popular_info").style.display = 'none';
-        document.querySelector("#yearly_popular_info").style.display = 'none';
-        
-        // Show only the selected chart and info
-        switch(viewType) {
-            case 'weekly':
-                document.querySelector("#weeklyChart").style.display = 'block';
-                document.querySelector("#weekly_revenue_info").style.display = 'flex';
-                document.querySelector("#weekly_popular_info").style.display = 'flex';
-                break;
-            case 'monthly':
-                document.querySelector("#monthlyChart").style.display = 'block';
-                document.querySelector("#monthly_revenue_info").style.display = 'flex';
-                document.querySelector("#monthly_popular_info").style.display = 'flex';
-                break;
-            case 'yearly':
-                document.querySelector("#stackedColumnChart").style.display = 'block';
-                document.querySelector("#yearly_revenue_info").style.display = 'flex';
-                document.querySelector("#yearly_popular_info").style.display = 'flex';
-                break;
-        }
-        
-        // Force a resize event after changing visibility
-        setTimeout(() => {
-            window.dispatchEvent(new Event('resize'));
-            if (this.charts[viewType]) {
-                this.charts[viewType].render();
+        await charts.render();
+        setupEvents();
+    };
+
+    
+
+
+
+
+    const baseOptions = {
+        chart: { type: 'bar', height: 350, stacked: true },
+        colors: ['#006837', '#009444', '#88C540'],
+        yaxis: { labels: { enabled:false } },
+        tooltip: { y: { formatter: (val) => `₱${val.toLocaleString('en-PH')}` } },
+        legend: { position: 'right' },
+        dataLabels: { enabled: false },
+        series: [{ name: 'Massages', data: [] }, { name: 'Body Scrubs', data: [] }, { name: 'Packages', data: [] }],
+        xaxis: {
+            labels: {
+                enabled:false
             }
-        }, 50);
+        }
+    };
+
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: currentYear - 2020 }, (_, i) => 2021 + i);
+
+    charts.yearly = new ApexCharts(document.querySelector("#stackedColumnChart"), {
+        ...baseOptions,
+        xaxis: { categories: years }
+    });
+
+    charts.monthly = new ApexCharts(document.querySelector("#monthlyChart"), {
+        ...baseOptions, xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] }
+    });
+    charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), {
+        ...baseOptions, xaxis: {
+            categories: ['Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            labels: { enabled: false }
+        }
+    });
+
+    Object.values(charts).forEach(chart => chart.render());
+    setupEvents();
+    updateChart('weekly');
+
+    function setupEvents() {
+        viewTypeSelector.addEventListener('change', () => {
+            currentViewType = viewTypeSelector.value;
+            updateChart(currentViewType);
+        });
+        yearSelector.addEventListener('change', () => updateChart('yearly'));
+        monthlyYearSelector.addEventListener('change', () => updateChart('monthly'));
+        weekSelector.addEventListener('change', () => updateChart('weekly'));
+        weeklyMonthSelector.addEventListener('change', () => updateChart('weekly'));
+        weeklyYearSelector.addEventListener('change', () => updateChart('weekly'));
     }
 
-    init() {
-        // Make all chart containers visible temporarily for initialization
-        document.querySelector("#weeklyChart").style.display = 'block';
-        document.querySelector("#monthlyChart").style.display = 'block';
-        document.querySelector("#stackedColumnChart").style.display = 'block';
-        
-        // Initialize all three charts
-        this.charts.yearly = new ApexCharts(document.querySelector("#stackedColumnChart"), this.yearlyOptions);
-        this.charts.monthly = new ApexCharts(document.querySelector("#monthlyChart"), this.monthlyOptions);
-        this.charts.weekly = new ApexCharts(document.querySelector("#weeklyChart"), this.weeklyOptions);
-        
-        // Render all charts
-        this.charts.yearly.render();
-        this.charts.monthly.render();
-        this.charts.weekly.render();
-        
-        this.setupThemeObserver();
-        
-        setTimeout(() => {
-            window.dispatchEvent(new Event('resize'));
-            
-            setTimeout(() => {
-                this.updateChartVisibility(this.currentViewType);
-                
-                // Changed from 'yearly' to 'weekly'
-                this.fetchAndUpdateData('weekly');
-            }, 50);
-        }, 300);
-    }
+    async function updateChart(viewType) {
+        const chart = charts[viewType];
+        let chartData;
 
-    async fetchAndUpdateData(viewType = null) {
-        if (!viewType) viewType = this.currentViewType;
-        
         try {
-            let url = '';
-            let sampleData = {};
-            
-            switch(viewType) {
-                case 'weekly':
-                    const week = this.weekSelector.value;
-                    const weeklyMonth = this.weeklyMonthSelector.value;
-                    const weeklyYear = this.weeklyYearSelector.value;
-                    url = `/getWeeklyRevenue/${weeklyYear}/${weeklyMonth}/${week}`;
-                    sampleData = {
-                        massages: [8000, 7500, 9000, 8500, 10000, 12000, 11000],
-                        body_scrubs: [4000, 3800, 4500, 4200, 5000, 6000, 5500],
-                        packages: [6000, 5800, 6500, 6200, 7000, 8000, 7500]
-                    };
-                    break;
-                    
-                case 'monthly':
-                    const month = this.monthSelector.value;
-                    const monthlyYear = this.monthlyYearSelector.value;
-                    url = `/getMonthlyRevenue/${monthlyYear}/${month}`;
-                    
-                    // Create sample data with appropriate number of days for the month
-                    const daysInMonth = new Date(monthlyYear, month, 0).getDate();
-                    sampleData = {
-                        massages: Array.from({length: daysInMonth}, () => Math.floor(Math.random() * 3000) + 1000),
-                        body_scrubs: Array.from({length: daysInMonth}, () => Math.floor(Math.random() * 1500) + 500),
-                        packages: Array.from({length: daysInMonth}, () => Math.floor(Math.random() * 2000) + 800)
-                    };
-                    break;
-                    
-                case 'yearly':
-                default:
-                    const year = this.yearSelector.value;
-                    url = `/getYearlyRevenue/${year}`;
-                    sampleData = {
-                        massages: [45000, 52000, 48000, 55000, 49000, 51000, 54000, 48000, 52000, 50000, 53000, 56000],
-                        body_scrubs: [25000, 28000, 26000, 29000, 27000, 28000, 30000, 27000, 29000, 28000, 30000, 31000],
-                        packages: [35000, 38000, 36000, 39000, 37000, 38000, 40000, 37000, 39000, 38000, 40000, 41000]
-                    };
-                    break;
-            }
-            
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('Failed to fetch data');
-            const data = await response.json();
-            this.updateChartData(viewType, data);
-        } catch (error) {
-            console.error(`Error fetching ${viewType} revenue data:`, error);
-            // Use sample data as fallback
-            this.updateChartData(viewType, sampleData);
-        }
-    }
-
-    updateChartData(viewType, data) {
-        if (!this.charts[viewType]) return;
-        
-        let newSeries = [];
-        let categories = [];
-        let totalRevenue = 0;
-        
-        switch(viewType) {
-            case 'weekly':
-                newSeries = this.charts.weekly.w.config.series.map(series => {
-                    const seriesData = data[series.name.toLowerCase().replace(' ', '_')] || Array(7).fill(0);
-                    totalRevenue += seriesData.reduce((a, b) => a + b, 0);
-                    return {
-                        name: series.name,
-                        data: seriesData
-                    };
-                });
-                break;
-                
-            case 'monthly':
-                const month = this.monthSelector.value;
-                const year = this.monthlyYearSelector.value;
-                const daysInMonth = new Date(year, month, 0).getDate();
-                
-                categories = Array.from({length: daysInMonth}, (_, i) => (i + 1).toString());
-                
-                newSeries = this.charts.monthly.w.config.series.map(series => {
-                    const seriesData = data[series.name.toLowerCase().replace(' ', '_')] || Array(daysInMonth).fill(0);
-                    totalRevenue += seriesData.reduce((a, b) => a + b, 0);
-                    return {
-                        name: series.name,
-                        data: seriesData
-                    };
-                });
-                
-                this.charts.monthly.updateOptions({
-                    xaxis: {
-                        categories: categories
-                    }
-                });
-                break;
-                
-            case 'yearly':
-            default:
-                newSeries = this.charts.yearly.w.config.series.map(series => {
-                    const seriesData = data[series.name.toLowerCase().replace(' ', '_')] || Array(12).fill(0);
-                    totalRevenue += seriesData.reduce((a, b) => a + b, 0);
-                    return {
-                        name: series.name,
-                        data: seriesData
-                    };
-                });
-                break;
-        }
-        
-        // Update the revenue text
-        const revenueElement = document.getElementById(`${viewType}_revenue`);
-        if (revenueElement) {
-            revenueElement.textContent = `₱${totalRevenue.toLocaleString('en-PH')}`;
-        }
-        
-        this.charts[viewType].updateSeries(newSeries);
-    }
-
-    setupThemeObserver() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.attributeName === 'class') {
-                    this.updateTheme();
-                }
+            chartData = await new Promise((resolve) => {
+                setTimeout(() => resolve(data[viewType]), 500);
             });
-        });
 
-        observer.observe(document.documentElement, {
-            attributes: true
-        });
-    }
+            if (viewType === 'monthly') {
+                const days = new Date(monthlyYearSelector.value || 2025, monthSelector.value || 1, 0).getDate();
+                chart.updateOptions({ xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] } });
+            }
 
-    updateTheme() {
-        const isDark = document.documentElement.classList.contains('dark');
-        const textColor = isDark ? '#E5E5E5' : '#1F2937';
-        
-        // Update theme for all charts
-        Object.values(this.charts).forEach(chart => {
-            chart.updateOptions({
-                chart: {
-                    foreColor: textColor
-                },
-                xaxis: {
-                    labels: {
-                        style: {
-                            colors: Array(31).fill(textColor) // Use 31 as max (for monthly view)
-                        }
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            colors: [textColor]
-                        }
-                    },
-                    title: {
-                        style: {
-                            color: textColor
-                        }
-                    }
-                },
-                legend: {
-                    labels: {
-                        colors: [textColor]
-                    }
-                },
-                theme: {
-                    mode: isDark ? 'dark' : 'light'
+            if (viewType === 'daily') {
+                const days = new Date(monthlyYearSelector.value || 2025, monthSelector.value || 1, 0).getDate();
+                chart.updateOptions({ xaxis: { categories: Array(days).fill(0).map((_, i) => i + 1) } });
+            }
+
+            chart.updateSeries([
+                { name: 'Massages', data: chartData.massages },
+                { name: 'Body Scrubs', data: chartData.body_scrubs },
+                { name: 'Packages', data: chartData.packages || [] }
+            ]);
+
+            const fetchData = async () => {
+                const response = await fetch('http://localhost:8000/getTotalRevenueAsWeek');
+                let total = await response.json();
+                if (response.ok) {
+                    console.log(total);
+                    document.getElementById(`${viewType}_revenue`).textContent = `₱${Number(total[0].price).toLocaleString('en-PH')}`;
                 }
-            }, true);
-        });
+            }
+            fetchData();
+            ['weekly', 'monthly', 'yearly'].forEach(type => {
+                document.getElementById(`${type}Chart`).style.display = type === viewType ? 'block' : 'none';
+                document.getElementById(`${type}_revenue_info`).style.display = type === viewType ? 'flex' : 'none';
+                document.getElementById(`${type}_popular_info`).style.display = type === viewType ? 'flex' : 'none';
+            });
+        } catch (error) {
+            console.error(`Error fetching ${viewType} data from ${url}:`, error);
+            chart.updateSeries([
+                { name: 'Massages', data: data[viewType].massages },
+                { name: 'Body Scrubs', data: data[viewType].body_scrubs },
+                { name: 'Packages', data: data[viewType].packages || [] }
+            ]);
+        }
     }
-}
+    initializeData();
 
-new RevenueChart();
+});

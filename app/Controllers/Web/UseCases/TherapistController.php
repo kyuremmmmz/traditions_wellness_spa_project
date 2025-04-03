@@ -1,13 +1,16 @@
 <?php
 namespace Project\App\Controllers\Web\UseCases;
 
+use Project\App\Models\Auth\UserAuthModel;
 use Project\App\Models\Therapist\TherapistModel;
 class TherapistController
 {
     private $controller;
+    private $userController;
     public function __construct()
     {
         $this->controller = new TherapistModel();
+        $this->userController = new UserAuthModel();
     }
 
     public function addTherapist()
@@ -73,6 +76,14 @@ class TherapistController
     {
         ob_clean();
         $data = $this->controller->getAll();
+        echo json_encode($data);
+        exit;
+    }
+
+    public function getAllUsers()
+    {
+        ob_clean();
+        $data = $this->userController->getAll();
         echo json_encode($data);
         exit;
     }

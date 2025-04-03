@@ -26,6 +26,7 @@
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/FetchApiData.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/ServicesDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/FilteringDom.js"></script>
+    <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/Users.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/hooks/AccountDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Services/SelectBoxDynamicDom.js"></script>
     <script src="http://localhost/TraditionsWellnessSpa/Project/app/views/js/Appointments/FetchAppointment.js"></script>

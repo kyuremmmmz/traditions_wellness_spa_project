@@ -42,14 +42,8 @@ class ServicesController
     {
         session_start();
         $data = $_POST;
-        $logFile = __DIR__ . '/debug.txt'; // Path to the debug log file
-
-        // Log input data
-        file_put_contents($logFile, "Received POST data:\n" . print_r($data, true) . "\n", FILE_APPEND);
-        file_put_contents($logFile, "Received FILES data:\n" . print_r($_FILES, true) . "\n", FILE_APPEND);
 
         if (!isset($data['category']) || empty($data['category'])) {
-            file_put_contents($logFile, "Error: Category is missing\n", FILE_APPEND);
             header('Location: /services');
             exit;
         }
@@ -96,18 +90,11 @@ class ServicesController
                 'rating' => $data['rating'],
                 'duration' => $data['duration'] ?? null
             ];
-
-            // Log SQL parameters
-            file_put_contents($logFile, "SQL Parameters:\n" . print_r($params, true) . "\n", FILE_APPEND);
-
-            // Call model function with these parameters
             $this->model->createServices($params);
-
-            $_SESSION['services_message'] = 'Service created successfully';
+            $_SESSION['service_message'] = 'Service Created Successfully';
             header('Location: /services');
             exit;
         } catch (Exception $e) {
-            file_put_contents($logFile, "Exception: " . $e->getMessage() . "\n", FILE_APPEND);
             header('Location: /services?error=creation_failed');
             exit;
         }

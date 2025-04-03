@@ -15,7 +15,7 @@ class UserAuthModel
 
     public function getAll()
     {
-        $stmt = $this->pdo->query("SELECT * FROM your_table_name");
+        $stmt = $this->pdo->query("SELECT first_name, last_name, role, email, gender FROM users");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
